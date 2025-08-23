@@ -6,17 +6,22 @@
 
 # Призываем 'torch' - наш Источник Маны.
 import torch
+
 # Призываем 'torch.nn' (nn) - главу с чертежами базовых блоков для големов.
 import torch.nn as nn
+
 # Призываем 'torch.nn.functional' (F) - гримуар с "заклинаниями", такими как ReLU и Max Pooling.
 import torch.nn.functional as F
+
 # Призываем 'torchvision' - для работы с датасетами изображений, как MNIST.
 import torchvision
+
 # Призываем 'DataLoader' - нашего "Духа-Подносчика" данных.
 from torch.utils.data import DataLoader
 
 # --- Часть II: Призыв Ранее Созданных Артефактов ---
 # Мы призываем чертежи "рунных камней", которые мы выковали в предыдущих квестах.
+
 
 # Наш собственный Линейный слой из Квеста 9.2.
 class MyLinear(nn.Module):
@@ -34,6 +39,7 @@ class MyLinear(nn.Module):
         # Главное заклинание: y = x * W^T + b.
         return F.linear(x, self.weight, self.bias)
 
+
 # Наш собственный Сверточный слой из Квеста 10.1.
 class MyConv(nn.Module):
     # В ритуале сотворения мы создаем "руны" - ядро свертки и смещение.
@@ -41,7 +47,9 @@ class MyConv(nn.Module):
         # Обязательное заклинание, призывающее дух предка.
         super().__init__()
         # Создаем обучаемую руну-ядро свертки.
-        self.weight = nn.Parameter(torch.randn(out_channels, in_channels, kernel_size, kernel_size))
+        self.weight = nn.Parameter(
+            torch.randn(out_channels, in_channels, kernel_size, kernel_size)
+        )
         # Создаем обучаемую руну-смещение.
         self.bias = nn.Parameter(torch.randn(out_channels))
 
@@ -49,6 +57,7 @@ class MyConv(nn.Module):
     def forward(self, x):
         # Главное заклинание: свертка входного изображения 'x' с нашим ядром.
         return F.conv2d(x, self.weight, self.bias, stride=1, padding=1)
+
 
 # --- Часть III: Чертеж Нашей Ручной "Башни Прозрения" ---
 # Теперь мы собираем наши ручные артефакты в единого голема.
@@ -61,7 +70,7 @@ class MyManualCNN(nn.Module):
         self.conv1 = MyConv(in_channels=1, out_channels=16, kernel_size=3)
         # Второй этаж: наша собственная ручная "голова" для принятия решений.
         # Принимает "сплющенные" данные и выдает 10 вердиктов (для цифр 0-9).
-        self.fc1 = MyLinear(in_features=16*14*14, out_features=10)
+        self.fc1 = MyLinear(in_features=16 * 14 * 14, out_features=10)
 
     # В ритуале "прямого прохода" мы описываем путь сигнала через "Башню".
     def forward(self, x):
@@ -73,21 +82,27 @@ class MyManualCNN(nn.Module):
         x = F.max_pool2d(x, kernel_size=2, stride=2)
         # 4. "Сплющиваем" 2D карты признаков в один длинный вектор, чтобы "голова" могла их прочесть.
         # '-1' - магическая руна, означающая "PyTorch, посчитай этот размер сам".
-        x = x.view(-1, 16*14*14)
+        x = x.view(-1, 16 * 14 * 14)
         # 5. Сплющенный вектор проходит через "голову", которая выносит финальный вердикт (логиты).
         x = self.fc1(x)
         # 6. Возвращаем вердикт.
         return x
+
 
 # --- Часть IV: Главный Ритуал Наставления ---
 # Эта конструкция ('if __name__ == "__main__":') - священное начало любого пергамента.
 if __name__ == "__main__":
     # --- Акт 1: Подготовка Учебных Свитков (MNIST) ---
     # Загружаем учебные рукописи MNIST.
-    train_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=torchvision.transforms.ToTensor(), download=True)
+    train_dataset = torchvision.datasets.MNIST(
+        root="./data",
+        train=True,
+        transform=torchvision.transforms.ToTensor(),
+        download=True,
+    )
     # Создаем "Духа-Подносчика", который будет подавать рукописи нашему голему пачками по 64 штуки.
     train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-    
+
     # --- Акт 2: Призыв и Наставление ---
     # Призываем нашу "Башню", собранную вручную.
     model = MyManualCNN()
@@ -113,14 +128,16 @@ if __name__ == "__main__":
             # Наставник делает шаг, исправляя "разум" (веса).
             optimizer.step()
         # Сообщаем о завершении одной эпохи обучения и о том, насколько голем стал умнее.
-        print(f'Эпоха {epoch+1}/3 завершена, финальная ошибка: {loss.item():.4f}')
-    
+        print(f"Эпоха {epoch+1}/3 завершена, финальная ошибка: {loss.item():.4f}")
+
     # Сообщаем о завершении наставления.
     print("...Наставление завершено.")
-    
+
     # --- Акт 3: Экзамен ---
     # Загружаем экзаменационные рукописи, которые голем никогда не видел.
-    test_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=torchvision.transforms.ToTensor())
+    test_dataset = torchvision.datasets.MNIST(
+        root="./data", train=False, transform=torchvision.transforms.ToTensor()
+    )
     # Берем одну случайную рукопись для проверки.
     test_image, test_label = test_dataset[0]
     # Переводим голема в режим "экзамена".
@@ -129,9 +146,9 @@ if __name__ == "__main__":
     output = model(test_image.unsqueeze(0))
     # 'torch.max' находит вердикт с самой высокой уверенностью.
     _, predicted_class = torch.max(output, 1)
-    
+
     # Оглашаем вердикт.
-    print(f"\n--- Экзамен ---")
+    print("\n--- Экзамен ---")
     print(f"Голем увидел рукопись с цифрой: {test_label}")
     print(f"Его вердикт: {predicted_class.item()}")
     # Проверяем, прав ли голем.

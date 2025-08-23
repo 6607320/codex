@@ -19,7 +19,9 @@ print("Призываю Магического Переводчика...")
 # AutoTokenizer.from_pretrained(...) - это заклинание, которое говорит:
 # "Найди в Великой Библиотеке модель с именем 'distilbert-base-uncased...'
 # и создай для меня Переводчика, который идеально к ней подходит (использует тот же словарь и правила)".
-translator = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
+translator = AutoTokenizer.from_pretrained(
+    "distilbert-base-uncased-finetuned-sst-2-english"
+)
 
 # --- Акт 3: Ритуал Перевода ---
 
@@ -47,4 +49,4 @@ print(runes)
 print("\nЧисловые руны (input_ids):", end=" ")
 # Из всего словаря 'runes' мы извлекаем значение по ключу 'input_ids'.
 # Это и есть та самая последовательность числовых рун, которую "поймет" Голем.
-print(runes['input_ids'])
+print(runes["input_ids"])

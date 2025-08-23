@@ -5,29 +5,36 @@
 # не помещаются в оперативную память, организуя "ленивую" загрузку.
 
 # --- Акт 1: Подготовка Гримуаров ---
-# Призываем наш силовой гримуар PyTorch.
-import torch
-# Из раздела 'torch.utils.data' призываем два главных чертежа для работы с данными.
-from torch.utils.data import Dataset, DataLoader
-# Из гримуара 'Pillow' призываем заклинание для открытия изображений.
-from PIL import Image
-# Призываем помощника 'os' для работы с путями.
-import os
+
 # Призываем помощника 'glob' для "умного" поиска файлов.
 import glob
+
+# Призываем помощника 'os' для работы с путями.
+import os
+
+# Из гримуара 'Pillow' призываем заклинание для открытия изображений.
+from PIL import Image
+
+# Из раздела 'torch.utils.data' призываем два главных чертежа для работы с данными.
+from torch.utils.data import DataLoader, Dataset
+
+# Призываем гримуар 'transforms' из 'torchvision' для создания "линз".
+from torchvision import transforms
 
 # --- Акт 2: Чертеж "Хранителя Свитков" (CustomImageDataset) ---
 # Создаем "чертеж" (класс) для нашего Хранителя.
 # Он наследует (`Dataset`) всю базовую магию от PyTorch для работы с данными.
+
+
 class CustomImageDataset(Dataset):
-    
+
     # Заклинание Инициализации (`__init__`): срабатывает при сотворении Хранителя.
     # Его задача - создать "каталог" нашей библиотеки и запомнить "линзы".
     def __init__(self, directory, transform=None):
         # glob.glob(...) - заклинание поиска. 'directory/*.png' находит все файлы
         # с расширением .png в указанной папке. Результат (список путей)
         # мы сохраняем в "каталог" self.image_paths.
-        self.image_paths = glob.glob(os.path.join(directory, '*.png'))
+        self.image_paths = glob.glob(os.path.join(directory, "*.png"))
         # Мы "запоминаем" конвейер "магических линз", который нам передали.
         self.transform = transform
 
@@ -45,35 +52,37 @@ class CustomImageDataset(Dataset):
         # Он "вскрывает" свиток, читая изображение с диска.
         # .convert("RGB") - на всякий случай превращает его в стандартный 3-канальный формат.
         image = Image.open(image_path).convert("RGB")
-        
+
         # Мы проверяем, передали ли нам "магические линзы".
         if self.transform:
             # Если да, Хранитель применяет их к только что открытому образу.
             image = self.transform(image)
-        
+
         # Для простоты этого квеста, мы будем использовать номер свитка как его "метку".
         label = idx
         # Хранитель возвращает два артефакта: обработанный образ и его метку.
         return image, label
 
-# --- Акт 3: Ритуал Сотворения и Использования ---
-# Призываем гримуар 'transforms' из 'torchvision' для создания "линз".
-from torchvision import transforms
 
+# --- Акт 3: Ритуал Сотворения и Использования ---
 print("Создаю конвейер 'магических линз'...")
 # Создаем простой конвейер из двух линз.
-data_transform = transforms.Compose([
-    # 1. Изменить размер каждого образа до 64x64.
-    transforms.Resize((64, 64)),
-    # 2. Превратить образ из формата Pillow в Тензор PyTorch.
-    transforms.ToTensor()
-])
+data_transform = transforms.Compose(
+    [
+        # 1. Изменить размер каждого образа до 64x64.
+        transforms.Resize((64, 64)),
+        # 2. Превратить образ из формата Pillow в Тензор PyTorch.
+        transforms.ToTensor(),
+    ]
+)
 
 # Шаг 1: Сотворяем "Хранителя".
 print("Сотворяю 'Хранителя Свитков'...")
 # Мы создаем экземпляр нашего "Хранителя" по чертежу CustomImageDataset.
 # Мы даем ему путь к нашей "библиотеке" ('generated_palette') и наш конвейер "линз".
-image_dataset = CustomImageDataset(directory='generated_palette', transform=data_transform)
+image_dataset = CustomImageDataset(
+    directory="generated_palette", transform=data_transform
+)
 
 # Шаг 2: Сотворяем "Подносчика".
 print("Сотворяю 'Подносчика'...")

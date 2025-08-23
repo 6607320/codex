@@ -7,12 +7,14 @@
 
 # Призываем наш силовой гримуар PyTorch.
 import torch
+
 # Призываем "Диффузионный Конвейер" для творения.
 from diffusers import DiffusionPipeline
+
 # Призываем специальный инструмент для работы с "блокнотами" (нашей Печатью).
 from peft import PeftModel
+
 # Призываем помощника 'os' (хотя он здесь и не используется, это хорошая привычка).
-import os
 
 # --- Акт 2: Призыв "Чистого" Демиурга ---
 
@@ -22,11 +24,11 @@ model_id = "CompVis/stable-diffusion-v1-4"
 
 # Призываем стандартный конвейер Stable Diffusion.
 pipe = DiffusionPipeline.from_pretrained(
-    model_id, 
+    model_id,
     # Используем руну экономии VRAM, загружая модель в 16-битном формате.
     torch_dtype=torch.float16,
     # Отключаем "Цензора", так как он может конфликтовать с нашим новым стилем.
-    safety_checker=None
+    safety_checker=None,
 )
 
 # --- Акт 3: Ритуал Наложения "Стилевой Печати" ---
@@ -64,7 +66,7 @@ with torch.no_grad():
     # num_inference_steps=50 - указываем, что ритуал должен состоять из 50 шагов "очистки от шума".
     # .images[0] - извлекаем первый (и единственный) сотворенный образ.
     image = pipe(prompt, num_inference_steps=50).images[0]
-    
+
 # --- Акт 5: Сохранение Шедевра ---
 
 # Имя для нашего финального, уникального артефакта.

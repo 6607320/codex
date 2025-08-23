@@ -6,11 +6,12 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
-# Призываем чертеж "Универсального Переводчика" (AutoTokenizer)
-# и чертеж "Голема для Классификации Текста" (AutoModelForSequenceClassification).
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
 # Призываем наш главный силовой гримуар "PyTorch".
 import torch
+
+# Призываем чертеж "Универсального Переводчика" (AutoTokenizer)
+# и чертеж "Голема для Классификации Текста" (AutoModelForSequenceClassification).
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 # --- Акт 2: Призыв Существ ---
 
@@ -18,11 +19,15 @@ import torch
 print("Призываем Переводчика и Голема...")
 
 # Создаем конкретный экземпляр Переводчика для модели 'distilbert...'.
-translator = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
+translator = AutoTokenizer.from_pretrained(
+    "distilbert-base-uncased-finetuned-sst-2-english"
+)
 
 # Создаем конкретный экземпляр Голема. Важно, что Переводчик и Голем
 # призваны из одного источника - они говорят на одном "диалекте".
-golem = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
+golem = AutoModelForSequenceClassification.from_pretrained(
+    "distilbert-base-uncased-finetuned-sst-2-english"
+)
 
 # --- Акт 3: Подготовка "Пищи" для Голема ---
 
@@ -37,7 +42,7 @@ runes = translator(my_phrase, return_tensors="pt")
 
 # Сообщаем о результате этого шага.
 print("Перевели фразу в руны, понятные Голему.")
-print(runes['input_ids'])
+print(runes["input_ids"])
 
 # --- Акт 4: Ритуал "Чтения Мыслей" ---
 

@@ -4,21 +4,23 @@
 
 # --- Часть I: Импорт Магических Гримуаров ---
 
-# Призываем 'torch' - наш Источник Маны.
-import torch
-# Из гримуара 'transformers' призываем чертежи и инструменты для работы с нашими големами.
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, pipeline
 # Призываем 'gradio' (gr) - нашего духа-декоратора для создания веб-интерфейсов.
 import gradio as gr
+
+# Призываем 'torch' - наш Источник Маны.
+import torch
+
+# Из гримуара 'transformers' призываем чертежи и инструменты для работы с нашими големами.
+from transformers import GPT2LMHeadModel, GPT2Tokenizer, pipeline
+
 # Призываем 'Pillow' (PIL) - духа, умеющего работать с изображениями.
-from PIL import Image
 
 # --- Часть II: Подготовка к Ритуалу ---
 
 # Определяем устройство ('cuda' - Кристалл Маны GPU, 'cpu' - Разум CPU), где будет вершиться магия.
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # Задаем путь к "телу" нашего самого сложного голема.
-MODEL_PATH = './results/checkpoint-250'
+MODEL_PATH = "./results/checkpoint-250"
 
 # --- Акт 1: Пробуждение Главного Голема ---
 # Оповещаем о выбранном устройстве для ритуала.
@@ -36,34 +38,44 @@ print("...Голем-Сказитель пробужден.")
 
 # --- Акт 2: Создание "Заклинаний-Оберток" для Каждого Голема ---
 
+
 # Определяем ритуал-заклинание для Голема-Сказителя.
 def conjure_story(prompt_text, max_new_tokens=50):
     # Толмач превращает затравку от пользователя в руны-токены, понятные голему.
-    inputs = tokenizer_story.encode(prompt_text, return_tensors='pt').to(DEVICE)
+    inputs = tokenizer_story.encode(prompt_text, return_tensors="pt").to(DEVICE)
     # Голем генерирует продолжение истории в виде новых рун-токенов.
-    outputs = model_story.generate(inputs, max_new_tokens=max_new_tokens, no_repeat_ngram_size=2)
+    outputs = model_story.generate(
+        inputs, max_new_tokens=max_new_tokens, no_repeat_ngram_size=2
+    )
     # Толмач расшифровывает ответ (последовательность токенов) обратно в человеческий текст.
     generated_text = tokenizer_story.decode(outputs[0], skip_special_tokens=True)
     # Заклинание возвращает готовый текст.
     return generated_text
 
+
 # Определяем ритуал-заклинание для Духа Эмоций.
 def analyze_emotion(text):
     # 'pipeline' - это ленивое заклинание, которое призовет голема только при первом вызове.
-    sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
+    sentiment_analyzer = pipeline(
+        "sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english"
+    )
     # Голем-конвейер анализирует текст и возвращает список предсказаний.
     predictions = sentiment_analyzer(text)
     # Мы превращаем список словарей в единый словарь формата {'метка': уверенность}, понятный Gradio.
-    return {p['label']: p['score'] for p in predictions}
+    return {p["label"]: p["score"] for p in predictions}
+
 
 # Определяем ритуал-заклинание для Всевидящего Ока.
 def classify_image(image):
     # Этот 'pipeline' также будет призван "лениво", только при первом использовании.
-    image_classifier = pipeline("image-classification", model="google/vit-base-patch16-224")
+    image_classifier = pipeline(
+        "image-classification", model="google/vit-base-patch16-224"
+    )
     # Голем-конвейер смотрит на изображение и возвращает список предсказаний.
     predictions = image_classifier(image)
     # Мы превращаем список словарей в единый словарь, который нужен компоненту Gradio 'Label'.
-    return {p['label']: p['score'] for p in predictions}
+    return {p["label"]: p["score"] for p in predictions}
+
 
 # --- Часть III: Ритуал Сборки "Пантеона" ---
 # Эта конструкция ('if __name__ == "__main__":') - священное начало любого пергамента.
@@ -72,7 +84,7 @@ if __name__ == "__main__":
     print("\nСобираем 'Пантеон Големов'...")
 
     # --- Создаем "Алтари" (Интерфейсы) для каждого Голема по отдельности ---
-    
+
     # Создаем первый "алтарь" - отдельный интерфейс для Голема-Сказителя.
     story_altar = gr.Interface(
         # 'fn' - сердцем этого алтаря будет заклинание 'conjure_story'.
@@ -84,7 +96,7 @@ if __name__ == "__main__":
         # 'title' - заголовок этого алтаря.
         title="Зал Сказителей",
         # 'description' - описание под заголовком.
-        description="Введите начало истории, и Голем (дообученный `distilgpt2`) продолжит ее."
+        description="Введите начало истории, и Голем (дообученный `distilgpt2`) продолжит ее.",
     )
 
     # Создаем второй "алтарь" - отдельный интерфейс для Духа Эмоций.
@@ -98,7 +110,7 @@ if __name__ == "__main__":
         # 'title' - заголовок этого алтаря.
         title="Зал Эмоций",
         # 'description' - описание под заголовком.
-        description="Введите текст на английском, и Дух определит его эмоциональную окраску (POSITIVE/NEGATIVE)."
+        description="Введите текст на английском, и Дух определит его эмоциональную окраску (POSITIVE/NEGATIVE).",
     )
 
     # Создаем третий "алтарь" - отдельный интерфейс для Всевидящего Ока.
@@ -112,7 +124,7 @@ if __name__ == "__main__":
         # 'title' - заголовок этого алтаря.
         title="Зал Зрения",
         # 'description' - описание под заголовком.
-        description="Загрузите изображение, и Всевидящее Око (ViT) предскажет, что на нем изображено."
+        description="Загрузите изображение, и Всевидящее Око (ViT) предскажет, что на нем изображено.",
     )
 
     # --- Главное Заклинание: Объединение Алтарей в Пантеон ---
@@ -121,9 +133,9 @@ if __name__ == "__main__":
         # Первый ингредиент: "мешок" (список) с нашими тремя, уже готовыми, алтарями.
         [story_altar, emotion_altar, vision_altar],
         # Второй ингредиент: "мешок" с названиями, которые будут написаны на вкладках.
-        ["Магия Слова: Сказитель", "Магия Слова: Эмоции", "Магия Зрения"]
+        ["Магия Слова: Сказитель", "Магия Слова: Эмоции", "Магия Зрения"],
     )
-    
+
     # Оповещаем о финальном шаге.
     print("...Пантеон собран. Пробуждаем его!")
     # Финальное заклинание: "Пробудись, Пантеон, и яви себя миру!".

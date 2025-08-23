@@ -6,8 +6,10 @@
 # --- Акт 1: Подготовка Гримуаров ---
 # Призываем чертеж для создания "порталов".
 from fastapi import FastAPI
+
 # Призываем "чертеж" для описания данных, которые будут приходить в портал.
 from pydantic import BaseModel
+
 # Призываем наш старый добрый "амулет" pipeline.
 from transformers import pipeline
 
@@ -15,8 +17,11 @@ from transformers import pipeline
 # Мы "запечатываем" нашего "Духа Эмоций" внутри.
 # Он будет призван один раз при запуске портала и будет ждать запросов.
 print("Призываю 'Духа Эмоций' для нашего амулета...")
-sentiment_analyzer = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
+sentiment_analyzer = pipeline(
+    "sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english"
+)
 print("'Дух Эмоций' готов к работе.")
+
 
 # --- Акт 3: Чертеж "Магического Послания" ---
 # Мы описываем, как должно выглядеть "послание", которое присылают в наш портал.
@@ -24,13 +29,15 @@ print("'Дух Эмоций' готов к работе.")
 class TextInput(BaseModel):
     text: str
 
+
 # --- Акт 4: Создание самого "Портала" ---
 # `app = FastAPI(...)` - сотворяем наш главный артефакт-портал.
 app = FastAPI(
     title="Говорящий Амулет Техноманта",
     description="Магический портал, который определяет эмоциональную окраску текста.",
-    version="1.0"
+    version="1.0",
 )
+
 
 # --- Акт 5: Создание "Врат" в Портале ---
 # `@app.post("/analyze")` - это "декоратор". Он говорит:
@@ -40,16 +47,17 @@ app = FastAPI(
 def analyze_sentiment(request: TextInput):
     # `request: TextInput` - мы указываем, что "послание" должно соответствовать
     # нашему чертежу `TextInput`. FastAPI сам проверит это.
-    
+
     # Берем текст из полученного "послания".
     text_to_analyze = request.text
-    
+
     # Передаем текст нашему "Духу".
     result = sentiment_analyzer(text_to_analyze)
-    
+
     # Возвращаем результат обратно "ворону", который принес послание.
     # FastAPI сам превратит этот словарь Python в формат JSON.
     return {"result": result[0]}
+
 
 # --- Инструкция по Пробуждению Портала ---
 # Этот скрипт сам по себе не запускает портал. Он лишь содержит его чертеж.

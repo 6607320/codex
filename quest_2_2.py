@@ -5,10 +5,11 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
+# Призываем "Библиотекаря" (load_dataset) для надежного получения данных.
+from datasets import load_dataset
+
 # Призываем "амулет" pipeline для легкого использования модели.
 from transformers import pipeline
-# Призываем "Библиотекаря" (load_dataset) для надежного получения данных.
-from datasets import load_dataset 
 
 # --- Акт 2: Призыв Аудио-Послания ---
 
@@ -21,7 +22,9 @@ print("Обращаюсь к древнему, проверенному архи
 # 3. split="test" - Мы берем данные из тестовой (обычно самой маленькой) части.
 # 4. streaming=True - Ключевая руна экономии! Мы не скачиваем весь архив, а открываем
 #    к нему "поток", чтобы брать данные по одному.
-dataset = load_dataset("librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True)
+dataset = load_dataset(
+    "librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True
+)
 
 # next(iter(dataset)) - это заклинание, которое говорит: "Возьми из потока
 # самый первый попавшийся образец". Мы сохраняем его в 'sample'.
@@ -38,10 +41,12 @@ print("Аудио-послание успешно призвано!")
 
 # Сообщаем о призыве "Уха". Так как модель уже скачана, это произойдет мгновенно.
 print("\nПризываю 'Ухо Всеслышания'...")
-transcriber = pipeline("automatic-speech-recognition", model="openai/whisper-tiny", device_map="auto")
+transcriber = pipeline(
+    "automatic-speech-recognition", model="openai/whisper-tiny", device_map="auto"
+)
 
 # Сообщаем о начале анализа.
-print(f"\nГотовлюсь расшифровать послание...")
+print("\nГотовлюсь расшифровать послание...")
 
 # "Скармливаем" нашему "амулету" (transcriber) не имя файла, а сами
 # аудиоданные (audio_input), которые мы получили на Акте 2.
@@ -55,4 +60,4 @@ result = transcriber(audio_input.copy())
 print("\nРасшифрованное послание:")
 # Результат - это словарь. Нас интересует текст, который лежит под ключом 'text'.
 # Мы извлекаем и печатаем его.
-print(result['text'])
+print(result["text"])

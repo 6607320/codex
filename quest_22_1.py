@@ -4,14 +4,17 @@
 
 # --- Часть I: Импорт Магических Гримуаров ---
 
-# Призываем 'torch' - наш Источник Маны.
-import torch
-# Из гримуара 'transformers' призываем чертежи нашего мультимодального голема CLIP.
-from transformers import CLIPProcessor, CLIPModel
-# Призываем 'Pillow' (PIL) - духа, умеющего работать с изображениями (открывать, изменять).
-from PIL import Image
 # Призываем 'requests' - духа-гонца, способного приносить артефакты (например, картинки) из сети.
 import requests
+
+# Призываем 'torch' - наш Источник Маны.
+import torch
+
+# Призываем 'Pillow' (PIL) - духа, умеющего работать с изображениями (открывать, изменять).
+from PIL import Image
+
+# Из гримуара 'transformers' призываем чертежи нашего мультимодального голема CLIP.
+from transformers import CLIPModel, CLIPProcessor
 
 # --- Часть II: Подготовка к Ритуалу ---
 
@@ -28,7 +31,7 @@ if __name__ == "__main__":
     model_name = "openai/clip-vit-base-patch32"
     # Оповещаем о начале призыва.
     print(f"Призываем могущественного голема '{model_name}'...")
-    
+
     # Призываем самого Голема CLIP и отправляем его на магический алтарь.
     model = CLIPModel.from_pretrained(model_name).to(DEVICE)
     # Призываем его верного "Толмача" (Processor). Этот толмач уникален - он умеет готовить и текст, и картинки.
@@ -57,8 +60,10 @@ if __name__ == "__main__":
     # Он сам знает, как подготовить каждый артефакт (нормализовать картинку, токенизировать текст).
     # 'return_tensors="pt"' - приказ "верни мне все в виде тензоров PyTorch".
     # '.to(DEVICE)' - немедленно отправляем подготовленные данные на наш магический алтарь.
-    inputs = processor(text=text_descriptions, images=image, return_tensors="pt", padding=True).to(DEVICE)
-    
+    inputs = processor(
+        text=text_descriptions, images=image, return_tensors="pt", padding=True
+    ).to(DEVICE)
+
     # Отправляем подготовленные данные в "разум" Голема CLIP.
     # Голем вычисляет ауры для картинки и для каждого текста в общем пространстве смыслов.
     # Затем он вычисляет "резонанс" (логиты) между аурой картинки и аурой каждого текста.
@@ -67,18 +72,18 @@ if __name__ == "__main__":
     logits_per_image = outputs.logits_per_image
     # Применяем заклинание 'softmax', чтобы превратить сырые оценки в понятные вероятности (от 0 до 1).
     probs = logits_per_image.softmax(dim=1)
-    
+
     # --- Акт 4: Оглашение Вердикта ---
     # Сообщаем о результате.
     print("\n--- Вердикт Магического Компаса ---")
     # Превращаем тензор с вероятностями в обычный список numpy для удобства.
     # '.cpu().detach().numpy()' - стандартное заклинание для извлечения данных из тензора.
     probabilities = probs.cpu().detach().numpy()[0]
-    
+
     # Проходим по каждой гипотезе и ее вероятности.
     for description, prob in zip(text_descriptions, probabilities):
         # Выводим результат. ':.2% - магическое форматирование, превращающее 0.99 в "99.00%".
         print(f"- Схожесть с '{description}': {prob:.2%}")
-        
+
     # Финальное напутствие.
     print("\nРитуал завершен. Компас указал на истинный смысл.")

@@ -7,20 +7,25 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
+# Новый помощник 'glob' для "умного" поиска файлов.
+import glob
+
+# Помощник 'os' для работы с путями.
+import os
+
+# "Набор Кинематографиста".
+import cv2
+
 # Призываем все необходимые инструменты.
 import torch
 import torch.nn as nn
 import torch.optim as optim
-# Призываем чертежи для "Всевидящего Духа" и его "Настройщика Зрения".
-from transformers import AutoImageProcessor, AutoModel
+
 # Наш верный "индикатор прогресса".
 from tqdm import tqdm
-# "Набор Кинематографиста".
-import cv2
-# Новый помощник 'glob' для "умного" поиска файлов.
-import glob
-# Помощник 'os' для работы с путями.
-import os
+
+# Призываем чертежи для "Всевидящего Духа" и его "Настройщика Зрения".
+from transformers import AutoImageProcessor, AutoModel
 
 # --- Акт 2: Призыв "Всевидящего Духа" ---
 
@@ -49,7 +54,7 @@ label_map = {"action_A": 0, "action_B": 1}
 
 # Запускаем цикл по каждому найденному видеофайлу.
 for video_path in tqdm(video_files, desc="Извлечение видео-эссенций"):
-    
+
     # Повторяем ритуал из Квеста 8.1: открываем видео и извлекаем
     # прореженные кадры в список 'video_frames'.
     cap = cv2.VideoCapture(video_path)
@@ -57,31 +62,33 @@ for video_path in tqdm(video_files, desc="Извлечение видео-эсс
     frame_count = 0
     while cap.isOpened():
         success, frame = cap.read()
-        if not success: break
+        if not success:
+            break
         frame_count += 1
         if frame_count % frame_skip == 0:
             video_frames.append(frame)
     cap.release()
-    
+
     # Защитная руна: если видео было слишком коротким и мы не извлекли ни одного кадра, пропускаем его.
-    if not video_frames: continue
+    if not video_frames:
+        continue
 
     # os.path.dirname(video_path) - получает путь к папке ('video_palette/action_A').
     # os.path.basename(...) - из этого пути берет только последнее имя ('action_A').
     label_name = os.path.basename(os.path.dirname(video_path))
     # Заглядываем в наш "справочник", чтобы получить номер класса.
     label = label_map[label_name]
-    
+
     # "Скармливаем" всю пачку кадров "Настройщику", а затем "Всевидящему Духу".
     inputs = processor(images=video_frames, return_tensors="pt").to("cuda")
     with torch.no_grad():
         outputs = model_extractor(**inputs)
-    
+
     # outputs.last_hidden_state - это "эссенции" КАЖДОГО кадра.
     # .mean(dim=[0, 2, 3]) - заклинание "глобального усреднения". Мы "схлопываем"
     # все эссенции в одну-единственную, которая представляет все видео целиком.
     video_essence = outputs.last_hidden_state.mean(dim=[0, 2, 3])
-    
+
     # Складываем "эссенцию" и "метку" в наши ящики.
     embeddings.append(video_essence)
     labels.append(label)

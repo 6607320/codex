@@ -8,10 +8,12 @@
 
 # Призываем PyTorch.
 import torch
-# Призываем чертежи для Голема, Переводчика и инструкции по сжатию.
-from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+
 # Призываем специальный чертеж PeftModel для работы с "блокнотами".
 from peft import PeftModel
+
+# Призываем чертежи для Голема, Переводчика и инструкции по сжатию.
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 # --- Акт 2: Призыв и "Просветление" Голема ---
 
@@ -29,9 +31,7 @@ quantization_config = BitsAndBytesConfig(
 
 # Призываем "чистого" Голема, применяя к нему сжатие на лету.
 model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    quantization_config=quantization_config,
-    device_map="auto"
+    model_name, quantization_config=quantization_config, device_map="auto"
 )
 
 # Призываем соответствующего Переводчика.
@@ -65,7 +65,11 @@ inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
 # 1. input_ids - передаем сами руны.
 # 2. attention_mask - передаем "карту внимания".
 # 3. max_new_tokens=20 - ограничиваем длину ответа 20-ю новыми токенами.
-outputs = model.generate(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"], max_new_tokens=20)
+outputs = model.generate(
+    input_ids=inputs["input_ids"],
+    attention_mask=inputs["attention_mask"],
+    max_new_tokens=20,
+)
 
 # --- Акт 4: Оценка Ответа ---
 

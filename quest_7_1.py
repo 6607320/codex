@@ -6,12 +6,15 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
-# Призываем наш силовой гримуар PyTorch.
-import torch
-# Призываем "Диффузионный Конвейер" для магии творения.
-from diffusers import DiffusionPipeline
 # Призываем помощника 'os' для работы с папками.
 import os
+
+# Призываем наш силовой гримуар PyTorch.
+import torch
+
+# Призываем "Диффузионный Конвейер" для магии творения.
+from diffusers import DiffusionPipeline
+
 # Призываем "индикатор прогресса".
 from tqdm import tqdm
 
@@ -32,9 +35,9 @@ print("Призываю Духа-Демиурга для создания наш
 # Призываем конвейер, используя уже знакомые нам руны экономии.
 # Модель будет загружена из локального кэша, так как мы ее уже скачивали.
 pipe = DiffusionPipeline.from_pretrained(
-    "CompVis/stable-diffusion-v1-4", 
+    "CompVis/stable-diffusion-v1-4",
     # Загружаем модель сразу в "легком" 16-битном формате.
-    torch_dtype=torch.float16
+    torch_dtype=torch.float16,
 )
 # Активируем ритуал "Призрачного Перемещения" для экономии VRAM.
 pipe.enable_model_cpu_offload()
@@ -57,7 +60,7 @@ for i in tqdm(range(num_images), desc="Сотворение палитры"):
     try:
         # Запускаем генерацию с нашим "стилевым" промптом.
         image = pipe(style_prompt).images[0]
-        
+
         # Создаем уникальное имя для каждой картины.
         save_path = os.path.join(palette_folder, f"style_image_{i}.png")
         # Сохраняем сотворенный артефакт.
@@ -68,4 +71,6 @@ for i in tqdm(range(num_images), desc="Сотворение палитры"):
 # --- Акт 5: Завершение ---
 
 # Сообщаем об успешном создании нашей "палитры".
-print(f"\nРитуал завершен! Палитра из {num_images} сотворенных картин готова в папке '{palette_folder}'.")
+print(
+    f"\nРитуал завершен! Палитра из {num_images} сотворенных картин готова в папке '{palette_folder}'."
+)

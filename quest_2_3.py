@@ -5,21 +5,26 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
-# Призываем "Библиотекаря" для получения аудио.
-from datasets import load_dataset 
-# Призываем "Художника" (matplotlib) для рисования. Даем ему короткое имя 'plt'.
-import matplotlib.pyplot as plt
 # Призываем "Магический Камертон" (librosa) для анализа звука.
 import librosa
+
+# Призываем "Художника" (matplotlib) для рисования. Даем ему короткое имя 'plt'.
+import matplotlib.pyplot as plt
+
 # Призываем помощника 'numpy' для математических операций.
 import numpy as np
+
+# Призываем "Библиотекаря" для получения аудио.
+from datasets import load_dataset
 
 # --- Акт 2: Призыв Аудио-Послания ---
 
 # Сообщаем о начале.
 print("Призываю аудио-послание...")
 # Открываем "портал" к нашему надежному архиву 'librispeech_asr'.
-dataset = load_dataset("librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True)
+dataset = load_dataset(
+    "librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True
+)
 # Берем первый образец из потока.
 sample = next(iter(dataset))
 # Извлекаем всю аудио-информацию.
@@ -62,17 +67,19 @@ fig, ax = plt.subplots()
 # 1. log_mel_spectrogram - Что рисовать.
 # 2. sr, x_axis, y_axis - Как подписать оси (время и частоты).
 # 3. ax=ax - На каком холсте рисовать.
-img = librosa.display.specshow(log_mel_spectrogram, sr=sampling_rate, x_axis='time', y_axis='mel', ax=ax)
+img = librosa.display.specshow(
+    log_mel_spectrogram, sr=sampling_rate, x_axis="time", y_axis="mel", ax=ax
+)
 
 # fig.colorbar(...) - добавляем сбоку "легенду", показывающую, какой цвет какой громкости соответствует.
-fig.colorbar(img, ax=ax, format='%+2.0f dB')
+fig.colorbar(img, ax=ax, format="%+2.0f dB")
 # ax.set_title(...) - даем нашей картине название.
-ax.set_title('Мел-спектрограмма (Отпечаток Звука)')
+ax.set_title("Мел-спектрограмма (Отпечаток Звука)")
 
 # --- Акт 5: Сохранение Артефакта ---
 
 # plt.savefig(...) - финальное заклинание, которое материализует все,
 # что нарисовано на холсте, в виде файла-артефакта.
-plt.savefig('spectrogram.png')
+plt.savefig("spectrogram.png")
 # Сообщаем об успешном сохранении.
 print("Рисунок сохранен в файл 'spectrogram.png'")

@@ -6,12 +6,14 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
-# Призываем "Набор Кинематографиста" (OpenCV).
-import cv2
-# Призываем помощника 'numpy' для математических операций, особенно для матриц трансформации.
-import numpy as np
 # Призываем помощника 'os' для создания папок.
 import os
+
+# Призываем "Набор Кинематографиста" (OpenCV).
+import cv2
+
+# Призываем помощника 'numpy' для математических операций, особенно для матриц трансформации.
+import numpy as np
 
 # --- Акт 2: Подготовка "Сцены" ---
 
@@ -24,19 +26,24 @@ os.makedirs("video_palette/action_B", exist_ok=True)
 # --- Акт 3: Призыв "Актера" ---
 
 # Загружаем наш артефакт 'magical_cat.png', который будет главным героем в обоих "фильмах".
-img = cv2.imread('magical_cat.png')
+img = cv2.imread("magical_cat.png")
 # Измеряем его размеры, чтобы наша "сцена" (видео-кадр) была такого же размера.
 height, width, _ = img.shape
 
 # --- Акт 4: Съемка "Действия А" (Движение вправо) ---
 
 # Готовим первую "кинопленку" для записи. Указываем путь, кодек, скорость (10 кадров/сек) и размер.
-out_A = cv2.VideoWriter('video_palette/action_A/video1.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 10, (width,height))
+out_A = cv2.VideoWriter(
+    "video_palette/action_A/video1.mp4",
+    cv2.VideoWriter_fourcc(*"mp4v"),
+    10,
+    (width, height),
+)
 # Запускаем цикл на 30 кадров.
 for i in range(30):
     # Создаем "матрицу сдвига". Это заклинание 2x3, которое говорит,
     # как трансформировать образ. [1, 0, i*5] означает "сдвинуть по горизонтали на i*5 пикселей".
-    M = np.float32([[1, 0, i*5], [0, 1, 0]])
+    M = np.float32([[1, 0, i * 5], [0, 1, 0]])
     # cv2.warpAffine применяет эту матрицу к нашему образу.
     shifted = cv2.warpAffine(img, M, (width, height))
     # Записываем измененный кадр на кинопленку.
@@ -47,20 +54,25 @@ out_A.release()
 # --- Акт 5: Съемка "Действия Б" (Увеличение) ---
 
 # Готовим вторую "кинопленку".
-out_B = cv2.VideoWriter('video_palette/action_B/video2.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 10, (width,height))
+out_B = cv2.VideoWriter(
+    "video_palette/action_B/video2.mp4",
+    cv2.VideoWriter_fourcc(*"mp4v"),
+    10,
+    (width, height),
+)
 # Запускаем цикл на 30 кадров.
 for i in range(30):
     # Вычисляем коэффициент "зума". Он будет плавно расти от 1.0 до ~1.6.
     scale = 1 + i * 0.02
     # cv2.resize - заклинание для изменения размера. Мы увеличиваем образ.
     zoomed = cv2.resize(img, None, fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR)
-    
+
     # Хитрый трюк для создания "наезда камеры":
     # Из увеличенного образа мы вырезаем центральную часть размером с исходный кадр.
     h, w, _ = zoomed.shape
-    start_h, start_w = h//2 - height//2, w//2 - width//2
-    cropped = zoomed[start_h:start_h+height, start_w:start_w+width]
-    
+    start_h, start_w = h // 2 - height // 2, w // 2 - width // 2
+    cropped = zoomed[start_h : start_h + height, start_w : start_w + width]
+
     # Записываем этот "приближенный" и обрезанный кадр на кинопленку.
     out_B.write(cropped)
 # Завершаем и сохраняем второй фильм.

@@ -6,14 +6,17 @@
 
 # Призываем 'torch' - наш Источник Маны.
 import torch
-# Из гримуара 'transformers' призываем чертежи нашего мультимодального голема CLIP и его Толмача.
-from transformers import CLIPProcessor, CLIPModel
-# Призываем 'Pillow' (PIL) - духа, умеющего работать с изображениями.
-from PIL import Image
+
 # Призываем гримуар 'datasets' для надежного и вечного доступа к данным.
 from datasets import load_dataset
+
+# Из гримуара 'transformers' призываем чертежи нашего мультимодального голема CLIP и его Толмача.
+from transformers import CLIPModel, CLIPProcessor
+
+# Призываем 'Pillow' (PIL) - духа, умеющего работать с изображениями.
+
+
 # Призываем 'numpy' (np) - для удобной работы с числовыми массивами.
-import numpy as np
 
 
 # --- Часть II: Подготовка к Ритуалу ---
@@ -43,7 +46,7 @@ if __name__ == "__main__":
     print("\nСоздаем 'Галерею Артефактов' для поиска...")
     # Призываем "книгу" 'cifar100' из хранилища.
     ds = load_dataset("cifar100", split="train", streaming=True)
-    
+
     # Задаем "заказ": мы хотим найти по одному изображению для каждого из этих классов.
     # Это словарь, где ключ - это метка, а значение - имя класса.
     labels_to_find = {20: "кот", 35: "рыба", 86: "трактор", 72: "тюльпан"}
@@ -52,11 +55,11 @@ if __name__ == "__main__":
     # Начинаем перебирать примеры из потока данных.
     for example in ds:
         # Извлекаем метку текущего примера.
-        label = example['fine_label']
+        label = example["fine_label"]
         # Проверяем, есть ли эта метка в нашем "заказе".
         if label in labels_to_find:
             # Если да, извлекаем изображение.
-            image = example['img']
+            image = example["img"]
             # Сохраняем изображение и его имя в нашу галерею.
             gallery[labels_to_find[label]] = image
             # Удаляем найденную метку из "заказа", чтобы не искать ее снова.
@@ -67,7 +70,7 @@ if __name__ == "__main__":
         if not labels_to_find:
             # 'break' - заклинание "прерви цикл".
             break
-            
+
     # Сообщаем о завершении сбора.
     print("...Галерея собрана.")
 
@@ -77,7 +80,9 @@ if __name__ == "__main__":
     # Извлекаем только изображения из нашей галереи.
     gallery_images = [img.convert("RGB") for img in gallery.values()]
     # Толмач подготавливает все изображения разом.
-    image_inputs = processor(images=gallery_images, return_tensors="pt", padding=True).to(DEVICE)
+    image_inputs = processor(
+        images=gallery_images, return_tensors="pt", padding=True
+    ).to(DEVICE)
     # Голем вычисляет "ауры" для всех изображений и сохраняет их.
     # '.get_image_features' - специальное заклинание CLIP для получения только аур изображений.
     image_embeddings = model.get_image_features(**image_inputs)
@@ -91,7 +96,9 @@ if __name__ == "__main__":
     # Оповещаем о начале поиска.
     print(f"\nИспользуем Магический Компас для поиска по запросу: '{search_query}'")
     # Толмач подготавливает наш текстовый запрос.
-    text_inputs = processor(text=[search_query], return_tensors="pt", padding=True).to(DEVICE)
+    text_inputs = processor(text=[search_query], return_tensors="pt", padding=True).to(
+        DEVICE
+    )
     # Голем вычисляет "ауру" для нашего запроса.
     text_embedding = model.get_text_features(**text_inputs)
 
@@ -101,12 +108,12 @@ if __name__ == "__main__":
     # '.T' - руна транспонирования, технический трюк для правильного умножения.
     similarities = (image_embeddings @ text_embedding.T).squeeze()
     # 'squeeze()' - убирает лишние измерения из тензора.
-    
+
     # 'torch.argmax(similarities)' - заклинание, которое находит ИНДЕКС самого большого резонанса.
     best_match_idx = torch.argmax(similarities).item()
     # Получаем имя класса, соответствующее найденному индексу.
     best_match_name = list(gallery.keys())[best_match_idx]
-    
+
     # Сообщаем о результате.
     print("\n--- Вердикт Магического Компаса ---")
     # Выводим имя найденного артефакта.

@@ -4,16 +4,19 @@
 
 # --- Часть I: Импорт Магических Гримуаров ---
 
-# Призываем 'torch' - наш Источник Маны.
-import torch
-# Призываем 'torch.nn' (nn) - главу с чертежами строительных блоков для големов.
-import torch.nn as nn
 # Призываем 'pandas' (pd) - для создания и работы с нашей "Летописью Предпочтений".
 import pandas as pd
-# Призываем 'numpy' (np) - для удобной работы с числовыми массивами.
-import numpy as np
+
+# Призываем 'torch' - наш Источник Маны.
+import torch
+
+# Призываем 'torch.nn' (nn) - главу с чертежами строительных блоков для големов.
+import torch.nn as nn
+
 # Из гримуара 'scipy' призываем духа, умеющего измерять "расстояния" в многомерном пространстве.
 from scipy.spatial.distance import cosine
+
+# Призываем 'numpy' (np) - для удобной работы с числовыми массивами.
 
 
 # --- Часть II: Подготовка к Ритуалу ---
@@ -22,6 +25,7 @@ from scipy.spatial.distance import cosine
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # Оповещаем о выбранном устройстве.
 print(f"Магия будет вершиться на устройстве: {DEVICE}")
+
 
 # --- Часть III: Чертеж Голема-Картографа ---
 # Этот чертеж мы полностью берем из прошлого квеста, он нам нужен для получения обученных аур.
@@ -46,7 +50,9 @@ class RecommendationNet(nn.Module):
         # Возвращаем предсказанный "резонанс" (рейтинг).
         return dot_product
 
+
 # --- Часть IV: Чертежи Магических Компасов ---
+
 
 # Чертеж ритуала для поиска похожих артефактов.
 def find_similar_items(item_name, item_embeddings, item_to_idx, idx_to_item, top_n=3):
@@ -56,7 +62,7 @@ def find_similar_items(item_name, item_embeddings, item_to_idx, idx_to_item, top
     source_idx = item_to_idx[item_name]
     # Извлекаем его "ауру" из каталога.
     source_embedding = item_embeddings[source_idx]
-    
+
     # Создаем пустой "мешок" для хранения схожести с другими артефактами.
     similarities = []
     # Начинаем цикл, чтобы сравнить наш артефакт с каждым другим.
@@ -65,7 +71,7 @@ def find_similar_items(item_name, item_embeddings, item_to_idx, idx_to_item, top
         if idx == source_idx:
             # 'continue' - заклинание "пропусти этот шаг и перейди к следующему".
             continue
-        
+
         # Извлекаем ауру "соседа".
         neighbor_embedding = item_embeddings[idx]
         # Вычисляем "косинусное расстояние" между аурами. 0 - значит ауры идентичны.
@@ -74,14 +80,15 @@ def find_similar_items(item_name, item_embeddings, item_to_idx, idx_to_item, top
         similarity = 1 - distance
         # Кладем в "мешок" пару (имя соседа, его схожесть).
         similarities.append((name, similarity))
-        
+
     # Сортируем "мешок" по убыванию схожести. 'key=lambda...' - заклинание, говорящее "сортируй по второму элементу".
     similarities.sort(key=lambda x: x[1], reverse=True)
-    
+
     # Выводим 'top_n' самых похожих артефактов.
     for name, similarity in similarities[:top_n]:
         # Выводим результат. ':.2f' - округление до двух знаков после запятой.
         print(f"- '{name}' (Схожесть: {similarity:.2f})")
+
 
 # Чертеж ритуала для персональных рекомендаций.
 def recommend_for_user(user_name, user_to_idx, model, df, idx_to_item, top_n=3):
@@ -89,10 +96,10 @@ def recommend_for_user(user_name, user_to_idx, model, df, idx_to_item, top_n=3):
     print(f"\n--- Персональные рекомендации для '{user_name}' ---")
     # Получаем числовой индекс искателя.
     user_idx = user_to_idx[user_name]
-    
+
     # Узнаем, какие артефакты этот искатель уже видел, чтобы не рекомендовать их снова.
-    seen_items = set(df[df['user'] == user_name]['item_id'])
-    
+    seen_items = set(df[df["user"] == user_name]["item_id"])
+
     # Создаем пустой "мешок" для хранения предсказанных рейтингов.
     predictions = []
     # Начинаем цикл по всем существующим артефактам.
@@ -101,25 +108,26 @@ def recommend_for_user(user_name, user_to_idx, model, df, idx_to_item, top_n=3):
         if idx in seen_items:
             # 'continue' - заклинание "пропусти этот шаг".
             continue
-            
+
         # Превращаем индекс искателя в тензор для нашего голема.
         user_tensor = torch.LongTensor([user_idx]).to(DEVICE)
         # Превращаем индекс артефакта в тензор для нашего голема.
         item_tensor = torch.LongTensor([idx]).to(DEVICE)
-        
+
         # Приказываем голему предсказать "резонанс" (рейтинг) для этой пары.
         # '.item()' - извлекает число из тензора.
         predicted_rating = model(user_tensor, item_tensor).item()
         # Кладем в "мешок" пару (имя артефакта, предсказанный рейтинг).
         predictions.append((name, predicted_rating))
-        
+
     # Сортируем "мешок" по убыванию предсказанного рейтинга.
     predictions.sort(key=lambda x: x[1], reverse=True)
-    
+
     # Выводим 'top_n' лучших рекомендаций.
     for name, rating in predictions[:top_n]:
         # Выводим результат.
         print(f"- '{name}' (Предсказанный рейтинг: {rating:.2f})")
+
 
 # --- Часть V: Главный Ритуал ---
 # Эта конструкция ('if __name__ == "__main__":') - священное начало любого пергамента.
@@ -128,26 +136,33 @@ if __name__ == "__main__":
     # Мы создаем "словарь" с нашими искусственными данными.
     data = {
         # 'user' - ключ, описывающий колонку с именами искателей.
-        'user': ['Ария', 'Ария', 'Баэль', 'Баэль', 'Кора', 'Кора'],
+        "user": ["Ария", "Ария", "Баэль", "Баэль", "Кора", "Кора"],
         # 'item' - ключ, описывающий колонку с названиями артефактов.
-        'item': ['Свиток Огненного Шара', 'Ледяной Посох', 'Свиток Огненного Шара', 'Ледяной Посох', 'Свиток Огненного Шара', 'Зелье Исцеления'],
+        "item": [
+            "Свиток Огненного Шара",
+            "Ледяной Посох",
+            "Свиток Огненного Шара",
+            "Ледяной Посох",
+            "Свиток Огненного Шара",
+            "Зелье Исцеления",
+        ],
         # 'rating' - ключ, описывающий колонку с оценками, которые искатели поставили артефактам.
-        'rating': [5.0, 1.0, 1.0, 5.0, 3.0, 4.0]
+        "rating": [5.0, 1.0, 1.0, 5.0, 3.0, 4.0],
     }
     # Облекаем наши данные в магическую таблицу 'pandas'.
     df = pd.DataFrame(data)
     # Создаем "словарь" для перевода имен искателей в уникальные номера.
-    user_to_idx = {name: i for i, name in enumerate(df['user'].unique())}
+    user_to_idx = {name: i for i, name in enumerate(df["user"].unique())}
     # Создаем обратный словарь для перевода номеров обратно в имена.
     idx_to_user = {i: name for name, i in user_to_idx.items()}
     # Создаем "словарь" для перевода названий артефактов в уникальные номера.
-    item_to_idx = {name: i for i, name in enumerate(df['item'].unique())}
+    item_to_idx = {name: i for i, name in enumerate(df["item"].unique())}
     # Создаем обратный словарь для перевода номеров обратно в названия.
     idx_to_item = {i: name for name, i in item_to_idx.items()}
     # Добавляем в нашу таблицу новые колонки с числовыми индексами.
-    df['user_id'] = df['user'].map(user_to_idx)
+    df["user_id"] = df["user"].map(user_to_idx)
     # Делаем то же самое для артефактов.
-    df['item_id'] = df['item'].map(item_to_idx)
+    df["item_id"] = df["item"].map(item_to_idx)
     # Узнаем, сколько у нас всего уникальных искателей.
     num_users = len(user_to_idx)
     # Узнаем, сколько у нас всего уникальных артефактов.
@@ -159,11 +174,11 @@ if __name__ == "__main__":
     # Выбираем "наставника".
     optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
     # Превращаем колонку с ID искателей в тензор и отправляем на алтарь.
-    user_ids = torch.LongTensor(df['user_id'].values).to(DEVICE)
+    user_ids = torch.LongTensor(df["user_id"].values).to(DEVICE)
     # Делаем то же самое для ID артефактов.
-    item_ids = torch.LongTensor(df['item_id'].values).to(DEVICE)
+    item_ids = torch.LongTensor(df["item_id"].values).to(DEVICE)
     # И для рейтингов (наших "правильных ответов").
-    ratings = torch.FloatTensor(df['rating'].values).to(DEVICE)
+    ratings = torch.FloatTensor(df["rating"].values).to(DEVICE)
     # Начинаем Великий Цикл Наставления.
     for i in range(100):
         # "Очисти память наставника от прошлых ошибок".
@@ -188,10 +203,12 @@ if __name__ == "__main__":
     item_embeddings = model.item_embeddings.weight.data.cpu().numpy()
 
     # Запускаем ритуал поиска похожих артефактов.
-    find_similar_items('Свиток Огненного Шара', item_embeddings, item_to_idx, idx_to_item)
-    
+    find_similar_items(
+        "Свиток Огненного Шара", item_embeddings, item_to_idx, idx_to_item
+    )
+
     # Запускаем ритуал персональных рекомендаций.
-    recommend_for_user('Ария', user_to_idx, model, df, idx_to_item)
-    
+    recommend_for_user("Ария", user_to_idx, model, df, idx_to_item)
+
     # Финальное напутствие.
     print("\nРитуал завершен. Карта Сокровищ использована по назначению!")

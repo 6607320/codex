@@ -5,37 +5,26 @@
 # --- Часть I: Импорт Магических Гримуаров ---
 
 # Призываем 'setuptools' - великий гримуар, хранящий знания о пакетировании.
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 # --- Часть II: Написание Рецепта ---
 
 # 'setup()' - это главное заклинание, которое описывает наш проект.
 setup(
     # 'name' - официальное имя нашего пакета, как он будет известен в мире pip.
-    name='arcane_wizardry',
-    
+    name="arcane_wizardry",
     # 'version' - версия нашего артефакта. При каждом изменении ее нужно повышать.
-    version='0.1.0',
-    
+    version="0.1.0",
     # 'author' - имя Мастера, сотворившего этот артефакт.
-    author='Мастер Гильдии (Маг-Техномант)',
-    
+    author="Мастер Гильдии (Маг-Техномант)",
     # 'description' - краткое описание магии, заключенной в пакете.
-    description='Коллекция магических заклинаний из Великого Кодекса Техномагии',
-    
+    description="Коллекция магических заклинаний из Великого Кодекса Техномагии",
     # 'packages=find_packages()' - могущественное заклинание, которое автоматически
     # находит все "магические пакеты" (папки с __init__.py) в нашей директории.
     packages=find_packages(),
-    
     # 'install_requires' - список "гримуаров", которые нужны нашему артефакту для работы.
     # pip автоматически установит их вместе с нашим пакетом.
-    install_requires=[
-        'torch',
-        'torchvision',
-        'transformers',
-        'Pillow'
-    ],
-    
+    install_requires=["torch", "torchvision", "transformers", "Pillow"],
     # 'python_requires' - указываем, какая версия Python-магии требуется.
-    python_requires='>=3.10',
+    python_requires=">=3.10",
 )

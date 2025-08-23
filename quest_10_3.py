@@ -6,21 +6,24 @@
 
 import torch
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
+import torch.optim as optim
 from torchvision import datasets, transforms
 from tqdm import tqdm
 
 # --- Акт 1: Подготовка "Учебника" (Данные MNIST) ---
 print("Готовлю 'учебник' с рукописными цифрами (MNIST)...")
 # Создаем конвейер трансформаций для изображений
-transform = transforms.Compose([
-    transforms.ToTensor(), # Превращаем картинку в тензор
-    transforms.Normalize((0.1307,), (0.3081,)) # Нормализуем яркость
-])
+transform = transforms.Compose(
+    [
+        transforms.ToTensor(),  # Превращаем картинку в тензор
+        transforms.Normalize((0.1307,), (0.3081,)),  # Нормализуем яркость
+    ]
+)
 # Скачиваем и готовим "учебник"
-train_dataset = datasets.MNIST('./data', train=True, download=True, transform=transform)
+train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
+
 
 # --- Акт 2: Чертеж Нашей "Башни Прозрения" (Модель CNN) ---
 class MiniCNN(nn.Module):
@@ -42,7 +45,8 @@ class MiniCNN(nn.Module):
         x = x.view(-1, 32 * 7 * 7)
         # Отдаем вектор "Магистру-Оценщику"
         x = self.fc1(x)
-        return F.log_softmax(x, dim=1) # Возвращаем логарифм вероятностей
+        return F.log_softmax(x, dim=1)  # Возвращаем логарифм вероятностей
+
 
 # --- Акт 3: Ритуал Наставления ---
 print("Сотворяю 'Башню Прозрения' и начинаю ритуал наставления...")
@@ -51,8 +55,10 @@ optimizer = optim.Adam(model.parameters(), lr=0.01)
 criterion = nn.CrossEntropyLoss()
 
 # Проводим один полный "учебный год" (эпоху)
-model.train() # Переводим модель в режим обучения
-for batch_idx, (data, target) in tqdm(enumerate(train_loader), total=len(train_loader), desc="Обучение 'Башни'"):
+model.train()  # Переводим модель в режим обучения
+for batch_idx, (data, target) in tqdm(
+    enumerate(train_loader), total=len(train_loader), desc="Обучение 'Башни'"
+):
     data, target = data.to("cuda"), target.to("cuda")
     optimizer.zero_grad()
     output = model(data)
@@ -65,10 +71,10 @@ print(f"\nРитуал завершен! Финальная Ошибка (Loss):
 # --- Акт 4: Экзамен (Проверка на одной цифре) ---
 print("\nПровожу экзамен: показываю 'Башне' одну случайную цифру...")
 # Берем один тестовый образец
-test_dataset = datasets.MNIST('./data', train=False, transform=transform)
+test_dataset = datasets.MNIST("./data", train=False, transform=transform)
 sample_data, sample_label = test_dataset[0]
 
-model.eval() # Переводим модель в режим "экзамена"
+model.eval()  # Переводим модель в режим "экзамена"
 with torch.no_grad():
     output = model(sample_data.unsqueeze(0).to("cuda"))
 

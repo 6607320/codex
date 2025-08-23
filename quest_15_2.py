@@ -6,19 +6,25 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 # Призываем наш силовой гримуар PyTorch.
-import torch
-# Из 'torch.utils.data' призываем чертежи для "Хранителя" и "Подносчика".
-from torch.utils.data import Dataset, DataLoader
-# Призываем заклинание 'Image' из гримуара "Pillow".
-from PIL import Image
-# Призываем помощника 'os' для работы с путями.
-import os
+
 # Призываем помощника 'glob' для поиска файлов.
 import glob
-# Призываем гримуар 'transforms' для создания "магических линз".
-from torchvision import transforms
+
+# Призываем помощника 'os' для работы с путями.
+import os
+
 # Призываем гримуар "Хронометра" для точного замера времени.
 import time
+
+# Призываем заклинание 'Image' из гримуара "Pillow".
+from PIL import Image
+
+# Из 'torch.utils.data' призываем чертежи для "Хранителя" и "Подносчика".
+from torch.utils.data import DataLoader, Dataset
+
+# Призываем гримуар 'transforms' для создания "магических линз".
+from torchvision import transforms
+
 
 # --- Акт 2: Чертеж "Хранителя Свитков" (с искусственной задержкой) ---
 # Мы используем тот же чертеж, что и в Квесте 15.1.
@@ -26,40 +32,44 @@ class CustomImageDataset(Dataset):
     # Заклинание Инициализации.
     def __init__(self, directory, transform=None):
         # Создает "каталог" путей к изображениям.
-        self.image_paths = glob.glob(os.path.join(directory, '*.png'))
+        self.image_paths = glob.glob(os.path.join(directory, "*.png"))
         # Запоминает "линзы".
         self.transform = transform
+
     # Заклинание Подсчета.
     def __len__(self):
         # Возвращает общее количество "свитков".
         return len(self.image_paths)
+
     # Заклинание "Принеси-Свиток".
     def __getitem__(self, idx):
         # Находит путь к нужному свитку.
         image_path = self.image_paths[idx]
         # Открывает его с диска.
         image = Image.open(image_path).convert("RGB")
-        
+
         # ВАЖНО: Добавляем искусственную задержку.
         # time.sleep(0.05) - приказывает ритуалу "заснуть" на 0.05 секунды.
         # Это имитирует сложную и долгую обработку данных (например, сложную аугментацию),
         # чтобы разница в скорости между режимами была более очевидной.
         time.sleep(0.05)
-        
+
         # Если есть "линзы", применяем их.
         if self.transform:
             image = self.transform(image)
         # Возвращаем результат.
         return image, idx
 
+
 # --- Акт 3: Подготовка к Эксперименту ---
 # Создаем конвейер "линз".
-data_transform = transforms.Compose([
-    transforms.Resize((64, 64)),
-    transforms.ToTensor()
-])
+data_transform = transforms.Compose(
+    [transforms.Resize((64, 64)), transforms.ToTensor()]
+)
 # Сотворяем "Хранителя", передавая ему нашу "библиотеку" и "линзы".
-image_dataset = CustomImageDataset(directory='generated_palette', transform=data_transform)
+image_dataset = CustomImageDataset(
+    directory="generated_palette", transform=data_transform
+)
 
 # --- Акт 4: Эксперимент "Ленивый Подносчик" (Последовательный режим) ---
 print("--- Эксперимент 1: Ленивый Подносчик (0 духов-помощников) ---")
@@ -86,7 +96,9 @@ print("\n--- Эксперимент 2: Эффективный Подносчик
 # Сотворяем второго "Подносчика", но с могущественной руной `num_workers=4`.
 # Это приказ: "Сотвори 4 отдельных 'духа-помощника' (процесса), которые будут
 # в фоновом режиме заранее готовить для меня пачки данных".
-efficient_dataloader = DataLoader(image_dataset, batch_size=4, shuffle=True, num_workers=4)
+efficient_dataloader = DataLoader(
+    image_dataset, batch_size=4, shuffle=True, num_workers=4
+)
 
 # Снова запускаем хронометр.
 start_time = time.time()

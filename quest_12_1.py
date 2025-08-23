@@ -4,15 +4,18 @@
 # которая учится "сжимать" образы в компактное "пространство снов" (латентное),
 # а затем творить (генерировать) новые образы из случайных точек этого пространства.
 
+import os
+
 # --- Акт 1: Подготовка Гримуаров ---
 import torch
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
+import torch.optim as optim
 from torchvision import datasets, transforms
-from torchvision.utils import save_image # Особое заклинание для сохранения сетки образов
+from torchvision.utils import (
+    save_image,
+)  # Особое заклинание для сохранения сетки образов
 from tqdm import tqdm
-import os
 
 # --- Акт 2: Настройка Ритуала ---
 # "Глубина" нашего "пространства снов". 2 измерения, чтобы его можно было
@@ -29,9 +32,12 @@ print("Готовлю 'учебник' с рукописными цифрами 
 # картинку из формата Pillow в Тензор PyTorch и нормализует пиксели к диапазону [0, 1].
 transform = transforms.ToTensor()
 # Загружаем (или скачиваем один раз) учебник MNIST.
-train_dataset = datasets.MNIST('./data', train=True, download=True, transform=transform)
+train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
 # Создаем "подносчик", который будет подавать нам данные пачками по 128 штук.
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+train_loader = torch.utils.data.DataLoader(
+    train_dataset, batch_size=batch_size, shuffle=True
+)
+
 
 # --- Акт 4: Чертеж Нашего "Генератора Снов" ---
 # Создаем чертеж нашего артефакта, который состоит из двух частей: Пресса и Проектора.
@@ -46,7 +52,7 @@ class VAE(nn.Module):
         self.fc21 = nn.Linear(400, latent_dim)
         # Третий слой (параллельный): из тех же 400 "мыслей" создает "разброс" жемчужины (logvar).
         self.fc22 = nn.Linear(400, latent_dim)
-        
+
         # --- Чертеж "Проектора Снов" (Декодер) ---
         # Первый слой: принимает "жемчужину" (2 числа) и "распаковывает" ее до 400 "мыслей".
         self.fc3 = nn.Linear(latent_dim, 400)
@@ -63,12 +69,12 @@ class VAE(nn.Module):
     # Заклинание "Магической Случайности" (Репараметризационный трюк).
     def reparameterize(self, mu, logvar):
         # Вычисляем стандартное отклонение из логарифма вариации.
-        std = torch.exp(0.5*logvar)
+        std = torch.exp(0.5 * logvar)
         # Создаем случайный "шум" той же формы, что и отклонение.
         eps = torch.randn_like(std)
         # Создаем финальную "жемчужину", смещая "среднюю" точку на случайную величину.
         # Это позволяет "пространству снов" быть гладким и непрерывным.
-        return mu + eps*std
+        return mu + eps * std
 
     # Заклинание "Восстановления". Описывает работу "Проектора".
     def decode(self, z):
@@ -87,17 +93,19 @@ class VAE(nn.Module):
         # Восстанавливаем образ из "жемчужины" и возвращаем его вместе с mu и logvar.
         return self.decode(z), mu, logvar
 
+
 # --- Акт 5: Особая "Мера Ошибки" для VAE ---
 # У VAE сложная "рулетка", состоящая из двух частей.
 def loss_function(recon_x, x, mu, logvar):
     # Часть 1: Ошибка Восстановления (BCE). Насколько воссозданная картинка
     # похожа на оригинал.
-    BCE = F.binary_cross_entropy(recon_x, x.view(-1, 784), reduction='sum')
+    BCE = F.binary_cross_entropy(recon_x, x.view(-1, 784), reduction="sum")
     # Часть 2: Ошибка Регуляризации (KLD). "Наказание" за то, что "жемчужины"
     # в "пространстве снов" разбросаны хаотично, а не лежат красивым "облаком".
     KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
     # Общая ошибка - это сумма двух.
     return BCE + KLD
+
 
 # --- Акт 6: Ритуал Наставления ---
 # Сотворяем наш "Генератор Снов".
@@ -108,19 +116,21 @@ optimizer = optim.Adam(model.parameters(), lr=1e-3)
 print("\nНачинаю ритуал наставления 'Генератора Снов'...")
 # Запускаем урок на 10 "учебных лет".
 for epoch in range(1, epochs + 1):
-    model.train() # Переводим модель в режим обучения.
-    train_loss = 0 # Счетчик общей ошибки за эпоху.
+    model.train()  # Переводим модель в режим обучения.
+    train_loss = 0  # Счетчик общей ошибки за эпоху.
     # Берем пачки "учебных страниц" из нашего "подносчика".
-    for batch_idx, (data, _) in tqdm(enumerate(train_loader), total=len(train_loader), desc=f"Эпоха {epoch}"):
-        data = data.to("cuda") # Отправляем данные на Кристалл Маны.
-        optimizer.zero_grad() # Стираем старые ошибки.
-        recon_batch, mu, logvar = model(data) # Прогоняем данные через модель.
-        loss = loss_function(recon_batch, data, mu, logvar) # Считаем сложную ошибку.
-        loss.backward() # Вычисляем "шепот" для исправления.
-        train_loss += loss.item() # Добавляем ошибку к общему счетчику.
-        optimizer.step() # "Подкручиваем" все руны.
+    for batch_idx, (data, _) in tqdm(
+        enumerate(train_loader), total=len(train_loader), desc=f"Эпоха {epoch}"
+    ):
+        data = data.to("cuda")  # Отправляем данные на Кристалл Маны.
+        optimizer.zero_grad()  # Стираем старые ошибки.
+        recon_batch, mu, logvar = model(data)  # Прогоняем данные через модель.
+        loss = loss_function(recon_batch, data, mu, logvar)  # Считаем сложную ошибку.
+        loss.backward()  # Вычисляем "шепот" для исправления.
+        train_loss += loss.item()  # Добавляем ошибку к общему счетчику.
+        optimizer.step()  # "Подкручиваем" все руны.
     # Печатаем отчет в конце каждого "учебного года".
-    print(f'====> Эпоха: {epoch} Средняя ошибка: {train_loss / len(train_dataset):.4f}')
+    print(f"====> Эпоха: {epoch} Средняя ошибка: {train_loss / len(train_dataset):.4f}")
 
 # --- Акт 7: Магия Творения (Сновидение) ---
 print("\nРитуал завершен! Прошу 'Генератор' увидеть сон...")
@@ -131,11 +141,13 @@ with torch.no_grad():
     # Просим "Проектор" (декодер) воссоздать образы из этих случайных "жемчужин".
     # .cpu() - переносим результат обратно с Кристалла Маны для сохранения.
     sample = model.decode(z).cpu()
-    
+
     # Готовим "ящик" для наших снов.
     os.makedirs("dreams", exist_ok=True)
     # save_image - это заклинание, которое красиво укладывает 64 маленькие
     # картинки в одну большую сетку и сохраняет ее.
-    save_image(sample.view(64, 1, 28, 28), 'dreams/dream_sample.png')
+    save_image(sample.view(64, 1, 28, 28), "dreams/dream_sample.png")
 
-print("Сон материализован! Открой 'dreams/dream_sample.png', чтобы увидеть новые, сотворенные цифры.")
+print(
+    "Сон материализован! Открой 'dreams/dream_sample.png', чтобы увидеть новые, сотворенные цифры."
+)

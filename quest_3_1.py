@@ -6,10 +6,11 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
+# Призываем "Библиотекаря" для надежного получения "учебных" изображений.
+from datasets import load_dataset
+
 # Призываем наш универсальный "амулет" для простого использования моделей.
 from transformers import pipeline
-# Призываем "Библиотекаря" для надежного получения "учебных" изображений.
-from datasets import load_dataset 
 
 # --- Акт 2: Призыв Магического Образа ---
 
@@ -24,7 +25,7 @@ dataset = load_dataset("cifar10", split="train", streaming=True, trust_remote_co
 sample = next(iter(dataset))
 
 # Внутри 'sample' находится словарь. Сам образ (объект Pillow) лежит под ключом 'img'.
-image_to_analyze = sample['img']
+image_to_analyze = sample["img"]
 
 # Сообщаем об успехе.
 print("Магический образ успешно призван!")
@@ -33,7 +34,7 @@ print("Магический образ успешно призван!")
 # Мы заглядываем в "паспорт" архива, чтобы узнать "правильный ответ".
 # sample['label'] содержит номер класса (например, 3).
 # dataset.info.features['label'].int2str(...) переводит этот номер в понятное слово (например, 'cat').
-true_label = dataset.info.features['label'].int2str(sample['label'])
+true_label = dataset.info.features["label"].int2str(sample["label"])
 print(f"(Истинная суть образа, как говорят хроники: {true_label})")
 
 # --- Акт 3: Ритуал Распознавания ---

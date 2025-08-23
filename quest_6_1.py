@@ -7,14 +7,16 @@
 
 # --- Акт 1: Подготовка Гримуаров ---
 
+# Наш силовой гримуар PyTorch.
+import torch
+
+# "Библиотекарь" для призыва аудио-архивов.
+from datasets import load_dataset
+
 # Призываем двух специалистов по аудио из гримуара transformers:
 # 1. Wav2Vec2FeatureExtractor: "Настройщик Слуха", готовит аудио к анализу.
 # 2. Wav2Vec2Model: Сам "Дух-Эмпат", который извлекает "эссенцию".
 from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2Model
-# "Библиотекарь" для призыва аудио-архивов.
-from datasets import load_dataset
-# Наш силовой гримуар PyTorch.
-import torch
 
 # --- Акт 2: Призыв Магических Существ ---
 
@@ -32,7 +34,9 @@ print("\nПризываю аудио-послание из архива 'librisp
 # Используем наш надежный, проверенный в битвах архив.
 # Мы знаем, что для него нужна версия datasets<3.0.0 и `trust_remote_code=True`.
 # Мы также знаем, что правильное имя "тома" - 'test'.
-dataset = load_dataset("librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True)
+dataset = load_dataset(
+    "librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True
+)
 # Берем первый образец из потока.
 sample = next(iter(dataset))
 

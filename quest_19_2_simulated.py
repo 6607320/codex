@@ -4,20 +4,32 @@
 
 # --- Часть I: Импорт Магических Гримуаров ---
 
-# 'torch' - основа всей нашей техномагии, управляет потоками маны и вычислениями на Кристалле.
-import torch
-# 'transformers' - великий гримуар, хранящий знания о призыве готовых големов (моделей) и их конвейеров.
-from transformers import pipeline, WhisperProcessor, WhisperForConditionalGeneration, GPT2Tokenizer, GPT2LMHeadModel
-# 'librosa' - мощная библиотека для анализа и преобразования аудио-материи.
-import librosa
-# 'numpy' (np) - магический калькулятор, незаменимый для работы с "сырой материей" данных в виде массивов.
-import numpy as np
-# НОВЫЙ ГРИМУАР: 'gtts' (Google Text-to-Speech) - дух-глашатай, способный превращать текст в речь.
-from gtts import gTTS
 # 'os' - гримуар для взаимодействия с операционной системой (например, для создания папок).
 import os
+
 # 'time' - гримуар для управления временем (например, для создания пауз в ритуале).
 import time
+
+# 'librosa' - мощная библиотека для анализа и преобразования аудио-материи.
+import librosa
+
+# 'torch' - основа всей нашей техномагии, управляет потоками маны и вычислениями на Кристалле.
+import torch
+
+# НОВЫЙ ГРИМУАР: 'gtts' (Google Text-to-Speech) - дух-глашатай, способный превращать текст в речь.
+from gtts import gTTS
+
+# 'transformers' - великий гримуар, хранящий знания о призыве готовых големов (моделей) и их конвейеров.
+from transformers import (
+    GPT2LMHeadModel,
+    GPT2Tokenizer,
+    WhisperForConditionalGeneration,
+    WhisperProcessor,
+    pipeline,
+)
+
+# 'numpy' (np) - магический калькулятор, незаменимый для работы с "сырой материей" данных в виде массивов.
+
 
 # --- Часть II: Описание Ритуальных Функций ---
 # Функции-чертежи для наших големов остаются теми же, что и в прошлых квестах.
@@ -29,8 +41,9 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # Оповещаем о выбранном устройстве.
 print(f"Магия будет вершиться на устройстве: {DEVICE}")
 
+
 # --- НОВАЯ Функция 1: Создание Театральных Реквизитов (Аудиофайлов) ---
-def prepare_dialogue_props(dialogue_script, lang='ru'):
+def prepare_dialogue_props(dialogue_script, lang="ru"):
     """
     Создает аудиофайлы для каждой реплики в нашем "сценарии".
     """
@@ -39,7 +52,7 @@ def prepare_dialogue_props(dialogue_script, lang='ru'):
     # Заклинание из гримуара 'os': "Создай папку 'dialogue_audio', если ее еще не существует".
     # 'exist_ok=True' - мудрая руна, которая предотвращает ошибку, если папка уже есть.
     os.makedirs("dialogue_audio", exist_ok=True)
-    
+
     # Запускаем цикл, который пройдет по каждой реплике в нашем списке-сценарии.
     # 'enumerate' - хитрый дух-счетчик, который дает нам и номер реплики (i), и ее текст (text).
     for i, text in enumerate(dialogue_script):
@@ -54,6 +67,7 @@ def prepare_dialogue_props(dialogue_script, lang='ru'):
     # Сообщаем, что вся подготовка завершена.
     print("...реквизит готов.\n")
 
+
 # --- Функция 2: Призыв Голема-Писца (Whisper STT) ---
 def transcribe_audio(audio_path):
     """Призывает Голема-Писца (Whisper), который преобразует аудио в текст."""
@@ -62,11 +76,15 @@ def transcribe_audio(audio_path):
     # Загружаем 'процессор' - он готовит аудио-материю для понимания Големом.
     processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
     # Загружаем самого голема 'whisper-tiny' и отправляем его на Кристалл Маны.
-    model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny").to(DEVICE)
+    model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny").to(
+        DEVICE
+    )
     # С помощью librosa читаем наш аудиофайл (mp3 или wav).
     audio_input, sample_rate = librosa.load(audio_path, sr=16000)
     # Процессор превращает звук в тензоры, понятные Голему.
-    input_features = processor(audio_input, sampling_rate=sample_rate, return_tensors="pt").input_features.to(DEVICE)
+    input_features = processor(
+        audio_input, sampling_rate=sample_rate, return_tensors="pt"
+    ).input_features.to(DEVICE)
     # Команда Голему: "Сгенерируй руны (токены) на основе услышанного".
     predicted_ids = model.generate(input_features)
     # Расшифровываем руны-токены в понятный человеку текст.
@@ -82,19 +100,27 @@ def transcribe_audio(audio_path):
     # Возвращаем распознанный текст.
     return transcription
 
+
 # --- Функция 3: Призыв Голема-Толкователя (Intent Classifier) ---
 def classify_intent(text):
     """Призывает Голема-Толкователя для определения намерения в тексте."""
     # Оповещение о призыве.
     print("[Акт 2] Призыв Голема-Толкователя...")
     # Создаем конвейер для классификации.
-    classifier = pipeline("zero-shot-classification", model="valhalla/distilbart-mnli-12-3", device=DEVICE)
+    classifier = pipeline(
+        "zero-shot-classification", model="valhalla/distilbart-mnli-12-3", device=DEVICE
+    )
     # Определяем возможные намерения, которые Голем должен распознать.
-    candidate_labels = ["узнать погоду", "включить музыку", "рассказать шутку", "неизвестная команда"]
+    candidate_labels = [
+        "узнать погоду",
+        "включить музыку",
+        "рассказать шутку",
+        "неизвестная команда",
+    ]
     # Голем анализирует текст и выбирает наиболее подходящее намерение.
     result = classifier(text, candidate_labels)
     # Извлекаем самое вероятное намерение из результата.
-    intent = result['labels'][0]
+    intent = result["labels"][0]
     # Показываем, какое намерение было определено.
     print(f"-> Намерение определено как: '{intent}'")
     # Изгоняем голема из памяти.
@@ -105,6 +131,7 @@ def classify_intent(text):
     print("...Голем-Толкователь изгнан.")
     # Возвращаем определенное намерение.
     return intent
+
 
 # --- Функция 4: Призыв Голема-Оракула (Text Generator) ---
 def generate_response(intent):
@@ -122,14 +149,16 @@ def generate_response(intent):
         "узнать погоду": "Ответ на вопрос о погоде: ",
         "включить музыку": "Конечно, включаю вашу любимую музыку: ",
         "рассказать шутку": "Вот одна из моих любимых шуток: ",
-        "неизвестная команда": "Я не совсем понял команду, попробуйте переформулировать: "
+        "неизвестная команда": "Я не совсем понял команду, попробуйте переформулировать: ",
     }
     # .get() - безопасный способ получить значение, если намерения нет в словаре.
     prompt = prompts.get(intent, prompts["неизвестная команда"])
     # Превращаем затравку в руны (токены).
     inputs = tokenizer(prompt, return_tensors="pt").to(DEVICE)
     # Голем генерирует продолжение текста.
-    output_ids = model.generate(**inputs, max_length=50, num_return_sequences=1, no_repeat_ngram_size=2)
+    output_ids = model.generate(
+        **inputs, max_length=50, num_return_sequences=1, no_repeat_ngram_size=2
+    )
     # Декодируем сгенерированные руны в человеческий текст.
     response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
     # Изгоняем голема и его компоненты.
@@ -141,6 +170,7 @@ def generate_response(intent):
     # Возвращаем финальный ответ.
     return response
 
+
 # --- Часть III: Ритуал "Театра Марионеток" ---
 # Эта конструкция ('if __name__ == "__main__":') - священное начало любого пергамента.
 if __name__ == "__main__":
@@ -148,18 +178,18 @@ if __name__ == "__main__":
     dialogue_script = [
         "Расскажи мне шутку",
         "Какая сегодня погода?",
-        "Хватит" # Эта реплика будет нашим "словом-ключом" для выхода.
+        "Хватит",  # Эта реплика будет нашим "словом-ключом" для выхода.
     ]
 
     # Шаг 1: Вызываем подготовительный ритуал, чтобы создать все аудиофайлы заранее.
     prepare_dialogue_props(dialogue_script)
 
     # Приветствие Мастера, выводится один раз при запуске.
-    print("="*50)
+    print("=" * 50)
     # Сообщение о начале симуляции.
     print("Симуляция диалога с ассистентом начинается.")
     # Финальный разделитель для красоты.
-    print("="*50 + "\n")
+    print("=" * 50 + "\n")
 
     # Запускаем цикл, который пройдет по каждой реплике в нашем списке-сценарии.
     for i, text_command in enumerate(dialogue_script):
@@ -168,19 +198,19 @@ if __name__ == "__main__":
         time.sleep(2)
         # Имитируем реплику пользователя, выводя ее в терминал.
         print(f">>> Пользователь говорит: '{text_command}'")
-        
+
         # Указываем путь к нужному аудиофайлу, используя его номер.
         audio_file = f"dialogue_audio/step_{i}.mp3"
-        
+
         # Шаг 2: Вызываем ритуал распознавания речи, передавая ему аудиофайл.
         command_text = transcribe_audio(audio_file)
-        
+
         # Шаг 3: Проверяем, не содержит ли распознанный текст наше "слово-ключ".
         if "стоп" in command_text.lower() or "хватит" in command_text.lower():
             # Если да, выводим прощальное сообщение.
             print("\nАссистент: Повинуюсь, Мастер. Завершаю работу.")
             # И разрушаем цикл с помощью заклинания 'break'.
-            break 
+            break
 
         # Шаг 4: Проверяем, не пуст ли результат распознавания.
         if command_text.strip():
@@ -192,8 +222,8 @@ if __name__ == "__main__":
             final_response = "Я ничего не услышал."
 
         # Шаг 5: Выводим финальный ответ ассистента.
-        print("\n" + "-"*20 + " ОТВЕТ АССИСТЕНТА " + "-"*20)
+        print("\n" + "-" * 20 + " ОТВЕТ АССИСТЕНТА " + "-" * 20)
         # Печатаем ответ, который был либо сгенерирован, либо является сообщением об ошибке.
         print(final_response)
         # Печатаем красивую нижнюю рамку.
-        print("-"*(43 + len(" ОТВЕТ АССИСТЕНТА ")) + "\n")
+        print("-" * (43 + len(" ОТВЕТ АССИСТЕНТА ")) + "\n")

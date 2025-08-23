@@ -12,7 +12,7 @@ import torch
 
 # `model = torch.hub.load(...)`: Мы призываем Химеру 'yolov5n'.
 # Нам не важно, будет ли она на GPU, нам нужен только доступ к ее "памяти".
-model = torch.hub.load('ultralytics/yolov5', 'yolov5n', pretrained=True)
+model = torch.hub.load("ultralytics/yolov5", "yolov5n", pretrained=True)
 
 # Сообщаем, какую информацию мы собираемся получить.
 print("Имена, которые знает Химера:")

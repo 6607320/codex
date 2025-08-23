@@ -3,23 +3,30 @@
 # Цель: Освоить Post-Training Static Quantization. Мы "сожмем" нашу обученную
 # модель CNN, превратив ее "мысли" из float32 в int8.
 
+# Призываем помощника 'os' для работы с файлами (измерения размера).
+import os
+
 # --- Акт 1: Подготовка Гримуаров ---
 # Призываем наш силовой гримуар PyTorch.
 import torch
+
 # Призываем "строительные блоки" для моделей (Conv2d, Linear...).
 import torch.nn as nn
-# Призываем "инструменты для исправления ошибок" (оптимизаторы).
-import torch.optim as optim
+
 # Призываем гримуар с "функциональными" заклинаниями (relu, max_pool2d...).
 import torch.nn.functional as F
+
+# Призываем "инструменты для исправления ошибок" (оптимизаторы).
+import torch.optim as optim
+
 # Призываем "Библиотеку" с "учебником" MNIST и гримуар трансформаций.
 from torchvision import datasets, transforms
-# Призываем помощника 'os' для работы с файлами (измерения размера).
-import os
+
 # Призываем наш "индикатор прогресса".
 from tqdm import tqdm
 
 # --- Акт 2: Призыв и Обучение "Тяжелого" Голема ---
+
 
 # --- Чертеж нашей MiniCNN из Квеста 10.2 ---
 # `class`: Объявляем "чертеж" для нашего Голема.
@@ -34,6 +41,7 @@ class MiniCNN(nn.Module):
         self.conv2 = nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1)
         # `self.fc1`: Создаем "зал раздумий" (линейный слой).
         self.fc1 = nn.Linear(32 * 7 * 7, 10)
+
     # `def forward`: Главное заклинание, описывающее путь "мысли".
     def forward(self, x):
         # `x = F.relu(...)`: Прогоняем мысль через "этаж", "переключатель" и "уменьшитель".
@@ -47,11 +55,14 @@ class MiniCNN(nn.Module):
         # `return F.log_softmax(...)`: Возвращаем логарифм вероятностей.
         return F.log_softmax(x, dim=1)
 
+
 # --- Загрузка "учебника" MNIST ---
 # `transform = ...`: Создаем конвейер трансформаций.
-transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
+transform = transforms.Compose(
+    [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
+)
 # `train_dataset = ...`: Загружаем "учебник".
-train_dataset = datasets.MNIST('./data', train=True, download=True, transform=transform)
+train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
 # `train_loader = ...`: Создаем "подносчик" данных.
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
@@ -68,7 +79,8 @@ model_fp32.train()
 # `for ...`: Начинаем цикл обучения (только на 100 пачках для скорости).
 for i, (data, target) in enumerate(tqdm(train_loader, desc="Обучение FP32", total=100)):
     # `if i >= 100: break`: Ставим ограничитель на 100 шагов.
-    if i >= 100: break
+    if i >= 100:
+        break
     # `data, target = ...`: Отправляем "учебник" и ответы на верстак.
     data, target = data, target
     # `optimizer.zero_grad()`: Стираем старые ошибки.
@@ -91,7 +103,7 @@ model_to_quantize.load_state_dict(model_fp32.state_dict())
 # `model_to_quantize.eval()`: Переводим Голема в режим "экзамена".
 model_to_quantize.eval()
 # `model_to_quantize.qconfig = ...`: "Ставим на верстак 'Алхимический Стол'" (применяем конфиг).
-model_to_quantize.qconfig = torch.quantization.get_default_qconfig('fbgemm')
+model_to_quantize.qconfig = torch.quantization.get_default_qconfig("fbgemm")
 # `torch.quantization.prepare(...)`: "Расставляем магических наблюдателей" внутри Голема.
 torch.quantization.prepare(model_to_quantize, inplace=True)
 
@@ -100,7 +112,8 @@ print("  -> Провожу калибровку на 10 пачках данны�
 # `for ...`: Начинаем цикл "калибровки".
 for i, (data, _) in enumerate(train_loader):
     # `if i >= 10: break`: Ограничиваем калибровку 10-ю пачками.
-    if i >= 10: break
+    if i >= 10:
+        break
     # `model_to_quantize(data)`: "Прогоняем" данные через Голема, чтобы "наблюдатели" собрали статистику.
     model_to_quantize(data)
 

@@ -21,7 +21,9 @@ print(f"Открываю портал к архиву '{archive_name}'...")
 # 3. streaming=True - КЛЮЧЕВАЯ РУНА ЭКОНОМИИ! Мы не скачиваем все ~15,000 записей.
 #    Мы создаем "портал" (объект IterableDataset), который будет подгружать
 #    данные из сети по мере необходимости, по одной записи за раз.
-full_dataset = load_dataset(archive_name, split="train", streaming=True, trust_remote_code=True)
+full_dataset = load_dataset(
+    archive_name, split="train", streaming=True, trust_remote_code=True
+)
 
 # --- Акт 3: Извлечение "Страниц" из Книги ---
 
@@ -41,7 +43,7 @@ for i, sample in enumerate(full_dataset):
         break
     # Если барьер не достигнут, мы добавляем (append) текущую запись в наш "свиток".
     small_dataset.append(sample)
-    
+
 # Сообщаем, сколько "страниц" нам удалось переписать.
 print(f"Успешно извлечено {len(small_dataset)} записей.")
 
