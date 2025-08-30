@@ -1,0 +1,4 @@
+[core]
+    remote = gsremote
+['remote "gsremote"']
+    url = gs://codex-dvc-storage-85192/artifacts
