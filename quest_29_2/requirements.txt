@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+transformers
+torch
+prometheus-fastapi-instrumentator # <-- Недостающий гримуар
+prometheus_client

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .  # <-- ИСПРАВЛЕННАЯ РУНА
+    ports:
+      - "8000:8000"
+    networks:
+      - monitoring-net
+    environment:
+      - PORT=8000
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus_guardian
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app
+    networks:
+      - monitoring-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_seer
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - monitoring-net
+
+networks:
+  monitoring-net:
+    driver: bridge
