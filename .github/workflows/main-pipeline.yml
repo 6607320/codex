@@ -1,0 +1,38 @@
+name: MLOps Capstone Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Этот пайплайн сработает ТОЛЬКО на изменения в папке нашего проекта.
+      - 'quest_32_1/**'
+
+jobs:
+  build-test-deploy:
+    name: Build, Test, and Deploy the Capstone Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        # Устанавливаем зависимости из папки нашего проекта.
+        run: pip install -r ./quest_32_1/requirements.txt
+      
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t europe-north1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/codex-artifacts/amulet:${{ github.sha }} ./quest_32_1
+          docker push europe-north1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/codex-artifacts/amulet:${{ github.sha }}
+
+      - name: Deploy to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          image: europe-north1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/codex-artifacts/amulet:${{ github.sha }}
+          service: 'codex-amulet'
+          region: 'europe-north1'
