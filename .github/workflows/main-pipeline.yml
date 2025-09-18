@@ -1,34 +1,32 @@
-name: MLOps Capstone Pipeline
+name: Build and Push Docker Image via WIF
 
 on:
   push:
     branches:
-      - main
+      - 'main'
     paths:
       - 'quest_32_1/**'
 
 jobs:
-  build-test-deploy:
-    name: Build, Test, and Deploy the Capstone Project
+  build-and-push:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        run: pip install -r ./quest_32_1/requirements.txt
-      
       - name: Authenticate to Google Cloud
         id: auth
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
-      # --- > НОВАЯ РУНА: "Наставление для Docker" < ---
-      # Это официальное заклинание от Google, которое настраивает Docker.
-      # Оно говорит ему: "Используй ключ, который только что получил шаг 'auth',
-      # чтобы получить право доступа к хранилищам в регионе 'europe-north1'".
-      - name: Configure Docker for Artifact Registry
+      - name: Login to Artifact Registry
         uses: docker/login-action@v3
         with:
           registry: europe-north1-docker.pkg.dev
@@ -36,15 +34,17 @@ jobs:
           password: ${{ steps.auth.outputs.access_token }}
 
       - name: Build and Push Docker Image
-        run: |
-          # <-- Используем ID проекта из ВЫХОДА шага 'auth'
-          docker build -t europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }} ./quest_32_1
-          docker push europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}
-
-      - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@v2
+        uses: docker/build-push-action@v5
         with:
-          # <-- И здесь тоже
-          image: europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}
-          service: 'codex-amulet'
-          region: 'europe-north1'
+          context: ./quest_32_1
+          push: true
+          tags: europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}
+
+      # ЗАМЕТКА АРХИТЕКТОРА: Этот шаг пока закомментирован.
+      # Мы активируем его, когда убедимся, что сборка и отправка работают идеально.
+      # - name: Deploy to Cloud Run
+      #   uses: google-github-actions/deploy-cloudrun@v2
+      #   with:
+      #     service: 'codex-amulet'
+      #     region: 'europe-north1'
+      #     image: europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}
