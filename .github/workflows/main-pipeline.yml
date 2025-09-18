@@ -1,20 +1,18 @@
-name: Build and Push Docker Image via WIF
+name: Build and Push to GAR (Final Canon)
 
 on:
   push:
-    branches:
-      - 'main'
-    paths:
-      - 'quest_32_1/**'
+    branches: [main]
+  paths:
+    - 'quest_32_1/**'
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,29 +21,25 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v2
         with:
+          # Добавляем обязательный параметр, предписанный Каноном
+          token_format: 'access_token'
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-          token_format: 'access_token' # <--- ВОТ ОНА. НЕДОСТАЮЩАЯ РУНА.
 
-      - name: Login to Artifact Registry
+      # Добавляем диагностический шаг, предписанный Каноном
+      - name: DEBUG - Check Access Token
+        run: echo "Access token length is ${{ steps.auth.outputs.access_token_length }}"
+
+      - name: Login to Google Artifact Registry
         uses: docker/login-action@v3
         with:
-          registry: europe-north1-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.access_token }}
+          registry: 'europe-north1-docker.pkg.dev'
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
 
-      - name: Build and Push Docker Image
+      - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./quest_32_1
           push: true
-          tags: europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}
-
-      # ЗАМЕТКА АРХИТЕКТОРА: Этот шаг пока закомментирован.
-      # Мы активируем его, когда убедимся, что сборка и отправка работают идеально.
-      # - name: Deploy to Cloud Run
-      #   uses: google-github-actions/deploy-cloudrun@v2
-      #   with:
-      #     service: 'codex-amulet'
-      #     region: 'europe-north1'
-      #     image: europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}
+          tags: 'europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}'
