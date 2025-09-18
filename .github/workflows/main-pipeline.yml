@@ -3,8 +3,8 @@ name: Build and Push to GAR (Final Canon)
 on:
   push:
     branches: [main]
-  paths:
-    - 'quest_32_1/**'
+    paths:
+      - 'quest_32_1/**'
 
 permissions:
   contents: 'read'
@@ -21,12 +21,10 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v2
         with:
-          # Добавляем обязательный параметр, предписанный Каноном
           token_format: 'access_token'
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
-      # Добавляем диагностический шаг, предписанный Каноном
       - name: DEBUG - Check Access Token
         run: echo "Access token length is ${{ steps.auth.outputs.access_token_length }}"
 
