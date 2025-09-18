@@ -25,6 +25,7 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          token_format: 'access_token' # <--- ВОТ ОНА. НЕДОСТАЮЩАЯ РУНА.
 
       - name: Login to Artifact Registry
         uses: docker/login-action@v3
