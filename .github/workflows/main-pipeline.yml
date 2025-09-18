@@ -25,6 +25,13 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
+      # --- > НОВАЯ РУНА: "Заклинание Раскрытия Тайны" < ---
+      # Этот шаг не делает ничего, кроме одного: он заставляет Духа-Стража
+      # показать нам точное значение секрета, которое он видит.
+      # Квадратные скобки помогут нам увидеть, если значение окажется пустым.
+      - name: DEBUG - Reveal the Secret Value
+        run: echo "GCP_PROJECT_ID_VALUE=[${{ secrets.GCP_PROJECT_ID }}]"
+
       - name: Build and Push Docker Image
         run: |
           docker build -t europe-north1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/codex-artifacts/amulet:${{ github.sha }} ./quest_32_1
