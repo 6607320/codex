@@ -19,10 +19,21 @@ jobs:
         run: pip install -r ./quest_32_1/requirements.txt
       
       - name: Authenticate to Google Cloud
-        id: auth # <-- Даем ID шагу
+        id: auth
         uses: google-github-actions/auth@v2
         with:
           credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      # --- > НОВАЯ РУНА: "Наставление для Docker" < ---
+      # Это официальное заклинание от Google, которое настраивает Docker.
+      # Оно говорит ему: "Используй ключ, который только что получил шаг 'auth',
+      # чтобы получить право доступа к хранилищам в регионе 'europe-north1'".
+      - name: Configure Docker for Artifact Registry
+        uses: docker/login-action@v3
+        with:
+          registry: europe-north1-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
 
       - name: Build and Push Docker Image
         run: |
