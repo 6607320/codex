@@ -146,4 +146,4 @@ def validate_model():
         # И, наконец, мы указываем общее число вопросов, которые были ему заданы в ходе испытания.
         "total_samples": total_samples
     }
-    # Trigger Capstone Pipeline 2
+    # Trigger Capstone Pipeline 3
