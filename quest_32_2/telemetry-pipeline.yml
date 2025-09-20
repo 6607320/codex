@@ -1,0 +1,59 @@
+name: Capstone Pipeline with Telemetry (Quest 32.2)
+
+on:
+  push:
+    branches: [main]
+    # --- "Избирательное Око", настроенное на НОВЫЙ квест ---
+    paths:
+      - 'quest_32_2/**'
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  build-test-deploy:
+    name: Build, Test, Deploy, and Collect Artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        # Устанавливаем зависимости из НАШЕЙ новой мастерской
+        run: |
+          pip install -r ./quest_32_2/requirements.txt
+          pip install -r ./quest_32_2/requirements_dev.txt
+
+      - name: Run Tests and Generate Coverage Report
+        run: pytest --cov=./quest_32_2 --cov-report=xml:coverage.xml ./quest_32_2/
+
+      - name: Upload Coverage Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-32-2
+          path: coverage.xml
+          
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Login to Artifact Registry
+        uses: docker/login-action@v3
+        with:
+          registry: 'europe-north1-docker.pkg.dev'
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          # Собираем артефакт из НАШЕЙ новой мастерской
+          context: ./quest_32_2
+          push: true
+          tags: 'europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet-telemetry:${{ github.sha }}'
