@@ -3,7 +3,6 @@ name: Capstone Pipeline with Telemetry (Quest 32.2)
 on:
   push:
     branches: [main]
-    # --- "Избирательное Око", настроенное на НОВЫЙ квест ---
     paths:
       - 'quest_32_2/**'
 
@@ -20,7 +19,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Dependencies
-        # Устанавливаем зависимости из НАШЕЙ новой мастерской
         run: |
           pip install -r ./quest_32_2/requirements.txt
           pip install -r ./quest_32_2/requirements_dev.txt
@@ -53,7 +51,6 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          # Собираем артефакт из НАШЕЙ новой мастерской
           context: ./quest_32_2
           push: true
           tags: 'europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet-telemetry:${{ github.sha }}'
