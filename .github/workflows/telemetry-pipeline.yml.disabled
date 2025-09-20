@@ -1,0 +1,102 @@
+# Имя рабочего процесса, которое будет отображаться в интерфейсе GitHub Actions.
+name: Capstone Pipeline with Telemetry (Quest 32.2)
+
+# Секция, определяющая события-триггеры.
+on:
+  # Рабочий процесс будет запускаться при событии 'push'.
+  push:
+    # Условие: событие 'push' должно произойти в ветку 'main'.
+    branches: [main]
+    # Условие: событие 'push' должно затронуть файлы внутри директории 'quest_32_2'.
+    paths:
+      - 'quest_32_2/**'
+
+# Секция, определяющая разрешения, которые выдаются временному токену GITHUB_TOKEN.
+permissions:
+  # Разрешение на чтение содержимого репозитория (необходимо для actions/checkout).
+  contents: 'read'
+  # Разрешение на запрос OIDC JWT токена (критически важно для Workload Identity Federation).
+  id-token: 'write'
+
+# Секция, определяющая список заданий (jobs).
+jobs:
+  # Уникальный идентификатор нашего единственного задания.
+  build-test-deploy:
+    # Имя задания, которое будет отображаться в интерфейсе.
+    name: Build, Test, Deploy, and Collect Artifacts
+    # Указываем, что задание будет выполняться на виртуальной машине с последней версией Ubuntu.
+    runs-on: ubuntu-latest
+    # Список последовательных шагов (steps), из которых состоит задание.
+    steps:
+      # Имя первого шага.
+      - name: Checkout Repository
+        # 'uses' указывает, что мы используем готовое действие (action) из Marketplace.
+        uses: actions/checkout@v4
+
+      # Имя второго шага.
+      - name: Install Dependencies
+        # 'run' указывает, что мы будем выполнять команду в оболочке. Символ '|' позволяет выполнить несколько команд.
+        run: |
+          # Устанавливаем основные зависимости, необходимые для работы самого приложения.
+          pip install -r ./quest_32_2/requirements.txt
+          # Устанавливаем зависимости для разработки, необходимые для тестов и линтинга.
+          pip install -r ./quest_32_2/requirements_dev.txt
+
+      # Имя третьего шага.
+      - name: Run Tests and Generate Coverage Report
+        # Запускаем pytest с флагами для генерации отчета о покрытии и обрабатываем возможную ошибку отсутствия тестов.
+        run: pytest --cov=./quest_32_2 --cov-report=xml:coverage.xml ./quest_32_2/ || true
+
+      # Имя четвертого шага.
+      - name: Upload Coverage Report Artifact
+        # 'if: always()' — это условие, которое приказывает выполнять этот шаг ВСЕГДА, даже если предыдущие шаги провалились.
+        if: always()
+        # Используем официальное действие для загрузки артефактов.
+        uses: actions/upload-artifact@v4
+        # 'with' начинает блок параметров для этого действия.
+        with:
+          # 'name' — имя, под которым артефакт будет сохранен в GitHub.
+          name: coverage-report-32-2
+          # 'path' — путь к файлу или папке, которую нужно загрузить.
+          path: coverage.xml
+          
+      # Имя пятого шага.
+      - name: Authenticate to Google Cloud
+        # 'id' присваивает этому шагу уникальный идентификатор 'auth' для ссылки на его выходные данные.
+        id: auth
+        # Используем официальное действие Google для аутентификации.
+        uses: google-github-actions/auth@v2
+        # Начало блока параметров.
+        with:
+          # Явный приказ сгенерировать OAuth2 access_token.
+          token_format: 'access_token'
+          # Указываем путь к нашему WIF провайдеру, используя секрет.
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          # Указываем email сервисного аккаунта для "изображения", используя секрет.
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      # Имя шестого шага.
+      - name: Login to Artifact Registry
+        # Используем официальное действие Docker для логина.
+        uses: docker/login-action@v3
+        # Начало блока параметров.
+        with:
+          # Указываем точный адрес реестра Docker в Artifact Registry.
+          registry: 'europe-north1-docker.pkg.dev'
+          # Специальное имя пользователя для аутентификации с помощью OAuth2 токена.
+          username: 'oauth2accesstoken'
+          # В качестве пароля передаем access_token, сгенерированный на шаге 'auth'.
+          password: '${{ steps.auth.outputs.access_token }}'
+
+      # Имя седьмого шага.
+      - name: Build and Push Docker Image
+        # Используем официальное действие Docker для сборки и отправки образа.
+        uses: docker/build-push-action@v5
+        # Начало блока параметров.
+        with:
+          # 'context' указывает путь к директории, где находится Dockerfile.
+          context: ./quest_32_2
+          # 'push: true' приказывает действию отправить образ в реестр после сборки.
+          push: true
+          # 'tags' определяет имя и тег для собранного образа, используя project_id из шага 'auth' и хеш коммита.
+          tags: 'europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet-telemetry:${{ github.sha }}'
