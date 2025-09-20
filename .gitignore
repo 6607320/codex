@@ -1,20 +1,50 @@
-# Игнорировать служебные папки Python
-__pycache__/
+# === Системный Мусор и Окружения ===
+# Игнорировать везде
+**/__pycache__/
 *.pyc
-
-# Игнорировать папки инструментов
 .vscode/
 .idea/
+.env
+venv
+env
+.pytest_cache/
 
-# Игнорировать папки от ритуалов ковки и сборки
-build/
-dist/
-*.egg-info/
+# === Артефакты Сборки ===
+# Игнорировать везде
+**/build/
+**/dist/
+**/*.egg-info/
+*.spec
 
-# Игнорировать папки с данными и артефактами
-data/
-results/
-mlruns/
+# === Локальные Файлы Отладки и Отчеты ===
+# (Файлы, которые мы создавали для себя)
+*.txt
+*.html
+
+# === Хранилище DVC ===
+# Игнорировать сам кеш DVC, но НЕ файлы .dvc
+.dvc/cache
+.dvc/tmp
+
+# === Артефакты, Управляемые DVC (Папки) ===
+# Игнорировать папки с такими именами на ЛЮБОЙ глубине
+**/artist_seal/
+**/chaos_sculptures/
+**/counting_results/
+**/data/
+**/dialogue_audio/
+**/dreams/
+**/frames/
+**/generated_palette/
+**/hunt_results/
+**/mlruns/
+**/models/
+**/results/
+**/sampled_frames/
+**/video_palette/
+
+# === Артефакты, Управляемые DVC (Файлы по расширению) ===
+# Игнорировать файлы с такими расширениями на ЛЮБОЙ глубине
 *.pth
 *.safetensors
 *.onnx
@@ -25,11 +55,23 @@ mlruns/
 *.gif
 *.png
 *.jpg
-# *.txt  # Закомментировано: слишком общая руна, ломает requirements.txt
+*.csv
+*.gz
+*.ubyte
+*.bin
+*.zip
+*.whl
+*.pkg
 
-# Игнорировать папки виртуальных окружений
-.env
-venv
-env
-.dvc/gdrive-creds.json
-gdrive-creds.json
+# === Исключения (Что НЕ игнорировать) ===
+# Эта руна важна! Она говорит: "Не игнорируй файлы .dvc, даже если
+# они лежат внутри папок, которые мы игнорируем выше".
+# Также НЕ игнорируй requirements.txt и другие важные .txt файлы.
+!*.dvc
+!requirements.txt
+!requirements_dev.txt
+!заклинание.txt
+!SOURCES.txt
+!dependency_links.txt
+!top_level.txt
+!warn-*.txt

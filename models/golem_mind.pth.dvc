@@ -1,5 +1,0 @@
-outs:
-- md5: 3ac9e394118dd97333adc93a09506729
-  size: 10485760
-  hash: md5
-  path: golem_mind.pth
