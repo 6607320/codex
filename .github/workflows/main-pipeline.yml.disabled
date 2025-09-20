@@ -1,0 +1,78 @@
+# Имя рабочего процесса, которое будет отображаться в интерфейсе GitHub Actions.
+name: Build and Push to GAR (Final Canon)
+
+# Секция, определяющая события, которые запускают (триггеры) этот рабочий процесс.
+on:
+  # Рабочий процесс будет запускаться при событии 'push'.
+  push:
+    # Условие: событие 'push' должно произойти в ветку 'main'.
+    branches: [main]
+    # Условие: событие 'push' должно затронуть файлы внутри директории 'quest_32_1'.
+    paths:
+      - 'quest_32_1/**'
+
+# Секция, определяющая разрешения (permissions), которые выдаются временному токену GITHUB_TOKEN.
+permissions:
+  # Разрешение на чтение содержимого репозитория (необходимо для actions/checkout).
+  contents: 'read'
+  # Разрешение на запрос OIDC JWT токена. КРИТИЧЕСКИ ВАЖНО для Workload Identity Federation.
+  id-token: 'write'
+
+# Секция, определяющая список заданий (jobs), которые будут выполняться.
+jobs:
+  # Уникальный идентификатор нашего единственного задания.
+  build-and-push:
+    # Имя задания, которое будет отображаться в интерфейсе.
+    runs-on: ubuntu-latest
+    # Список последовательных шагов (steps), из которых состоит задание.
+    steps:
+      # Имя первого шага.
+      - name: Checkout Repository
+        # 'uses' указывает, что мы используем готовое действие (action) из Marketplace.
+        uses: actions/checkout@v4
+
+      # Имя второго шага.
+      - name: Authenticate to Google Cloud
+        # 'id' присваивает этому шагу уникальный идентификатор 'auth', чтобы мы могли ссылаться на его выходные данные.
+        id: auth
+        # Используем официальное действие Google для аутентификации.
+        uses: google-github-actions/auth@v2
+        # 'with' начинает блок параметров для этого действия.
+        with:
+          # Явный приказ сгенерировать OAuth2 access_token, необходимый для Docker.
+          token_format: 'access_token'
+          # Указываем путь к нашему WIF провайдеру, используя секрет, настроенный в репозитории.
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          # Указываем email сервисного аккаунта, который мы будем "изображать", используя секрет.
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      # Имя третьего, отладочного шага.
+      - name: DEBUG - Check Access Token
+        # 'run' указывает, что мы будем выполнять команду в оболочке.
+        run: echo "Access token length is ${{ steps.auth.outputs.access_token_length }}"
+
+      # Имя четвертого шага.
+      - name: Login to Google Artifact Registry
+        # Используем официальное действие Docker для логина.
+        uses: docker/login-action@v3
+        # Начало блока параметров для этого действия.
+        with:
+          # Указываем точный адрес реестра Docker в Artifact Registry.
+          registry: 'europe-north1-docker.pkg.dev'
+          # Специальное имя пользователя для аутентификации с помощью OAuth2 токена.
+          username: 'oauth2accesstoken'
+          # В качестве пароля передаем access_token, сгенерированный на шаге с id 'auth'.
+          password: '${{ steps.auth.outputs.access_token }}'
+
+      # Имя пятого, финального шага.
+      - name: Build and push Docker image
+        # Используем официальное действие Docker для сборки и отправки образа.
+        uses: docker/build-push-action@v5
+        # Начало блока параметров для этого действия.
+        with:
+          # 'context' указывает путь к директории, где находится Dockerfile и исходный код.
+          context: ./quest_32_1
+          # 'push: true' приказывает действию не только собрать образ, но и отправить его в реестр.
+          push: true
+          # 'tags' определяет имя и тег для собранного образа.
+          tags: 'europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}'
