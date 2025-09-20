@@ -1,0 +1,6 @@
+outs:
+- md5: 51a06d904d3e20801189c923932b728c.dir
+  size: 7477842
+  nfiles: 15
+  hash: md5
+  path: generated_palette

@@ -1,0 +1,5 @@
+outs:
+- md5: 4f505c9187c7bdc608e8288528860344
+  size: 45245
+  hash: md5
+  path: voice_classifier_knowledge.pth

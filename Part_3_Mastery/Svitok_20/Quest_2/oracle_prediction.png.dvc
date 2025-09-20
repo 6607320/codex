@@ -1,0 +1,5 @@
+outs:
+- md5: 855529babd2b88c2db9b07d8a1213be2
+  size: 111052
+  hash: md5
+  path: oracle_prediction.png

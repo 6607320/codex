@@ -1,0 +1,6 @@
+outs:
+- md5: dd444106c5b28dc39d75dfba68d429ab.dir
+  size: 14611259
+  nfiles: 13
+  hash: md5
+  path: results

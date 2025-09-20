@@ -1,0 +1,6 @@
+outs:
+- md5: 316113b98c6d74b0acd4b104b761a3d7.dir
+  size: 124432
+  nfiles: 3
+  hash: md5
+  path: sampled_frames

@@ -1,0 +1,5 @@
+outs:
+- md5: d111370e84e20a88b1b8c95c90e35a1f
+  size: 289662
+  hash: md5
+  path: animated_cat.gif

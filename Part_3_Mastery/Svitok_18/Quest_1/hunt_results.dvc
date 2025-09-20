@@ -1,0 +1,6 @@
+outs:
+- md5: d2bbd0d7b582309481869aacb63838b5.dir
+  size: 472973
+  nfiles: 10
+  hash: md5
+  path: hunt_results

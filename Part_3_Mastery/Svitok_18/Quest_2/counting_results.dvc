@@ -1,0 +1,6 @@
+outs:
+- md5: 9d3acb07355280120eac12137a0f88d7.dir
+  size: 499716
+  nfiles: 10
+  hash: md5
+  path: counting_results

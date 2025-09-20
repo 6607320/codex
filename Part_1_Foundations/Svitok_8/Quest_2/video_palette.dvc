@@ -1,0 +1,6 @@
+outs:
+- md5: 9bfa506e9a8900dd013cc773b221da43.dir
+  size: 198637
+  nfiles: 2
+  hash: md5
+  path: video_palette

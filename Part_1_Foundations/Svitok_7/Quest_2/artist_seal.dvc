@@ -1,0 +1,6 @@
+outs:
+- md5: 2b4e338c46290d5df6489134a4b11cba.dir
+  size: 12801567
+  nfiles: 3
+  hash: md5
+  path: artist_seal

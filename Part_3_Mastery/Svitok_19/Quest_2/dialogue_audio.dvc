@@ -1,0 +1,6 @@
+outs:
+- md5: 484338d970d69962fc4ef066c342746c.dir
+  size: 40320
+  nfiles: 3
+  hash: md5
+  path: dialogue_audio

@@ -1,0 +1,6 @@
+outs:
+- md5: 9fb3b8e5fecee937b8a54841a42584e2.dir
+  size: 786
+  nfiles: 5
+  hash: md5
+  path: arcane_wizardry.egg-info

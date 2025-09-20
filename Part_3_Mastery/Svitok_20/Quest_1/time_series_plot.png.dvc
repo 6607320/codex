@@ -1,0 +1,5 @@
+outs:
+- md5: e6b0bc0cb08b58b563d16487888d9ad2
+  size: 74390
+  hash: md5
+  path: time_series_plot.png

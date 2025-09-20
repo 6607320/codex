@@ -1,0 +1,5 @@
+outs:
+- md5: afb1daa56b7d8163e9841227eef80bc3
+  size: 1102
+  hash: md5
+  path: motion_detected.png

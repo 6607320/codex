@@ -1,0 +1,5 @@
+outs:
+- md5: d79a4c915e0e1e7592fccfe72e34ad40
+  size: 32044
+  hash: md5
+  path: command_from_hub.wav

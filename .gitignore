@@ -75,3 +75,9 @@ env
 !dependency_links.txt
 !top_level.txt
 !warn-*.txt
+
+# Системный мусор и артефакты сборки
+**/__pycache__/
+**/build/
+**/dist/
+**/*.egg-info/

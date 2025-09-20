@@ -1,0 +1,5 @@
+outs:
+- md5: b80d33588a4a6078da83989d695f9cc5
+  size: 68283
+  hash: md5
+  path: transformed_cat.png

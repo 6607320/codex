@@ -1,0 +1,6 @@
+outs:
+- md5: b87a4d3b702ea58a6d26dd2d29abad49.dir
+  size: 3415907646
+  nfiles: 15
+  hash: md5
+  path: build
