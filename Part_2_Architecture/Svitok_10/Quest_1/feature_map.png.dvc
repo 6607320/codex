@@ -1,0 +1,5 @@
+outs:
+- md5: de5ab4a19b5f75aad188221475aacf58
+  size: 84
+  hash: md5
+  path: feature_map.png
