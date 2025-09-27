@@ -31,4 +31,4 @@ COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/pytho
 COPY . .
 
 # Заклинание, которое будет исполнено при пробуждении финального, чистого контейнера.
-CMD ["uvicorn", "quest_25_1_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "quest_25_2:app", "--host", "0.0.0.0", "--port", "8000"]

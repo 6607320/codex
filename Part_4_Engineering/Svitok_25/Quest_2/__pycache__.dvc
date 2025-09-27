@@ -1,6 +1,0 @@
-outs:
-- md5: e9d21be6606ad2ce1c91cb6f5d120aa5.dir
-  size: 823
-  nfiles: 1
-  hash: md5
-  path: __pycache__
