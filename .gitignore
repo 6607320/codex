@@ -70,11 +70,11 @@ env
 !*.dvc
 !requirements.txt
 !requirements_dev.txt
-!заклинание.txt
 !SOURCES.txt
 !dependency_links.txt
 !top_level.txt
 !warn-*.txt
+!author_seal.txt
 
 # Системный мусор и артефакты сборки
 **/__pycache__/
