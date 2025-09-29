@@ -1,0 +1,11 @@
+# Правила игнорирования для `rag_builder`.
+
+# Генерируемый файл состояния
+/manifest.json
+
+# Директория с генерируемыми PDF
+/notebooklm_sources/
+
+# Бинарный файл шрифта
+/DejaVuSans.ttf
+/notebooklm_sources
