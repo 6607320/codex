@@ -75,6 +75,7 @@ env
 !top_level.txt
 !warn-*.txt
 !author_seal.txt
+!commit_hash.txt
 
 # Системный мусор и артефакты сборки
 **/__pycache__/
