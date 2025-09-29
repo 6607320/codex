@@ -76,6 +76,8 @@ env
 !warn-*.txt
 !author_seal.txt
 !commit_hash.txt
+!attestation_payload.txt
+!verification_report.txt
 
 # Системный мусор и артефакты сборки
 **/__pycache__/

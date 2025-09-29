@@ -1,0 +1,10 @@
+Hashing file, algorithm sha256
+Got digest 702111cef9a51f75f002d86236d716050571f286ca06918fa923d6affe7a3ec3
+Checking calendar https://btc.calendar.catallaxy.com for 68da7896743032e566399b6d7b90bb544acbb265c26bbca075551b0c57db043213bf676c8f06b831b26af0ed
+Calendar https://btc.calendar.catallaxy.com: Pending confirmation in Bitcoin blockchain
+Checking calendar https://finney.calendar.eternitywall.com for 68da789554c7a290b6d526c4f5844f23e25509431bd3d3a9e753f5b13fae4a74813c30accf069065ec28d8d1
+Calendar https://finney.calendar.eternitywall.com: Pending confirmation in Bitcoin blockchain
+Checking calendar https://bob.btc.calendar.opentimestamps.org for 68da7895ba021a76d0eb4e94c2952a909bedf3bc95159dea706baa74cc46a944cf804ae7a34a35e4009bc316
+Calendar https://bob.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
+Checking calendar https://alice.btc.calendar.opentimestamps.org for 68da78960ecc99de75fc22a72a14cde5a03df68a8f0b7ec74e36a1d3e14b353684d9652eee38965605ce104f
+Calendar https://alice.btc.calendar.opentimestamps.org: Pending confirmation in Bitcoin blockchain
