@@ -71,7 +71,7 @@ jobs:
         # "Предъявление Ключей": Мы передаем заклинанию необходимые данные.
         with:
           # Точный адрес врат нашего Хранилища Артефактов в Небесной Кузнице.
-          registry: 'europe-north1-docker.pkg.dev'
+          registry: 'europe-west3-docker.pkg.dev'
           # Специальное магическое имя, которое говорит Стражу, что мы используем не простой пароль, а Ключ Доступа.
           username: 'oauth2accesstoken'
           # В качестве пароля мы передаем сам "Временный Ключ Доступа", который был создан
@@ -93,4 +93,4 @@ jobs:
           # [адрес_хранилища]/[id_проекта]/[имя_коллекции]/[имя_артефакта]:[уникальная_печать].
           # Уникальная печать `${{ github.sha }}` — это магическая подпись, соответствующая точной версии кода,
           # из которой был создан артефакт, что гарантирует абсолютную прослеживаемость.
-          tags: 'europe-north1-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}'
+          tags: 'europe-west3-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}'
