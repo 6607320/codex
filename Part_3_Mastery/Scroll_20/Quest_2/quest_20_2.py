@@ -84,7 +84,8 @@ class OracleLSTM(nn.Module):
         h0 = torch.zeros(1, 1, self.hidden_layer_size)
         # Создаем пустой "сосуд" для Долгосрочной Памяти (cell state).
         c0 = torch.zeros(1, 1, self.hidden_layer_size)
-        # 'self.hidden_cell' - создаем атрибут-тайник, хранящий пару "сосудов памяти" в виде "магической связки" (tuple).
+        # 'self.hidden_cell' - создаем атрибут-тайник,
+        # хранящий пару "сосудов памяти" в виде "магической связки" (tuple).
         self.hidden_cell = (h0, c0)
 
     # В ритуале "прямого прохода" (`forward`) мы описываем, как данные
