@@ -320,7 +320,8 @@ def main():
         ):
             # ...объявляем о запечатывании текущего тома как АРХИВНОГО.
             print(
-                f"   Достигнут лимит слов. Архивируем том part_{next_part_number}.pdf..."
+                f"   Достигнут лимит слов. "
+                f"Архивируем том part_{next_part_number}.pdf..."
             )
             # Даем имя новому архивному тому.
             part_filename = f"part_{next_part_number}.pdf"
@@ -365,13 +366,15 @@ def main():
         current_chunk_sources.append(filepath)
         # Если для данного файла у нас есть свежая печать...
         if filepath in current_files_hashes:
-            # ...обновляем (или добавляем) запись о файле и его новой печати в Летопись в памяти.
+            # ...обновляем (или добавляем) запись о файле
+            #  и его новой печати в Летопись в памяти.
             manifest_data["files"][filepath] = current_files_hashes[filepath]
     # После завершения круга, проверяем, осталось ли что-то в нашем сосуде.
     if current_chunk_word_count > 0:
         # Объявляем о сотворении финального, «Живого Тома».
         print(
-            f"   Сохранение активного тома '{LIVING_CHUNK_FILENAME}' ({current_chunk_word_count} слов)..."
+            f"   Сохранение активного тома '{LIVING_CHUNK_FILENAME}' "
+            f"({current_chunk_word_count} слов)..."
         )
         # Собираем путь для его материализации, используя его постоянное Имя.
         output_path = os.path.join(output_dir_path, LIVING_CHUNK_FILENAME)

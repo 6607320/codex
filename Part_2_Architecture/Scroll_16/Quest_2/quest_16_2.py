@@ -118,7 +118,8 @@ with mlflow.start_run(run_name="Обучение MiniCNN"):
     for epoch in range(epochs):
         # Мы создаем переменную для хранения самой последней ошибки в эпохе.
         final_loss = 0.0
-        # `enumerate(train_loader)`: Мы берем "пачки" данных и их порядковые номера (`step`).
+        # `enumerate(train_loader)`: Мы берем "пачки" данных
+        #  и их порядковые номера (`step`).
         for step, (data, target) in tqdm(
             # Мы итерируемся по нашему "Подносчику".
             enumerate(train_loader),
@@ -141,9 +142,11 @@ with mlflow.start_run(run_name="Обучение MiniCNN"):
             optimizer.step()
 
             # --- Запись "Результатов" (Метрик) на каждом шагу ---
-            # `if step % 100 == 0`: Мы произносим заклинание "Если номер шага делится на 100 без остатка..."
+            # `if step % 100 == 0`: Мы произносим заклинание
+            #  "Если номер шага делится на 100 без остатка..."
             if step % 100 == 0:
-                # `mlflow.log_metric()`: "...то записать текущее значение ошибки (`loss.item()`)
+                # `mlflow.log_metric()`: "...то записать
+                #  текущее значение ошибки (`loss.item()`)
                 # в журнал на шаге `step`". Это создаст точки для нашего
                 # графика.
                 mlflow.log_metric("loss", loss.item(), step=step)

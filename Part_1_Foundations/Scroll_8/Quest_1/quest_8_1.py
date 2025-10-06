@@ -91,5 +91,6 @@ print("\nРитуал завершен.")
 print(f"  Всего прочитано кадров: {total_frames_read}")
 # Мы сообщаем, сколько кадров прошло через наш фильтр и было сохранено.
 print(
-    f"  Сохранено (каждый {frame_skip}-й): {frames_saved} кадров в папку '{output_folder}'."
+    f"  Сохранено (каждый {frame_skip}-й): {frames_saved} кадров "
+    f"в папку '{output_folder}'."
 )

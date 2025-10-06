@@ -9,7 +9,8 @@ from transformers import pipeline
 # мудрости духов.
 from validation_data import VALIDATION_SET
 
-# --- > НОВАЯ РУНА: Мы призываем могущественного духа 'click', мастера командной строки и красноречия.
+# --- > НОВАЯ РУНА: Мы призываем могущественного духа 'click',
+#  мастера командной строки и красноречия.
 import click
 
 

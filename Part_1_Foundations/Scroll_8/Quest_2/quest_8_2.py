@@ -68,7 +68,8 @@ labels = []
 frame_skip = 5
 
 # Мы произносим заклинание поиска `glob.glob`.
-# `video_palette/**/*.mp4` — означает "найди мне все файлы .mp4 во всех подпапках `video_palette`".
+# `video_palette/**/*.mp4` — означает "найди мне все файлы .mp4
+#  во всех подпапках `video_palette`".
 video_files = glob.glob("video_palette/**/*.mp4", recursive=True)
 # Мы создаем "карту-справочник", чтобы переводить имена папок в номера классов.
 label_map = {"action_A": 0, "action_B": 1}

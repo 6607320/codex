@@ -68,7 +68,8 @@ adapter_path = "results/checkpoint-250"
 print(f"\nНахожу магический блокнот в '{adapter_path}'...")
 
 # КЛЮЧЕВОЕ ЗАКЛИНАНИЕ: `PeftModel.from_pretrained`.
-# Оно берет "чистого" Голема (`model`) и "надевает" на него наш "блокнот" (`adapter_path`).
+# Оно берет "чистого" Голема (`model`)
+#  и "надевает" на него наш "блокнот" (`adapter_path`).
 # Внутри оно читает `adapter_config.json`, находит нужные "отделы мозга" Голема
 # и прикрепляет к ним обученные "страницы" из `adapter_model.safetensors`.
 model = PeftModel.from_pretrained(model, adapter_path)

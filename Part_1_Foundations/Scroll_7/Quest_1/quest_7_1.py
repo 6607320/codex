@@ -61,7 +61,11 @@ pipe.enable_model_cpu_offload()
 
 # Мы создаем текстовое заклинание, которое описывает стиль, который мы хотим получить.
 # Этот же стиль мы будем использовать для обучения нашей "Стилевой Печати".
-style_prompt = "a beautiful painting of a landscape, trending on artstation, masterpiece, vibrant colors"
+style_prompt = (
+    "a beautiful painting of a landscape, "
+    "trending on artstation, "
+    "masterpiece, vibrant colors"
+)
 
 # Мы оглашаем на кристалл о начале долгого процесса творения.
 print(f"\nНачинаю творить {num_images} картин в стиле: '{style_prompt}'")
@@ -90,5 +94,6 @@ for i in tqdm(range(num_images), desc="Сотворение палитры"):
 
 # Мы сообщаем Магу-Техноманту, что ритуал завершен и "палитра" готова.
 print(
-    f"\nРитуал завершен! Палитра из {num_images} сотворенных картин готова в папке '{palette_folder}'."
+    f"\nРитуал завершен! Палитра из {num_images} сотворенных картин "
+    f"готова в папке '{palette_folder}'."
 )
