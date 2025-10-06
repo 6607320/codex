@@ -9,12 +9,16 @@
 
 # Мы призываем `numpy` (с псевдонимом `np`) для работы с числовыми массивами.
 import numpy as np
+
 # Мы призываем `onnxruntime` (с псевдонимом `ort`) — "Универсальный Чтец Свитков".
 import onnxruntime as ort
+
 # Мы призываем `torch` — наш Источник Маны.
 import torch
+
 # Мы призываем `torch.nn` (с псевдонимом `nn`) — главу с чертежами базовых блоков.
 import torch.nn as nn
+
 # Мы призываем `torch.nn.functional` (с псевдонимом `F`) — гримуар с "заклинаниями".
 import torch.nn.functional as F
 

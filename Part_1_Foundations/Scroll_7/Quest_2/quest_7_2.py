@@ -16,8 +16,10 @@ import os
 
 # Мы призываем наш главный силовой гримуар `PyTorch`.
 import torch
+
 # Мы призываем главу гримуара `functional` с "мерами ошибок" (loss functions).
 import torch.nn.functional as F
+
 # Мы призываем "Библиотекаря" `load_dataset` для работы с нашими картинами.
 from datasets import load_dataset
 
@@ -77,7 +79,7 @@ preprocess = transforms.Compose(
         transforms.ToTensor(),
         # Четвертая "линза": нормализует цвета в диапазон [-1, 1].
         transforms.Normalize([0.5], [0.5]),
-    # Конец списка трансформаций.
+        # Конец списка трансформаций.
     ]
 )
 
@@ -184,7 +186,7 @@ prompt_ids = tokenizer(
     truncation=True,
     # Мы указываем максимальную длину.
     max_length=tokenizer.model_max_length,
-# Мы отправляем руны на Кристалл Маны.
+    # Мы отправляем руны на Кристалл Маны.
 ).input_ids.to("cuda")
 
 # Мы начинаем урок, который повторится 100 раз (эпох).
@@ -224,7 +226,7 @@ for epoch in range(num_train_epochs):
             (latents.shape[0],),
             # На каком устройстве создать.
             device=latents.device,
-        # Мы указываем тип данных.
+            # Мы указываем тип данных.
         ).long()
         # Мы "добавляем" сгенерированный шум к нашему чистому латенту.
         noisy_latents = noise_scheduler.add_noise(latents, noise, timesteps)

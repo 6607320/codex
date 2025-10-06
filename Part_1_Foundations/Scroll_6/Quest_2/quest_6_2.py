@@ -12,16 +12,22 @@
 
 # Мы призываем наш главный силовой гримуар `PyTorch`.
 import torch
+
 # Мы призываем `nn` — главу гримуара PyTorch со "строительными блоками" для моделей.
 import torch.nn as nn
+
 # Мы призываем `optim` — главу гримуара с "методами исправления ошибок" (оптимизаторами).
 import torch.optim as optim
+
 # Мы призываем `T` — главу гримуара `torchaudio` с заклинаниями для аудио-трансформаций.
 import torchaudio.transforms as T
+
 # Мы призываем "Библиотекаря" `load_dataset` для работы с архивами.
 from datasets import load_dataset
+
 # Мы призываем наш "индикатор прогресса" `tqdm`, чтобы видеть, как идет ритуал.
 from tqdm import tqdm
+
 # Мы призываем "Настройщика Слуха" и "Духа-Эмпата" из `transformers`.
 from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2Model
 

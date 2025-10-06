@@ -253,4 +253,3 @@ if __name__ == "__main__":
     print(final_response)
     # Мы печатаем завершающий разделитель.
     print("=" * 50)
-    

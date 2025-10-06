@@ -3,18 +3,24 @@
 # --- Акт 1: Подготовка Гримуаров ---
 # Мы открываем гримуар 'fastapi' и призываем из него сущность 'FastAPI', способную создавать магические порталы (API).
 from fastapi import FastAPI
+
 # Мы обращаемся к гримуару 'pydantic' за силой 'BaseModel', чтобы создавать нерушимые чертежи для наших посланий.
 from pydantic import BaseModel
+
 # Это главное заклинание из гримуара 'transformers'. Руна 'pipeline' позволяет нам призывать могущественных духов (модели).
 from transformers import pipeline
+
 # Из этого гримуара мы призываем 'Инструментатора', духа, который будет автоматически следить за нашим порталом.
 from prometheus_fastapi_instrumentator import Instrumentator
+
 # Из библиотеки Прометея мы призываем два вида магических инструментов: 'Gauge' (Манометр) и 'Counter' (Счетчик).
-from prometheus_client import Gauge, Counter 
+from prometheus_client import Gauge, Counter
+
 # Мы импортируем наш собственный свиток с валидационными данными, чтобы проверять силу наших духов.
 from validation_data import VALIDATION_SET
+
 # Мы призываем древнего и непредсказуемого духа Случайности, его воля определит наш путь.
-import random 
+import random
 
 # --- Акт 2: Подготовка ДВУХ "Духов" ---
 # Мастер Гильдии объявляет о начале ритуала призыва первого духа.
@@ -42,6 +48,7 @@ class TextInput(BaseModel):
     # Чертеж гласит: каждое послание должно содержать поле 'text', и в нем должна быть магическая строка.
     text: str
 
+
 # --- Акт 4: Создание Портала и Метрик ---
 # Мы сотворяем сам портал, используя призванную ранее сущность 'FastAPI'.
 app = FastAPI(
@@ -59,20 +66,20 @@ Instrumentator().instrument(app).expose(app)
 # Мы создаем наш первый магический инструмент — Манометр Точности.
 ACCURACY_GAUGE = Gauge(
     # Даем ему имя 'model_accuracy', чтобы его узнал Страж Prometheus.
-    'model_accuracy',
+    "model_accuracy",
     # Описываем, что именно он измеряет: текущую точность модели на валидационном наборе.
-    'Current accuracy of the sentiment analysis model on a validation set'
+    "Current accuracy of the sentiment analysis model on a validation set",
 )
 
 # --- > НОВАЯ РУНА: Создаем "Счетчик" с измерением 'model_version'
 # Мы создаем второй магический инструмент — Кристалл-Счетчик Запросов.
 REQUEST_COUNTER = Counter(
     # Даем ему имя 'model_requests_total', которое будет видно Стражу.
-    'model_requests_total',
+    "model_requests_total",
     # Описываем его предназначение: подсчет общего числа запросов для каждой версии модели.
-    'Total number of requests for each model version',
+    "Total number of requests for each model version",
     # Это ключевая руна! Мы превращаем кристалл в призму, говоря, что он должен разделять подсчет по измерению 'model_version'.
-    ['model_version'] 
+    ["model_version"],
 )
 
 
@@ -83,7 +90,7 @@ REQUEST_COUNTER = Counter(
 def analyze_sentiment(request: TextInput):
     # Мы извлекаем текст из послания, которое прошло проверку по чертежу 'TextInput'.
     text_to_analyze = request.text
-    
+
     # --- > НОВЫЕ РУНЫ: Ритуал случайного выбора
     # Мы бросаем магическую монету, вопрошая духа Случайности, какой путь избрать.
     if random.random() < 0.5:
@@ -96,13 +103,13 @@ def analyze_sentiment(request: TextInput):
         model_version = "B"
         # И назначаем для этого пути второго духа.
         chosen_model = model_b
-        
+
     # Мы касаемся нашего кристалла-призмы, и грань, соответствующая выбранной модели ('model_version'), вспыхивает ярче.
     REQUEST_COUNTER.labels(model_version=model_version).inc()
-    
+
     # Мы передаем текст выбранному духу, и он возвращает нам свое предсказание.
     result = chosen_model(text_to_analyze)
-    
+
     # Мы отправляем обратно через портал и результат предсказания, и имя духа, который его сделал.
     return {"result": result[0], "model_version": model_version}
 
@@ -126,15 +133,15 @@ def validate_model():
         # Спрашиваем предсказание у духа 'А'.
         prediction = model_a(text)[0]
         # Мы сравниваем предсказание духа с истиной.
-        if prediction['label'] == true_label:
+        if prediction["label"] == true_label:
             # Если он прав, мы засчитываем ему очко.
             correct_predictions += 1
-            
+
     # По итогам всех испытаний мы вычисляем его итоговую точность.
     accuracy = correct_predictions / total_samples
     # Мы устанавливаем стрелку нашего Манометра Точности на вычисленное значение.
     ACCURACY_GAUGE.set(accuracy)
-    
+
     # Мы возвращаем через портал полный отчет о проведенном испытании в виде магического свитка (словаря).
     return {
         # В свитке мы указываем, какой именно дух прошел испытание: в данном случае, всегда дух 'А'.
@@ -144,7 +151,8 @@ def validate_model():
         # Мы перечисляем точное число верных ответов, которые он дал.
         "correct_predictions": correct_predictions,
         # И, наконец, мы указываем общее число вопросов, которые были ему заданы в ходе испытания.
-        "total_samples": total_samples
+        "total_samples": total_samples,
     }
-    
+
+
 # Trigger Telemetry Pipeline 4

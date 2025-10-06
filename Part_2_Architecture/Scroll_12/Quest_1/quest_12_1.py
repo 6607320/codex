@@ -16,16 +16,22 @@ import os
 # Начинается первый акт: мы призываем все необходимые знания и инструменты.
 # Мы призываем `torch` — наш Источник Маны.
 import torch
+
 # Мы призываем `torch.nn` (с псевдонимом `nn`) — главу с чертежами базовых блоков.
 import torch.nn as nn
+
 # Мы призываем `torch.nn.functional` (с псевдонимом `F`) — гримуар с "заклинаниями".
 import torch.nn.functional as F
+
 # Мы призываем `torch.optim` (с псевдонимом `optim`) — гримуар с "наставниками".
 import torch.optim as optim
+
 # Мы призываем гримуар `torchvision` для работы с образами.
 from torchvision import datasets, transforms
+
 # Мы призываем особое заклинание `save_image` для сохранения сетки образов.
 from torchvision.utils import save_image
+
 # Мы призываем наш верный "индикатор прогресса".
 from tqdm import tqdm
 

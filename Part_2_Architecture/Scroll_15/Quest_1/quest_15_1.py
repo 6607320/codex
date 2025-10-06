@@ -83,7 +83,7 @@ data_transform = transforms.Compose(
         transforms.Resize((64, 64)),
         # Вторая "линза": превратить образ из формата Pillow в Тензор PyTorch.
         transforms.ToTensor(),
-    # Конец списка трансформаций.
+        # Конец списка трансформаций.
     ]
 )
 

@@ -25,4 +25,3 @@ def test_add_two_runes_negative_and_zero():
     assert add_two_runes(-1, 1) == 0
     # Второе утверждение в этом же ритуале: сложение двух отрицательных рун '-5' и '-5' должно дать '-10'.
     assert add_two_runes(-5, -5) == -10
-    

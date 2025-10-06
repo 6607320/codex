@@ -5,15 +5,20 @@
 # Начинается первый акт: мы призываем все необходимые знания и инструменты.
 # Мы призываем гримуар `FastAPI` для создания "магических порталов".
 from fastapi import FastAPI
+
 # Мы призываем гримуар `Pydantic` для создания "чертежей" для магических посланий.
 from pydantic import BaseModel
+
 # Мы призываем наш универсальный "амулет" `pipeline` для призыва Духов.
 from transformers import pipeline
+
 # --- > Кодекс указывает на призыв НОВЫХ, могущественных РУН
 # Мы призываем духа-"Инструментатора", который наделяет наш Амулет самосознанием.
 from prometheus_fastapi_instrumentator import Instrumentator
+
 # Мы призываем чертеж для "Тревожного Колокола" (`Gauge`) — особой метрики, которая может показывать уровень.
 from prometheus_client import Gauge
+
 # Мы призываем наш "Кристалл Истины" (`VALIDATION_SET`) — священный набор эталонных свитков для проверки.
 from validation_data import VALIDATION_SET
 
@@ -31,11 +36,13 @@ sentiment_analyzer = pipeline(
 # Мы оглашаем, что "Дух" пробужден и готов к работе.
 print("'Дух Эмоций' готов к работе.")
 
+
 # --- Акт 3: Чертеж "Магического Послания" ---
 # Начинается третий акт: мы создаем "чертеж" для посланий.
 class TextInput(BaseModel):
     # Мы объявляем, что каждое 'послание' должно содержать поле `text`, и его тип должен быть `str`.
     text: str
+
 
 # --- Акт 4: Создание Портала и "Тревожного Колокола" ---
 # Начинается четвертый акт: мы сотворяем сам "Портал" и наш новый инструмент наблюдения.
@@ -54,10 +61,11 @@ Instrumentator().instrument(app).expose(app)
 # Мы сотворяем наш кастомный "Тревожный Колокол" (метрику типа Gauge).
 ACCURACY_GAUGE = Gauge(
     # Мы даем ему имя 'model_accuracy', которое будет видно в летописях Prometheus.
-    'model_accuracy',
+    "model_accuracy",
     # Мы даем ему описание, которое будет видно в летописях.
-    'Current accuracy of the sentiment analysis model on a validation set'
+    "Current accuracy of the sentiment analysis model on a validation set",
 )
+
 
 # --- Акт 5: Создание "Врат" для Анализа ---
 # Начинается пятый акт: мы открываем главные "врата" в наш "Портал".
@@ -70,6 +78,7 @@ def analyze_sentiment(request: TextInput):
     result = sentiment_analyzer(text_to_analyze)
     # Мы возвращаем результат.
     return {"result": result[0]}
+
 
 # --- > НОВЫЙ АКТ 6: Ритуал Самопроверки ---
 # Начинается шестой, самый важный акт: мы создаем ритуал самодиагностики.
@@ -87,23 +96,23 @@ def validate_model():
         text = item["text"]
         # Мы извлекаем "истинную метку" из "свитка".
         true_label = item["label"]
-        
+
         # Мы получаем предсказание от нашего "Духа".
         prediction = sentiment_analyzer(text)[0]
         # Мы извлекаем из предсказания только метку ('POSITIVE' или 'NEGATIVE').
-        predicted_label = prediction['label']
-        
+        predicted_label = prediction["label"]
+
         # Мы сверяемся с "Кристаллом Истины": совпадает ли предсказание с истиной?
         if predicted_label == true_label:
             # Если да, мы увеличиваем наш "счетчик" правильных предсказаний.
             correct_predictions += 1
-            
+
     # После завершения цикла мы вычисляем "точность" — долю правильных ответов.
     accuracy = correct_predictions / total_samples
-    
+
     # Мы заставляем наш "Тревожный Колокол" звонить с новым значением, показывая текущую точность.
     ACCURACY_GAUGE.set(accuracy)
-    
+
     # Мы возвращаем полный "отчет" о проведенном ритуале.
     return {
         # Точность в виде дроби.
@@ -111,6 +120,5 @@ def validate_model():
         # Количество верных предсказаний.
         "correct_predictions": correct_predictions,
         # Общее количество проверенных образцов.
-        "total_samples": total_samples
+        "total_samples": total_samples,
     }
-    

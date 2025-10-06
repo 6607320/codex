@@ -44,7 +44,7 @@ model = AutoModelForCausalLM.from_pretrained(
     # Мы передаем ему "свиток-инструкцию" по сжатию.
     quantization_config=quantization_config,
     # Мы доверяем "Духу-Ускорителю" распределить части Голема по ресурсам (GPU/CPU).
-    device_map="auto"
+    device_map="auto",
 )
 
 # Мы призываем "Переводчика", который говорит на диалекте нашего Голема.
@@ -97,7 +97,7 @@ response = tokenizer.decode(
     # Мы берем первый (и единственный) вариант ответа из результатов.
     outputs[0],
     # Мы просим не печатать служебные руны вроде "<|endoftext|>".
-    skip_special_tokens=True
+    skip_special_tokens=True,
 )
 
 # Мы оглашаем на кристалл, что сейчас будет представлен ответ нашего ученика.

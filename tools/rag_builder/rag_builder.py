@@ -1,31 +1,46 @@
 # Призываем духа операционной системы `os` для взаимодействия с файлами и путями.
 import os
+
 # Призываем духа криптографии `hashlib` для сотворения нерушимых печатей (хешей).
 import hashlib
+
 # Призываем духа формата JSON для чтения и записи нашей Летописи.
 import json
+
 # Из великой библиотеки `fpdf` призываем сущность `FPDF`, нашего Духа-Каллиграфа.
 from fpdf import FPDF
+
 # Призываем сущности из `typing` для наложения на ритуалы рун ясности (аннотаций типов).
 from typing import List, Dict, Any, Set
 
 # --- Незыблемые Законы (Константы) ---
 # Устанавливаем Путь к корню Великого Кодекса, где начнется Великий Обход.
-PROJECT_DIR = '../../'
+PROJECT_DIR = "../../"
 # Начертаем Черный Список Директорий, которые ритуал сканирования должен игнорировать.
-EXCLUDE_DIRS = {'.git', '.dvc', '__pycache__', '.pytest_cache', 'build', 'dist', 'notebooklm_sources'}
+EXCLUDE_DIRS = {
+    ".git",
+    ".dvc",
+    "__pycache__",
+    ".pytest_cache",
+    "build",
+    "dist",
+    "notebooklm_sources",
+}
 # Определяем Истинные Имена Расширений тех свитков, что достойны нашего внимания.
-TARGET_EXTENSIONS = ('.py', '.md', '.txt', '.json', '.yml', '.yaml', '.spec')
+TARGET_EXTENSIONS = (".py", ".md", ".txt", ".json", ".yml", ".yaml", ".spec")
 # Определяем Истинные Имена особых свитков, что не имеют расширений, но также важны.
-TARGET_FILES = ('Dockerfile', '.gitignore', '.dvcignore', '.flake8')
+TARGET_FILES = ("Dockerfile", ".gitignore", ".dvcignore", ".flake8")
 # Устанавливаем Путь к главному свитку Летописи, `manifest.json`.
-MANIFEST_FILE = '../../manifest.json'
+MANIFEST_FILE = "../../manifest.json"
 # Устанавливаем Путь к Хранилищу Томов, где будут материализованы PDF-свитки.
-OUTPUT_DIR = '../../notebooklm_sources'
+OUTPUT_DIR = "../../notebooklm_sources"
 # Устанавливаем магический Лимит Слов для одного архивного PDF-тома.
 WORD_LIMIT = 475000
 # Даем Истинное Имя нашему вечно меняющемуся «Живому Тому».
-LIVING_CHUNK_FILENAME = 'living_chronicle.pdf' ### ИЗМЕНЕНИЕ: Постоянное имя для активного тома ###
+LIVING_CHUNK_FILENAME = (
+    "living_chronicle.pdf"  ### ИЗМЕНЕНИЕ: Постоянное имя для активного тома ###
+)
+
 
 # --- Малые Ритуалы (Функции) ---
 # Определяем ритуал `calculate_sha256` для Наложения Печати.
@@ -47,8 +62,11 @@ def calculate_sha256(filepath: str) -> str:
         # ...возвращаем пустоту как знак неудачи.
         return ""
 
+
 # Определяем ритуал `scan_project_files` для проведения Великого Обхода Кодекса.
-def scan_project_files(directory: str, extensions: tuple, filenames: tuple, exclude_dirs: set) -> List[str]:
+def scan_project_files(
+    directory: str, extensions: tuple, filenames: tuple, exclude_dirs: set
+) -> List[str]:
     # Готовим пустой магический мешок для сбора путей ко всем достойным свиткам.
     all_files = []
     # Начинаем Великий Обход Кодекса с помощью духа `os.walk`.
@@ -76,12 +94,13 @@ def scan_project_files(directory: str, extensions: tuple, filenames: tuple, excl
     # Возвращаем отсортированный по алфавиту список путей для порядка и предсказуемости.
     return sorted(all_files)
 
+
 # Определяем ритуал `load_manifest` для чтения древней Летописи.
 def load_manifest(manifest_path: str) -> Dict[str, Any]:
     # Начинаем ритуал под защитой охранных рун на случай, если Летопись еще не сотворена.
     try:
         # Открываем свиток Летописи для чтения с кодировкой UTF-8.
-        with open(manifest_path, 'r', encoding='utf-8') as f:
+        with open(manifest_path, "r", encoding="utf-8") as f:
             # Преобразуем текст свитка из JSON в структуру данных и возвращаем её.
             return json.load(f)
     # Если Летопись не найдена или искажена...
@@ -89,16 +108,18 @@ def load_manifest(manifest_path: str) -> Dict[str, Any]:
         # ...сотворяем и возвращаем новую, пустую Летопись изначальной структуры.
         return {"files": {}, "chunks": []}
 
+
 # Определяем ритуал `save_manifest` для запечатывания обновленной Летописи.
 def save_manifest(manifest_path: str, data: Dict[str, Any]):
     # Собираем канонический путь к Летописи в корне Кодекса.
     manifest_root_path = os.path.join(PROJECT_DIR, manifest_path)
     # Сотворяем нужную директорию для Летописи, если она еще не существует.
-    os.makedirs(os.path.dirname(manifest_root_path) or '.', exist_ok=True)
+    os.makedirs(os.path.dirname(manifest_root_path) or ".", exist_ok=True)
     # Открываем свиток Летописи для записи с кодировкой UTF-8.
-    with open(manifest_root_path, 'w', encoding='utf-8') as f:
+    with open(manifest_root_path, "w", encoding="utf-8") as f:
         # Записываем наши знания в свиток в формате JSON с отступами.
         json.dump(data, f, indent=4, ensure_ascii=False)
+
 
 # Определяем ритуал `create_pdf_from_text` для сотворения PDF-тома.
 def create_pdf_from_text(text_content: str, output_path: str):
@@ -109,15 +130,15 @@ def create_pdf_from_text(text_content: str, output_path: str):
         # Призываем в мир новую, пустую сущность PDF-свитка.
         pdf = FPDF()
         # Обучаем Духа-Каллиграфа руническому шрифту `DejaVuSans.ttf`.
-        pdf.add_font('DejaVu', '', 'DejaVuSans.ttf')
+        pdf.add_font("DejaVu", "", "DejaVuSans.ttf")
         # Приказываем Духу-Каллиграфу использовать этот шрифт размером 10.
-        pdf.set_font('DejaVu', '', size=10)
+        pdf.set_font("DejaVu", "", size=10)
         # Добавляем в наш PDF-свиток первый чистый пергаментный лист.
         pdf.add_page()
         # Вписываем все текстовое содержимое на лист, с автоматическим переносом строк.
         pdf.multi_cell(0, 5, text_content)
         # Убеждаемся, что существует папка, в которую мы хотим сохранить наш том.
-        os.makedirs(os.path.dirname(output_path) or '.', exist_ok=True)
+        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
         # Приказываем Духу-Каллиграфу запечатать и материализовать PDF-свиток.
         pdf.output(output_path)
         # Сообщаем об успешном завершении ритуала сотворения тома.
@@ -126,6 +147,7 @@ def create_pdf_from_text(text_content: str, output_path: str):
     except Exception as e:
         # ...мы сообщаем о провале ритуала и причине неудачи.
         print(f"   !!! ОШИБКА при создании PDF {output_path}: {e}")
+
 
 # Определяем Великий Ритуал `main`, который управляет всем процессом.
 def main():
@@ -144,7 +166,9 @@ def main():
     # Объявляем о начале фазы инвентаризации.
     print("1. Сканирование файлов проекта...")
     # Запускаем Великий Обход Кодекса, чтобы получить список всех релевантных свитков.
-    project_files = scan_project_files(PROJECT_DIR, TARGET_EXTENSIONS, TARGET_FILES, EXCLUDE_DIRS)
+    project_files = scan_project_files(
+        PROJECT_DIR, TARGET_EXTENSIONS, TARGET_FILES, EXCLUDE_DIRS
+    )
     # Для каждого найденного свитка вычисляем его отпечаток души (хеш).
     current_files_hashes = {f: calculate_sha256(f) for f in project_files}
     # Сообщаем, сколько всего свитков было найдено в Кодексе.
@@ -154,10 +178,11 @@ def main():
     # Создаем список свитков, которые либо являются новыми, либо их печать изменилась.
     changed_or_new_files = [
         # Перебираем все текущие свитки и их печати.
-        filepath for filepath, current_hash in current_files_hashes.items()
+        filepath
+        for filepath, current_hash in current_files_hashes.items()
         # Сравниваем текущую печать с той, что записана в Летописи.
         if manifest_data["files"].get(filepath) != current_hash
-    # Завершаем создание списка.
+        # Завершаем создание списка.
     ]
     # Если список измененных свитков пуст...
     if not changed_or_new_files:
@@ -176,9 +201,11 @@ def main():
         # ...изучаем запись о самом последнем сотворенном томе.
         last_chunk = manifest_data["chunks"][-1]
         # Если последний том — это наш «Живой Том»...
-        if last_chunk['file'] == LIVING_CHUNK_FILENAME:
+        if last_chunk["file"] == LIVING_CHUNK_FILENAME:
             # ...сообщаем о начале ритуала отката.
-            print(f"   Найден активный том '{LIVING_CHUNK_FILENAME}'. Производится откат.")
+            print(
+                f"   Найден активный том '{LIVING_CHUNK_FILENAME}'. Производится откат."
+            )
             # Изгоняем запись о «Живом Томе» из Летописи в памяти.
             manifest_data["chunks"].pop()
             # Собираем полный путь к материальной плоти «Живого Тома».
@@ -203,8 +230,8 @@ def main():
             files_to_reprocess.update(last_chunk["sources"])
         # Если последний том был архивным...
         else:
-             # ...мы его не трогаем, а сообщаем, что будем создавать новый «Живой Том».
-             print("   Последний том является архивным. Начинается новый активный том.")
+            # ...мы его не трогаем, а сообщаем, что будем создавать новый «Живой Том».
+            print("   Последний том является архивным. Начинается новый активный том.")
     # Если в Летописи вообще не было томов...
     else:
         # ...сообщаем, что начинаем Великое Сотворение с самого начала.
@@ -216,7 +243,9 @@ def main():
     # Объявляем о начале главной фазы — сотворения новых томов.
     print("4. Наполнение новых томов...")
     # Подсчитываем, сколько у нас уже есть запечатанных АРХИВНЫХ томов.
-    archived_chunks_count = len([c for c in manifest_data["chunks"] if c['file'] != LIVING_CHUNK_FILENAME])
+    archived_chunks_count = len(
+        [c for c in manifest_data["chunks"] if c["file"] != LIVING_CHUNK_FILENAME]
+    )
     # Определяем номер для следующего АРХИВНОГО тома.
     next_part_number = archived_chunks_count + 1
     # Готовим пустой астральный сосуд для сбора текстового содержимого.
@@ -230,21 +259,28 @@ def main():
         # Начинаем ритуал под защитой охранных рун.
         try:
             # Открываем свиток для чтения в текстовом режиме.
-            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+            with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
                 # Извлекаем все текстовое содержимое свитка.
                 content = f.read()
         # Если ритуал чтения был прерван ошибкой...
         except IOError:
             # ...сообщаем о проблеме и пропускаем этот свиток.
-            print(f"   ПРЕДУПРЕЖДЕНИЕ: Не удалось прочитать файл {filepath}. Пропускаем.")
+            print(
+                f"   ПРЕДУПРЕЖДЕНИЕ: Не удалось прочитать файл {filepath}. Пропускаем."
+            )
             # Переходим к следующему свитку в магическом круге.
             continue
         # Подсчитываем количество слов в извлеченном содержимом.
         word_count = len(content.split())
         # Если текущий том не пуст и добавление нового свитка превысит Лимит Слов...
-        if current_chunk_word_count > 0 and (current_chunk_word_count + word_count) > WORD_LIMIT:
+        if (
+            current_chunk_word_count > 0
+            and (current_chunk_word_count + word_count) > WORD_LIMIT
+        ):
             # ...объявляем о запечатывании текущего тома как АРХИВНОГО.
-            print(f"   Достигнут лимит слов. Архивируем том part_{next_part_number}.pdf...")
+            print(
+                f"   Достигнут лимит слов. Архивируем том part_{next_part_number}.pdf..."
+            )
             # Даем имя новому архивному тому.
             part_filename = f"part_{next_part_number}.pdf"
             # Собираем полный путь для его материализации.
@@ -252,15 +288,23 @@ def main():
             # Запускаем ритуал сотворения PDF-тома.
             create_pdf_from_text(current_chunk_content, output_path)
             # Добавляем в Летопись в памяти новую запись об этом архивном томе.
-            manifest_data["chunks"].append({
-                # Записываем его имя, количество слов и список свитков-источников.
-                "file": part_filename, "word_count": current_chunk_word_count, "sources": current_chunk_sources
-            # Завершаем создание записи.
-            })
+            manifest_data["chunks"].append(
+                {
+                    # Записываем его имя, количество слов и список свитков-источников.
+                    "file": part_filename,
+                    "word_count": current_chunk_word_count,
+                    "sources": current_chunk_sources,
+                    # Завершаем создание записи.
+                }
+            )
             # Увеличиваем номер для следующего возможного архивного тома.
             next_part_number += 1
             # Очищаем сосуды и счетчики, чтобы начать собирать следующий том с чистого листа.
-            current_chunk_content, current_chunk_sources, current_chunk_word_count = "", [], 0
+            current_chunk_content, current_chunk_sources, current_chunk_word_count = (
+                "",
+                [],
+                0,
+            )
         # Создаем магический заголовок, указывающий происхождение содержимого.
         file_header = f"\n\n--- НАЧАЛО: {filepath} ---\n\n"
         # Создаем магическое завершение, чтобы отделить свитки друг от друга.
@@ -278,23 +322,30 @@ def main():
     # После завершения круга, проверяем, осталось ли что-то в нашем сосуде.
     if current_chunk_word_count > 0:
         # Объявляем о сотворении финального, «Живого Тома».
-        print(f"   Сохранение активного тома '{LIVING_CHUNK_FILENAME}' ({current_chunk_word_count} слов)...")
+        print(
+            f"   Сохранение активного тома '{LIVING_CHUNK_FILENAME}' ({current_chunk_word_count} слов)..."
+        )
         # Собираем путь для его материализации, используя его постоянное Имя.
         output_path = os.path.join(output_dir_path, LIVING_CHUNK_FILENAME)
         # Запускаем ритуал сотворения PDF.
         create_pdf_from_text(current_chunk_content, output_path)
         # Добавляем в Летопись запись о «Живом Томе».
-        manifest_data["chunks"].append({
-            # Записываем его постоянное имя, количество слов и источники.
-            "file": LIVING_CHUNK_FILENAME, "word_count": current_chunk_word_count, "sources": current_chunk_sources
-        # Завершаем создание записи.
-        })
+        manifest_data["chunks"].append(
+            {
+                # Записываем его постоянное имя, количество слов и источники.
+                "file": LIVING_CHUNK_FILENAME,
+                "word_count": current_chunk_word_count,
+                "sources": current_chunk_sources,
+                # Завершаем создание записи.
+            }
+        )
     # Объявляем о финальном акте — запечатывании Летописи.
     print("5. Обновление и сохранение файла летописи manifest.json...")
     # Запускаем ритуал сохранения, передавая ему обновленные знания из памяти.
     save_manifest(MANIFEST_FILE, manifest_data)
     # Объявляем об успешном завершении Великого Ритуала.
     print("--- Работа успешно завершена! ---")
+
 
 # Эта руна проверяет, был ли пергамент призван напрямую.
 if __name__ == "__main__":

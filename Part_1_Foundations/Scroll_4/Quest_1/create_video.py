@@ -32,7 +32,7 @@ size = (width, height)
 # Мы готовим "Кинопленку", давая ей каноническое имя.
 video_path = "test_video.mp4"
 # Мы сотворяем "объект-рекордер", который будет записывать кадры.
-out = cv2.VideoWriter(video_path, cv2.VideoWriter_fourcc(*'mp4v'), 1, size)
+out = cv2.VideoWriter(video_path, cv2.VideoWriter_fourcc(*"mp4v"), 1, size)
 
 # Мы начинаем ритуал записи, повторяя его 10 раз, чтобы создать 10-кадровое видео.
 for _ in range(10):

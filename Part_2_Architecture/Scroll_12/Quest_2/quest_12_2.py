@@ -29,16 +29,22 @@ import os
 # Начинается первый акт: мы призываем все необходимые знания и инструменты.
 # Мы призываем `torch` — наш Источник Маны.
 import torch
+
 # Мы призываем `torch.nn` (с псевдонимом `nn`) — главу с чертежами базовых блоков.
 import torch.nn as nn
+
 # Мы призываем `torch.nn.functional` (с псевдонимом `F`) — гримуар с "заклинаниями".
 import torch.nn.functional as F
+
 # Мы призываем `torch.optim` (с псевдонимом `optim`) — гримуар с "наставниками".
 import torch.optim as optim
+
 # Мы призываем гримуар `torchvision` для работы с образами.
 from torchvision import datasets, transforms
+
 # Мы призываем особое заклинание `save_image` для сохранения сетки образов.
 from torchvision.utils import save_image
+
 # Мы призываем наш верный "индикатор прогресса".
 from tqdm import tqdm
 
@@ -65,7 +71,7 @@ transform = transforms.Compose(
         transforms.ToTensor(),
         # Мы нормализуем пиксели к диапазону [-1, 1]. Это стандарт для диффузионных моделей.
         transforms.Normalize([0.5], [0.5]),
-    # Конец списка трансформаций.
+        # Конец списка трансформаций.
     ]
 )
 # Мы загружаем наш учебник.
@@ -113,14 +119,10 @@ class SimpleUNet(nn.Module):
         # Мы пропускаем образ через первый этаж и "искру жизни" ReLU.
         x1 = F.relu(self.down1(x))
         # Мы пропускаем образ через второй этаж (сначала уменьшаем, потом анализируем).
-        x2 = F.relu(
-            self.down2(self.pool(x1))
-        )
+        x2 = F.relu(self.down2(self.pool(x1)))
         # Мы начинаем путь наверх...
         # Мы пропускаем образ через третий этаж (сначала увеличиваем, потом анализируем).
-        x3 = F.relu(
-            self.up1(self.upsample(x2))
-        )
+        x3 = F.relu(self.up1(self.upsample(x2)))
         # "Магический мостик" (Skip connection): мы добавляем информацию с первого этажа (`x1`)
         # к третьему (`x3`). Это помогает не потерять мелкие детали при сжатии.
         x3 = x3 + x1
@@ -138,15 +140,11 @@ timesteps = 300
 # Мы устанавливаем силу "запыления" на первом и последнем шаге.
 beta_start, beta_end = 0.0001, 0.02
 # Мы создаем плавный переход силы шума от `beta_start` до `beta_end`.
-betas = torch.linspace(
-    beta_start, beta_end, timesteps
-)
+betas = torch.linspace(beta_start, beta_end, timesteps)
 # Мы вычисляем "коэффициенты сохранения" образа.
 alphas = 1.0 - betas
 # Мы вычисляем накопленное произведение альф, ключевой параметр для "телепортации".
-alphas_cumprod = torch.cumprod(
-    alphas, axis=0
-)
+alphas_cumprod = torch.cumprod(alphas, axis=0)
 
 # --- НОВОЕ ЗАКЛИНАНИЕ ТЕЛЕПОРТАЦИИ ---
 # Мы отправляем все наши "расписания" на Кристалл Маны ОДИН РАЗ в самом начале.

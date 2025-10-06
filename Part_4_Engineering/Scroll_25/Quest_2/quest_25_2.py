@@ -52,4 +52,3 @@ def recall_value(key: str):
         return {"status": "not_found", "key": key}
     # В противном случае, мы возвращаем найденное 'воспоминание'.
     return {"status": "found", "key": key, "recalled_value": value}
-    

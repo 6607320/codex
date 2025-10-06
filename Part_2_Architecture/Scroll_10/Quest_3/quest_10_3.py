@@ -11,14 +11,19 @@
 
 # Мы призываем `torch` — наш Источник Маны.
 import torch
+
 # Мы призываем `torch.nn` (с псевдонимом `nn`) — главу с чертежами базовых блоков для Големов.
 import torch.nn as nn
+
 # Мы призываем `torch.nn.functional` (с псевдонимом `F`) — гримуар с "заклинаниями".
 import torch.nn.functional as F
+
 # Мы призываем `torch.optim` (с псевдонимом `optim`) — гримуар с "наставниками".
 import torch.optim as optim
+
 # Мы призываем `torchvision.datasets` и `torchvision.transforms` для работы с образами.
 from torchvision import datasets, transforms
+
 # Мы призываем наш верный "индикатор прогресса".
 from tqdm import tqdm
 
@@ -34,7 +39,7 @@ transform = transforms.Compose(
         transforms.ToTensor(),
         # Вторая "линза": нормализует яркость пикселей по среднему и стандартному отклонению датасета MNIST.
         transforms.Normalize((0.1307,), (0.3081,)),
-    # Конец списка трансформаций.
+        # Конец списка трансформаций.
     ]
 )
 # Мы скачиваем и готовим "учебник" (тренировочный датасет).
@@ -140,4 +145,3 @@ if prediction == sample_label:
 else:
     # ...мы оглашаем, что требуется доработка.
     print("  Вердикт: Ошибка! 'Башня' еще требует тренировок.")
-    

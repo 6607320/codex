@@ -11,10 +11,13 @@
 
 # Мы призываем гримуар `torch` — источник всей нашей магической энергии.
 import torch
+
 # Мы призываем "Библиотекаря" `load_dataset` для работы с архивами знаний.
 from datasets import load_dataset
+
 # Из гримуара `peft` мы призываем заклинания для "Эффективной Адаптации" (LoRA).
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+
 # Из великого гримуара `transformers` мы призываем множество мощных чертежей.
 from transformers import (
     # Чертеж для создания Големов-Сказителей, способных продолжать текст.
@@ -99,7 +102,10 @@ model = prepare_model_for_kbit_training(model)
 lora_config = LoraConfig(
     r=16,  # "Толщина" блокнота (ранг): 16 слоев для записей.
     lora_alpha=32,  # "Интенсивность чернил" (альфа): насколько сильно влияют новые знания.
-    target_modules=["c_attn", "c_proj"],  # Указываем, к каким частям разума Голема прикрепить блокнот.
+    target_modules=[
+        "c_attn",
+        "c_proj",
+    ],  # Указываем, к каким частям разума Голема прикрепить блокнот.
     lora_dropout=0.05,  # Заклинание "забывчивости", чтобы не переучился.
     bias="none",  # Техническая руна.
     task_type="CAUSAL_LM",  # Указываем, что Голем - "Сказитель".

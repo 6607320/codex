@@ -51,4 +51,3 @@ class AmuletUser(HttpUser):
         # Мы приказываем нанести удар методом POST по вратам "/validate".
         # Этим вратам не нужен "осадный снаряд", поэтому мы не передаем 'json'.
         self.client.post("/validate")
-        

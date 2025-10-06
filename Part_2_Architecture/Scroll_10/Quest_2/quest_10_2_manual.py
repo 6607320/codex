@@ -149,7 +149,7 @@ if __name__ == "__main__":
         # Мы сообщаем, что нам нужна НЕ тренировочная часть.
         train=False,
         # Мы также превращаем их в тензоры.
-        transform=torchvision.transforms.ToTensor()
+        transform=torchvision.transforms.ToTensor(),
     )
     # Мы берем одну случайную рукопись для проверки (самую первую).
     test_image, test_label = test_dataset[0]
@@ -174,4 +174,3 @@ if __name__ == "__main__":
     else:
         # ...мы оглашаем, что требуется доработка.
         print("Вердикт ОШИБОЧНЫЙ. Магия требует доработки.")
-        
