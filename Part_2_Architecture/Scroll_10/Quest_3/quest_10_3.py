@@ -45,9 +45,13 @@ transform = transforms.Compose(
     ]
 )
 # Мы скачиваем и готовим "учебник" (тренировочный датасет).
-train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
+train_dataset = datasets.MNIST(
+    "./data", train=True, download=True, transform=transform
+)
 # Мы создаем "Духа-Подносчика", который будет подавать рукописи пачками по 64 штуки.
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
+train_loader = torch.utils.data.DataLoader(
+    train_dataset, batch_size=64, shuffle=True
+)
 
 
 # --- Акт 2: Чертеж Нашей "Башни Прозрения" (Модель CNN) ---

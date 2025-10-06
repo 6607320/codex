@@ -23,7 +23,9 @@ print("Начинаю ритуал предварительной загрузк
 # ВАЖНО: Мы НЕ используем streaming=True. Это означает, что мы приказываем
 # гримуару скачать ВЕСЬ указанный архив (в данном случае, все 563 аудиофайла)
 # и сохранить его в специальную "локальную сокровищницу" (папку кэша) на твоем диске.
-load_dataset("PolyAI/minds14", name="en-US", split="train", trust_remote_code=True)
+load_dataset(
+    "PolyAI/minds14", name="en-US", split="train", trust_remote_code=True
+)
 
 # --- Акт 3: Завершение ---
 

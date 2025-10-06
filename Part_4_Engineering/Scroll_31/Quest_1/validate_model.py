@@ -61,7 +61,9 @@ def run_validation(model_name):
 
     # Это могущественная магия визуализации: мы создаем шкалу прогресса для
     # наших испытаний.
-    with click.progressbar(VALIDATION_SET, label="Провожу испытание...") as bar:
+    with click.progressbar(
+        VALIDATION_SET, label="Провожу испытание..."
+    ) as bar:
         # Мы перебираем не сами испытания, а шкалу прогресса, которая отдает нам
         # их по одному.
         for item in bar:
@@ -88,7 +90,9 @@ def run_validation(model_name):
     # Печатаем вычисленную точность.
     click.echo(f"Точность модели: {accuracy:.2f}%")
     # Печатаем количество верных ответов для полной ясности.
-    click.echo(f"Верных предсказаний: {correct_predictions} из {total_samples}")
+    click.echo(
+        f"Верных предсказаний: {correct_predictions} из {total_samples}"
+    )
     # Завершаем отчет еще одной жирной линией.
     click.secho(f"--------------------------", bold=True)
 

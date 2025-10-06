@@ -88,7 +88,9 @@ for i in range(30):
     # Мы вычисляем коэффициент "зума", который плавно растет с каждым кадром.
     scale = 1 + i * 0.02
     # Мы используем заклинание `cv2.resize`, чтобы увеличить нашего "актера".
-    zoomed = cv2.resize(img, None, fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR)
+    zoomed = cv2.resize(
+        img, None, fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR
+    )
 
     # Мы применяем хитрый трюк для создания эффекта "наезда камеры":
     # Мы измеряем размеры увеличенного образа.
@@ -97,7 +99,7 @@ for i in range(30):
     # исходный кадр.
     start_h, start_w = h // 2 - height // 2, w // 2 - width // 2
     # Мы "вырезаем" этот центральный фрагмент.
-    cropped = zoomed[start_h: start_h + height, start_w: start_w + width]
+    cropped = zoomed[start_h : start_h + height, start_w : start_w + width]
 
     # Мы записываем этот "приближенный" и обрезанный кадр на вторую "кинопленку".
     out_B.write(cropped)

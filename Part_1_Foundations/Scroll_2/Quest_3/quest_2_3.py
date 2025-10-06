@@ -23,7 +23,11 @@ from datasets import load_dataset
 print("Призываю аудио-послание...")
 # Открываем "портал" к нашему надежному архиву 'librispeech_asr'.
 dataset = load_dataset(
-    "librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True
+    "librispeech_asr",
+    "clean",
+    split="test",
+    streaming=True,
+    trust_remote_code=True,
 )
 # Берем первый образец из потока.
 sample = next(iter(dataset))
@@ -45,7 +49,9 @@ print("\nСоздаю магический отпечаток звука (Мел
 # librosa.feature.melspectrogram - это заклинание, которое превращает одномерную
 # звуковую волну (y=audio_data) в двумерную "карту частот", учитывая ее
 # "паспорт" (sr=sampling_rate).
-mel_spectrogram = librosa.feature.melspectrogram(y=audio_data, sr=sampling_rate)
+mel_spectrogram = librosa.feature.melspectrogram(
+    y=audio_data, sr=sampling_rate
+)
 
 # librosa.power_to_db - это "логарифмическая линза". Она переводит абсолютную
 # силу сигнала в децибелы (dB), что гораздо нагляднее для визуализации.

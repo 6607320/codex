@@ -24,7 +24,8 @@ print("Призываю Духа Эмоций... Это может занять 
 # дообученный специально для определения, является ли английский текст
 # позитивным или негативным.
 spirit_of_emotion = pipeline(
-    "sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english"
+    "sentiment-analysis",
+    model="distilbert-base-uncased-finetuned-sst-2-english",
 )
 
 # --- Акт 3: Ритуал Анализа ---

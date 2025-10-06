@@ -65,7 +65,9 @@ def fetch_audio_from_hub(filename="command_from_hub.wav", sample_rate=16000):
     # !!! ИЗМЕНЕННЫЙ РИТУАЛ !!!
     # Мы убираем `streaming=True`, позволяя скачать архив целиком.
     # Мы добавляем `trust_remote_code=True`, чтобы исполнить "живые руны" из свитка.
-    ds = load_dataset("superb", "ks", split="validation", trust_remote_code=True)
+    ds = load_dataset(
+        "superb", "ks", split="validation", trust_remote_code=True
+    )
 
     # Мы сообщаем, что набор данных теперь в нашей локальной мастерской.
     print("Архив со свитками успешно загружен.")
@@ -115,9 +117,9 @@ def transcribe_audio(audio_path):
     # Мы загружаем 'процессор' — он готовит аудио-материю для понимания Големом.
     processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
     # Мы загружаем самого Голема 'whisper-tiny' и отправляем его на Кристалл Маны.
-    model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny").to(
-        DEVICE
-    )
+    model = WhisperForConditionalGeneration.from_pretrained(
+        "openai/whisper-tiny"
+    ).to(DEVICE)
     # Мы с помощью librosa читаем наш локальный аудиофайл, убедившись, что его
     # частота 16000 Гц.
     audio_input, sample_rate = librosa.load(audio_path, sr=16000)
@@ -128,7 +130,9 @@ def transcribe_audio(audio_path):
     # Мы даем команду Голему: сгенерируй руны (ID токенов) на основе услышанного.
     predicted_ids = model.generate(input_features)
     # Мы расшифровываем руны-токены в понятный человеку текст.
-    transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]
+    transcription = processor.batch_decode(
+        predicted_ids, skip_special_tokens=True
+    )[0]
     # Мы показываем результат работы Голема.
     print(f"Голем-Писец услышал: '{transcription}'")
     # Мы изгоняем Голема и его компоненты из памяти, чтобы освободить место.
@@ -151,7 +155,9 @@ def classify_intent(text):
     print("\n[Этап 3] Призыв Голема-Толкователя (Zero-Shot Classifier)...")
     # Мы создаем конвейер для классификации, сразу отправляя его на нужное устройство.
     classifier = pipeline(
-        "zero-shot-classification", model="valhalla/distilbart-mnli-12-3", device=DEVICE
+        "zero-shot-classification",
+        model="valhalla/distilbart-mnli-12-3",
+        device=DEVICE,
     )
     # Мы определяем возможные намерения, которые Голем должен распознать.
     candidate_labels = [
@@ -247,7 +253,9 @@ if __name__ == "__main__":
     # Если текст пустой...
     else:
         # ...мы сообщаем об этом.
-        print("\n[Этап 3] Голем-Писец не смог разобрать речь. Намерение не определено.")
+        print(
+            "\n[Этап 3] Голем-Писец не смог разобрать речь. Намерение не определено."
+        )
         # Мы устанавливаем намерение "неизвестная команда" вручную.
         user_intent = "неизвестная команда"
 

@@ -69,7 +69,10 @@ def run_validation(model_name):
     # магических операций.
     with profiler.profile(
         # Указ 1: "Следи за активностью и разума (CPU), и Кристалла Маны (CUDA)".
-        activities=[profiler.ProfilerActivity.CPU, profiler.ProfilerActivity.CUDA],
+        activities=[
+            profiler.ProfilerActivity.CPU,
+            profiler.ProfilerActivity.CUDA,
+        ],
         # Указ 2: "Записывай 'форму' магических потоков (размеры тензоров), чтобы
         # мы знали их масштаб".
         record_shapes=True,
@@ -81,7 +84,9 @@ def run_validation(model_name):
     ) as prof:
         # Мы помещаем 'горячую' часть нашего кода — само испытание — внутрь
         # области действия Хронометра.
-        with click.progressbar(VALIDATION_SET, label="Провожу испытание...") as bar:
+        with click.progressbar(
+            VALIDATION_SET, label="Провожу испытание..."
+        ) as bar:
             # Перебираем испытания, наблюдая за красивой шкалой прогресса.
             for item in bar:
                 # Извлекаем текст загадки.
@@ -109,13 +114,17 @@ def run_validation(model_name):
     # Печатаем вычисленную точность, округляя до двух знаков после запятой.
     click.echo(f"Точность модели: {accuracy:.2f}%")
     # Печатаем количество верных ответов для полной ясности.
-    click.echo(f"Верных предсказаний: {correct_predictions} из {total_samples}")
+    click.echo(
+        f"Верных предсказаний: {correct_predictions} из {total_samples}"
+    )
     # Завершаем отчет еще одной жирной линией.
     click.secho(f"--------------------------", bold=True)
 
     # --- > НОВАЯ РУНА: Приказываем Хронометру показать нам свои записи.
     # Печатаем заголовок для нового, самого важного отчета.
-    click.secho(f"\n--- Отчет Хронометра Истинного Времени (Топ 15 CPU) ---", bold=True)
+    click.secho(
+        f"\n--- Отчет Хронометра Истинного Времени (Топ 15 CPU) ---", bold=True
+    )
     # Мы обращаемся к нашему Хронометру 'prof', просим его усреднить данные по
     # ключам (именам операций) и представить их в виде таблицы,
     # отсортированной по общему времени CPU, и показать только 15 самых

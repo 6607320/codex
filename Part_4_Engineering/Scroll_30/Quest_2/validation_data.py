@@ -5,14 +5,20 @@
 VALIDATION_SET = [
     # Первое испытание: текст, наполненный радостью, и истинный ответ,
     # выгравированный рядом - "ПОЗИТИВ".
-    {"text": "I love this product, it is absolutely amazing!", "label": "POSITIVE"},
+    {
+        "text": "I love this product, it is absolutely amazing!",
+        "label": "POSITIVE",
+    },
     # Второе испытание: слова, пропитанные горечью, и эталонный ответ - "НЕГАТИВ".
     {
         "text": "This is the worst service I have ever received in my life.",
         "label": "NEGATIVE",
     },
     # Третье испытание: хвалебная песнь шедевру и ключ к загадке - "ПОЗИТИВ".
-    {"text": "The movie was fantastic, a true masterpiece.", "label": "POSITIVE"},
+    {
+        "text": "The movie was fantastic, a true masterpiece.",
+        "label": "POSITIVE",
+    },
     # Четвертое испытание: жалоба на разочарование и истинный вердикт - "НЕГАТИВ".
     {
         "text": "I am so disappointed with the quality, it broke after one day.",
@@ -32,12 +38,21 @@ VALIDATION_SET = [
     {"text": "The team was very helpful and friendly.", "label": "POSITIVE"},
     # Восьмое испытание: рассказ об ужасной еде и грубости, и его темная суть
     # - "НЕГАТИВ".
-    {"text": "The food was terrible and the waiter was rude.", "label": "NEGATIVE"},
+    {
+        "text": "The food was terrible and the waiter was rude.",
+        "label": "NEGATIVE",
+    },
     # Девятое испытание: восхищение выдающимся выступлением и его позитивный
     # заряд - "ПОЗИТИВ".
-    {"text": "An outstanding performance by the entire cast.", "label": "POSITIVE"},
+    {
+        "text": "An outstanding performance by the entire cast.",
+        "label": "POSITIVE",
+    },
     # Десятое, финальное испытание: клятва никогда не возвращаться и ее
     # неоспоримый вердикт - "НЕГАТИВ".
-    {"text": "I will never come back to this place again.", "label": "NEGATIVE"},
+    {
+        "text": "I will never come back to this place again.",
+        "label": "NEGATIVE",
+    },
     # Руна ']' запечатывает этот свиток, завершая перечень испытаний.
 ]

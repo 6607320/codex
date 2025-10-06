@@ -21,7 +21,9 @@ print("Открываю портал в 'Вечный Сад Образов' (CI
 # разделенных на 10 классов (самолет, кот, собака и т.д.).
 # Мы используем streaming=True, чтобы не скачивать весь архив, а взять
 # только один образец.
-dataset = load_dataset("cifar10", split="train", streaming=True, trust_remote_code=True)
+dataset = load_dataset(
+    "cifar10", split="train", streaming=True, trust_remote_code=True
+)
 # Берем первый попавшийся образец из потока.
 sample = next(iter(dataset))
 
@@ -47,7 +49,9 @@ print("\nПризываю 'Всевидящего Око'...")
 # 1. "image-classification" - Название задачи. Мы хотим "классифицировать изображение".
 # 2. model="google/mobilenet_v2_1.0_224" - Имя "духа". MobileNetV2 - это быстрая
 #    и легкая модель, созданная Google, идеально подходит для нашего Кристалла Маны.
-vision_spirit = pipeline("image-classification", model="google/mobilenet_v2_1.0_224")
+vision_spirit = pipeline(
+    "image-classification", model="google/mobilenet_v2_1.0_224"
+)
 
 # Сообщаем о начале анализа.
 print("\nДух всматривается в образ...")

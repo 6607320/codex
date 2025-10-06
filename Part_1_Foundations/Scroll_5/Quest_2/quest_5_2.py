@@ -80,7 +80,9 @@ def process_dataset(batch):
         for instr, resp in zip(batch["instruction"], batch["response"])
     ]
     # Мы переводим этот текст в понятные Голему числовые руны-тензоры.
-    return tokenizer(texts, padding="max_length", truncation=True, max_length=128)
+    return tokenizer(
+        texts, padding="max_length", truncation=True, max_length=128
+    )
 
 
 # Мы открываем "портал" к архиву 'dolly-15k', используя режим потока.
@@ -97,7 +99,9 @@ streaming_dataset = load_dataset(
 # Мы создаем "умный портал", chaining spells together:
 # `.take(1000)` — заклинание "взять только первые 1000 записей".
 # `.map(...)` — заклинание "прикрепить" к порталу наш "Магический Преобразователь".
-processed_dataset = streaming_dataset.take(1000).map(process_dataset, batched=True)
+processed_dataset = streaming_dataset.take(1000).map(
+    process_dataset, batched=True
+)
 
 # --- Акт 3: Создание "Магического Блокнота" (LoRA) ---
 # Третий акт: мы готовим Голема к обучению и "прикрепляем" к нему адаптеры LoRA.

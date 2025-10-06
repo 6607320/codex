@@ -170,7 +170,9 @@ unet.train()
 # Мы готовим "инструмент для исправления ошибок" (оптимизатор).
 optimizer = torch.optim.AdamW(unet.parameters(), lr=learning_rate)
 # Мы призываем "Духа Шума", который будет "портить" наши картины для урока.
-noise_scheduler = DDPMScheduler.from_pretrained(model_id, subfolder="scheduler")
+noise_scheduler = DDPMScheduler.from_pretrained(
+    model_id, subfolder="scheduler"
+)
 
 # Мы создаем "магическое слово-активатор", с которым будет ассоциироваться наш стиль.
 train_prompt = "a beautiful painting in sks style"
@@ -233,7 +235,9 @@ for epoch in range(num_train_epochs):
         noisy_latents = noise_scheduler.add_noise(latents, noise, timesteps)
 
         # Шаг 4: Мы просим Демиурга (UNet) предсказать, какой шум мы добавили.
-        noise_pred = unet(noisy_latents, timesteps, encoder_hidden_states).sample
+        noise_pred = unet(
+            noisy_latents, timesteps, encoder_hidden_states
+        ).sample
 
         # Шаг 5: Мы считаем ошибку (насколько предсказанный шум отличается от
         # реального).

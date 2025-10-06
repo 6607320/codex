@@ -37,7 +37,9 @@ class MultiHeadAttention(nn.Module):
         super().__init__()
         # Мы проверяем, что общую "глубину смысла" можно поровну разделить между
         # "мудрецами".
-        assert d_model % num_heads == 0, "d_model must be divisible by num_heads"
+        assert (
+            d_model % num_heads == 0
+        ), "d_model must be divisible by num_heads"
 
         # Мы сохраняем ключевые параметры артефакта.
         self.d_model = d_model
@@ -58,7 +60,9 @@ class MultiHeadAttention(nn.Module):
     # Мы определяем внутреннее заклинание "Фокуса Мысли".
     def scaled_dot_product_attention(self, Q, K, V):
         # Мы вычисляем "симпатию" и масштабируем ее.
-        attn_scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(self.d_k)
+        attn_scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(
+            self.d_k
+        )
         # Мы превращаем "симпатию" в "проценты внимания" (вероятности).
         attn_probs = torch.softmax(attn_scores, dim=-1)
         # СОХРАНЯЕМ ВЕСА ДЛЯ ВИЗУАЛИЗАЦИИ: мы "запоминаем" эту карту внимания.
@@ -74,14 +78,20 @@ class MultiHeadAttention(nn.Module):
         batch_size, seq_length, d_model = x.size()
         # Мы "нарезаем" и "переставляем" оси, чтобы у каждого мудреца была своя
         # стопка смыслов.
-        return x.view(batch_size, seq_length, self.num_heads, self.d_k).transpose(1, 2)
+        return x.view(
+            batch_size, seq_length, self.num_heads, self.d_k
+        ).transpose(1, 2)
 
     # Мы определяем внутреннее заклинание "Великого Единения".
     def combine_heads(self, x):
         # Мы получаем размеры.
         batch_size, _, seq_length, d_k = x.size()
         # Мы "склеиваем" выводы мудрецов обратно в единую, целостную ауру.
-        return x.transpose(1, 2).contiguous().view(batch_size, seq_length, self.d_model)
+        return (
+            x.transpose(1, 2)
+            .contiguous()
+            .view(batch_size, seq_length, self.d_model)
+        )
 
     # Мы определяем главное заклинание артефакта.
     def forward(self, Q, K, V):
@@ -120,7 +130,9 @@ output = multi_head_attention(x, x, x)
 print("\nСоздаю визуализацию мыслей каждого 'мудреца'...")
 
 # Мы извлекаем "Карты Внимания", которые мы предусмотрительно сохранили.
-attention_maps = multi_head_attention.last_attn_weights.squeeze(0).detach().numpy()
+attention_maps = (
+    multi_head_attention.last_attn_weights.squeeze(0).detach().numpy()
+)
 
 # Мы создаем список подписей для осей нашей карты.
 labels = ["Старый", "король", "дал", "корону", "принцу"]
@@ -141,7 +153,9 @@ for i, ax in enumerate(axes.flat):
     # Мы настраиваем подписи на оси Y.
     ax.set_yticks(np.arange(len(labels)), labels=labels, fontsize=8)
     # Мы поворачиваем подписи на оси X для читаемости.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+    plt.setp(
+        ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor"
+    )
 
     # Мы даем каждому "портрету" свое имя.
     ax.set_title(f"Мысли Мудреца #{i+1}")

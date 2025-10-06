@@ -196,7 +196,9 @@ def main():
         # Прерываем Великий Ритуал.
         return
     # Сообщаем, сколько свитков требуют нашего внимания.
-    print(f"   Обнаружено {len(changed_or_new_files)} новых/измененных файлов.")
+    print(
+        f"   Обнаружено {len(changed_or_new_files)} новых/измененных файлов."
+    )
     # Объявляем о начале фазы отката для подготовки к обновлению.
     print("3. Подготовка к инкрементальному обновлению (стратегия отката)...")
     # Готовим котел для переплавки, помещая в него все новые и измененные свитки.
@@ -214,7 +216,9 @@ def main():
             # Изгоняем запись о «Живом Томе» из Летописи в памяти.
             manifest_data["chunks"].pop()
             # Собираем полный путь к материальной плоти «Живого Тома».
-            living_chunk_path = os.path.join(output_dir_path, LIVING_CHUNK_FILENAME)
+            living_chunk_path = os.path.join(
+                output_dir_path, LIVING_CHUNK_FILENAME
+            )
             # Начинаем ритуал под защитой охранных рун.
             try:
                 # Проверяем, существует ли еще материальная плоть тома.
@@ -237,7 +241,9 @@ def main():
         # Если последний том был архивным...
         else:
             # ...мы его не трогаем, а сообщаем, что будем создавать новый «Живой Том».
-            print("   Последний том является архивным. Начинается новый активный том.")
+            print(
+                "   Последний том является архивным. Начинается новый активный том."
+            )
     # Если в Летописи вообще не было томов...
     else:
         # ...сообщаем, что начинаем Великое Сотворение с самого начала.
@@ -251,7 +257,11 @@ def main():
     print("4. Наполнение новых томов...")
     # Подсчитываем, сколько у нас уже есть запечатанных АРХИВНЫХ томов.
     archived_chunks_count = len(
-        [c for c in manifest_data["chunks"] if c["file"] != LIVING_CHUNK_FILENAME]
+        [
+            c
+            for c in manifest_data["chunks"]
+            if c["file"] != LIVING_CHUNK_FILENAME
+        ]
     )
     # Определяем номер для следующего АРХИВНОГО тома.
     next_part_number = archived_chunks_count + 1
@@ -308,7 +318,11 @@ def main():
             next_part_number += 1
             # Очищаем сосуды и счетчики, чтобы начать собирать следующий том с чистого
             # листа.
-            current_chunk_content, current_chunk_sources, current_chunk_word_count = (
+            (
+                current_chunk_content,
+                current_chunk_sources,
+                current_chunk_word_count,
+            ) = (
                 "",
                 [],
                 0,

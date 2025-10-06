@@ -77,7 +77,9 @@ transform = transforms.Compose(
     ]
 )
 # Мы загружаем наш учебник.
-train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
+train_dataset = datasets.MNIST(
+    "./data", train=True, download=True, transform=transform
+)
 # Мы создаем "подносчик" для данных.
 train_loader = torch.utils.data.DataLoader(
     # Какой "учебник" использовать.
@@ -172,7 +174,9 @@ def get_noisy_image(x_start, t):
     noise = torch.randn_like(x_start)
     # Мы применяем формулу "зашумления": (корень_альфы * чистый_образ) +
     # (корень_не_альфы * шум).
-    noisy_image = sqrt_alpha_cumprod * x_start + sqrt_one_minus_alpha_cumprod * noise
+    noisy_image = (
+        sqrt_alpha_cumprod * x_start + sqrt_one_minus_alpha_cumprod * noise
+    )
     # Мы возвращаем "испорченный" образ и шум, который мы добавили.
     return noisy_image, noise
 
@@ -259,7 +263,8 @@ for t in tqdm(range(timesteps - 1, -1, -1), desc="Творение из хаос
             # Мы берем текущий образ...
             generated_images
             # ...и вычитаем из него предсказанный шум с правильным коэффициентом.
-            - ((1 - alpha_t) / torch.sqrt(1 - alpha_t_cumprod)) * predicted_noise
+            - ((1 - alpha_t) / torch.sqrt(1 - alpha_t_cumprod))
+            * predicted_noise
         )
 
         # Мы добавляем немного случайного шума (кроме последнего шага).

@@ -26,7 +26,9 @@ print("Призываю 'Ухо Всеслышания' (Whisper-tiny)...")
 # 3. device_map="auto" - Умная руна, которая приказывает "амулету" самому
 #    решить, как лучше использовать твой Кристалл Маны (GPU) и разум (CPU).
 transcriber = pipeline(
-    "automatic-speech-recognition", model="openai/whisper-tiny", device_map="auto"
+    "automatic-speech-recognition",
+    model="openai/whisper-tiny",
+    device_map="auto",
 )
 
 # --- Акт 3: Создание "Магической Тишины" для Теста ---

@@ -30,7 +30,9 @@ from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2Model
 # Мы оглашаем на кристалл (консоль) о начале ритуала призыва.
 print("Призываю Духа-Эмпата (Wav2Vec2) и его инструменты...")
 # Мы призываем "Настройщика Слуха", обученного специально для модели 'wav2vec2-base'.
-feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained("facebook/wav2vec2-base")
+feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(
+    "facebook/wav2vec2-base"
+)
 # Мы призываем самого "Духа-Эмпата". 'base' — это его средняя по размеру и силе версия.
 model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base")
 # Мы немедленно отправляем "Духа" на Кристалл Маны (GPU) для быстрой работы.
@@ -45,7 +47,11 @@ print("\nПризываю аудио-послание из архива 'librisp
 # Мы знаем, что для него нужна версия `datasets<3.0.0` и `trust_remote_code=True`.
 # Мы также знаем, что правильное имя "тома" — 'test' для тестовых данных.
 dataset = load_dataset(
-    "librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True
+    "librispeech_asr",
+    "clean",
+    split="test",
+    streaming=True,
+    trust_remote_code=True,
 )
 # Мы извлекаем из потокового "портала" самый первый попавшийся образец.
 sample = next(iter(dataset))
@@ -67,7 +73,9 @@ print("\nДух-Эмпат вслушивается в голос...")
 # Мы передаем сырой звук и его паспорт "Настройщику Слуха".
 # Он приводит звук к нужной частоте (16кГц), нормализует громкость
 # и упаковывает в Тензор PyTorch (`'pt'`).
-inputs = feature_extractor(audio_data, sampling_rate=sampling_rate, return_tensors="pt")
+inputs = feature_extractor(
+    audio_data, sampling_rate=sampling_rate, return_tensors="pt"
+)
 # Мы отправляем подготовленный и упакованный звук на Кристалл Маны (GPU).
 inputs = inputs.to("cuda")
 

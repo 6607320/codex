@@ -33,7 +33,11 @@ print("Обращаюсь к древнему, проверенному архи
 # 5. trust_remote_code=True - Руна Доверия. Мы подтверждаем, что доверяем
 # коду загрузки этого архива.
 dataset = load_dataset(
-    "librispeech_asr", "clean", split="test", streaming=True, trust_remote_code=True
+    "librispeech_asr",
+    "clean",
+    split="test",
+    streaming=True,
+    trust_remote_code=True,
 )
 
 # Мы произносим заклинание `next(iter(...))`, которое извлекает из бесконечного потока данных
@@ -58,7 +62,9 @@ print("\nПризываю 'Ухо Всеслышания'...")
 # Руна `device_map="auto"` приказывает амулету автоматически задействовать
 # мощь твоего GPU.
 transcriber = pipeline(
-    "automatic-speech-recognition", model="openai/whisper-tiny", device_map="auto"
+    "automatic-speech-recognition",
+    model="openai/whisper-tiny",
+    device_map="auto",
 )
 
 # Оглашаем начало самого процесса анализа.

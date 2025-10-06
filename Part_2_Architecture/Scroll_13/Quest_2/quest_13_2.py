@@ -48,10 +48,14 @@ transform = transforms.Compose(
     ]
 )
 # Мы загружаем "учебник" MNIST. `download=True` скачает его, если нужно.
-train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
+train_dataset = datasets.MNIST(
+    "./data", train=True, download=True, transform=transform
+)
 # Мы создаем "подносчик" данных, который будет подавать нам "учебник"
 # пачками по 64 картинки.
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
+train_loader = torch.utils.data.DataLoader(
+    train_dataset, batch_size=64, shuffle=True
+)
 
 
 # --- Чертеж "Магистра" (Teacher): Большая и сложная CNN ---
@@ -202,6 +206,8 @@ for data, target in tqdm(train_loader, desc="Обучение Подмастер
     optimizer_student.step()
 
 # Мы оглашаем, что ритуал завершен, и сообщаем финальную ошибку.
-print(f"\nРитуал завершен! Финальная Ошибка Подмастерья (Loss): {loss.item():.4f}")
+print(
+    f"\nРитуал завершен! Финальная Ошибка Подмастерья (Loss): {loss.item():.4f}"
+)
 # Мы оглашаем, что Подмастерье получил новые знания.
 print("Подмастерье впитал мудрость Магистра.")

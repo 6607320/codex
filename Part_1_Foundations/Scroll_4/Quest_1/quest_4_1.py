@@ -61,4 +61,6 @@ while True:
 video_capture.release()
 
 # Мы оглашаем финальный результат нашего ритуала деконструкции.
-print(f"Ритуал завершен. {frame_count} кадров извлечено в папку '{output_folder}'.")
+print(
+    f"Ритуал завершен. {frame_count} кадров извлечено в папку '{output_folder}'."
+)

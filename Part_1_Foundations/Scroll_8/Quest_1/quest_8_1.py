@@ -69,7 +69,9 @@ while True:
         # ...только в этом случае мы выполняем ритуал сохранения.
 
         # Мы создаем уникальное имя для сохраняемого кадра.
-        frame_filename = os.path.join(output_folder, f"frame_{frames_saved}.jpg")
+        frame_filename = os.path.join(
+            output_folder, f"frame_{frames_saved}.jpg"
+        )
         # Мы сохраняем текущий кадр (`frame`) на диск по созданному пути.
         cv2.imwrite(frame_filename, frame)
         # Мы увеличиваем на единицу счетчик сохраненных кадров.

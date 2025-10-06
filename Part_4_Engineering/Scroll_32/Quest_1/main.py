@@ -35,7 +35,8 @@ print("Призываю 'Духа Эмоций' А (DistilBERT)...")
 # Мы произносим заклинание 'pipeline', указывая его цель
 # ('sentiment-analysis') и истинное имя духа, которого мы призываем.
 model_a = pipeline(
-    "sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english"
+    "sentiment-analysis",
+    model="distilbert-base-uncased-finetuned-sst-2-english",
 )
 # Мастер Гильдии подтверждает, что первый дух отозвался на зов и готов к работе.
 print("'Дух А' готов к работе.")
@@ -45,7 +46,8 @@ print("Призываю 'Духа Эмоций' Б (RoBERTa)...")
 # Мы снова используем заклинание 'pipeline', но на этот раз называем имя
 # другого, альтернативного духа.
 model_b = pipeline(
-    "sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest"
+    "sentiment-analysis",
+    model="cardiffnlp/twitter-roberta-base-sentiment-latest",
 )
 # Мастер Гильдии подтверждает, что и второй дух готов служить.
 print("'Дух Б' готов к работе.")

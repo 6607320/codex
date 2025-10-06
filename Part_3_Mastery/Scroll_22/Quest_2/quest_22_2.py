@@ -97,11 +97,13 @@ if __name__ == "__main__":
     # Наше "заклинание-запрос", которое мы хотим найти в галерее.
     search_query = "маленький котенок"
     # Оповещаем о начале поиска.
-    print(f"\nИспользуем Магический Компас для поиска по запросу: '{search_query}'")
-    # Толмач подготавливает наш текстовый запрос.
-    text_inputs = processor(text=[search_query], return_tensors="pt", padding=True).to(
-        DEVICE
+    print(
+        f"\nИспользуем Магический Компас для поиска по запросу: '{search_query}'"
     )
+    # Толмач подготавливает наш текстовый запрос.
+    text_inputs = processor(
+        text=[search_query], return_tensors="pt", padding=True
+    ).to(DEVICE)
     # Голем вычисляет "ауру" для нашего запроса.
     text_embedding = model.get_text_features(**text_inputs)
 

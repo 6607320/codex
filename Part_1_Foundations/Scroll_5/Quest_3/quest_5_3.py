@@ -19,7 +19,11 @@ import torch
 from peft import PeftModel
 
 # Мы призываем чертежи для Голема, Переводчика и инструкции по сжатию.
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+)
 
 # --- Акт 2: Призыв и "Просветление" Голема ---
 # Второй акт: мы призываем "чистого" Голема и наделяем его знаниями из

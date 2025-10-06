@@ -71,9 +71,13 @@ transform = transforms.Compose(
     [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
 )
 # `train_dataset = ...`: Мы загружаем "учебник".
-train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
+train_dataset = datasets.MNIST(
+    "./data", train=True, download=True, transform=transform
+)
 # `train_loader = ...`: Мы создаем "подносчик" данных.
-train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
+train_loader = torch.utils.data.DataLoader(
+    train_dataset, batch_size=64, shuffle=True
+)
 
 # --- Быстрое Обучение ---
 # `model_fp32 = MiniCNN()`: Мы сотворяем "Золотого" Голема (FP32 — float32).
@@ -87,7 +91,9 @@ criterion = nn.CrossEntropyLoss()
 # `model_fp32.train()`: Мы переводим Голема в режим обучения.
 model_fp32.train()
 # `for ...`: Мы начинаем цикл обучения (только на 100 пачках для скорости).
-for i, (data, target) in enumerate(tqdm(train_loader, desc="Обучение FP32", total=100)):
+for i, (data, target) in enumerate(
+    tqdm(train_loader, desc="Обучение FP32", total=100)
+):
     # `if i >= 100: break`: Мы ставим ограничитель на 100 шагов.
     if i >= 100:
         # Мы прерываем цикл.

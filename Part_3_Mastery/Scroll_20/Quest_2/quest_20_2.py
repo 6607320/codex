@@ -45,7 +45,7 @@ def create_sequences(data, seq_length):
     # Запускаем цикл, который будет двигать "магическое окно" по нашей летописи.
     for i in range(len(data) - seq_length):
         # Вырезаем из летописи кусок прошлого (нашу последовательность).
-        seq = data[i: i + seq_length]
+        seq = data[i : i + seq_length]
         # Берем ровно одно значение, следующее сразу за этим куском.
         label = data[i + seq_length]
         # Кладем последовательность прошлого в один "мешок".
@@ -255,7 +255,7 @@ if __name__ == "__main__":
     plt.plot(x, all_data, label="Полная летопись")
     # 'plt.plot(...)' - приказываем нарисовать предсказания оранжевой пунктирной линией.
     plt.plot(
-        x[-len(actual_predictions):],
+        x[-len(actual_predictions) :],
         actual_predictions,
         label="Предсказания Оракула",
         linestyle="--",

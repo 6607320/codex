@@ -93,9 +93,9 @@ def transcribe_audio(audio_path):
     # Мы загружаем 'процессор' — он готовит аудио-материю для понимания Големом.
     processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
     # Мы загружаем самого Голема 'whisper-tiny' и отправляем его на Кристалл Маны.
-    model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny").to(
-        DEVICE
-    )
+    model = WhisperForConditionalGeneration.from_pretrained(
+        "openai/whisper-tiny"
+    ).to(DEVICE)
     # Мы с помощью librosa читаем наш аудиофайл (mp3 или wav).
     audio_input, sample_rate = librosa.load(audio_path, sr=16000)
     # Процессор превращает звук в тензоры, понятные Голему.
@@ -105,7 +105,9 @@ def transcribe_audio(audio_path):
     # Мы даем команду Голему: "Сгенерируй руны (токены) на основе услышанного".
     predicted_ids = model.generate(input_features)
     # Мы расшифровываем руны-токены в понятный человеку текст.
-    transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]
+    transcription = processor.batch_decode(
+        predicted_ids, skip_special_tokens=True
+    )[0]
     # Мы показываем результат работы Голема.
     print(f"-> Услышано: '{transcription}'")
     # Мы изгоняем Голема и его компоненты из памяти.
@@ -126,7 +128,9 @@ def classify_intent(text):
     print("[Акт 2] Призыв Голема-Толкователя...")
     # Мы создаем конвейер для классификации.
     classifier = pipeline(
-        "zero-shot-classification", model="valhalla/distilbart-mnli-12-3", device=DEVICE
+        "zero-shot-classification",
+        model="valhalla/distilbart-mnli-12-3",
+        device=DEVICE,
     )
     # Мы определяем возможные намерения, которые Голем должен распознать.
     candidate_labels = [
