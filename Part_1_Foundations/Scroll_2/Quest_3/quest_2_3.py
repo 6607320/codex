@@ -71,7 +71,8 @@ img = librosa.display.specshow(
     log_mel_spectrogram, sr=sampling_rate, x_axis="time", y_axis="mel", ax=ax
 )
 
-# fig.colorbar(...) - добавляем сбоку "легенду", показывающую, какой цвет какой громкости соответствует.
+# fig.colorbar(...) - добавляем сбоку "легенду", показывающую, какой цвет
+# какой громкости соответствует.
 fig.colorbar(img, ax=ax, format="%+2.0f dB")
 # ax.set_title(...) - даем нашей картине название.
 ax.set_title("Мел-спектрограмма (Отпечаток Звука)")

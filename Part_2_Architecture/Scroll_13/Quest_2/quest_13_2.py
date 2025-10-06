@@ -14,13 +14,16 @@
 # Мы призываем наш главный силовой гримуар `PyTorch`.
 import torch
 
-# Мы призываем `torch.nn` (с псевдонимом `nn`) — главу с чертежами базовых блоков для моделей.
+# Мы призываем `torch.nn` (с псевдонимом `nn`) — главу с чертежами базовых
+# блоков для моделей.
 import torch.nn as nn
 
-# Мы призываем `torch.nn.functional` (с псевдонимом `F`) — гримуар с "функциональными" заклинаниями.
+# Мы призываем `torch.nn.functional` (с псевдонимом `F`) — гримуар с
+# "функциональными" заклинаниями.
 import torch.nn.functional as F
 
-# Мы призываем `torch.optim` (с псевдонимом `optim`) — гримуар с "инструментами для исправления ошибок".
+# Мы призываем `torch.optim` (с псевдонимом `optim`) — гримуар с
+# "инструментами для исправления ошибок".
 import torch.optim as optim
 
 # Мы призываем "Библиотеку" с нашим "учебником" MNIST и гримуар трансформаций.
@@ -46,7 +49,8 @@ transform = transforms.Compose(
 )
 # Мы загружаем "учебник" MNIST. `download=True` скачает его, если нужно.
 train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
-# Мы создаем "подносчик" данных, который будет подавать нам "учебник" пачками по 64 картинки.
+# Мы создаем "подносчик" данных, который будет подавать нам "учебник"
+# пачками по 64 картинки.
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
 
@@ -171,7 +175,8 @@ for data, target in tqdm(train_loader, desc="Обучение Подмастер
         teacher_logits = teacher(data)
 
     # --- Вычисление Составной Ошибки ---
-    # Ошибка №1 (Distillation Loss): Насколько "мысли" ученика отличаются от "шепота" учителя.
+    # Ошибка №1 (Distillation Loss): Насколько "мысли" ученика отличаются от
+    # "шепота" учителя.
     distillation_loss = nn.KLDivLoss(reduction="batchmean")(
         # Мы смягчаем и логируем "мысли" ученика.
         F.log_softmax(student_logits / distillation_temp, dim=1),
@@ -179,7 +184,8 @@ for data, target in tqdm(train_loader, desc="Обучение Подмастер
         F.softmax(teacher_logits / distillation_temp, dim=1),
     )
 
-    # Ошибка №2 (Student Loss): Насколько ответы ученика соответствуют реальным "правильным ответам".
+    # Ошибка №2 (Student Loss): Насколько ответы ученика соответствуют
+    # реальным "правильным ответам".
     student_loss = criterion(student_logits, target)
 
     # Мы вычисляем финальную, взвешенную Ошибку.

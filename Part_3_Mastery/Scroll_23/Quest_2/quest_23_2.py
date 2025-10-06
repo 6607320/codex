@@ -10,14 +10,16 @@ import gradio as gr
 # Призываем 'torch' - наш Источник Маны.
 import torch
 
-# Из гримуара 'transformers' призываем чертежи и инструменты для работы с нашими големами.
+# Из гримуара 'transformers' призываем чертежи и инструменты для работы с
+# нашими големами.
 from transformers import GPT2LMHeadModel, GPT2Tokenizer, pipeline
 
 # Призываем 'Pillow' (PIL) - духа, умеющего работать с изображениями.
 
 # --- Часть II: Подготовка к Ритуалу ---
 
-# Определяем устройство ('cuda' - Кристалл Маны GPU, 'cpu' - Разум CPU), где будет вершиться магия.
+# Определяем устройство ('cuda' - Кристалл Маны GPU, 'cpu' - Разум CPU),
+# где будет вершиться магия.
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # Задаем путь к "телу" нашего самого сложного голема.
 MODEL_PATH = "./results/checkpoint-250"
@@ -29,7 +31,8 @@ print(f"Подготовка к ритуалу на устройстве: {DEVIC
 print(f"Загрузка 'разума' Голема-Сказителя из: {MODEL_PATH}")
 # Призываем Толмача (Tokenizer), соответствующего нашему Голему-Сказителю.
 tokenizer_story = GPT2Tokenizer.from_pretrained(MODEL_PATH)
-# Призываем самого Голема-Сказителя по чертежу из указанной папки и отправляем его на магический алтарь.
+# Призываем самого Голема-Сказителя по чертежу из указанной папки и
+# отправляем его на магический алтарь.
 model_story = GPT2LMHeadModel.from_pretrained(MODEL_PATH).to(DEVICE)
 # Переводим голема в режим "предсказания", отключая все механизмы обучения.
 model_story.eval()
@@ -47,7 +50,8 @@ def conjure_story(prompt_text, max_new_tokens=50):
     outputs = model_story.generate(
         inputs, max_new_tokens=max_new_tokens, no_repeat_ngram_size=2
     )
-    # Толмач расшифровывает ответ (последовательность токенов) обратно в человеческий текст.
+    # Толмач расшифровывает ответ (последовательность токенов) обратно в
+    # человеческий текст.
     generated_text = tokenizer_story.decode(outputs[0], skip_special_tokens=True)
     # Заклинание возвращает готовый текст.
     return generated_text
@@ -61,7 +65,8 @@ def analyze_emotion(text):
     )
     # Голем-конвейер анализирует текст и возвращает список предсказаний.
     predictions = sentiment_analyzer(text)
-    # Мы превращаем список словарей в единый словарь формата {'метка': уверенность}, понятный Gradio.
+    # Мы превращаем список словарей в единый словарь формата {'метка':
+    # уверенность}, понятный Gradio.
     return {p["label"]: p["score"] for p in predictions}
 
 
@@ -73,7 +78,8 @@ def classify_image(image):
     )
     # Голем-конвейер смотрит на изображение и возвращает список предсказаний.
     predictions = image_classifier(image)
-    # Мы превращаем список словарей в единый словарь, который нужен компоненту Gradio 'Label'.
+    # Мы превращаем список словарей в единый словарь, который нужен компоненту
+    # Gradio 'Label'.
     return {p["label"]: p["score"] for p in predictions}
 
 
