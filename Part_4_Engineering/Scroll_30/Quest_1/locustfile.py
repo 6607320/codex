@@ -40,7 +40,8 @@ class AmuletUser(HttpUser):
         self.client.post(
             # Первая часть приказа — цель. Мы атакуем врата "/analyze".
             "/analyze",
-            # Вторая часть — "осадный снаряд". Мы отправляем JSON-послание с текстом.
+            # Вторая часть — "осадный снаряд". Мы отправляем JSON-послание с
+            # текстом.
             json={"text": "This is a test sentence for the load test."},
         )
 

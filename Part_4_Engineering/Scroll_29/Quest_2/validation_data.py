@@ -5,7 +5,8 @@
 # (`VALIDATION_SET`) — это священный перечень, хранящий неоспоримые
 # эталоны.
 VALIDATION_SET = [
-    # Первый эталонный свиток: руническая надпись (`text`) и ее истинная суть (`label`).
+    # Первый эталонный свиток: руническая надпись (`text`) и ее истинная суть
+    # (`label`).
     {
         "text": "I love this product, it is absolutely amazing!",
         "label": "POSITIVE",

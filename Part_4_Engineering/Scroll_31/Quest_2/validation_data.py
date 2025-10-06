@@ -7,7 +7,8 @@ VALIDATION_SET = [
         "text": "I love this product, it is absolutely amazing!",
         "label": "POSITIVE",
     },
-    # Второе испытание: слова, пропитанные горечью, и эталонный ответ - "НЕГАТИВ".
+    # Второе испытание: слова, пропитанные горечью, и эталонный ответ -
+    # "НЕГАТИВ".
     {
         "text": "This is the worst service I have ever received in my life.",
         "label": "NEGATIVE",
@@ -17,12 +18,14 @@ VALIDATION_SET = [
         "text": "The movie was fantastic, a true masterpiece.",
         "label": "POSITIVE",
     },
-    # Четвертое испытание: жалоба на разочарование и истинный вердикт - "НЕГАТИВ".
+    # Четвертое испытание: жалоба на разочарование и истинный вердикт -
+    # "НЕГАТИВ".
     {
         "text": "I am so disappointed with the quality, it broke after one day.",
         "label": "NEGATIVE",
     },
-    # Пятое испытание: описание чудесного опыта и его истинная суть - "ПОЗИТИВ".
+    # Пятое испытание: описание чудесного опыта и его истинная суть -
+    # "ПОЗИТИВ".
     {
         "text": "What a wonderful experience, I would recommend it to everyone.",
         "label": "POSITIVE",
@@ -32,7 +35,8 @@ VALIDATION_SET = [
         "text": "A complete waste of time and money, I regret buying this.",
         "label": "NEGATIVE",
     },
-    # Седьмое испытание: описание дружелюбной помощи и ее светлая сторона - "ПОЗИТИВ".
+    # Седьмое испытание: описание дружелюбной помощи и ее светлая сторона -
+    # "ПОЗИТИВ".
     {"text": "The team was very helpful and friendly.", "label": "POSITIVE"},
     # Восьмое испытание: рассказ об ужасной еде и грубости, и его темная суть
     # - "НЕГАТИВ".

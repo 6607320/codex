@@ -25,7 +25,8 @@ if not os.path.exists(output_folder):
     # Если нет, мы создаем ее.
     os.makedirs(output_folder)
 
-# Мы "захватываем" кинопленку `test_video.mp4`, создавая "объект-проигрыватель".
+# Мы "захватываем" кинопленку `test_video.mp4`, создавая
+# "объект-проигрыватель".
 video_path = "test_video.mp4"
 # Мы создаем "проигрыватель".
 video_capture = cv2.VideoCapture(video_path)
