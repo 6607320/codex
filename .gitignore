@@ -79,8 +79,6 @@ env
 !attestation_payload.txt
 !verification_report.txt
 
-# Системный мусор и артефакты сборки
-**/__pycache__/
-**/build/
-**/dist/
-**/*.egg-info/
+# Игнорировать артефакты Node.js
+/node_modules
+/package-lock.json

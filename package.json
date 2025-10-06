@@ -1,0 +1,12 @@
+{
+  "name": "codex-of-technomancy",
+  "version": "1.0.0",
+  "description": "Великий Кодекс Техномагии: Сборник ритуалов и артефактов для постижения AI.",
+  "author": "Logos",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "format:md": "prettier --write \"**/*.md\""
+  },
+  "devDependencies": {}
+}
