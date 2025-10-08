@@ -12,4 +12,5 @@ Got 1 attestation(s) from https://bob.btc.calendar.opentimestamps.org
 Checking calendar https://alice.btc.calendar.opentimestamps.org for 68da78960ecc99de75fc22a72a14cde5a03df68a8f0b7ec74e36a1d3e14b353684d9652eee38965605ce104f
 Got 1 attestation(s) from https://alice.btc.calendar.opentimestamps.org
     BitcoinBlockHeaderAttestation(916923)
-Could not connect to Bitcoin node: Cookie file unusable ([Errno 2] No such file or directory: '/home/logos/.bitcoin/.cookie') and rpcpassword not specified in the configuration file: '/home/logos/.bitcoin/bitcoin.conf'
+Attestation block hash: 0000000000000000000066e7d9a340b7de90bccd8f09c03c7977aa1bf6e2f36c
+Success! Bitcoin block 916923 attests existence as of 2025-09-29 EEST
