@@ -19,7 +19,7 @@ from typing import List, Dict, Any, Set
 
 # --- Незыблемые Законы (Константы) ---
 # Устанавливаем Путь к корню Великого Кодекса, где начнется Великий Обход.
-PROJECT_DIR = "../../"
+PROJECT_DIR = "."
 # Начертаем Черный Список Директорий, которые ритуал сканирования должен
 # игнорировать.
 EXCLUDE_DIRS = {
@@ -38,9 +38,9 @@ TARGET_EXTENSIONS = (".py", ".md", ".txt", ".json", ".yml", ".yaml", ".spec")
 # также важны.
 TARGET_FILES = ("Dockerfile", ".gitignore", ".dvcignore", ".flake8")
 # Устанавливаем Путь к главному свитку Летописи, `manifest.json`.
-MANIFEST_FILE = "../../manifest.json"
+MANIFEST_FILE = "manifest.json"
 # Устанавливаем Путь к Хранилищу Томов, где будут материализованы PDF-свитки.
-OUTPUT_DIR = "../../notebooklm_sources"
+OUTPUT_DIR = "notebooklm_sources"
 # Устанавливаем магический Лимит Слов для одного архивного PDF-тома.
 WORD_LIMIT = 475000
 # Даем Истинное Имя нашему вечно меняющемуся «Живому Тому».
