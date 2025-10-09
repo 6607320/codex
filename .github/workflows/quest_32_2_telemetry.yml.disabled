@@ -7,9 +7,9 @@ on:
   push:
     # Условие: событие 'push' должно произойти в ветку 'main'.
     branches: [main]
-    # Условие: событие 'push' должно затронуть файлы внутри директории 'quest_32_2'.
+    # Условие: событие 'push' должно затронуть файлы внутри директории этого Квеста (32.2).
     paths:
-      - 'quest_32_2/**'
+      - 'Part_4_Engineering/Scroll_32/Quest_2/**'
 
 # Секция, определяющая разрешения, которые выдаются временному токену GITHUB_TOKEN.
 permissions:
@@ -37,15 +37,16 @@ jobs:
       - name: Install Dependencies
         # 'run' указывает, что мы будем выполнять команду в оболочке. Символ '|' позволяет выполнить несколько команд.
         run: |
-          # Устанавливаем основные зависимости, необходимые для работы самого приложения.
-          pip install -r ./quest_32_2/requirements.txt
-          # Устанавливаем зависимости для разработки, необходимые для тестов и линтинга.
-          pip install -r ./quest_32_2/requirements_dev.txt
+          # Устанавливаем основные зависимости из файла, находящегося в папке этого Квеста.
+          pip install -r ./Part_4_Engineering/Scroll_32/Quest_2/requirements.txt
+          # Устанавливаем зависимости для разработки из соответствующего файла.
+          pip install -r ./Part_4_Engineering/Scroll_32/Quest_2/requirements_dev.txt
 
       # Имя третьего шага.
       - name: Run Tests and Generate Coverage Report
-        # Запускаем pytest с флагами для генерации отчета о покрытии и обрабатываем возможную ошибку отсутствия тестов.
-        run: pytest --cov=./quest_32_2 --cov-report=xml:coverage.xml ./quest_32_2/ || true
+        # Запускаем pytest, приказывая ему провести испытания и измерить покрытие
+        # ТОЛЬКО для кода внутри директории этого Квеста.
+        run: pytest --cov=./Part_4_Engineering/Scroll_32/Quest_2 --cov-report=xml:coverage.xml ./Part_4_Engineering/Scroll_32/Quest_2/ || true
 
       # Имя четвертого шага.
       - name: Upload Coverage Report Artifact
@@ -94,8 +95,8 @@ jobs:
         uses: docker/build-push-action@v5
         # Начало блока параметров.
         with:
-          # 'context' указывает путь к директории, где находится Dockerfile.
-          context: ./quest_32_2
+          # 'context' указывает Кузнецу точный путь к мастерской этого Квеста.
+          context: ./Part_4_Engineering/Scroll_32/Quest_2
           # 'push: true' приказывает действию отправить образ в реестр после сборки.
           push: true
           # 'tags' определяет имя и тег для собранного образа, используя project_id из шага 'auth' и хеш коммита.
