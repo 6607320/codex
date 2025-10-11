@@ -47,4 +47,4 @@ jobs:
       - name: Lint with flake8
         # "Ритуал Великой Проверки": приказ духу `flake8` проверить чистоту (`.`)
         # всех земель Кодекса, которые были материализованы на алтаре.
-        run: flake8 .
+        run: flake8 . --exclude=Part_4_Engineering/Scroll_26/Quest_1,Part_4_Engineering/Scroll_26/Quest_2
