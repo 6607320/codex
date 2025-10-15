@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем наш код.
 # Мы копируем ТОЛЬКО скрипт API, чтобы не захламлять образ.
-COPY quest_25_1.py .
+COPY main.py .
 
 # Задаем команду для запуска.
-CMD ["uvicorn", "quest_25_1:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
