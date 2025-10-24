@@ -43,7 +43,7 @@ coloredlogs==15.0.1
 ConfigArgParse==1.7.1
 configobj==5.0.9
 contourpy==1.3.2
-cryptography==43.0.3
+cryptography==44.0.1
 cycler==0.12.1
 databricks-sdk==0.60.0
 datasets==2.16.1
@@ -151,7 +151,7 @@ MarkupSafe==2.1.5
 matplotlib==3.10.3
 mccabe==0.7.0
 mdurl==0.1.2
-mlflow==3.1.4
+mlflow==3.5.0rc0
 mlflow-skinny==3.1.4
 mpmath==1.3.0
 msgpack==1.1.1
@@ -235,7 +235,7 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 python-engineio==4.12.2
 python-multipart==0.0.20
-python-socketio==5.13.0
+python-socketio==5.14.0
 pytz==2025.2
 PyYAML==6.0.2
 pyzmq==27.1.0
@@ -290,11 +290,11 @@ threadpoolctl==3.6.0
 tokenizers==0.21.2
 tomli==2.2.1
 tomlkit==0.13.3
-torch==2.7.1+cu118
+torch==2.9.0
 torchaudio==2.7.1+cu118
 torchvision==0.22.1+cu118
 tqdm==4.67.1
-transformers==4.53.2
+transformers==4.57.1
 triton==3.3.1
 typer==0.16.0
 typing-inspection==0.4.1
