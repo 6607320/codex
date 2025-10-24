@@ -13,7 +13,7 @@ antlr4-python3-runtime==4.9.3
 anyio==4.9.0
 appdirs==1.4.4
 async-timeout==5.0.1
-asyncssh==2.21.0
+asyncssh==2.21.1
 atpublic==6.0.1
 attrs==25.3.0
 audioread==3.0.1
