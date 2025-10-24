@@ -244,7 +244,7 @@ requests==2.32.4
 requests-oauthlib==2.0.0
 requests-toolbelt==1.0.0
 responses==0.18.0
-rich==14.1.0
+rich==14.2.0
 rich-toolkit==0.14.9
 rignore==0.6.4
 roboflow==1.2.3
