@@ -227,7 +227,7 @@ pygtrie==2.5.0
 pyinstaller==6.15.0
 pyinstaller-hooks-contrib==2025.8
 pyOpenSSL==24.2.1
-pyparsing==3.2.3
+pyparsing==3.2.5
 PySocks==1.7.1
 pytest==8.4.1
 python-bitcoinlib==0.12.2
