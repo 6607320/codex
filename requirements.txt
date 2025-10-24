@@ -262,7 +262,7 @@ scmrepo==3.5.2
 seaborn==0.13.2
 semantic-version==2.10.0
 semver==3.0.4
-sentencepiece==0.2.0
+sentencepiece==0.2.1
 sentry-sdk==2.34.1
 shapely==2.1.1
 shellingham==1.5.4
