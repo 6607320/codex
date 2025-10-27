@@ -43,3 +43,4 @@ services:
     depends_on:
       # Указываем, что служба 'locust-tester' зависит от службы 'target-app'.
       - target-app
+      

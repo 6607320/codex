@@ -70,7 +70,7 @@ tokenizer.pad_token = tokenizer.eos_token
 
 # Мы указываем точный путь к нашему артефакту — папке с обученным
 # "магическим блокнотом".
-adapter_path = "results/checkpoint-250"
+adapter_path = "../Quest_2/results/checkpoint-250"
 # Мы оглашаем на кристалл, что нашли наш артефакт.
 print(f"\nНахожу магический блокнот в '{adapter_path}'...")
 

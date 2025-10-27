@@ -30,7 +30,7 @@ from PIL import Image
 
 # Мы записываем в переменную путь к нашему артефакту, чтобы заклинания
 # знали, с чем работать.
-original_artifact_path = "magical_cat.png"
+original_artifact_path = "../Quest_2/magical_cat.png"
 # Мы оглашаем на кристалл (консоль), какой именно артефакт мы призываем.
 print(f"Загружаю наш артефакт: {original_artifact_path}")
 
