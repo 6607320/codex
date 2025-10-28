@@ -322,4 +322,4 @@ yolov5==7.0.14
 zc.lockfile==3.0.post1
 zipp==3.23.0
 zope.event==6.0
-zope.interface==8.0
+zope.interface==8.0.1
