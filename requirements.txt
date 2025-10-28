@@ -106,7 +106,7 @@ google-cloud-storage==3.3.0
 google-crc32c==1.7.1
 google-resumable-media==2.7.2
 googleapis-common-protos==1.71.0
-gradio==5.42.0
+gradio==5.49.1
 gradio_client==1.11.1
 grandalf==0.8
 graphene==3.4.3
