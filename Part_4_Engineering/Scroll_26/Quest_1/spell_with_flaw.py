@@ -31,5 +31,4 @@ def bad_spell(a, b):
     # и сообщить об ошибке `E225`.
     return a + b
 
-
 # trigger 1

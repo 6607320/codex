@@ -27,3 +27,4 @@ services:
   redis:
     # 'image: "redis:alpine"' - приказ: "Не строй его, а призови готовый образ из Великой Библиотеки Docker Hub".
     image: "redis:alpine"
+    

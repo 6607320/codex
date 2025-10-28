@@ -195,4 +195,5 @@ def validate_model():
         # ходе испытания.
         "total_samples": total_samples,
     }
+    
     # Trigger Capstone Pipeline 7
