@@ -215,7 +215,7 @@ pycparser==2.22
 pycryptodomex==3.23.0
 pydantic==2.11.7
 pydantic-extra-types==2.10.6
-pydantic-settings==2.10.1
+pydantic-settings==2.11.0
 pydantic_core==2.33.2
 pydot==4.0.1
 PyDrive2==1.21.3
