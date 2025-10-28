@@ -205,7 +205,7 @@ proto-plus==1.26.1
 protobuf==6.31.1
 psutil==7.0.0
 py-cpuinfo==9.0.0
-pyarrow==20.0.0
+pyarrow==22.0.0
 pyarrow-hotfix==0.7
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
