@@ -85,7 +85,7 @@ Flask-Login==0.6.3
 flatbuffers==25.9.23
 flatten-dict==0.4.2
 flufl.lock==8.2.0
-fonttools==4.59.0
+fonttools==4.60.1
 fpdf2==2.8.4
 frozenlist==1.7.0
 fsspec==2025.7.0
