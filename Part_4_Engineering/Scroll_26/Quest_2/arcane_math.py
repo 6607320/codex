@@ -21,4 +21,4 @@ def add_two_runes(a, b):
     # результат, который равен сумме сил двух рун (`a + b`).
     return a + b
 
-# trigger 1
+# trigger 2
