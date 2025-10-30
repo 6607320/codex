@@ -2039,6 +2039,7 @@ _Техническая цель: Освоить фундаментальные 
 **Часть I: Ритуалы в Небесной Кузнице Google (Терминал)**
 
 1.  **Включить API:** Исполни это заклинание, чтобы даровать своему проекту силу.
+
     ```bash
     gcloud services enable artifactregistry.googleapis.com run.googleapis.com
     ```
@@ -2051,16 +2052,19 @@ _Техническая цель: Освоить фундаментальные 
 **Часть II: Ритуал Вознесения и Пробуждения (Терминал)**
 
 3.  **Даровать "Благословение" Docker:** Используй `РЕГИОН` с предыдущего шага.
+
     ```bash
     gcloud auth configure-docker РЕГИОН-docker.pkg.dev
     ```
 
 4.  **Войти в Святилище Квеста:** Перейди в папку с артефактами.
+
     ```bash
     cd Part_4_Engineering/Scroll_28/Quest_2
     ```
 
 5.  **Собрать и Отправить "Душу":** Исполни ритуал сборки и отправки.
+
     ```bash
     PROJECT_ID=$(gcloud config get-value project)
     docker build -t РЕГИОН-docker.pkg.dev/${PROJECT_ID}/ИМЯ_РЕПО/amulet:v1 .

@@ -49,6 +49,8 @@ repos:
       # завершит свою работу, "Инквизитор" проведет финальный аудит и убедится,
       # что не осталось никаких грехов стиля или логики.
       - id: flake8
+        args:
+          - "--per-file-ignores=Part_4_Engineering/Scroll_26/Quest_1/spell_with_flaw.py:F401"
 
   # Четвертая запись в Скрижали: мы обращаемся к Кузнице `PyCQA/docformatter`.
   - repo: https://github.com/PyCQA/docformatter
