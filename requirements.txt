@@ -301,7 +301,7 @@ typing-inspection==0.4.1
 typing_extensions==4.15.0
 tzdata==2025.2
 ujson==5.10.0
-ultralytics==8.3.221
+ultralytics==8.3.222
 ultralytics-thop==2.0.15
 uritemplate==4.2.0
 urllib3==2.5.0
