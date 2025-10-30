@@ -62,18 +62,14 @@ print("...Голем-Сказитель пробужден.")
 def conjure_story(prompt_text, max_new_tokens=50):
     # Толмач превращает затравку от пользователя в руны-токены, понятные
     # голему.
-    inputs = tokenizer_story.encode(prompt_text, return_tensors="pt").to(
-        DEVICE
-    )
+    inputs = tokenizer_story.encode(prompt_text, return_tensors="pt").to(DEVICE)
     # Голем генерирует продолжение истории в виде новых рун-токенов.
     outputs = model_story.generate(
         inputs, max_new_tokens=max_new_tokens, no_repeat_ngram_size=2
     )
     # Толмач расшифровывает ответ (последовательность токенов) обратно в
     # человеческий текст.
-    generated_text = tokenizer_story.decode(
-        outputs[0], skip_special_tokens=True
-    )
+    generated_text = tokenizer_story.decode(outputs[0], skip_special_tokens=True)
     # Заклинание возвращает готовый текст.
     return generated_text
 

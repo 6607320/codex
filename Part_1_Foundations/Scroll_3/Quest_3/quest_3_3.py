@@ -89,6 +89,4 @@ transformed_image = transform_pipeline(original_image)
 transformed_image.save("transformed_cat.png")
 # Мы оглашаем на кристалл, что ритуал успешно завершен, и новый артефакт
 # сохранен.
-print(
-    "\nМагия трансформации свершилась! Новый образ сохранен в 'transformed_cat.png'"
-)
+print("\nМагия трансформации свершилась! Новый образ сохранен в 'transformed_cat.png'")

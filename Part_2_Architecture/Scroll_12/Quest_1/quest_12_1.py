@@ -62,9 +62,7 @@ print("Готовлю 'учебник' с рукописными цифрами 
 # диапазону [0, 1].
 transform = transforms.ToTensor()
 # Мы загружаем (или скачиваем один раз) учебник MNIST.
-train_dataset = datasets.MNIST(
-    "./data", train=True, download=True, transform=transform
-)
+train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
 # Мы создаем "подносчик", который будет подавать нам данные пачками по 128
 # штук.
 train_loader = torch.utils.data.DataLoader(
@@ -201,9 +199,7 @@ for epoch in range(1, epochs + 1):
         # Мы "подкручиваем" все руны.
         optimizer.step()
     # Мы печатаем отчет в конце каждого "учебного года".
-    print(
-        f"====> Эпоха: {epoch} Средняя ошибка: {train_loss / len(train_dataset):.4f}"
-    )
+    print(f"====> Эпоха: {epoch} Средняя ошибка: {train_loss / len(train_dataset):.4f}")
 
 # --- Акт 7: Магия Творения (Сновидение) ---
 # Начинается финальный акт: мы просим нашего Голема сотворить новый образ.

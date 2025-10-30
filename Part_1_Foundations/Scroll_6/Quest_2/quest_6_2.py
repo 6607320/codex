@@ -46,9 +46,7 @@ from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2Model
 print("Призываю Духа-Эмпата и Настройщика Слуха...")
 # Мы призываем "Настройщика Слуха", обученного специально для модели
 # 'wav2vec2-base'.
-feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(
-    "facebook/wav2vec2-base"
-)
+feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 # Мы призываем самого "Духа-Эмпата". 'base' — это его средняя по размеру и
 # силе версия.
 model_extractor = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base")
@@ -87,18 +85,14 @@ for sample in tqdm(full_dataset.select(range(50)), desc="Извлечение э
     # Мы проводим ритуал "Передискретизации": если частота не равна 16000 Гц...
     if original_sampling_rate != 16000:
         # ...мы создаем заклинание-трансформатор для исправления частоты.
-        resampler = T.Resample(
-            orig_freq=original_sampling_rate, new_freq=16000
-        )
+        resampler = T.Resample(orig_freq=original_sampling_rate, new_freq=16000)
         # И применяем его, чтобы привести звук к каноническому виду.
-        audio_data = resampler(
-            torch.tensor(audio_data, dtype=torch.float32)
-        ).numpy()
+        audio_data = resampler(torch.tensor(audio_data, dtype=torch.float32)).numpy()
 
     # Мы повторяем ритуал извлечения "эссенции" из предыдущего Квеста.
-    inputs = feature_extractor(
-        audio_data, sampling_rate=16000, return_tensors="pt"
-    ).to("cuda")
+    inputs = feature_extractor(audio_data, sampling_rate=16000, return_tensors="pt").to(
+        "cuda"
+    )
     # Используем защитное заклинание `no_grad` для экономии маны.
     with torch.no_grad():
         # Просим Духа-Эмпата извлечь "эссенцию".

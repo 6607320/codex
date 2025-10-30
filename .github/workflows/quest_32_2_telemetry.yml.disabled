@@ -60,7 +60,7 @@ jobs:
           name: coverage-report-32-2
           # 'path' — путь к файлу или папке, которую нужно загрузить.
           path: coverage.xml
-          
+
       # Имя пятого шага.
       - name: Authenticate to Google Cloud
         # 'id' присваивает этому шагу уникальный идентификатор 'auth' для ссылки на его выходные данные.
@@ -101,4 +101,3 @@ jobs:
           push: true
           # 'tags' определяет имя и тег для собранного образа, используя project_id из шага 'auth' и хеш коммита.
           tags: 'europe-west3-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet-telemetry:${{ github.sha }}'
-          

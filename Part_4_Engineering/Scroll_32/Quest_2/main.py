@@ -198,4 +198,5 @@ def validate_model():
         "total_samples": total_samples,
     }
 
+
 # Trigger Telemetry Pipeline 4

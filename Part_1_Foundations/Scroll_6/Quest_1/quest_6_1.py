@@ -36,9 +36,7 @@ from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2Model
 print("Призываю Духа-Эмпата (Wav2Vec2) и его инструменты...")
 # Мы призываем "Настройщика Слуха", обученного специально для модели
 # 'wav2vec2-base'.
-feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(
-    "facebook/wav2vec2-base"
-)
+feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained("facebook/wav2vec2-base")
 # Мы призываем самого "Духа-Эмпата". 'base' — это его средняя по размеру и
 # силе версия.
 model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base")
@@ -81,9 +79,7 @@ print("\nДух-Эмпат вслушивается в голос...")
 # Мы передаем сырой звук и его паспорт "Настройщику Слуха".
 # Он приводит звук к нужной частоте (16кГц), нормализует громкость
 # и упаковывает в Тензор PyTorch (`'pt'`).
-inputs = feature_extractor(
-    audio_data, sampling_rate=sampling_rate, return_tensors="pt"
-)
+inputs = feature_extractor(audio_data, sampling_rate=sampling_rate, return_tensors="pt")
 # Мы отправляем подготовленный и упакованный звук на Кристалл Маны (GPU).
 inputs = inputs.to("cuda")
 

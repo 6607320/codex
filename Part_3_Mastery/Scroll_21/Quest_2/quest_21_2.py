@@ -77,9 +77,7 @@ class RecommendationNet(nn.Module):
 
 
 # Чертеж ритуала для поиска похожих артефактов.
-def find_similar_items(
-    item_name, item_embeddings, item_to_idx, idx_to_item, top_n=3
-):
+def find_similar_items(item_name, item_embeddings, item_to_idx, idx_to_item, top_n=3):
     # Сообщаем, для какого артефакта мы ищем "родственные души".
     print(f"\n--- Поиск сокровищ, похожих на '{item_name}' ---")
     # Получаем числовой индекс нашего исходного артефакта.
@@ -117,9 +115,7 @@ def find_similar_items(
 
 
 # Чертеж ритуала для персональных рекомендаций.
-def recommend_for_user(
-    user_name, user_to_idx, model, df, idx_to_item, top_n=3
-):
+def recommend_for_user(user_name, user_to_idx, model, df, idx_to_item, top_n=3):
     # Сообщаем, для кого мы ищем сокровища.
     print(f"\n--- Персональные рекомендации для '{user_name}' ---")
     # Получаем числовой индекс искателя.

@@ -51,13 +51,9 @@ transform = transforms.Compose(
     [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
 )
 # Мы загружаем "учебник" MNIST.
-train_dataset = datasets.MNIST(
-    "./data", train=True, download=True, transform=transform
-)
+train_dataset = datasets.MNIST("./data", train=True, download=True, transform=transform)
 # Мы создаем "подносчик" данных.
-train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=64, shuffle=True
-)
+train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
 
 # Мы призываем чертеж нашей "Башни Прозрения".
@@ -181,6 +177,4 @@ with mlflow.start_run(run_name="Обучение MiniCNN"):
     print("Голем сохранен в 'Хрониках'.")
 
 # Мы сообщаем, что запись в "Хроники" завершена и даем инструкцию.
-print(
-    "\nЗапись в 'Хроники' завершена. Запусти 'mlflow ui', чтобы увидеть результат."
-)
+print("\nЗапись в 'Хроники' завершена. Запусти 'mlflow ui', чтобы увидеть результат.")

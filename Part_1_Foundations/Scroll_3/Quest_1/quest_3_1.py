@@ -38,9 +38,7 @@ print("Открываю портал в 'Вечный Сад Образов' (CI
 #  идеально подходящий для первых шагов.
 # Мы используем `streaming=True` — руну экономии маны, чтобы не скачивать
 # весь архив, а лишь открыть к нему "поток".
-dataset = load_dataset(
-    "cifar10", split="train", streaming=True, trust_remote_code=True
-)
+dataset = load_dataset("cifar10", split="train", streaming=True, trust_remote_code=True)
 # Заклинанием `next(iter(dataset))` мы извлекаем из потока самый первый
 # попавшийся образец.
 sample = next(iter(dataset))
@@ -76,9 +74,7 @@ print("\nПризываю 'Всевидящего Око'...")
 #  MobileNetV2 — это быстрый и легкий дух,
 # идеально подходящий для нашего аппаратного Кристалла Маны (GPU), так как
 # не требует огромных ресурсов.
-vision_spirit = pipeline(
-    "image-classification", model="google/mobilenet_v2_1.0_224"
-)
+vision_spirit = pipeline("image-classification", model="google/mobilenet_v2_1.0_224")
 
 # Сообщаем о начале анализа — моменте, когда Дух обращает свой взор на образ.
 print("\nДух всматривается в образ...")

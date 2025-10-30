@@ -96,4 +96,3 @@ jobs:
           # Уникальная печать `${{ github.sha }}` — это магическая подпись, соответствующая точной версии кода,
           # из которой был создан артефакт, что гарантирует абсолютную прослеживаемость.
           tags: 'europe-west3-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-artifacts/amulet:${{ github.sha }}'
-          

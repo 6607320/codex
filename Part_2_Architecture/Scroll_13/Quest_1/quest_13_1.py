@@ -123,9 +123,7 @@ print("--- Сравнение Магической Эффективности --
 # Мы выводим результаты наших подсчетов.
 print(f"  'Жадный' Рудокоп (Standard Conv) требует: {standard_params} рун")
 # Мы выводим количество "рун" для нашего артефакта.
-print(
-    f"  'Экономный' Рудокоп (Separable Conv) требует: {separable_params} рун"
-)
+print(f"  'Экономный' Рудокоп (Separable Conv) требует: {separable_params} рун")
 
 # Мы вычисляем, во сколько раз наш метод эффективнее.
 efficiency = standard_params / separable_params
