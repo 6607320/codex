@@ -10,6 +10,10 @@ COPY requirements.txt .
 # Устанавливаем зависимости НАПРЯМУЮ в финальный образ
 RUN pip install --no-cache-dir -r requirements.txt
 
+# --- Ритуал Предварительного Призыва Знаний ---
+COPY download_model.py .
+RUN python download_model.py
+
 # Копируем наш код
 COPY main.py .
 
