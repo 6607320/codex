@@ -64,7 +64,7 @@ dvc-data==3.16.12
 dvc-gdrive==3.0.1
 dvc-gs==3.0.2
 dvc-http==2.32.0
-dvc-objects==5.1.1
+dvc-objects==5.1.2
 dvc-render==1.0.2
 dvc-studio-client==0.22.0
 dvc-task==0.40.2
