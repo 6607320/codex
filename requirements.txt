@@ -216,7 +216,7 @@ pycryptodomex==3.23.0
 pydantic==2.12.3
 pydantic-extra-types==2.10.6
 pydantic-settings==2.11.0
-pydantic_core==2.33.2
+pydantic_core==2.41.4
 pydot==4.0.1
 PyDrive2==1.21.3
 pydub==0.25.1
