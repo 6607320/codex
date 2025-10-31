@@ -221,7 +221,7 @@ pydot==4.0.1
 PyDrive2==1.21.3
 pydub==0.25.1
 pyflakes==3.4.0
-pygit2==1.18.2
+pygit2==1.19.0
 Pygments==2.19.2
 pygtrie==2.5.0
 pyinstaller==6.15.0
