@@ -287,7 +287,7 @@ termcolor==3.1.0
 terminaltables==3.1.10
 thop==0.1.1.post2209072238
 threadpoolctl==3.6.0
-tokenizers==0.21.2
+tokenizers==0.22.1
 tomli==2.3.0
 tomlkit==0.13.3
 torch==2.9.0
