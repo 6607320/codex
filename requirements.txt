@@ -224,7 +224,7 @@ pyflakes==3.4.0
 pygit2==1.19.0
 Pygments==2.19.2
 pygtrie==2.5.0
-pyinstaller==6.15.0
+pyinstaller==6.16.0
 pyinstaller-hooks-contrib==2025.8
 pyOpenSSL==24.2.1
 pyparsing==3.2.5
