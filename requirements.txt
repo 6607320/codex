@@ -101,7 +101,7 @@ google-api-python-client==2.179.0
 google-auth==2.40.3
 google-auth-httplib2==0.2.1
 google-auth-oauthlib==1.2.2
-google-cloud-core==2.4.3
+google-cloud-core==2.5.0
 google-cloud-storage==3.4.1
 google-crc32c==1.7.1
 google-resumable-media==2.7.2
