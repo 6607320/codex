@@ -107,7 +107,7 @@ google-crc32c==1.7.1
 google-resumable-media==2.7.2
 googleapis-common-protos==1.71.0
 gradio==5.49.1
-gradio_client==1.11.1
+gradio_client==1.13.3
 grandalf==0.8
 graphene==3.4.3
 graphql-core==3.2.6
