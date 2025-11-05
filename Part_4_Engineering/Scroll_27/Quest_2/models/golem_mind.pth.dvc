@@ -1,0 +1,5 @@
+outs:
+- md5: f1c9645dbc14efddc7d8a322685f26eb
+  size: 10485760
+  hash: md5
+  path: golem_mind.pth
