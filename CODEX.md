@@ -2450,11 +2450,28 @@ CLI-инструменты — это рабочие лошадки AI-инже�
       ```
 
 2.  **Активация API:**
-    - Убедитесь, что в GCP проекте включены API: `Artifact Registry API`, `Cloud Run Admin API`, `IAM Service Account Credentials API`.
+    - Активируйте API: `Artifact Registry API`, `Cloud Run Admin API`, `IAM Service Account Credentials API`.
+    - Выполните команды, подставив свой `PROJECT_ID`.
+    ```bash
+    gcloud services enable artifactregistry.googleapis.com --project="YOUR_PROJECT_ID"
+    gcloud services enable run.googleapis.com --project="YOUR_PROJECT_ID"
+    gcloud services enable iamcredentials.googleapis.com --project="YOUR_PROJECT_ID"
+    ```
 
 3.  **Создание ресурсов:**
-    - В **Artifact Registry** создайте **Docker** репозиторий с именем `codex-artifacts` в регионе `europe-north1`.
-    - Создайте **Service Account** с именем `github-actions-sa`.
+    - Создайте Docker репозиторий `codex-artifacts` и Service Account `github-actions-sa`.
+    - Выполните команды, подставив свой `PROJECT_ID`.
+    ```bash
+    gcloud artifacts repositories create codex-artifacts \
+        --repository-format=docker \
+        --location=europe-north1 \
+        --description="Codex CI/CD Artifact Repository" \
+        --project="YOUR_PROJECT_ID"
+
+    gcloud iam service-accounts create github-actions-sa \
+        --display-name="Service Account for GitHub Actions" \
+        --project="YOUR_PROJECT_ID"
+    ```
 
 4.  **Назначение ролей Service Account:**
     - Выполните команды, подставив свой `PROJECT_ID`.
@@ -2496,13 +2513,13 @@ CLI-инструменты — это рабочие лошадки AI-инже�
 **Часть III: Запуск пайплайна**
 
 9.  **Активация триггера:**
-    - В локальном репозитории откройте файл `quest_32_1/main.py` и добавьте в конец файла любой комментарий, например `# Trigger pipeline`. Сохраните файл.
+    - В локальном репозитории откройте файл `Part_4_Engineering/Scroll_32/Quest_1/main.py` и добавьте в конец файла любой комментарий, например `# Trigger pipeline`. Сохраните файл.
 
 10. **Отправка изменений:**
     - Выполните команды для отправки изменений в ваш форк.
       ```bash
       git add .
-      git commit -m "feat(ci): Awakening the Automated Forge"
+      git commit -m "feat(ci): Пробуждение автоматизированной кузницы"
       git push origin main
       ```
 
