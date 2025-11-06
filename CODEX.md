@@ -2459,12 +2459,12 @@ CLI-инструменты — это рабочие лошадки AI-инже�
     ```
 
 3.  **Создание ресурсов:**
-    - Создайте Docker репозиторий `codex-artifacts` и Service Account `github-actions-sa`.
+    - Создайте Docker репозиторий `codex-golems` и Service Account `github-actions-sa`.
     - Выполните команды, подставив свой `PROJECT_ID`.
     ```bash
-    gcloud artifacts repositories create codex-artifacts \
+    gcloud artifacts repositories create codex-golems \
         --repository-format=docker \
-        --location=europe-north1 \
+        --location=europe-west3 \
         --description="Codex CI/CD Artifact Repository" \
         --project="YOUR_PROJECT_ID"
 
@@ -2476,7 +2476,7 @@ CLI-инструменты — это рабочие лошадки AI-инже�
 4.  **Назначение ролей Service Account:**
     - Выполните команды, подставив свой `PROJECT_ID`.
       ```bash
-      gcloud artifacts repositories add-iam-policy-binding codex-artifacts --project="YOUR_PROJECT_ID" --location="europe-north1" --member="serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
+      gcloud artifacts repositories add-iam-policy-binding codex-golems --project="YOUR_PROJECT_ID" --location="europe-west3" --member="serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
       gcloud projects add-iam-policy-binding YOUR_PROJECT_ID --member="serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/run.admin"
       gcloud iam service-accounts add-iam-policy-binding "github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --member="serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
       ```
