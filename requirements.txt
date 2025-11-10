@@ -92,7 +92,7 @@ fsspec==2025.7.0
 funcy==2.0
 gcsfs==2025.7.0
 gevent==25.9.1
-geventhttpclient==2.3.4
+geventhttpclient==2.3.5
 git-filter-repo==2.47.0
 gitdb==4.0.12
 GitPython==3.1.45
