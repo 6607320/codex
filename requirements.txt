@@ -112,7 +112,7 @@ grandalf==0.8
 graphene==3.4.3
 graphql-core==3.2.6
 graphql-relay==3.2.0
-greenlet==3.2.3
+greenlet==3.2.4
 groovy==0.1.2
 grpcio==1.76.0
 gto==1.9.0
