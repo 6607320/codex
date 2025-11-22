@@ -7,12 +7,11 @@
   "scenario": [
     {
       "command": "pip install Pillow",
-      "output": "Collecting Pillow\n  Downloading Pillow-10.1.0-cp310-cp310-linux_x86_64.whl (3.2 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 15.2 MB/s eta 0:00:00\nInstalling collected packages: Pillow\nSuccessfully installed Pillow-10.1.0",
-      "is_final": false
+      "output": "Collecting Pillow\n  Downloading Pillow-10.0.1-cp310-cp310-linux_x86_64.whl (3.2 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 15.2 MB/s eta 0:00:00\nInstalling collected packages: Pillow\nSuccessfully installed Pillow-10.0.1\nuser@host:~$ "
     },
     {
       "command": "python quest_3_1.py",
-      "output": "python: can't open file 'quest_3_1.py': [Errno 2] No such file or directory",
+      "output": "Selected random image from archive: cat_example.png\nTrue label from chronicles: cat\nLoading MobileNetV2 (ImageNet pretrained)...\nPredictions from Всевидящее Око (top 5):\n1. tabby (0.4523)\n2. Egyptian cat (0.2015)\n3. tiger cat (0.1532)\n4. Siamese cat (0.1021)\n5. lynx, not lynx (0.0504)\n\nLesson: Domain shift causes errors on cartoon-like CIFAR-10 images!",
       "is_final": true
     }
   ]
