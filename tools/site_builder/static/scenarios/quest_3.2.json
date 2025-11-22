@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install diffusers",
+    "output": "Collecting diffusers\nDownloading diffusers... done\nSuccessfully installed diffusers-0.27.2 accelerate-0.29.3"
+  },
+  {
+    "command": "python quest_3_2.py",
+    "output": "Призываю Духа-Демиурга в режиме экономии...\nDownloading model_index.json: 100%|██████████| 541/541 [00:00<00:00, 1.1MB/s]\nFetching 15 files: 100%|██████████| 15/15 [00:01<00:00, 12.5it/s]\n\nАктивирую ритуал 'Призрачного Перемещения' (CPU Offloading)...\n\nШепчу Духу заклинание: 'a magical cat with glowing paws, hyperrealistic'\nДух начинает творить из хаоса...\n100%|██████████| 50/50 [00:45<00:00, 1.10it/s]\n\nМагия свершилась! Образ сохранен в 'magical_cat.png'",
+    "is_final": true
+  }
+]

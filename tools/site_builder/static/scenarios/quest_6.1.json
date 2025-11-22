@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install datasets==2.16.1",
+    "output": "Collecting datasets==2.16.1\n  Downloading datasets-2.16.1-py3-none-any.whl (519 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 519.4/519.4 kB 5.2 MB/s eta 0:00:00\nInstalling collected packages: datasets\nSuccessfully installed datasets-2.16.1"
+  },
+  {
+    "command": "python quest_6_1.py",
+    "output": "Призываю Духа-Эмпата (Wav2Vec2) и его инструменты...\n\nПризываю аудио-послание из архива 'librispeech_asr'...\nПослание призвано!\n\nДух-Эмпат вслушивается в голос...\nЭссенция голоса успешно извлечена!\n\nАнализируем полученную 'ауру' (эмбеддинг):\n  Форма ауры: torch.Size([1, 175, 768])\n  Форма единого отпечатка: torch.Size([1, 768])",
+    "is_final": true
+  }
+]

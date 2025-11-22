@@ -1,0 +1,27 @@
+[
+  {
+    "command": "docker compose up --build -d",
+    "output": "[+] Building 10.5s (11/11) FINISHED\n => [internal] load build definition from Dockerfile                          0.0s\n => => transferring dockerfile: 351B                                         0.0s\n => [internal] load .dockerignore                                             0.0s\n => => transferring context: 2B                                               0.0s\n => [internal] load metadata for docker.io/library/python:3.10                0.0s\n => [1/6] FROM docker.io/library/python:3.10                                  0.0s\n => [internal] load build context                                             0.0s\n => => transferring context: 1.28kB                                           0.0s\n => CACHED [2/6] WORKDIR /app                                                 0.0s\n => [3/6] COPY requirements.txt .                                             0.0s\n => [4/6] RUN pip install --no-cache-dir -r requirements.txt                 7.8s\nCollecting fastapi\n  Downloading fastapi-0.104.1-py3-none-any.whl (91.3 kB)\nCollecting uvicorn\n  Downloading uvicorn-0.24.0.post1-py3-none-any.whl (60 kB)\nCollecting redis\n  Downloading redis-5.0.1-py3-none-any.whl (259 kB)\n... (installing dependencies: pydantic, starlette, click, h11, etc.)\nSuccessfully installed anyio-4.3.0 fastapi-0.104.1 h11-0.14.0 pydantic-2.5.2 pydantic-core-2.14.6 redis-5.0.1 starlette-0.27.0.post1 typing_extensions-4.8.0 uvicorn-0.24.0.post1\n => [5/6] COPY main.py .                                                     0.0s\n => [6/6] CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"] 0.0s\n => exporting to image                                                       0.8s\n => => exporting layers                                                      0.8s\n => => writing image sha256:abc123...                                         0.0s\n => => naming to docker.io/library/quest_25_1-api                            0.0s\n\n[+] Running 3/3\n ✔ Network quest_25_1_default     Created              0.1s\n ✔ Container quest_25_1-redis-1   Started              1.1s\n ✔ Container quest_25_1-api-1     Started              1.4s",
+    "is_final": false
+  },
+  {
+    "command": "docker compose ps",
+    "output": "NAME                    IMAGE               COMMAND                  SERVICE   CREATED      STATUS                    PORTS\nquest_25_1-api-1        quest_25_1-api      \"uvicorn main:app --…\"   api       2 minutes ago Up 2 minutes (healthy)   0.0.0.0:8000->8000/tcp\nquest_25_1-redis-1      redis:alpine         \"docker-entrypoint.s…\"   redis     2 minutes ago Up 2 minutes (healthy)",
+    "is_final": false
+  },
+  {
+    "command": "curl -X POST \"http://127.0.0.1:8000/remember/magic\" -H \"Content-Type: application/json\" -d '{\"value\": \"secret\"}'",
+    "output": "{\"status\":\"ok\",\"key\":\"magic\",\"remembered_value\":\"secret\"}",
+    "is_final": false
+  },
+  {
+    "command": "curl \"http://127.0.0.1:8000/recall/magic\"",
+    "output": "{\"status\":\"found\",\"key\":\"magic\",\"recalled_value\":\"secret\"}",
+    "is_final": false
+  },
+  {
+    "command": "docker compose down",
+    "output": "[+] Running 3/3\n ✔ Container quest_25_1-api-1      Removed                                                              0.4s\n ✔ Container quest_25_1-redis-1    Removed                                                              0.2s\n ✔ Network quest_25_1_default      Removed                                                              0.1s",
+    "is_final": true
+  }
+]

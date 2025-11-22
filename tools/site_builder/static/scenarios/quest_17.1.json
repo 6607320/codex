@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install \"fastapi[all]\"",
+    "output": "Collecting fastapi[all]\n  Downloading fastapi-0.115.0-py3-none-any.whl (94 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 94.9/94.9 kB 3.2 MB/s eta 0:00:00\nCollecting starlette<0.41.0,>=0.40.0 (from fastapi[all])\n  Downloading starlette-0.40.0-py3-none-any.whl (70 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 70.4/70.4 kB 2.8 MB/s eta 0:00:00\nCollecting pydantic<3,>=2 (from fastapi[all])\n  Downloading pydantic-2.9.2-py3-none-any.whl (406 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 407.0/407.0 kB 4.1 MB/s eta 0:00:00\nCollecting uvicorn[standard] (from fastapi[all])\n  Downloading uvicorn-0.32.0-py3-none-any.whl (75 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.6/75.6 kB 2.5 MB/s eta 0:00:00\n... (additional dependencies installed)\nSuccessfully installed anyio-4.5.0 click-8.1.7 ... fastapi-0.115.0 h11-0.14.0 ... pydantic-2.9.2 pydantic-core-2.23.4 python-multipart-0.0.9 ... starlette-0.40.0 uvicorn-0.32.0 uvloop-0.20.0 watchfiles-0.24.0 websockets-15.1\n"
+  },
+  {
+    "command": "uvicorn quest_17_1:app --reload",
+    "output": "Призываю 'Духа Эмоций' для нашего амулета...\nDownloading (...) config.json: 100%|████████████████████████████████| 629/629 [00:00<00:00, 1.23MiB/s]\nDownloading pytorch_model.bin: 100%|████████████████████████████████| 268M/268M [00:12<00:00, 22.3MB/s]\nDownloading (...)neration_config.json: 100%|████████████████████████████████| 124/124 [00:00<00:00, 245kB/s]\nDownloading tokenizer_config.json: 100%|████████████████████████████████| 2.48k/2.48k [00:00<00:00, 4.89MB/s]\nDownloading vocab.txt: 100%|████████████████████████████████| 232k/232k [00:00<00:00, 1.45MB/s]\nDownloading tokenizer.json: 100%|████████████████████████████████| 466k/466k [00:00<00:00, 2.34MB/s]\n'Dух Эмоций' готов к работе.\n\nINFO:     Will watch for changes in these directories: ['/home/user']\nINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)\nINFO:     Started reloader process [28734] using WatchFiles\nINFO:     Started server process [28736]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO:     127.0.0.1:54321 - \"GET / HTTP/1.1\" 200 OK\nINFO:     127.0.0.1:54322 - \"GET /docs HTTP/1.1\" 200 OK\n",
+    "is_final": true
+  }
+]

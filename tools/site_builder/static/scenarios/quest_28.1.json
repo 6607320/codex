@@ -1,0 +1,39 @@
+[
+  {
+    "command": "sudo snap install google-cloud-cli --classic",
+    "output": "google-cloud-cli classic from Google Cloud CLI(snapcraft) installed\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "gcloud init",
+    "output": "Welcome! This command will do several things: ...\n\nTo continue, you must login...\nGo to [browser url] to login.\n\nYou are logged in as user@example.com.\n\nPick cloud project to use: [list]\n1: dvc-codex-project\nYour current project is 'dvc-codex-project'.\n\nCreated a default .boto configuration file at ~/.boto\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "gcloud billing accounts list",
+    "output": "NAME                  PROJECTS     OPEN   ID\nPrimary Billing       []           Yes    012345-6789AB-CDEF01\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "gcloud billing projects link dvc-codex-project --billing-account=012345-6789AB-CDEF01",
+    "output": "Updated project billing account to '012345-6789AB-CDEF01'.\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "gsutil mb -c STANDARD -l europe-west3 -b on gs://codex-dvc-storage-quest123",
+    "output": "Creating gs://codex-dvc-storage-quest123/...\nServiceException: 409 Bucket already exists. (or success message)\nCreating gs://codex-dvc-storage-quest123/... Done.\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "gcloud auth application-default login",
+    "output": "Go to [browser url] to login.\nCredentials saved to ~/.config/gcloud/application_default_credentials.json\nThese credentials will be used by any library that requests Application Default Credentials (ADC).\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "pip install \"dvc[gs]\"",
+    "output": "Collecting dvc[gs]\n...\nSuccessfully installed dvc-3.XX.X google-cloud-storage-2.XX.X ...\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "dvc remote add -d gsremote gs://codex-dvc-storage-quest123/artifacts",
+    "output": "Remote 'gsremote' added to .dvc/config\nuser@ubuntu:~/dvc-project$ "
+  },
+  {
+    "command": "dvc push",
+    "output": "Pushing /path/to/model.dvc to remote 'gsremote'\nPushing /path/to/data.dvc to remote 'gsremote'\n...\n3 files pushed\nuser@ubuntu:~/dvc-project$ ",
+    "is_final": true
+  }
+]

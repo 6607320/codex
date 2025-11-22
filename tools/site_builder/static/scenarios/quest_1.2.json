@@ -1,0 +1,15 @@
+[
+  {
+    "command": "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118",
+    "output": "Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cu118\nCollecting torch\n  Downloading https://download.pytorch.org/whl/cu118/torch-2.3.1%2Bcu118-cp312-cp312-linux_x86_64.whl (2699.9 MB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2700.0/2700.0 MB 15.2 MB/s eta 0:00:00\nCollecting torchvision\n  Downloading https://download.pytorch.org/whl/cu118/torchvision-0.18.1%2Bcu118-cp312-cp312-linux_x86_64.whl (27.6 MB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.6/27.6 MB 12.4 MB/s eta 0:00:00\nCollecting torchaudio\n  Downloading https://download.pytorch.org/whl/cu118/torchaudio-2.3.1%2Bcu118-cp312-cp312-linux_x86_64.whl (1.7 GB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1709.8/1709.8 MB 20.1 MB/s eta 0:00:00\nInstalling collected packages: torch, torchaudio, torchvision\nSuccessfully installed torch-2.3.1+cu118 torchaudio-2.3.1+cu118 torchvision-0.18.1+cu118\n"
+  },
+  {
+    "command": "pip install transformers datasets",
+    "output": "Collecting transformers\n  Downloading transformers-4.41.2-py3-none-any.whl (9.0 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.0/9.0 MB 18.5 MB/s eta 0:00:00\nCollecting datasets\n  Downloading datasets-2.21.0-py3-none-any.whl (524 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 524.9/524.9 kB 22.1 MB/s eta 0:00:00\n... (installing dependencies: huggingface-hub, tokenizers, safetensors, numpy, pyarrow, dill, xxhash, multiprocess, fsspec)\nInstalling collected packages: transformers, datasets\nSuccessfully installed datasets-2.21.0 transformers-4.41.2\n"
+  },
+  {
+    "command": "python -c \"import torch; print(torch.cuda.is_available())\"",
+    "output": "True",
+    "is_final": true
+  }
+]

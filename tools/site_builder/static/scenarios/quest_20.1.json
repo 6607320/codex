@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install pandas matplotlib numpy",
+    "output": "Collecting pandas\n  Downloading pandas-2.2.2-cp312-cp312-manylinux_2_28_x86_64.whl (13.0 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.0/13.0 MB 50.0 MB/s eta 0:00:00\nCollecting matplotlib\n  Downloading matplotlib-3.9.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.4 MB)\nCollecting numpy\n  Downloading numpy-2.1.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.0 MB)\nInstalling collected packages: numpy, matplotlib, pandas\nSuccessfully installed matplotlib-3.9.2 numpy-2.1.1 pandas-2.2.2"
+  },
+  {
+    "command": "python quest_20_1.py",
+    "output": "Начинаем ритуал сотворения 'Летописи Времени'...\nЛетопись будет длиться 365 дней.\n-> Сотворен 'Великий Поток' (Тренд)...\n-> Сотворены 'Циклы Луны' (Сезонность)...\n-> Добавлены 'Капризы Судьбы' (Шум)...\n-> Все потоки сплетены в единую Летопись Времени.\n-> Летопись облечена в форму магической таблицы (DataFrame).\n-> Летопись сохранена в материальный артефакт: time_series_data.csv\n-> Визуальный отпечаток Летописи сохранен как: time_series_plot.png\n\nРитуал завершен. Два артефакта успешно созданы в вашей мастерской.",
+    "is_final": true
+  }
+]

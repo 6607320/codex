@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install onnx onnxruntime",
+    "output": "Collecting onnx\n  Downloading onnx-1.16.1-py3-none-any.whl (521 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 521.7/521.7 kB 2.1 MB/s eta 0:00:00\nCollecting onnxruntime\n  Downloading onnxruntime-1.19.2-cp39-cp39-linux_x86_64.whl (6.7 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.7/6.7 MB 5.2 MB/s eta 0:00:00\nInstalling collected packages: onnx, onnxruntime\nSuccessfully installed onnx-1.16.1 onnxruntime-1.19.2\n"
+  },
+  {
+    "command": "python quest_14_2.py",
+    "output": "Начинаю ритуал 'Перевода на Латынь' (Экспорт в ONNX)...\nПеревод завершен! Универсальный 'Свиток' сохранен как 'mnist_cnn.onnx'\n\nПровожу экзамен с помощью 'Универсального Чтеца Свитков'...\nРитуал с 'Чтецом' прошел успешно!\n  'Чтец' увидел в случайном шуме цифру: 7\n\nМагия универсальности освоена!\n",
+    "is_final": true
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install gradio",
+    "output": "Collecting gradio\n  Downloading gradio-4.44.0-py3-none-any.whl (16.7 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 15.2 MB/s eta 0:00:00\nCollecting aiofiles<24.0,>=23.1 (from gradio)\n  Downloading aiofiles-23.2.1-py3-none-any.whl (15 kB)\nCollecting fastapi (from gradio)\n  Downloading fastapi-0.115.0-py3-none-any.whl (92 kB)\n...\nSuccessfully installed gradio-4.44.0 aiofiles-23.2.1 fastapi-0.115.0 httpx-0.27.0 uvicorn-0.30.6 websockets-12.0 ..."
+  },
+  {
+    "command": "python quest_23_1.py",
+    "output": "Подготовка к ритуалу на устройстве: cuda\nЗагрузка 'разума' голема из: ./results/checkpoint-250\n...Голем-Сказитель пробужден и готов творить.\n\nСотворяем 'Магическое Зеркало' с помощью Gradio...\nRunning on local URL:  http://127.0.0.1:7860\n\nTo create a public link, set `share=True` in `launch()`.\n",
+    "is_final": true
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "command": "pip install mlflow",
+    "output": "Collecting mlflow\n  Downloading mlflow-2.10.0-py3-none-any.whl (950 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 950.1/950.1 kB 5.2 MB/s eta 0:00:00\nCollecting alembic<2 (from mlflow)\n  Downloading alembic-1.13.2-py3-none-any.whl (184 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.0/184.0 kB 8.1 MB/s eta 0:00:00\n... (additional dependencies installed)\nSuccessfully installed alembic-1.13.2 mlflow-2.10.0 ... (other packages)"
+  },
+  {
+    "command": "python quest_16_1.py",
+    "output": "Магический 'Хронограф' (MLflow) настроен.\nВсе записи будут сохраняться в эксперимент: 'Первый Свиток Хроник'\n\nНачинаю 'Пробный Ритуал' и делаю записи в журнал...\nВсе записи сделаны, артефакты сохранены.\n\nРитуал завершен!\n\nЧтобы увидеть свои хроники, останови этот скрипт (если он не остановился сам),\nи в ЭТОМ ЖЕ терминале произнеси заклинание:\nmlflow ui\n\nЗатем открой в браузере адрес, который он тебе покажет (обычно http://12.0.0.1:5000)."
+  },
+  {
+    "command": "mlflow ui",
+    "output": "[2024-10-01 12:34:56.789 INFO] Your MLflow tracking server is running at http://127.0.0.1:5000\n[2024-10-01 12:34:56.790 INFO] To open the MLflow UI in your browser, run:\n\n  $ open http://127.0.0.1:5000\n\n[2024-10-01 12:34:56.791 INFO] Or, in a different terminal: mlflow ui --host 0.0.0.0 --port 5000\n[2024-10-01 12:34:56.792 INFO] Found 1 active runs for experiment 'Первый Свиток Хроник' in ./mlruns",
+    "is_final": true
+  }
+]

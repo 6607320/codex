@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install pillow datasets",
+    "output": "Collecting pillow\n  Downloading Pillow-11.0.0-cp39-cp39-linux_x86_64.whl (3.3 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 15.2 MB/s eta 0:00:00\nCollecting datasets\n  Downloading datasets-2.20.0-py3-none-any.whl (543 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 543.8/543.8 kB 20.1 MB/s eta 0:00:00\n... (additional dependencies installed)\nSuccessfully installed Pillow-11.0.0 datasets-2.20.0 huggingface-hub-0.23.0 pyarrow-15.0.0 requests-2.31.0 tqdm-4.66.1"
+  },
+  {
+    "command": "python quest_22_1.py",
+    "output": "Магия будет вершиться на устройстве: cpu\nПризываем могущественного голема 'openai/clip-vit-base-patch32'...\nDownloading (…)okenizer_config.json: 100% 776/776 [00:00<00:00, 1.2kB/s]\nDownloading (…)ch_32_pytorch_model.bin: 100% 247M/247M [00:05<00:00, 45.2MB/s]\nDownloading (…)of tokenizer.txt: 100% 232k/232k [00:00<00:00, 1.2MB/s]\n... (additional model files)\n...Голем и его Толмач откликнулись на зов.\n\nЗагружаем эталонное изображение из хранилища Hugging Face...\nПодготовлены артефакты для испытания:\n- Текстовые гипотезы: ['фотография кота', 'рисунок собаки', 'пейзаж с горами']\n\n--- Вердикт Магического Компаса ---\n- Схожесть с 'фотография кота': 8.45%\n- Схожесть с 'рисунок собаки': 52.31%\n- Схожесть с 'пейзаж с горами': 39.24%\n\nРитуал завершен. Компас указал на истинный смысл.",
+    "is_final": true
+  }
+]

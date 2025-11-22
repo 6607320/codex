@@ -1,9 +1,9 @@
 {
-  "name": "codex-of-technomancy",
+  "name": "codex",
   "version": "1.0.0",
-  "description": "Великий Кодекс Техномагии: Сборник ритуалов и артефактов для постижения AI.",
-  "author": "Logos",
-  "license": "UNLICENSED",
+  "description": "Интерактивный гримуар, документирующий путь от Мага-Ремесленника до Архимага AI.",
+  "author": "Guild Master (Magus-Technomancer)",
+  "license": "Apache License, Version 2.0",
   "private": true,
   "scripts": {
     "format:md": "prettier --write \"**/*.md\""

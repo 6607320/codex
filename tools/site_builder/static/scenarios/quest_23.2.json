@@ -1,0 +1,7 @@
+[
+  {
+    "command": "python quest_23_2.py",
+    "output": "Подготовка к ритуалу на устройстве: cuda\nЗагрузка 'разума' Голема-Сказителя из: ./results/checkpoint-250\n...Голем-Сказитель пробужден.\n\nСобираем 'Пантеон Големов'...\n...Пантеон собран. Пробуждаем его!\n * Running on local URL:  http://127.0.0.1:7860\n\nTo create a public link, set `share=True` in `launch()`.\n",
+    "is_final": true
+  }
+]

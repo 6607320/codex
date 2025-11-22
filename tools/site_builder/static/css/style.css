@@ -1,0 +1,99 @@
+:root {
+    --bg: #0d1117;
+    --panel-bg: #161b22;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
+    --border: #30363d;
+    --term-bg: #000;
+    --term-green: #0f0;
+}
+
+/* === ОСНОВНОЙ LAYOUT === */
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+}
+
+/* === ИСПРАВЛЕННАЯ НАВИГАЦИЯ === */
+nav {
+    display: flex;
+    justify-content: space-between; /* Распределяет элементы по краям */
+    align-items: center;
+    padding: 0 20px;
+    background: var(--panel-bg);
+    height: 70px; /* Немного увеличим высоту для заголовка */
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
+}
+nav a { color: var(--text); text-decoration: none; font-size: 0.9em; white-space: nowrap; }
+nav a:hover { color: #fff; }
+
+.nav-title {
+    text-align: center;
+}
+.nav-title h1 {
+    margin: 0 0 5px 0;
+    font-size: 1.3em; /* Уменьшаем шрифт для меню */
+    font-weight: 300;
+    color: var(--accent);
+}
+.nav-title p {
+    margin: 0;
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+/* === КОНЕЦ ИСПРАВЛЕНИЯ НАВИГАЦИИ === */
+
+
+#app {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.home-scroll-container { height: 100%; overflow-y: auto; padding: 0 20px; box-sizing: border-box; }
+.home-content { max-width: 900px; margin: 0 auto; padding: 40px 0; }
+
+.part-container { margin-bottom: 40px; }
+.part-container:first-child { margin-top: 30px; }
+.part-container h2 { text-align: center; color: var(--accent); font-size: 1.5em; font-weight: 300; letter-spacing: 1px; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 30px; }
+.scroll-container { margin-bottom: 30px; }
+.scroll-container h3 { font-size: 1.1em; font-weight: 400; color: var(--text); opacity: 0.8; margin-left: 20px; margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 10px; }
+
+.quest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; padding: 0 0 60px 0; max-width: 1200px; margin: 0 auto; }
+.quest-card { background: var(--panel-bg); border: 1px solid var(--border); border-radius: 6px; padding: 15px; cursor: pointer; transition: 0.2s; }
+.quest-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.quest-card.locked { opacity: 0.5; filter: grayscale(1); cursor: not-allowed; }
+.q-id { font-size: 0.8em; color: #8b949e; }
+.q-title { font-weight: bold; margin: 5px 0; }
+
+.quest-layout { display: flex; height: 100%; }
+.col { flex: 1; display: flex; flex-direction: column; border-right: 1px solid var(--border); min-width: 0; }
+.col:last-child { border-right: none; }
+.col-header { background: #21262d; padding: 8px 15px; font-size: 0.8em; font-weight: bold; color: #8b949e; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.scroll-content { padding: 20px; overflow-y: auto; flex: 1; }
+
+.markdown-body { line-height: 1.6; font-size: 14px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; }
+.markdown-body h1, .markdown-body h2 { border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+.markdown-body code { background: rgba(110,118,129,0.4); padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;}
+.markdown-body pre { background: #161b22; padding: 10px; border-radius: 6px; overflow-x: auto; white-space: pre-wrap; max-width: 100%;}
+.markdown-body img { max-width: 100%; height: auto; }
+
+.col-terminal { flex: 1.5; background: var(--term-bg); }
+.terminal-window { padding: 15px; font-family: 'Consolas', 'Monaco', monospace; color: var(--term-green); overflow-y: auto; flex: 1; }
+.sys-msg { color: #8b949e; }
+.success-msg { color: #58a6ff; }
+.input-line { display: flex; margin-top: 10px; }
+.prompt { margin-right: 10px; color: #f0f; }
+#term-input { background: transparent; border: none; color: white; flex: 1; font-family: inherit; font-size: inherit; outline: none; }
+
+.fade-in { animation: fadeIn 0.3s ease-in; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.btn-magic { display: inline-block; background: var(--accent); color: #fff; padding: 10px 30px; border-radius: 20px; text-decoration: none; font-weight: bold; }

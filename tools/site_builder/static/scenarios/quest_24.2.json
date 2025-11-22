@@ -1,0 +1,19 @@
+[
+  {
+    "command": "pip install pyinstaller",
+    "output": "Collecting pyinstaller\n  Downloading pyinstaller-6.10.0-py3-none-any.whl (449 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 449.3/449.3 kB 1.2 MB/s eta 0:00:00\nInstalling collected packages: pyinstaller\nSuccessfully installed pyinstaller-6.10.0\n"
+  },
+  {
+    "command": "pyinstaller --onefile quest_24_2_spell.py",
+    "output": "7901 INFO: PyInstaller: 6.10.0\n7901 INFO: Python: 3.12.3 (main, Apr 10 2024, 05:33:52) [GCC 13.2.1 20230801]\n7902 INFO: Platform: Linux-6.5.0-35-generic-x86_64-with-glibc2.38\n7902 INFO: wrote C:\\Users\\user\\quest_24_2_spell.spec\n7902 INFO: UPX is not available.\n7903 INFO: Extending PYTHONPATH with paths\n7903 INFO: creating 'PyInstaller\\bootloader\\Linux-64bit-intel\\run' bootloader\n7904 INFO: Analyzing quest_24_2_spell.py\n... (analyzing torch and 12567 dependencies, this may take a while)\n14567 INFO: collecting Library files for /home/user/env/lib/python3.12/site-packages/torch\n... (bundling torch libraries, ~2GB of data)\n28901 INFO: Hidden-import in use: 'torch._C._distributed_c10d._get_default_group'\n... warnings about large size omitted\n45678 INFO: Building EXE from EXE-00.toc completed successfully.\n"
+  },
+  {
+    "command": "conda deactivate",
+    "output": "\n"
+  },
+  {
+    "command": "./dist/quest_24_2_spell",
+    "output": "🔮 Я - Самодостаточный Артефакт! Мой Мастер вдохнул в меня жизнь.\nДух PyTorch внутри меня имеет версию: 2.4.0\n\nНажмите Enter, чтобы отпустить меня на покой...",
+    "is_final": true
+  }
+]

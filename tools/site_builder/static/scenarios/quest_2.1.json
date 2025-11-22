@@ -1,0 +1,11 @@
+[
+  {
+    "command": "pip install soundfile accelerate datasets==2.16.1",
+    "output": "Collecting soundfile... done\nCollecting datasets==2.16.1... done\nSuccessfully installed datasets-2.16.1 soundfile-0.12.1 accelerate-0.25.0"
+  },
+  {
+    "command": "python quest_2_1.py",
+    "output": "Призываю 'Ухо Всеслышания' (Whisper-tiny)...\n\nDownloading config.json: 100%|██████████| 1.98k/1.98k [00:00<00:00, 1.2MB/s]\nDownloading model.safetensors: 100%|██████████| 151M/151M [00:04<00:00, 35.4MB/s]\n\nДаю духу послушать тишину...\n\nРезультат расшифровки тишины:\n{'text': ' You.'}",
+    "is_final": true
+  }
+]

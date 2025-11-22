@@ -1,0 +1,19 @@
+[
+  {
+    "command": "pip install -r requirements.txt",
+    "output": "Collecting transformers\n  Downloading transformers-4.46.0-py3-none-any.whl (10.2 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 15.2 MB/s eta 0:00:00\nCollecting torch\n  Downloading torch-2.4.0-cp39-cp39-linux_x86_64.whl (257.0 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 257.0/257.0 MB 50.1 MB/s eta 0:00:00\nCollecting click\n  Downloading click-8.1.7-py3-none-any.whl (97 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 97.4/97.4 kB 12.3 MB/s eta 0:00:00\nInstalling collected packages: click, torch, transformers\nSuccessfully installed click-8.1.7 torch-2.4.0 transformers-4.46.0\n"
+  },
+  {
+    "command": "python validate_model.py --help",
+    "output": "Usage: validate_model.py [OPTIONS]\n\n  Имя модели из Hugging Face Hub для проведения валидации.\n\nOptions:\n  --model-name TEXT  Имя модели из Hugging Face Hub для проведения валидации.\n                       [default: distilbert-base-uncased-finetuned-sst-2-english]\n"
+  },
+  {
+    "command": "python validate_model.py",
+    "output": "[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'...\n[+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПровожу испытание...: 100%|██████████| 10/10 [00:03<00:00,  3.20it/s]\n[+] Испытание завершено!\n\n--- Отчет о Силе Духа ---\nТочность модели: 90.00%\nВерных предсказаний: 9 из 10\n--------------------------\n"
+  },
+  {
+    "command": "python validate_model.py --model-name \"cardiffnlp/twitter-roberta-base-sentiment-latest\"",
+    "output": "[*] Призываю духа модели: 'cardiffnlp/twitter-roberta-base-sentiment-latest'...\nDownloading (…)okenizer_config.json: 100%|██████████| 181/181 [00:00<00:00, 181kB/s]\nDownloading (…)lve/main/config.json: 100%|██████████| 539/539 [00:00<00:00, 539kB/s]\nDownloading pytorch_model.bin: 100%|██████████| 499M/499M [00:12<00:00, 40.5MB/s]\nDownloading (…)neration_config.json: 100%|██████████| 242/242 [00:00<00:00, 242kB/s]\nDownloading (…)cial_tokens_map.json: 100%|██████████| 150/150 [00:00<00:00, 150kB/s]\nDownloading tokenizer.json: 100%|██████████| 899k/899k [00:00<00:00, 1.91MB/s]\nDownloading (…)okenizer/vocab.json: 100%|██████████| 736k/736k [00:00<00:00, 1.56MB/s]\n[+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПровожу испытание...: 100%|██████████| 10/10 [00:04<00:00,  2.50it/s]\n[+] Испытание завершено!\n\n--- Отчет о Силе Духа ---\nТочность модели: 0.00%\nВерных предсказаний: 0 из 10\n--------------------------\n",
+    "is_final": true
+  }
+]
