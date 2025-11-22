@@ -1964,7 +1964,8 @@ _Техническая цель: Освоить фундаментальные 
     gcloud init
     ```
 
-4. **Привязка "Кошелька" к Проекту:**
+4.  **Привязка "Кошелька" к Проекту:**
+
 - Узнай ID своего платежного аккаунта:
   ```bash
   gcloud billing accounts list
@@ -1975,6 +1976,7 @@ _Техническая цель: Освоить фундаментальные 
   ```
 
 5.  **Возведение Цитадели (Создание Бакета):**
+
     ```bash
     # Замени 'codex-dvc-storage-XXXXX' на свое глобально уникальное имя.
     gsutil mb -c STANDARD -l europe-west3 -b on gs://codex-dvc-storage-XXXXX
@@ -2444,6 +2446,7 @@ CLI-инструменты — это рабочие лошадки AI-инже�
 2.  **Активация API:**
     - Активируйте API: `Artifact Registry API`, `Cloud Run Admin API`, `IAM Service Account Credentials API`.
     - Выполните команды, подставив свой `PROJECT_ID`.
+
     ```bash
     gcloud services enable artifactregistry.googleapis.com --project="YOUR_PROJECT_ID"
     gcloud services enable run.googleapis.com --project="YOUR_PROJECT_ID"
@@ -2453,6 +2456,7 @@ CLI-инструменты — это рабочие лошадки AI-инже�
 3.  **Создание ресурсов:**
     - Создайте Docker репозиторий `codex-golems` и Service Account `github-actions-sa`.
     - Выполните команды, подставив свой `PROJECT_ID`.
+
     ```bash
     gcloud artifacts repositories create codex-golems \
         --repository-format=docker \

@@ -9,14 +9,14 @@ on:
     branches: [main]
     # Условие: событие 'push' должно затронуть файлы внутри директории этого Квеста (32.2).
     paths:
-      - 'Part_4_Engineering/Scroll_32/Quest_2/**'
+      - "Part_4_Engineering/Scroll_32/Quest_2/**"
 
 # Секция, определяющая разрешения, которые выдаются временному токену GITHUB_TOKEN.
 permissions:
   # Разрешение на чтение содержимого репозитория (необходимо для actions/checkout).
-  contents: 'read'
+  contents: "read"
   # Разрешение на запрос OIDC JWT токена (критически важно для Workload Identity Federation).
-  id-token: 'write'
+  id-token: "write"
 
 # Секция, определяющая список заданий (jobs).
 jobs:
@@ -40,7 +40,7 @@ jobs:
         run: |
           # Первое заклинание телеметрии: мы просим Духа Кузницы показать нам ее первоначальное состояние.
           echo "Initial disk space:"
-          # Руна 'df -h' — это заклинание Истинного Зрения, показывающее, 
+          # Руна 'df -h' — это заклинание Истинного Зрения, показывающее,
           # сколько эфира (места) доступно до начала ритуала.
           df -h
 
@@ -48,17 +48,17 @@ jobs:
           # Заклинание 'rm -rf' — это мощнейший обряд необратимого изгнания сущности.
           # Цель: чуждый нам артефакт '.NET', обитающий в '/usr/share/dotnet'.
           sudo rm -rf /usr/share/dotnet
-          
+
           # Следующее изгнание направлено на руническую вязь 'Haskell', скрывающуюся в '/opt/ghc'.
           sudo rm -rf /opt/ghc
-          
+
           # Третье изгнание изгоняет древние, но тяжелые библиотеки 'Boost' из '/usr/local/share/boost'.
           sudo rm -rf /usr/local/share/boost
-          
+
           # Финальное, самое могущественное изгнание: мы очищаем весь сундук с инструментами самого Стража-Агента.
           # Переменная '$AGENT_TOOLSDIRECTORY' указывает на его тайник '/opt/hostedtoolcache'.
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-          
+
           # Второе заклинание телеметрии: мы вновь взываем к Духу Кузницы, чтобы узреть результат наших трудов.
           echo "Disk space after cleanup:"
           # Повторное применение руны 'df -h', чтобы замерить, сколько эфира (места) было освобождено нашей магией.
@@ -110,7 +110,7 @@ jobs:
         # Начало блока параметров.
         with:
           # Явный приказ сгенерировать OAuth2 access_token.
-          token_format: 'access_token'
+          token_format: "access_token"
           # Указываем путь к нашему WIF провайдеру, используя секрет.
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           # Указываем email сервисного аккаунта для "изображения", используя секрет.
@@ -123,11 +123,11 @@ jobs:
         # Начало блока параметров.
         with:
           # Указываем точный адрес реестра Docker в Artifact Registry.
-          registry: 'europe-west3-docker.pkg.dev'
+          registry: "europe-west3-docker.pkg.dev"
           # Специальное имя пользователя для аутентификации с помощью OAuth2 токена.
-          username: 'oauth2accesstoken'
+          username: "oauth2accesstoken"
           # В качестве пароля передаем access_token, сгенерированный на шаге 'auth'.
-          password: '${{ steps.auth.outputs.access_token }}'
+          password: "${{ steps.auth.outputs.access_token }}"
 
       # Имя седьмого шага.
       - name: Build and Push Docker Image
@@ -140,4 +140,4 @@ jobs:
           # 'push: true' приказывает действию отправить образ в реестр после сборки.
           push: true
           # 'tags' определяет имя и тег для собранного образа, используя project_id из шага 'auth' и хеш коммита.
-          tags: 'europe-west3-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-golems/amulet-telemetry:${{ github.sha }}'
+          tags: "europe-west3-docker.pkg.dev/${{ steps.auth.outputs.project_id }}/codex-golems/amulet-telemetry:${{ github.sha }}"

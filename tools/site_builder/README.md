@@ -28,13 +28,13 @@ python -m http.server 8000 --directory tools/site_builder/static
 Этот шаг обновляет симуляции терминала на основе твоих изменений в коде.
 
 1.  **Подготовка (единоразово после форка):**
-    -   Создай аккаунт на [OpenRouter.ai](https://openrouter.ai/) и получи API ключ.
-    -   **Важно:** Чтобы использовать бесплатные модели, тебе потребуется "активировать кошелек", пополнив баланс на минимальную сумму (обычно $5). Деньги за модели с суффиксом `:free` списываться не будут.
-    -   Создай файл `tools/site_builder/.env` и вставь в него свой ключ: `OPENROUTER_API_KEY="sk-or-..."`.
-    -   Установи необходимые гримуары:
-        ```bash
-        pip install openai python-dotenv
-        ```
+    - Создай аккаунт на [OpenRouter.ai](https://openrouter.ai/) и получи API ключ.
+    - **Важно:** Чтобы использовать бесплатные модели, тебе потребуется "активировать кошелек", пополнив баланс на минимальную сумму (обычно $5). Деньги за модели с суффиксом `:free` списываться не будут.
+    - Создай файл `tools/site_builder/.env` и вставь в него свой ключ: `OPENROUTER_API_KEY="sk-or-..."`.
+    - Установи необходимые гримуары:
+      ```bash
+      pip install openai python-dotenv
+      ```
 
 2.  **Запуск AI-генератора:**
     ```bash
@@ -48,6 +48,7 @@ python -m http.server 8000 --directory tools/site_builder/static
 ```bash
 python tools/site_builder/generate.py
 ```
+
 После этого твой локальный сайт (`http://localhost:8000`) будет содержать все последние изменения.
 
 ---
@@ -73,6 +74,7 @@ python tools/site_builder/generate.py
 
 1.  **Убедись, что все работает локально** после "Великой Пересборки".
 2.  Зафиксируй все изменения (включая обновленные `scenario.json` и файлы в `static/`) и отправь их в свой репозиторий.
+
     ```bash
     git add .
     git commit -m "feat: Обновил содержание Гримуара"
@@ -80,9 +82,9 @@ python tools/site_builder/generate.py
     ```
 
 3.  **Активируй магию GitHub Pages (единоразово):**
-    -   Перейди в настройки своего репозитория: `Settings` -> `Pages`.
-    -   В разделе `Build and deployment` выбери:
-        -   **Source:** `GitHub Actions`.
-    -   Готово. Кодекс уже содержит правильное заклинание в `.github/workflows/deploy-pages.yml`.
+    - Перейди в настройки своего репозитория: `Settings` -> `Pages`.
+    - В разделе `Build and deployment` выбери:
+      - **Source:** `GitHub Actions`.
+    - Готово. Кодекс уже содержит правильное заклинание в `.github/workflows/deploy-pages.yml`.
 
 После `git push` "Магический Страж" автоматически пробудится, соберет твой сайт из папки `static/` и опубликует его. Ссылка на твой Гримуар появится в настройках GitHub Pages через несколько минут.
