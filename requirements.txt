@@ -305,7 +305,7 @@ ultralytics==8.3.222
 ultralytics-thop==2.0.15
 uritemplate==4.2.0
 urllib3==2.5.0
-uvicorn==0.35.0
+uvicorn==0.38.0
 uvloop==0.21.0
 vine==5.1.0
 virtualenv==20.35.3
