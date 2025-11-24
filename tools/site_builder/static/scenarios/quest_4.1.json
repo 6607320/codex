@@ -1,11 +1,16 @@
-[
-  {
-    "command": "python create_video.py",
-    "output": "--- Ритуал Творения Кинопленки ---\nМагическая кинопленка 'test_video.mp4' создана успешно.\n"
+{
+  "_meta": {
+    "input_hash": "844773ae6706ee390135b7032032b67d"
   },
-  {
-    "command": "python quest_4_1.py",
-    "output": "--- Ритуал Деконструкции Кинопленки ---\nРитуал завершен. 10 кадров извлечено в папку 'frames'.\n",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "python create_video.py",
+      "output": "--- Ритуал Творения Кинопленки ---\nМагическая кинопленка 'test_video.mp4' создана успешно.\n"
+    },
+    {
+      "command": "python quest_4_1.py",
+      "output": "--- Ритуал Деконструкции Кинопленки ---\nРитуал завершен. 10 кадров извлечено в папку 'frames'.\n",
+      "is_final": true
+    }
+  ]
+}

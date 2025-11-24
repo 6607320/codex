@@ -87,6 +87,18 @@ function renderQuestView(quest) {
             <div class="col col-manifest"><div class="col-header">📦 МАНИФЕСТ</div><div class="scroll-content markdown-body">${quest.manifest}</div></div>
         </div>`;
 
+  // === ВСТАВИТЬ ЭТОТ БЛОК СЮДА ===
+  // Находим все ссылки внутри Легенды и Манифеста
+  const links = app.querySelectorAll(".markdown-body a");
+  links.forEach((link) => {
+    // Если ссылка внешняя (начинается с http), открываем в новой вкладке
+    if (link.href.startsWith("http")) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer"; // Правило безопасности
+    }
+  });
+  // ===============================
+
   // Передаем весь объект questData в initTerminalLogic
   initTerminalLogic(quest);
 }
@@ -107,7 +119,20 @@ function initTerminalLogic(quest) {
       const cmd = input.value.trim();
       if (cmd === "") return;
 
-      output.innerHTML += `<div><span class="prompt">mage@codex:~$</span> ${cmd}</div>`;
+      // Создаем новую строку-контейнер
+      const line = document.createElement("div");
+
+      // Создаем спан для промпта
+      const promptSpan = document.createElement("span");
+      promptSpan.className = "prompt";
+      promptSpan.textContent = "mage@codex:~$";
+
+      // Собираем строку: сначала промпт, потом текст команды
+      line.appendChild(promptSpan);
+      line.appendChild(document.createTextNode(` ${cmd}`));
+
+      // Безопасно добавляем строку в вывод терминала
+      output.appendChild(line);
       input.value = "";
       input.disabled = true; // Блокируем ввод, пока идет "печать"
 

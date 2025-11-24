@@ -12,7 +12,6 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "static")
 QUESTS_DIR = os.path.join(OUTPUT_DIR, "quests")
 INDEX_FILE = os.path.join(OUTPUT_DIR, "index.json")
 CACHE_FILE = os.path.join(OUTPUT_DIR, "build_cache.json")
-# --- ВОТ СТРОКА, КОТОРОЙ НЕ ХВАТАЛО ---
 SCENARIOS_DIR = os.path.join(SCRIPT_DIR, "static", "scenarios")
 
 print(f"📂 Корень проекта: {PROJECT_ROOT}")
@@ -149,10 +148,23 @@ def build():
                 )
                 quest["status"] = "active"
 
+        # === ИЗМЕНЕНИЕ: Поддержка нового формата сценариев с _meta ===
         scenario_file = os.path.join(SCENARIOS_DIR, f"quest_{q_id}.json")
         if os.path.exists(scenario_file):
-            with open(scenario_file, "r", encoding="utf-8") as f:
-                scenario_data = json.load(f)
+            try:
+                with open(scenario_file, "r", encoding="utf-8") as f:
+                    raw_scenario = json.load(f)
+
+                    # Если это новый формат с метаданными
+                    if isinstance(raw_scenario, dict) and "scenario" in raw_scenario:
+                        scenario_data = raw_scenario["scenario"]
+                    # Если это старый формат (просто список)
+                    elif isinstance(raw_scenario, list):
+                        scenario_data = raw_scenario
+            except Exception:
+                print(f"⚠️ Ошибка чтения сценария для {q_id}")
+                scenario_data = []
+        # =============================================================
 
         data_to_hash = (
             quest["title"]

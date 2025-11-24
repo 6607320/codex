@@ -1,7 +1,12 @@
-[
-  {
-    "command": "python quest_1_6.py",
-    "output": "Снова призываю Духа-Сказителя...\nНачало истории (на языке Духа): In the arcane workshop, the technomancer leaned over the glowing terminal...\n\n...Дух-Сказитель, поняв нас, продолжает:\nIn the arcane workshop, the technomancer leaned over the glowing terminal, his fingers dancing across the keys like sparks of lightning. Ancient runes materialized on the screen, pulsing with ethereal light. The air crackled with magic as digital spirits awakened, ready to weave tales from code and shadow.",
-    "is_final": true
-  }
-]
+{
+  "_meta": {
+    "input_hash": "8ba384536f46093b795694fe18eaac0b"
+  },
+  "scenario": [
+    {
+      "command": "python quest_1_6.py",
+      "output": "Снова призываю Духа-Сказителя...\nНачало истории (на языке Духа): In the arcane workshop, the technomancer leaned over the glowing terminal...\n\n...Дух-Сказитель, поняв нас, продолжает:\nIn the arcane workshop, the technomancer leaned over the glowing terminal, his fingers dancing across the keys. Ancient runes flickered to life on the screen, summoning spirits from the digital ether. The air hummed with magic as a portal to new worlds began to open.",
+      "is_final": true
+    }
+  ]
+}

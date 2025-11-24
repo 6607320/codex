@@ -1,7 +1,12 @@
-[
-  {
-    "command": "python quest_8_1.py",
-    "output": "Открываю кинопленку 'test_video.mp4' для прореживания...\n\nРитуал завершен.\n  Всего прочитано кадров: 10\n  Сохранено (каждый 3-й): 3 кадров в папку 'sampled_frames'.",
-    "is_final": true
-  }
-]
+{
+  "_meta": {
+    "input_hash": "24dfddac5285be92732e0300c26d44cf"
+  },
+  "scenario": [
+    {
+      "command": "python quest_8_1.py",
+      "output": "Открываю кинопленку 'test_video.mp4' для прореживания...\n\nРитуал завершен.\n  Всего прочитано кадров: 10\n  Сохранено (каждый 3-й): 3 кадров в папку 'sampled_frames'.",
+      "is_final": true
+    }
+  ]
+}

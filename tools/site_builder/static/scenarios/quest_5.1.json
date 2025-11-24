@@ -1,11 +1,16 @@
-[
-  {
-    "command": "pip install \"datasets<2.0.0\"",
-    "output": "Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com\nCollecting datasets<2.0.0\n  Downloading datasets-1.18.4-py3-none-any.whl (435 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 435.8/435.8 kB 1.8 MB/s eta 0:00:00\nRequirement already satisfied: pyyaml>=5.1 in /usr/local/lib/python3.10/dist-packages (from datasets<2.0.0) (6.0.1)\n...\nInstalling collected packages: datasets\n  Attempting uninstall: datasets\n    Found existing installation: datasets 2.21.0\n    Uninstalling datasets-2.21.0:\n      Successfully uninstalled datasets-2.21.0\nSuccessfully installed datasets-1.18.4"
+{
+  "_meta": {
+    "input_hash": "1c0525522695e8df4386245c0371593a"
   },
-  {
-    "command": "python quest_5_1.py",
-    "output": "Открываю портал к архиву 'databricks/databricks-dolly-15k'...\n\nИзвлекаю 100 страниц для нашего урока...\nУспешно извлечено 100 записей.\n\nСмотрим на первую страницу нашего учебного свитка:\n  Инструкция (вопрос):\n    Why is the sky blue?\n\n  Контекст (доп. информация):\n    \n\n  Ответ (чему мы будем учить Голема):\n    The sky appears blue because of a phenomenon known as Rayleigh scattering. Sunlight, which appears white to our eyes, is actually composed of many colors of light. When sunlight passes through Earth's atmosphere, the shorter wavelengths of light (violet and blue) are scattered in all directions by the nitrogen and oxygen molecules in the air. Since our eyes are more sensitive to blue light than violet light, and since some of the violet light is absorbed by the upper atmosphere, we perceive the scattered light as blue.",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "pip install \"datasets<2.0.0\"",
+      "output": "Looking in indexes: https://pypi.org/simple\nCollecting datasets<2.0.0\n  Downloading datasets-1.18.4-py3-none-any.whl (126 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 126.8/126.8 kB 2.3 MB/s eta 0:00:00\nRequirement already satisfied: ... (other deps)\nInstalling collected packages: datasets\nSuccessfully installed datasets-1.18.4\n\nuser@host:~$ "
+    },
+    {
+      "command": "python quest_5_1.py",
+      "output": "Открываю портал к архиву 'databricks/databricks-dolly-15k'...\n\nИзвлекаю 100 страниц для нашего урока...\nУспешно извлечено 100 записей.\n\nСмотрим на первую страницу нашего учебного свитка:\n  Инструкция (вопрос):\n    Act as a travel agent and suggest 3 vacation spots that are great for a couple looking to relax and enjoy nature.\n\n  Контекст (доп. информация):\n    None\n\n  Ответ (чему мы будем учить Голема):\n    1. Santorini, Greece - Known for its stunning sunsets, beautiful beaches, and luxurious resorts. Perfect for couples seeking romance and relaxation.\n\n2. Bora Bora, French Polynesia - Famous for its crystal-clear waters, overwater bungalows, and vibrant marine life. Ideal for honeymooners and nature lovers.\n\n3. Amalfi Coast, Italy - Offers breathtaking coastal views, charming villages, and delicious cuisine. Great for couples who enjoy scenic drives and fine dining.\nuser@host:~$ ",
+      "is_final": true
+    }
+  ]
+}

@@ -1,15 +1,20 @@
-[
-  {
-    "command": "git add .",
-    "output": "\npilgrim@citadel:~/gildia$ "
+{
+  "_meta": {
+    "input_hash": "d0cbb55293f15bfd3604f83cbebbce82"
   },
-  {
-    "command": "git commit --no-verify -m \"feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\"",
-    "output": "[main e5f67890] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n\npilgrim@citadel:~/gildia$ "
-  },
-  {
-    "command": "git push",
-    "output": "Enumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (2/2), done.\nWriting objects: 100% (3/3), 289 bytes | 289.00 KiB/s, done.\nTotal 3 (delta 1), reused 0 (delta 0), pack-reused 0\nTo https://github.com/pilgrim/gildia.git\n   d1e2f3g4..e5f67890  main -> main\n\npilgrim@citadel:~/gildia$ ",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "git add .",
+      "output": "user@citadel:~/gildia$ "
+    },
+    {
+      "command": "git commit --no-verify -m \"feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\"",
+      "output": "[main a1b2c3d] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n\nuser@citadel:~/gildia$ "
+    },
+    {
+      "command": "git push",
+      "output": "Enumerating objects: 7, done.\nCounting objects: 100% (7/7), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (4/4), done.\nWriting objects: 100% (4/4), 523 bytes | 523.00 KiB/s, done.\nTotal 4 (delta 1), reused 3 (delta 1), pack-reused 0\nTo https://github.com/gildia/citadel.git\n   f0e1d2c3b..a1b2c3d  main -> main",
+      "is_final": true
+    }
+  ]
+}

@@ -1,39 +1,44 @@
-[
-  {
-    "command": "sudo snap install google-cloud-cli --classic",
-    "output": "google-cloud-cli classic from Google Cloud CLI(snapcraft) installed\nuser@ubuntu:~/dvc-project$ "
+{
+  "_meta": {
+    "input_hash": "51f8b6561309fe64258348fe235ca403"
   },
-  {
-    "command": "gcloud init",
-    "output": "Welcome! This command will do several things: ...\n\nTo continue, you must login...\nGo to [browser url] to login.\n\nYou are logged in as user@example.com.\n\nPick cloud project to use: [list]\n1: dvc-codex-project\nYour current project is 'dvc-codex-project'.\n\nCreated a default .boto configuration file at ~/.boto\nuser@ubuntu:~/dvc-project$ "
-  },
-  {
-    "command": "gcloud billing accounts list",
-    "output": "NAME                  PROJECTS     OPEN   ID\nPrimary Billing       []           Yes    012345-6789AB-CDEF01\nuser@ubuntu:~/dvc-project$ "
-  },
-  {
-    "command": "gcloud billing projects link dvc-codex-project --billing-account=012345-6789AB-CDEF01",
-    "output": "Updated project billing account to '012345-6789AB-CDEF01'.\nuser@ubuntu:~/dvc-project$ "
-  },
-  {
-    "command": "gsutil mb -c STANDARD -l europe-west3 -b on gs://codex-dvc-storage-quest123",
-    "output": "Creating gs://codex-dvc-storage-quest123/...\nServiceException: 409 Bucket already exists. (or success message)\nCreating gs://codex-dvc-storage-quest123/... Done.\nuser@ubuntu:~/dvc-project$ "
-  },
-  {
-    "command": "gcloud auth application-default login",
-    "output": "Go to [browser url] to login.\nCredentials saved to ~/.config/gcloud/application_default_credentials.json\nThese credentials will be used by any library that requests Application Default Credentials (ADC).\nuser@ubuntu:~/dvc-project$ "
-  },
-  {
-    "command": "pip install \"dvc[gs]\"",
-    "output": "Collecting dvc[gs]\n...\nSuccessfully installed dvc-3.XX.X google-cloud-storage-2.XX.X ...\nuser@ubuntu:~/dvc-project$ "
-  },
-  {
-    "command": "dvc remote add -d gsremote gs://codex-dvc-storage-quest123/artifacts",
-    "output": "Remote 'gsremote' added to .dvc/config\nuser@ubuntu:~/dvc-project$ "
-  },
-  {
-    "command": "dvc push",
-    "output": "Pushing /path/to/model.dvc to remote 'gsremote'\nPushing /path/to/data.dvc to remote 'gsremote'\n...\n3 files pushed\nuser@ubuntu:~/dvc-project$ ",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "sudo snap install google-cloud-cli --classic",
+      "output": "google-cloud 469.0.0 from Google Cloud·classic installed\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "gcloud init",
+      "output": "Welcome to Google Cloud CLI!\n\nYour current project is [none].\nDo you want to configure a default Compute Region and Zone? (Y/n)?  n\n\nChoose a configuration: 1. Create a new configuration 2. Re-open existing configuration\nYour choice?  1\n\nPick cloud project to use: [list]\nWhich project?  dvc-codex-project\n\nYour Google Cloud CLI is currently configured to use [default] account. Please authorize this account:\nGo to [https://accounts.google.com/o/oauth2/auth?...]\nPlease authorize this client by pasting the code: 4/xxxx\n\nGoogle Cloud CLI has successfully authenticated.\n\nConfiguration completed.\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "gcloud billing accounts list",
+      "output": "NAME: billingAccounts/012345-6789AB-CDEF01\nDISPLAY_NAME: My Billing Account\nOPEN: true\nPROJECTS: []\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "gcloud billing projects link dvc-codex-project --billing-account=012345-6789AB-CDEF01",
+      "output": "Updated project billing info for 'dvc-codex-project'.\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "gsutil mb -c STANDARD -l europe-west3 -b on gs://codex-dvc-storage-12345",
+      "output": "Creating gs://codex-dvc-storage-12345/ in 'europe-west3'...\nServiceException: 409 Bucket already exists. (or success message)\nCreation succeeded.\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "gcloud auth application-default login",
+      "output": "Credentials saved to /home/user/.config/gcloud/application_default_credentials.json\nThese credentials will be used automatically by Google Cloud Client Libraries\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "pip install \"dvc[gs]\"",
+      "output": "Collecting dvc[gs]\n  Downloading dvc-3.51.0-py3-none-any.whl (...)\nCollecting google-cloud-storage>=1.0.0\n  Downloading google_cloud_storage-2.16.0-py2.py3-none-any.whl (...)\nSuccessfully installed dvc-3.51.0 google-cloud-storage-2.16.0 fsspec-2024.6.1 gcsfs-2024.6.0\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "dvc remote add -d gsremote gs://codex-dvc-storage-12345/artifacts",
+      "output": "Remote 'gsremote' added to '/home/user/project/.dvc/config' as default remote.\nuser@ubuntu:~$ "
+    },
+    {
+      "command": "dvc push",
+      "output": "Pushing /home/user/project/.dvc/cache/abc123/info, to remote 'gsremote'\nPushing /home/user/project/.dvc/cache/def456/info, to remote 'gsremote'\nPushing /home/user/project/.dvc/cache/ghi789/info, to remote 'gsremote'\n3 files pushed\nuser@ubuntu:~$ ",
+      "is_final": true
+    }
+  ]
+}

@@ -7,11 +7,11 @@
   "scenario": [
     {
       "command": "pip install librosa",
-      "output": "Collecting librosa\nDownloading librosa... done\nSuccessfully installed librosa-0.10.1"
+      "output": "Collecting librosa\n  Downloading librosa-0.10.1-py3-none-any.whl (237 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 237.0/237.0 kB 2.1 MB/s eta 0:00:00\nCollecting soundfile~=0.12.1 (from librosa)\n  Downloading soundfile-0.12.1-cp310-cp310-linux_x86_64.whl (26 kB)\nCollecting pooch>=1.0 (from librosa)\n  Downloading pooch-1.8.1-py3-none-any.whl (61 kB)\n...\nSuccessfully installed audioread-3.0.1 decorator-5.1.1 joblib-1.4.2 librosa-0.10.1 llvmlite-0.42.0 numba-0.59.1 pooch-1.8.1 soundfile-0.12.1 soxr-0.3.7 typing-extensions-4.12.2\n"
     },
     {
       "command": "python quest_2_2.py",
-      "output": "Обращаюсь к древнему, проверенному архиву 'librispeech_asr'...\nDownloading builder script... 100%|██████████| 5.20k/5.20k [00:00<00:00, 2.1MB/s]\nDownloading metadata... 100%|██████████| 3.16k/3.16k [00:00<00:00, 1.5MB/s]\nAудио-послание успешно призвано!\n\nПризываю 'Ухо Всеслышания'...\nDownloading config.json: 100%|██████████| 1.98k/1.98k [00:00<00:00, 980kB/s]\nDownloading model.safetensors: 100%|██████████| 151M/151M [00:03<00:00, 45.2MB/s]\nDownloading tokenizer.json: 100%|██████████| 2.20M/2.20M [00:00<00:00, 5.1MB/s]\n\nГотовлюсь расшифровать послание...\n\nРасшифрованное послание:\n CONCORD RETURNED TO ITS PLACE AND HOPE WAS REKINDLED IN THE HEARTS OF THE PEOPLE",
+      "output": "Обращаюсь к древнему, проверенному архиву 'librispeech_asr'...\nАудио-послание успешно призвано!\n\nПризываю 'Ухо Всеслышания'...\nNo model found. You need to specify a model identifier on the hub or download a model on your local disk.\nDownloading config.json: 100% 1.64k/1.64k [00:00<00:00, 14.5kB/s]\nDownloading model.safetensors: 100% 48.3M/48.3M [00:01<00:00, 45.2MB/s]\nDownloading tokenizer.json: 100% 466k/466k [00:00<00:00, 3.2MB/s]\nDownloading preprocessor_config.json: 100% 161/161 [00:00<00:00, 2.1kB/s]\n\nГотовлюсь расшифровать послание...\n\nРасшифрованное послание:\nCONCORD RETURNED TO ITS PLACE AND HOPE WAS REKINDLED IN THE HEARTS OF THE PEOPLE",
       "is_final": true
     }
   ]

@@ -1,15 +1,20 @@
-[
-  {
-    "command": "pip install mlflow",
-    "output": "Collecting mlflow\n  Downloading mlflow-2.10.0-py3-none-any.whl (950 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 950.1/950.1 kB 5.2 MB/s eta 0:00:00\nCollecting alembic<2 (from mlflow)\n  Downloading alembic-1.13.2-py3-none-any.whl (184 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.0/184.0 kB 8.1 MB/s eta 0:00:00\n... (additional dependencies installed)\nSuccessfully installed alembic-1.13.2 mlflow-2.10.0 ... (other packages)"
+{
+  "_meta": {
+    "input_hash": "df0e87689030adb4952e1f60bbae5232"
   },
-  {
-    "command": "python quest_16_1.py",
-    "output": "Магический 'Хронограф' (MLflow) настроен.\nВсе записи будут сохраняться в эксперимент: 'Первый Свиток Хроник'\n\nНачинаю 'Пробный Ритуал' и делаю записи в журнал...\nВсе записи сделаны, артефакты сохранены.\n\nРитуал завершен!\n\nЧтобы увидеть свои хроники, останови этот скрипт (если он не остановился сам),\nи в ЭТОМ ЖЕ терминале произнеси заклинание:\nmlflow ui\n\nЗатем открой в браузере адрес, который он тебе покажет (обычно http://12.0.0.1:5000)."
-  },
-  {
-    "command": "mlflow ui",
-    "output": "[2024-10-01 12:34:56.789 INFO] Your MLflow tracking server is running at http://127.0.0.1:5000\n[2024-10-01 12:34:56.790 INFO] To open the MLflow UI in your browser, run:\n\n  $ open http://127.0.0.1:5000\n\n[2024-10-01 12:34:56.791 INFO] Or, in a different terminal: mlflow ui --host 0.0.0.0 --port 5000\n[2024-10-01 12:34:56.792 INFO] Found 1 active runs for experiment 'Первый Свиток Хроник' in ./mlruns",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "pip install mlflow",
+      "output": "Collecting mlflow\n  Downloading mlflow-2.9.2-py3-none-any.whl.metadata (6.3 kB)\nCollecting alembic>=1.5.0 (from mlflow)\n  Downloading alembic-1.13.1-py3-none-any.whl.metadata (8.0 kB)\nCollecting click>=7.0 (from mlflow)\n  Using cached click-8.1.7-py3-none-any.whl.metadata (3.0 kB)\n... (additional dependencies)\nInstalling collected packages: mlflow, alembic, click, ... (many more)\nSuccessfully installed alembic-1.13.1 click-8.1.7 ... mlflow-2.9.2"
+    },
+    {
+      "command": "python quest_16_1.py",
+      "output": "Магический 'Хронограф' (MLflow) настроен.\nВсе записи будут сохраняться в эксперимент: 'Первый Свиток Хроник'\n\nНачинаю 'Пробный Ритуал' и делаю записи в журнал...\nВсе записи сделаны, артефакты сохранены.\n\nРитуал завершен!\n\nЧтобы увидеть свои хроники, останови этот скрипт (если он не остановился сам),\nи в ЭТОМ ЖЕ терминале произнеси заклинание:\nmlflow ui\n\nЗатем открой в браузере адрес, который он тебе покажет (обычно http://12.0.0.1:5000)."
+    },
+    {
+      "command": "mlflow ui",
+      "output": "[2024-10-01 12:34:56 +0000] [29529] [INFO] Starting gunicorn 21.2.0\n[2024-10-01 12:34:56 +0000] [29529] [INFO] Listening at: http://127.0.0.1:5000 (29529)\n[2024-10-01 12:34:56 +0000] [29529] [INFO] Using worker: sync\n[2024-10-01 12:34:56 +0000] [29529] [INFO] Booting worker with pid: 29530\n",
+      "is_final": true
+    }
+  ]
+}

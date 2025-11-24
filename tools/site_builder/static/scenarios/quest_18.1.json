@@ -1,11 +1,16 @@
-[
-  {
-    "command": "pip install yolov5",
-    "output": "Collecting yolov5\n  Downloading yolov5-7.0.13-py3-none-any.whl (474 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 474.2/474.2 kB 2.1 MB/s eta 0:00:00\nInstalling collected packages: yolov5\nSuccessfully installed yolov5-7.0.13\n"
+{
+  "_meta": {
+    "input_hash": "ba38d0944d9692c83e85a3505ec50465"
   },
-  {
-    "command": "python quest_18_1.py",
-    "output": "Пробуждаю 'Сторожевую Химеру' (YOLOv5)...\nYOLOv5 🚀 v7.0-306 Python-3.10.12 torch-2.1.0 CUDA:0 (NVIDIA GeForce RTX 3080 10GB)\n\nПодключаюсь к 'Магической Кинопленке'...\n\nНачинаю 'Слепую Охоту'...\nОхота на кинопленке: 100%|██████████| 10/10 [00:08<00:00,  1.20it/s]\n\nРитуал завершен. 10 помеченных кадров сохранено в папку 'hunt_results'.",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "pip install yolov5",
+      "output": "Looking in indexes: https://pypi.org/simple/\nCollecting yolov5\n  Cloning https://github.com/ultralytics/yolov5 (to revision master) from https://github.com/ultralytics/yolov5.git\n  Running command git clone -q https://github.com/ultralytics/yolov5.git /tmp/pip-req-build-xyz123\n  Resolved https://github.com/ultralytics/yolov5.git to commit 4a689f1d5b\n  Installing build dependencies ... done\n  Getting requirements to build wheel ... done\n  Preparing metadata (pyproject.toml) ... done\nBuilding wheels for collected packages: yolov5\n  Building wheel for yolov5 (pyproject.toml) ... done\n  Created wheel for yolov5: filename=yolov5-7.0.13-py3-none-any.whl size=12345 sha256=abc\nSuccessfully built yolov5\nInstalling collected packages: yolov5\nSuccessfully installed yolov5-7.0.13"
+    },
+    {
+      "command": "python quest_18_1.py",
+      "output": "Пробуждаю 'Сторожевую Химеру' (YOLOv5)...\nYOLOv5 🚀 v7.0-294 Python-3.10.12 torch-2.1.0+cu121 CUDA:0 (NVIDIA GeForce RTX 3080 10GB)\nFusing layers ... \nModel summary: 219 layers, 1815213 parameters, 1815213 gradients, 4.8 GFLOPs\nХимера пробудилась и готова к охоте!\n\nПодключаюсь к 'Магической Кинопленке'...\nНачинаю 'Слепую Охоту'...\nОхота на кинопленке: 100%|██████████| 10/10 [00:02<00:00,  4.12it/s]\n\nРитуал завершен. 10 помеченных кадров сохранено в папку 'hunt_results'.",
+      "is_final": true
+    }
+  ]
+}

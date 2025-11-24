@@ -1,11 +1,16 @@
-[
-  {
-    "command": "conda create -n arcane_circle python=3.10 -y",
-    "output": "Channels:\n  - defaults\n  - conda-forge\nPlatform: linux-64\nCollecting package metadata (repodata.json): done\nSolving environment: done\n\n## Package Plan ##\n\n  environment location: /miniconda3/envs/arcane_circle\n  added / updated specs:\n    - python=3.10\n\nThe following NEW packages will be INSTALLED:\n\n  libffi                  conda-forge/linux-64::libffi-3.4.4-h6a678d5_0\n  openssl                 conda-forge/linux-64::openssl-3.0.10-h7f8727e_2\n  pip                     conda-forge/linux-64::pip-23.3.1-py310h06a4308_0\n  python                  conda-forge/linux-64::python-3.10.13-h955c1b5_0\n  setuptools              conda-forge/linux-64::setuptools-68.1.2-py310h06a4308_0\n  wheel                   conda-forge/noarch::wheel-0.41.2-py311-0\n  ... (more packages)\n\nDownloading and Extracting Packages\n\npython-3.10.13    | 18.6 MB   | ########## | 100%\npip-23.3.1        | 2.8 MB    | ########## | 100%\n...\n\nPreparing transaction: done\nVerifying transaction: done\nExecuting transaction: done\n\n# To activate this environment, use\n#\n#     $ conda activate arcane_circle\n#\n# To deactivate, use\n#\n#     $ conda deactivate\n#\n\nuser@host:~$ "
+{
+  "_meta": {
+    "input_hash": "b621b6987a2d44e8a1b732befe450900"
   },
-  {
-    "command": "conda activate arcane_circle",
-    "output": "(arcane_circle) user@host:~$ ",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "conda create -n arcane_circle python=3.10 -y",
+      "output": "Channels:\n  - conda-forge\n  - defaults\nPlatform: linux-64\nCollecting package metadata (current_repodata.json): done\nSolving environment: done\n\n## Package Plan ##\n\n  environment location: /opt/conda/envs/arcane_circle\n  added / updated specs:\n    - python=3.10\n\nThe following NEW packages will be INSTALLED:\n\n  python_abi           3.10-4_cpython   conda-forge\n  python               3.10.14-hd12c33a_0_cpython conda-forge\n  ...\n\nPreparing transaction: done\nVerifying transaction: done\nExecuting transaction: done\n\n# To activate this environment, use\n#\n#     $ conda activate arcane_circle\n#\n# To deactivate, use\n#\n#     $ conda deactivate\n\nuser@workshop:~$ "
+    },
+    {
+      "command": "conda activate arcane_circle",
+      "output": "(arcane_circle) user@workshop:~$ ",
+      "is_final": true
+    }
+  ]
+}

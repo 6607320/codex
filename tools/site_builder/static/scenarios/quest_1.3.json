@@ -1,7 +1,12 @@
-[
-  {
-    "command": "python quest_1_3.py",
-    "output": "Призываю Духа Эмоций... Это может занять минуту.\n\nDownloading config.json: 100%|██████████| 629/629 [00:00<00:00, 1.2MB/s]\nDownloading model.safetensors: 100%|██████████| 268M/268M [00:03<00:00, 85.4MB/s]\nDownloading tokenizer_config.json: 100%|██████████| 48.0/48.0 [00:00<00:00, 48kB/s]\nDownloading vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.5MB/s]\n\nАнализирую фразу: 'Я готов к этому волшебному путешествию!'\n\nВердикт Духа:\n[{'label': 'POSITIVE', 'score': 0.9998}]",
-    "is_final": true
-  }
-]
+{
+  "_meta": {
+    "input_hash": "431901e44c68b994141a0f2e103b9a9d"
+  },
+  "scenario": [
+    {
+      "command": "python quest_1_3.py",
+      "output": "Призываю Духа Эмоций... Это может занять минуту.\nDownloading (…)okenizer_config.json: 100% 252/252 [00:00<00:00, 45.6kB/s]\nDownloading (…)lve/main/config.json: 100% 629/629 [00:00<00:00, 112kB/s]\nDownloading (…)neration_config.json: 100% 134/134 [00:00<00:00, 24.4kB/s]\nDownloading pytokenizer.json: 100% 438k/438k [00:00<00:00, 1.95MB/s]\nDownloading (…)cial_tokens_map.json: 100% 112/112 [00:00<00:00, 20.5kB/s]\nDownloading (…)okenizer/vocab.txt: 100% 232k/232k [00:00<00:00, 1.03MB/s]\nDownloading model.safetensors: 100% 268M/268M [00:05<00:00, 48.3MB/s]\nАнализирую фразу: 'Я готов к этому волшебному путешествию!'\nВердикт Духа:\n[{'label': 'POSITIVE', 'score': 0.9995}]",
+      "is_final": true
+    }
+  ]
+}

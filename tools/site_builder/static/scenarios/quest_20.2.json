@@ -1,11 +1,16 @@
-[
-  {
-    "command": "pip install scikit-learn",
-    "output": "Collecting scikit-learn\n  Downloading scikit_learn-1.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.1 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.1/12.1 MB 15.2 MB/s eta 0:00:00\nCollecting numpy>=1.19.5 (from scikit-learn)\n  Using cached numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.3 MB)\nCollecting scipy>=1.6.0 (from scikit-learn)\n  Downloading scipy-1.13.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (14.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.9/14.9 MB 20.1 MB/s eta 0:00:00\nCollecting joblib>=1.0.0 (from scikit-learn)\n  Using cached joblib-1.4.2-py3-none-any.whl (301 kB)\nCollecting threadpoolctl>=2.0.0 (from scikit-learn)\n  Using cached threadpoolctl-3.5.0-py3-none-any.whl (15 kB)\nInstalling collected packages: threadpoolctl, numpy, scipy, joblib, scikit-learn\nSuccessfully installed joblib-1.4.2 numpy-1.26.4 scikit-learn-1.5.0 scipy-1.13.0 threadpoolctl-3.5.0\n"
+{
+  "_meta": {
+    "input_hash": "605d5381ee273fb837d25fcf30fec328"
   },
-  {
-    "command": "python quest_20_2.py",
-    "output": "Магия будет вершиться на устройстве: cpu\nЗагружаем 'Летопись Времени' из прошлого квеста...\nЛетопись разделена на учебную и экзаменационную части.\nСозданы 'учебные карточки' для Оракула.\n\nНачинаем ритуал наставления Оракула на 150 эпох...\nЭпоха  25/150 | Ошибка: 0.15432012\nЭпоха  50/150 | Ошибка: 0.06789123\nЭпоха  75/150 | Ошибка: 0.02345678\nЭпоха 100/150 | Ошибка: 0.00891234\nЭпоха 125/150 | Ошибка: 0.00234567\nЭпоха 150/150 | Ошибка: 0.00056789\n...Наставление завершено.\n\nНачинаем экзамен...\n\nРезультаты экзамена сохранены в артефакт: oracle_prediction.png\n",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "pip install scikit-learn",
+      "output": "Collecting scikit-learn\n  Downloading scikit_learn-1.5.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.9/13.9 MB 10.0 MB/s eta 0:00:00\nCollecting numpy>=1.19.5\n  Downloading numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.0 MB)\nCollecting scipy>=1.6.0\n  Downloading scipy-1.14.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (43.0 MB)\nCollecting joblib>=1.2.0\n  Downloading joblib-1.4.2-py3-none-any.whl (301 kB)\nCollecting threadpoolctl>=2.0.0\n  Downloading threadpoolctl-3.5.0-py3-none-any.whl (20 kB)\nInstalling collected packages: threadpoolctl, numpy, joblib, scipy, scikit-learn\nSuccessfully installed joblib-1.4.2 numpy-1.26.4 scikit-learn-1.5.2 scipy-1.14.1 threadpoolctl-3.5.0\n"
+    },
+    {
+      "command": "python quest_20_2.py",
+      "output": "Магия будет вершиться на устройстве: cpu\nЗагружаем 'Летопись Времени' из прошлого квеста...\nЛетопись разделена на учебную и экзаменационную части.\nСозданы 'учебные карточки' для Оракула.\n\nНачинаем ритуал наставления Оракула на 150 эпох...\nЭпоха  25/150 | Ошибка: 0.04672891\nЭпоха  50/150 | Ошибка: 0.01345678\nЭпоха  75/150 | Ошибка: 0.00412345\nЭпоха 100/150 | Ошибка: 0.00109876\nЭпоха 125/150 | Ошибка: 0.00031234\nЭпоха 150/150 | Ошибка: 0.00007654\n...Наставление завершено.\n\nНачинаем экзамен...\n\nРезультаты экзамена сохранены в артефакт: oracle_prediction.png\n",
+      "is_final": true
+    }
+  ]
+}

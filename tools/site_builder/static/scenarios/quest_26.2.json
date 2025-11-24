@@ -1,27 +1,28 @@
-[
-  {
-    "command": "cd Part_4_Engineering/Scroll_26/Quest_2/",
-    "output": ""
+{
+  "_meta": {
+    "input_hash": "d1e66925065c4827ccce4cb18e07055a"
   },
-  {
-    "command": "pytest",
-    "output": "============================= test session starts ==============================\ncollected 2 items\n\ntest_arcane_math.py ..                                                           [100%]\n\n============================== 2 passed in 0.01s ===============================\n"
-  },
-  {
-    "command": "echo '# trigger' >> arcane_math.py",
-    "output": ""
-  },
-  {
-    "command": "git add .",
-    "output": ""
-  },
-  {
-    "command": "git commit -m \"feat(Scroll_26): Пробуждаю Стража с Оком Истины для Квеста 26.2\"",
-    "output": "[main f1a2b3c4] feat(Scroll_26): Пробуждаю Стража с Оком Истины для Квеста 26.2\n 1 file changed, 1 insertion(+)\n"
-  },
-  {
-    "command": "git push",
-    "output": "Enumerating objects: 7, done.\nCounting objects: 100% (7/7), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (4/4), done.\nWriting objects: 100% (4/4), 512 bytes | 512.00 KiB/s, done.\nTotal 4 (delta 1), reused 0 (delta 0), pack-reused 0\nTo https://github.com/user/repo.git\n   a1b2c3d..f1a2b3c  main -> main\n",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "pytest",
+      "output": "============================ test session starts =============================\nplatform linux -- Python 3.12.0, pytest-8.3.2, pluggy-1.5.0\nrootdir: /home/user/Part_4_Engineering/Scroll_26/Quest_2\ncollected 2 items\n\ntest_arcane_math.py ..                                                  [100%]\n\n============================== 2 passed in 0.01s ===============================\n"
+    },
+    {
+      "command": "echo '# trigger' >> arcane_math.py",
+      "output": ""
+    },
+    {
+      "command": "git add .",
+      "output": ""
+    },
+    {
+      "command": "git commit -m \"feat(Scroll_26): Пробуждаю Стража с Оком Истины для Квеста 26.2\"",
+      "output": "[main a1b2c3d4e5f6] feat(Scroll_26): Пробуждаю Стража с Оком Истины для Квеста 26.2\n 1 file changed, 1 insertion(+)\n"
+    },
+    {
+      "command": "git push",
+      "output": "Enumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 347 bytes | 347.00 KiB/s, done.\nTotal 3 (delta 2), reused 0 (delta 0), pack-reused 0\nTo https://github.com/yourusername/arcane-codex.git\n   e5f6789..a1b2c3d  main -> main\n",
+      "is_final": true
+    }
+  ]
+}

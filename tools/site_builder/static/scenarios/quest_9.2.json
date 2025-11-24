@@ -1,7 +1,12 @@
-[
-  {
-    "command": "python quest_9_2.py",
-    "output": "Создаю 'Рунный Камень' (экземпляр класса MyLinear)...\n\nРаспечатка 'паспорта' нашего Камня:\nMyLinear(\n  (weight): Parameter containing:\n    tensor([[0.1234]], requires_grad=True)\n  (bias): Parameter containing:\n    tensor([-0.5678]], requires_grad=True)\n)\n\nСмотрим на его 'руны' (параметры):\n  - Руна 'weight': tensor([[0.1234]])\n  - Руна 'bias': tensor([-0.5678])\n\nКладу на 'Камень' гирьку весом: 2.0\nПредсказание 'Рунного Камня': -0.3210\n\nРитуал завершен! Ты выковал свой первый самодостаточный 'атом магии'.",
-    "is_final": true
-  }
-]
+{
+  "_meta": {
+    "input_hash": "7e5c030b94f4d896ab93e94160f833d5"
+  },
+  "scenario": [
+    {
+      "command": "python quest_9_2.py",
+      "output": "Создаю 'Рунный Камень' (экземпляр класса MyLinear)...\n\nРаспечатка 'паспорта' нашего Камня:\nMyLinear(\n  (weight): Parameter containing:\n    tensor([[ 1.1234]], requires_grad=True)\n  (bias): Parameter containing:\n    tensor([0.5678], requires_grad=True)\n)\n\nСмотрим на его 'руны' (параметры):\n  - Руна 'weight': tensor([[ 1.1234]])\n  - Руна 'bias': tensor([0.5678])\n\nКладу на 'Камень' гирьку весом: 2.0\nПредсказание 'Рунного Камня': 2.8146\n\nРитуал завершен! Ты выковал свой первый самодостаточный 'атом магии'.",
+      "is_final": true
+    }
+  ]
+}

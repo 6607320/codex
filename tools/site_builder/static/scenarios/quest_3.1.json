@@ -1,11 +1,16 @@
-[
-  {
-    "command": "pip install Pillow",
-    "output": "Collecting Pillow\n  Downloading Pillow-10.0.1-cp310-cp310-linux_x86_64.whl (3.2 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 15.2 MB/s eta 0:00:00\nInstalling collected packages: Pillow\nSuccessfully installed Pillow-10.0.1\nuser@host:~$ "
+{
+  "_meta": {
+    "input_hash": "e19b183680da5ad6ddfa9ea91f83f84f"
   },
-  {
-    "command": "python quest_3_1.py",
-    "output": "Selected random image from archive: cat_example.png\nTrue label from chronicles: cat\nLoading MobileNetV2 (ImageNet pretrained)...\nPredictions from Всевидящее Око (top 5):\n1. tabby (0.4523)\n2. Egyptian cat (0.2015)\n3. tiger cat (0.1532)\n4. Siamese cat (0.1021)\n5. lynx, not lynx (0.0504)\n\nLesson: Domain shift causes errors on cartoon-like CIFAR-10 images!",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "pip install Pillow",
+      "output": "Collecting Pillow\n  Downloading Pillow-11.0.0-cp310-cp310-manylinux_268_x86_64.whl (3.4 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 12.5 MB/s eta 0:00:00\nInstalling collected packages: Pillow\nSuccessfully installed Pillow-11.0.0\n\nuser@host:~$ "
+    },
+    {
+      "command": "python quest_3_1.py",
+      "output": "Открываю портал в 'Вечный Сад Образов' (CIFAR-10)...\nDownloading and preparing dataset cifar10/train to /root/.cache/huggingface/datasets/cifar10/train...\n\nМагический образ успешно призван!\n(Истинная суть образа, как говорят хроники: frog)\n\nПризываю 'Всевидящего Око'...\nNo model was supplied, defaulting to google/mobilenet_v2_1.0_224 and revision main.\nDownloading pytorch_model.bin: 100%|██████████| 17.0M/17.0M [00:01<00:00, 15.2MB/s]\nDownloading preprocessor_config.json: 100%|██████████| 448/448 [00:00<00:00, 1.23MB/s]\nDownloading config.json: 100%|██████████| 464/464 [00:00<00:00, 1.45MB/s]\nDownloading image_processor_config.json: 100%|██████████| 1.28k/1.28k [00:00<00:00, 3.67MB/s]\n\nДух всматривается в образ...\n\nВердикт 'Всевидящего Ока':\n[{'label': 'bullfrog', 'score': 0.2673981909751892}, {'label': 'tailed_frog', 'score': 0.18234285783767605}, {'label': 'tree_frog, tree-frog', 'score': 0.11234567890123456}, {'label': 'common_newt', 'score': 0.08901234567890123}, {'label': 'spotted_salamander', 'score': 0.06789012345678901}]",
+      "is_final": true
+    }
+  ]
+}

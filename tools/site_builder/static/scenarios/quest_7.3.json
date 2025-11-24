@@ -1,7 +1,12 @@
-[
-  {
-    "command": "python quest_7_3.py",
-    "output": "Призываю 'чистого' Духа-Демиурга...\nЗагружаю твою 'Стилевую Печать' из папки '../Quest_2/artist_seal'...\nПечать успешно наложена! Демиург готов творить в твоем стиле.\n\nШепчу Демиургу новое заклинание: 'a portrait of an astronaut, in sks style'\nДемиург начинает творить...\n\nМагия свершилась! Твой шедевр сохранен в файл 'astronaut_in_my_style.png'",
-    "is_final": true
-  }
-]
+{
+  "_meta": {
+    "input_hash": "2ad9ca8ebcc58198d26a23afa3b990bf"
+  },
+  "scenario": [
+    {
+      "command": "python quest_7_3.py",
+      "output": "Призываю 'чистого' Духа-Демиурга...\nЗагружаю твою 'Стилевую Печать' из папки '../Quest_2/artist_seal'...\nПечать успешно наложена! Демиург готов творить в твоем стиле.\n\nШепчу Демиургу новое заклинание: 'a portrait of an astronaut, in sks style'\nДемиург начинает творить...\n\nМагия свершилась! Твой шедевр сохранен в файл 'astronaut_in_my_style.png'",
+      "is_final": true
+    }
+  ]
+}

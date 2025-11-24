@@ -7,7 +7,7 @@
   "scenario": [
     {
       "command": "python quest_7_1.py",
-      "output": "Призываю Духа-Демиурга для создания нашей собственной палитры...\n\nНачинаю творить 15 картин в стиле: 'a beautiful painting of a landscape, trending on artstation, masterpiece, vibrant colors'\n\nСотворение палитры: 100%|██████████| 15/15 [12:45<00:00, 51.00s/it]\n\nРитуал завершен! Палитра из 15 сотворенных картин готова в папке 'generated_palette'.",
+      "output": "Призываю Духа-Демиурга для создания нашей собственной палитры...\n\nНачинаю творить 15 картин в стиле: 'a beautiful painting of a landscape, trending on artstation, masterpiece, vibrant colors'\nСотворение палитры: 100%|██████████| 15/15 [15:23<00:00, 61.57s/it]\n\nРитуал завершен! Палитра из 15 сотворенных картин готова в папке 'generated_palette'.",
       "is_final": true
     }
   ]

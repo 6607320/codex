@@ -256,3 +256,28 @@ nav a:hover {
   text-decoration: none;
   font-weight: bold;
 }
+
+/* Заставляем браузер учитывать переносы строк (\n) внутри параграфов Легенды.
+   Это выстроит списки в Ритуалах вертикально. */
+.markdown-body p {
+  white-space: pre-wrap;
+}
+
+/* Дополнительно: немного отступа для читаемости списков внутри текста */
+.markdown-body p strong {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+/* Делаем ссылки видимыми и красивыми */
+.markdown-body a {
+  color: var(--accent); /* Светло-голубой цвет */
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent); /* Пунктирное подчеркивание */
+  transition: all 0.2s ease;
+}
+
+.markdown-body a:hover {
+  color: #fff; /* Белый цвет при наведении */
+  border-bottom-color: #fff;
+}

@@ -1,7 +1,12 @@
-[
-  {
-    "command": "python quest_5_3.py",
-    "output": "Призываю 'чистого' Голема в сжатой 4-битной форме...\n\nНахожу магический блокнот в '../Quest_2/results/checkpoint-250'...\nГолем прочел блокнот и получил новые знания!\n\nЗадаю Голему вопрос: Instruction: Which genre is the hobbit?\n\nResponse:\n\nОтвет 'Просветленного' Голема:\nInstruction: Which genre is the hobbit?\n\nResponse: fantasy novel.\n",
-    "is_final": true
-  }
-]
+{
+  "_meta": {
+    "input_hash": "6d0f8c5fca27ddb676a126b84f472fdd"
+  },
+  "scenario": [
+    {
+      "command": "python quest_5_3.py",
+      "output": "Призываю 'чистого' Голема в сжатой 4-битной форме...\n\nНахожу магический блокнот в '../Quest_2/results/checkpoint-250'...\nГолем прочел блокнот и получил новые знания!\n\nЗадаю Голему вопрос: Instruction: Which genre is the hobbit?\n\nResponse:\n\nОтвет 'Просветленного' Голема:\nInstruction: Which genre is the hobbit?\n\nResponse: Fantasy.",
+      "is_final": true
+    }
+  ]
+}

@@ -1,11 +1,16 @@
-[
-  {
-    "command": "pip install numpy opencv-python",
-    "output": "Collecting numpy\n  Downloading numpy-1.26.4-cp312-cp312-linux_x86_64.whl (18.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.9/18.9 MB 10.0 MB/s eta 0:00:00\nCollecting opencv-python\n  Downloading opencv_python-4.10.0.84-cp37-abi3-linux_x86_64.whl (94.3 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 94.3/94.3 MB 15.0 MB/s eta 0:00:00\nInstalling collected packages: numpy, opencv-python\nSuccessfully installed numpy-1.26.4 opencv-python-4.10.0.84\n"
+{
+  "_meta": {
+    "input_hash": "53f82fe5e712596186ed9c3da7299688"
   },
-  {
-    "command": "python quest_10_1.py",
-    "output": "Создаю тестовый образ с вертикальной линией...\n  -> Оригинальный образ сохранен в 'original_line.png'\n\nВыковываю 'трафарет' для поиска вертикальных линий...\n  -> Трафарет готов.\n\nНачинаю ритуал сканирования образа трафаретом...\nСканирование завершено.\n\nМагия свершилась! 'Карта Признаков' сохранена в 'feature_map.png'.\nОткрой ее и обрати внимание, как ярко подсвечена именно та область, где в оригинале была вертикальная линия.",
-    "is_final": true
-  }
-]
+  "scenario": [
+    {
+      "command": "pip install numpy opencv-python",
+      "output": "Collecting numpy\n  Downloading numpy-1.24.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.1 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.1/18.1 MB 50.0 MB/s eta 0:00:00\nCollecting opencv-python\n  Downloading opencv_python-4.8.1.78-cp310-cp310-manylinux_1_21_x86_64.whl (62.2 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.2/62.2 MB 100.0 MB/s eta 0:00:00\nInstalling collected packages: numpy, opencv-python\nSuccessfully installed numpy-1.24.3 opencv-python-4.8.1.78\n"
+    },
+    {
+      "command": "python quest_10_1.py",
+      "output": "Создаю тестовый образ с вертикальной линией...\n  -> Оригинальный образ сохранен в 'original_line.png'\n\nВыковываю 'трафарет' для поиска вертикальных линий...\n  -> Трафарет готов.\n\nНачинаю ритуал сканирования образа трафаретом...\nСканирование завершено.\n\nМагия свершилась! 'Карта Признаков' сохранена в 'feature_map.png'.\nОткрой ее и обрати внимание, как ярко подсвечена именно та область, где в оригинале была вертикальная линия.",
+      "is_final": true
+    }
+  ]
+}

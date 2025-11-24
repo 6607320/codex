@@ -7,15 +7,15 @@
   "scenario": [
     {
       "command": "gcloud services enable artifactregistry.googleapis.com run.googleapis.com",
-      "output": "Enabling services [artifactregistry.googleapis.com, run.googleapis.com]...\nOperation \"operations/acf.p2-1234567890-abc123def456\" finished successfully.\nArtifact Registry API [artifactregistry.googleapis.com] enabled for project [quest-project-12345].\nCloud Run API [run.googleapis.com] enabled for project [quest-project-12345]."
+      "output": "Operation \"operations/acf.p2-1234567890-abc123\" finished successfully.\nEnabled APIs:\n  - artifactregistry.googleapis.com\n  - run.googleapis.com\n"
     },
     {
       "command": "gcloud artifacts repositories create amulet-repo --repository-format=docker --location=us-central1",
-      "output": "Using project quest-project-12345.\nCreated repository [us-central1-docker.pkg.dev/quest-project-12345/amulet-repo]."
+      "output": "Using repository format: docker.\nCreated repository [amulet-repo].\n"
     },
     {
       "command": "gcloud auth configure-docker us-central1-docker.pkg.dev",
-      "output": "The following configuration will be written to ~/.docker/config.json\n\n  {\n    \"credHelpers\": {\n      \"us-central1-docker.pkg.dev\": \"gcloud\"\n    }\n  }\n\nConfigure a credential helper for us-central1-docker.pkg.dev (y/N)? Wrote docker config for us-central1-docker.pkg.dev"
+      "output": "The following configuration will be written to ~/.docker/config.json\n\nConfigure a credential helper for us-central1-docker.pkg.dev\n\nWrote the following contents to ~/.docker/config.json\n\n{\n \"credHelpers\": {\n  \"us-central1-docker.pkg.dev\": \"gcloud\"\n }\n}\n"
     },
     {
       "command": "cd Part_4_Engineering/Scroll_28/Quest_2",
@@ -23,19 +23,19 @@
     },
     {
       "command": "PROJECT_ID=$(gcloud config get-value project)",
-      "output": ""
+      "output": "ai-quest-384716\n"
     },
     {
-      "command": "docker build -t us-central1-docker.pkg.dev/quest-project-12345/amulet-repo/amulet:v1 .",
-      "output": "Sending build context to Docker daemon  5.12kB\nStep 1/9 : FROM python:3.10\n ---> 4e12ff2e7d4f\nStep 2/9 : WORKDIR /app\n ---> Using cache\n ---> 1a2b3c4d5e6f\nStep 3/9 : COPY requirements.txt .\n ---> Using cache\n ---> 7f8e9d0c1b2a\nStep 4/9 : RUN pip install --no-cache-dir -r requirements.txt\n ---> Running in 3d4e5f6g7h8i\nCollecting fastapi\n  Downloading fastapi-0.104.1-py3-none-any.whl (91 kB)\nCollecting uvicorn\n  Downloading uvicorn-0.24.0-py3-none-any.whl (59 kB)\nCollecting transformers\n  Downloading transformers-4.35.0-py3-none-any.whl (7.9 MB)\nCollecting torch\n  Downloading torch-2.1.0-cp310-cp310-linux_x86_64.whl (106.8 MB)\n... (installing dependencies: pydantic, starlette, huggingface-hub, tokenizers, safetensors, etc.)\nSuccessfully installed anyio-3.7.1 click-8.1.7 fastapi-0.104.1 h11-0.14.0 huggingface-hub-2.0.0 ... torch-2.1.0 transformers-4.35.0 uvicorn-0.24.0-py3-none-any.whl\nRemoving intermediate container.\n ---> 9a8b7c6d5e4f\nStep 5/9 : COPY download_model.py .\n ---> 1f2e3d4c5b6a\nStep 6/9 : RUN python download_model.py\n ---> Running in 7h8i9j0k1l2m\nНачинаю ритуал 'Предварительного Призыва Знаний'...\nNo model was supplied, defaulting to distilbert-base-uncased-finetuned-sst-2-english and tokenizer distilbert-base-uncased-finetuned-sst-2-english\nDownloading config.json: 100% 629 / 629 [00:00<00:00, 1.23kB/s]\nDownloading pytorch_model.bin: 100% 268M/268M [00:12<00:00, 22.3MB/s]\nDownloading tokenizer_config.json: 100% 48.0 / 48.0 [00:00<00:00, 100kB/s]\nDownloading vocab.txt: 100% 232k/232k [00:00<00:00, 1.50MB/s]\nDownloading tokenizer.json: 100% 466k/466k [00:00<00:00, 2.34MB/s]\nDownloading special_tokens_map.json: 100% 112 / 112 [00:00<00:00, 223.00B/s]\nЗнания успешно призваны и запечатаны.\nRemoving intermediate container.\n ---> 3n4o5p6q7r8s\nStep 7/9 : COPY main.py .\n ---> 9t0u1v2w3x4y\nStep 8/9 : COPY start.sh .\n ---> 5z6a7b8c9d0e\nStep 9/9 : RUN chmod +x ./start.sh\n ---> Running in 1f2g3h4i5j6k\nRemoving intermediate container.\n ---> 7l8m9n0o1p2q\n ---> 3r4s5t6u7v8w\nSuccessfully built 3r4s5t6u7v8w\nSuccessfully tagged us-central1-docker.pkg.dev/quest-project-12345/amulet-repo/amulet:v1"
+      "command": "docker build -t us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1 .",
+      "output": "[+] Building 12.3s (15/15) FINISHED\n => [internal] load build definition from Dockerfile                   0.0s\n => => transferring dockerfile: 32B                                      0.0s\n => [internal] load .dockerignore                                        0.0s\n => => transferring context: 2B                                          0.0s\n => [internal] load metadata for docker.io/library/python:3.10           1.2s\n => [1/10] FROM docker.io/library/python:3.10@sha256:abc123...          0.0s\n => [internal] load build context                                        0.1s\n => => transferring context: 15.23kB                                     0.0s\n => CACHED [2/10] WORKDIR /app                                          0.0s\n => [3/10] COPY requirements.txt .                                      0.0s\n => [4/10] RUN pip install --no-cache-dir -r requirements.txt           45.2s\n => [5/10] COPY download_model.py .                                     0.0s\n => [6/10] RUN python download_model.py                                12.5s\nНачинаю ритуал 'Предварительного Призыва Знаний'...\nNo model was supplied, choosing distilbert-base-uncased-finetuned-sst-2-english as default\nDownloading (…)lve/main/config.json: 100%|██████████| 629/629 [00:01<00:00, 629B/s]\nDownloading pytorch_model.bin: 100%|██████████| 268M/268M [00:08<00:00, 33.5MB/s]\nDownloading (…)okenizer_config.json: 100%|██████████| 48.0/48.0 [00:00<00:00, 48.0B/s]\nDownloading (…)solve/main/vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.23MB/s]\nDownloading (…)/main/tokenizer.json: 100%|██████████| 466k/466k [00:00<00:00, 2.34MB/s]\nЗнания успешно призваны и запечатаны.\n => [7/10] COPY main.py .                                              0.0s\n => [8/10] COPY start.sh .                                              0.0s\n => [9/10] RUN chmod +x ./start.sh                                     0.1s\n => exporting to image                                                   2.1s\n => => exporting layers                                                  2.0s\n => => writing image sha256:def456...                                    0.0s\n => => naming to docker.io/library/amulet:v1                            0.0s\nSuccessfully tagged us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1\n"
     },
     {
-      "command": "docker push us-central1-docker.pkg.dev/quest-project-12345/amulet-repo/amulet:v1",
-      "output": "The push refers to repository [us-central1-docker.pkg.dev/quest-project-12345/amulet-repo/amulet]\nv1: digest: sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890 size: 1567"
+      "command": "docker push us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1",
+      "output": "The push refers to repository [us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet]\nv1: digest: sha256:789ghi... size: 456MB\nTotal pushed: 456MB\n"
     },
     {
-      "command": "gcloud run deploy speaking-amulet --image=us-central1-docker.pkg.dev/quest-project-12345/amulet-repo/amulet:v1 --memory=2Gi --region=us-central1 --allow-unauthenticated",
-      "output": "Using project quest-project-12345.\n✓ Service [speaking-amulet] revision [speaking-amulet-00001-abc] has been deployed and is served at https://speaking-amulet-abc123-uc.a.run.app\nReady to serve.\n\nTo find your service logs, run: `gcloud run services logs tail speaking-amulet --region=us-central1`\nService URL: https://speaking-amulet-abc123-uc.a.run.app",
+      "command": "gcloud run deploy speaking-amulet --image=us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1 --memory=2Gi --region=us-central1 --allow-unauthenticated",
+      "output": "✔ Deploying... 100% complete\n✔ Deployment finished. Now viewing logs...\n\nService [speaking-amulet] revision [speaking-amulet-00001-yyy] has been deployed and is serving 100 percent of traffic.\nService URL: https://speaking-amulet-abcd1234-uc.a.run.app\n\nTo visit your service, open: https://speaking-amulet-abcd1234-uc.a.run.app\nTo view logs: gcloud run services logs read speaking-amulet --region=us-central1\n✔ [2024-... ] Призываю 'Дух Эмоций' для нашего амулета...\n✔ [2024-... ] 'Дух Эмоций' готов к работе.\nApplication startup complete.\n\n",
       "is_final": true
     }
   ]
