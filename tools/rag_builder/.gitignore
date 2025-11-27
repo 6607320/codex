@@ -2,8 +2,7 @@
 /manifest.json
 
 # Директория с генерируемыми PDF
-/notebooklm_sources/
+/notebooklm_sources
 
 # Бинарный файл шрифта
 DejaVuSans.ttf
-/notebooklm_sources
