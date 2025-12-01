@@ -250,7 +250,7 @@ rignore==0.7.4
 roboflow==1.2.11
 rsa==4.9.1
 ruamel.yaml==0.18.15
-ruamel.yaml.clib==0.2.14
+ruamel.yaml.clib==0.2.15
 ruff==0.14.2
 s3transfer==0.14.0
 safehttpx==0.1.6
