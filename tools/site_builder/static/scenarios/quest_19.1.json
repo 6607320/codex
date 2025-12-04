@@ -1,15 +1,16 @@
 {
   "_meta": {
-    "input_hash": "3963f34ec356fa878c8ff2313a6b9266"
+    "input_hash": "af7dfd2ce09f305865ebf6a58aece544"
   },
   "scenario": [
     {
       "command": "pip install torch transformers datasets soundfile scipy librosa numpy",
-      "output": "Collecting torch\n  Downloading torch-2.4.1-cp310-cp310-manylinux_2_28_x86_64.whl (191.1 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 191.1/191.1 MB 45.2 MB/s eta 0:00:00\nCollecting transformers\n  Downloading transformers-4.44.2-py3-none-any.whl (9.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.9/9.9 MB 118.5 MB/s eta 0:00:00\nCollecting datasets\n  Downloading datasets-3.0.1-py3-none-any.whl (140 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 140.4/140.4 kB 201.2 kB/s eta 0:00:00\nCollecting soundfile\n  Downloading soundfile-0.12.1-py2.py3-none-linux_x86_64.whl (1.8 MB)\nCollecting scipy\n  Downloading scipy-1.14.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (43.1 MB)\nCollecting librosa\n  Downloading librosa-0.10.2.post1-py3-none-any.whl (273 kB)\nCollecting numpy\n  Downloading numpy-2.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.0 MB)\nInstalling collected packages: numpy, torch, soundfile, scipy, librosa, transformers, datasets\nSuccessfully installed datasets-3.0.1 librosa-0.10.2.post1 numpy-2.1.1 scipy-1.14.1 soundfile-0.12.1 torch-2.4.1 transformers-4.44.2\n"
+      "output": "(base) user@host:~$ pip install torch transformers datasets soundfile scipy librosa numpy\nCollecting torch\n  Downloading torch-2.0.1-cp39-none-linux_x86_64.whl (9.7 MB)\nInstalling collected packages: torch, transformers, datasets, soundfile, scipy, librosa, numpy\nSuccessfully installed torch-2.0.1 numpy-1.23.5 scipy-1.9.1 librosa-0.10.2 soundfile-0.10.5 datasets-2.0.4 transformers-4.30.2\n(base) user@host:~$",
+      "is_final": false
     },
     {
       "command": "python quest_19_1.py",
-      "output": "Магия будет вершиться на устройстве: cuda\n\n[Этап 1] Обращение к Великой Библиотеке Hugging Face...\nАрхив со свитками успешно загружен.\nАудио-свиток извлечен. 'Родная' частота: 16000 Гц.\nЭталонный аудио-свиток сохранен как: command_from_hub.wav\n\n[Этап 2] Призыв Голема-Писца (Whisper)...\nГолем-Писец услышал: ' Mead.'\nГолем-Писец изгнан. Кристалл Маны (GPU VRAM) очищен.\n\n[Этап 3] Призыв Голема-Толкователя (Zero-Shot Classifier)...\nГолем-Толкователь определил намерение: 'узнать погоду'\nГолем-Толкователь изгнан. Кристалл Маны (GPU VRAM) снова очищен.\n\n[Этап 4] Призыв Голема-Оракула (GPT-2)...\nЗатравка для Оракула: 'Ответ на вопрос о погоде: '\nГолем-Оракул ответил.\nГолем-Оракул изгнан. Все големы покинули Кристалл Маны.\n\n==================================================\nИТОГОВЫЙ ОТВЕТ АССИСТЕНТА:\nОтвет на вопрос о погоде: Сегодня солнечно, температура +22°C, ветер слабый. Приятного дня!\n==================================================",
+      "output": "(env) user@host:~$ python magic_chain.py\n=== Квест 19.1: Сборка цепи ===\nВыбор устройства: cuda\n[Этап 1] Обращение к Великой Библиотеке Hugging Face...\nТелепортируем амулет 'superb/ks' (3.2 ГБ)...\nИзвлечение свитка #10: 'Звуковой кристалл Бегемота...'\n[Этап 2] Призыв Голема-Писца (Whisper)...\nНаносим амулет: 'openai/whisper-tiny'\nПреобразуем барабан: 1.2 Гц → 16000 Гц\nШепот распознан: ' Mead .'\n[Этап 3] Призыв Голема-Толкователя (Zero-Shot)..\nАнализируем намерения:\n- 'узнать погоду' (вероятность: 82%)\n- 'работать над блогом' (вероятность: 15%)\nВыбрано: узнать погоду\n[Этап 4] Призыв Голема-Оракула (GPT-2)...\nВажный магический ритуал: 'Ответ на вопрос о погоде: ...'\nЖаргон заклинания...\nИтог: 'Завтра в Меде будет 10°C с легким солнечным покрытием...'\n=== Финальная заклинание ===\nГолемы отпущены!\nКристалл маны восстановлен.\n[ИТОГ] Переменная магия: 'Weather prediction successful'",
       "is_final": true
     }
   ]

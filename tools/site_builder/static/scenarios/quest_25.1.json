@@ -1,27 +1,21 @@
 {
   "_meta": {
-    "input_hash": "8f5a7ab24480229daa2ab5610df7a0af"
+    "input_hash": "9c5c4bfe73854eb3c586bb0f9ef23cc7"
   },
   "scenario": [
     {
       "command": "docker compose up --build -d",
-      "output": "[+] Building 18.5s (10/10) FINISHED                                                                                                                                                           \n => [internal] load build definition from Dockerfile                                                                                                     0.0s\n => => transferring dockerfile: 35B                                                                                                                      0.0s\n => [internal] load .dockerignore                                                                                                                         0.0s\n => => transferring context: 2B                                                                                                                           0.0s\n => [internal] load metadata for docker.io/library/python:3.10                                                                                            0.0s\n => [1/6] FROM docker.io/library/python:3.10                                                                                                             0.0s\n => [internal] load build context                                                                                                                         0.0s\n => => transferring context: 1.23kB                                                                                                                       0.0s\n => CACHED [2/6] WORKDIR /app                                                                                                                             0.0s\n => [3/6] COPY requirements.txt .                                                                                                                         0.0s\n => [4/6] RUN pip install --no-cache-dir -r requirements.txt                                                                                             15.2s\n => => install fastapi uvicorn redis\n => [5/6] COPY main.py .                                                                                                                              0.0s\n => exporting to image                                                                                                                                    1.8s\n => => exporting layers                                                                                                                                   1.7s\n => => writing image sha256:abc123                                                                                                                        0.0s\n => => naming to docker.io/library/quest_25_1_api                                                                                                        0.0s\n \n[+] Running 3/3 \n ✔ Network quest_25_1_default     Created                                                                                               0.0s\n ✔ Container quest_25_1_redis_1  Started                                                                                                                  0.8s\n ✔ Container quest_25_1_api_1    Started                                                                                                                  0.9s"
+      "output": "Checking for ring files... ok\nStarting service redis...\n=>(attaching to network quest_25_1_default)\nService redis (ID=1234ghjk) created with network alias 'redis'\nStarting service api...\n=>(attaching to network quest_25_1_default)\nOrg-based orchestration initiated.\nAttaching volumes: /app/redis/data\nContainer api (ID=abcd5678) created and started\nAll services created successfully.\nReady for communication.\nNetwork quest_25_1_default attached.\nRedis listening on internal IP 172.18.0.2... approach with caution.",
+      "is_final": false
     },
     {
-      "command": "docker compose ps",
-      "output": "NAME                 IMAGE                    COMMAND                  SERVICE   CREATED         STATUS                             PORTS \nquest_25_1_api_1   quest_25_1_api:latest     \"uvicorn main:app ...\"   api       1 minute ago   Up 1 minute                        0.0.0.0:8000->8000/tcp \nquest_25_1_redis_1  redis:alpine              \"docker-entrypoint.s…\"   redis     1 minute ago   Up 1 minute (healthy)              6379/tcp"
+      "command": "docker-compose ps",
+      "output": "NAME                              COMMAND               DURATION   PORTS     NAMES\napi                          uvicorn main:app       2m         0.0.0.0:8000->8000/tcp   codex/orchestrator-25-1-app-1\nredis                        redis:alpine           Up 1m30s                         codex/orchestrator-25-1-redis-1\nnetworks                      N/A                    N/A        N/A                       quest_25_1_default\nservices                      N/A                    N/A        N/A                       quest_25_1_default\nvolumes                       N/A                    N/A        N/A                       codex/orchestrator-25-1-app-1-data\nredis_data                   N/A                    N/A        N/A                       codex/orchestrator-25-1-redis-1-data",
+      "is_final": false
     },
     {
-      "command": "curl -X POST \"http://127.0.0.1:8000/remember/golem\" -H \"Content-Type: application/json\" -d '{\"value\": \"powerful\"}'",
-      "output": "{\"status\":\"ok\",\"key\":\"golem\",\"remembered_value\":\"powerful\"}"
-    },
-    {
-      "command": "curl http://127.0.0.1:8000/recall/golem",
-      "output": "{\"status\":\"found\",\"key\":\"golem\",\"recalled_value\":\"powerful\"}"
-    },
-    {
-      "command": "docker compose down",
-      "output": "[+] Running 3/3 \n ✔ Container quest_25_1_api_1     Removed                                                                                             0.2s\n ✔ Container quest_25_1_redis_1   Removed                                                                                             0.1s\n ✔ Network quest_25_1_default     Removed                                                                                             0.0s",
+      "command": "docker-compose down",
+      "output": "Stopping services...\n=>(forcing container shutdown)\nStopping container api... removed\nStopping container redis... removed\nCleaning volumes... all volumes removed\nRemoving network quest_25_1_default... removed\nAll services terminated successfully. Quest completed.",
       "is_final": true
     }
   ]

@@ -1,15 +1,15 @@
 {
   "_meta": {
-    "input_hash": "c52195d49c24107762cdef03a3faf258"
+    "input_hash": "1f6bc75ecc074daa97e8fb7e3f084f50"
   },
   "scenario": [
     {
       "command": "pip install onnx onnxruntime",
-      "output": "Collecting onnx\n  Downloading onnx-1.16.1-py3-none-any.whl (521 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 521.4/521.4 kB 2.1 MB/s eta 0:00:00\nCollecting onnxruntime\n  Downloading onnxruntime-1.19.2-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (81.8 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 81.8/81.8 MB 10.2 MB/s eta 0:00:00\nInstalling collected packages: onnx, onnxruntime\nSuccessfully installed onnx-1.16.1 onnxruntime-1.19.2\n"
+      "output": "Collecting onnx\r\n  Downloading onnx-1.13.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)\r\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 2.1 MB/s eta 0:00:00\r\nCollecting onnxruntime\r\n  Downloading onnxruntime-1.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.9 MB)\r\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 3.3 MB/s eta 0:00:00\r\nInstalling collected packages: onnx, onnxruntime\r\nSuccessfully installed onnx-1.13.0 onnxruntime-1.13.1"
     },
     {
       "command": "python quest_14_2.py",
-      "output": "Начинаю ритуал 'Перевода на Латынь' (Экспорт в ONNX)...\nПеревод завершен! Универсальный 'Свиток' сохранен как 'mnist_cnn.onnx'\n\nПровожу экзамен с помощью 'Универсального Чтеца Свитков'...\nРитуал с 'Чтецом' прошел успешно!\n  'Чтец' увидел в случайном шуме цифру: 5\n\nМагия универсальности освоена!\n",
+      "output": "Начинаю ритуал 'Перевода на Латынь' (Экспорт в ONNX)...\nПеревод завершен! Универсальный 'Свиток' сохранен как 'mnist_cnn.onnx'\n\nПровожу экзамен с помощью 'Универсального Чтеца Свитков'...\nРитуал с 'Чтецом' прошел успешно!\n 'Чтец' увидел в случайном шуме цифру: 7\n\nМагия универсальности освоена!",
       "is_final": true
     }
   ]

@@ -1,23 +1,27 @@
 {
   "_meta": {
-    "input_hash": "f23c318d2e2392abd70f8caeee4d67a6"
+    "input_hash": "85c8f137e72226304ef59ccd8acaf4a7"
   },
   "scenario": [
     {
       "command": "pip install -r requirements.txt",
-      "output": "Looking in indexes: https://pypi.org/simple, https://pypi.org/simple\nCollecting transformers\n  Downloading transformers-4.44.2-py3-none-any.whl (9.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.9/9.9 MB 15.2 MB/s eta 0:00:00\nCollecting torch\n  Downloading torch-2.4.1-cp39-cp39-linux_x86_64.whl (257.5 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 257.5/257.5 MB 92.1 MB/s eta 0:00:00\nCollecting click\n  Downloading click-8.1.7-py3-none-any.whl (97 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 97.4/97.4 kB 21.3 MB/s eta 0:00:00\nInstalling collected packages: click, torch, transformers\nSuccessfully installed click-8.1.7 torch-2.4.1 transformers-4.44.2\n"
+      "output": "(venv) user@host:~/quest_31_1$ pip install -r requirements.txt\nCollecting transformers\n  Downloading transformers-4.26.1-cp38-none-linux_x86_64.whl (5.8 MB)\n  Installing collected packages: transformers\nSuccessfully installed transformers-4.26.1 torch-1.13.1 click-8.1.7"
     },
     {
       "command": "python validate_model.py --help",
-      "output": "Usage: validate_model.py [OPTIONS]\n\n  Загружает указанную модель, проводит валидуцию и выводит результат в консоль.\n\nOptions:\n  --model-name TEXT  Имя модели из Hugging Face Hub для проведения валидации.\n                     [default: distilbert-base-uncased-finetuned-sst-2-english]\n  --help             Show this message and exit.\n"
+      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py --help\nUsage: validate_model.py [OPTIONS]\n  Validate sentiment analysis models with configurable metrics.\n\nOptions:\n  --model-name MODEL_NAME\n     Hugging Face model identifier. Default: distilbert-base-uncased-finetuned-sst-2-english\n\nExample:\n  python validate_model.py --model-name distilbert-base-uncased-finetuned-sst-2-english"
     },
     {
       "command": "python validate_model.py",
-      "output": "[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'...\n[+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПровожу испытание...: 100%|██████████| 10/10 [00:01<00:00,  9.50it/s]\n[+] Испытание завершено!\n\n--- Отчет о Силе Духа ---\nТочность модели: 90.00%\nВерных предсказаний: 9 из 10\n--------------------------\n"
+      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py\n[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'... [+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПроведу испытание...\n                                 |███████████| 10/10 [00:00<00:00,  9.87it/s]\n[+] Испытание завершено!\n--- Отчет о Силе Духа ---\nТочность модели: 91.00%\nВерных предсказаний: 9 из 10\n--------------------------"
     },
     {
       "command": "python validate_model.py --model-name \"cardiffnlp/twitter-roberta-base-sentiment-latest\"",
-      "output": "Downloading config.json from https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest/resolve/main/config.json: 100%|██████████| 684/684 [00:00<00:00, 1.23MB/s]\nDownloading pytorch_model.bin from https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest/resolve/main/pytorch_model.bin: 100%|██████████| 499MB/499MB [00:45<00:00, 11.1MB/s]\nDownloading tokenizer_config.json from https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest/resolve/main/tokenizer_config.json: 100%|██████████| 181/181 [00:00<00:00, 402kB/s]\nDownloading tokenizer.json from https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest/resolve/main/tokenizer.json: 100%|██████████| 899k/899k [00:00<00:00, 2.01MB/s]\nDownloading (…)okenizer/vocab.json from https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest/resolve/main/tokenizer/vocab.json: 100%|██████████| 456k/456k [00:00<00:00, 1.78MB/s]\n[*] Призываю духа модели: 'cardiffnlp/twitter-roberta-base-sentiment-latest'...\n[+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПровожу испытание...: 100%|██████████| 10/10 [00:03<00:00,  3.20it/s]\n[+] Испытание завершено!\n\n--- Отчет о Силе Духа ---\nТочность модели: 0.00%\nВерных предсказаний: 0 из 10\n--------------------------\n",
+      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py --model-name \"cardiffnlp/twitter-roberta-base-sentiment-latest\"\n[*] Призываю духа модели: 'cardiffnlp/twitter-roberta-base-sentiment-latest'... [+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПроведу испытание...\n                                 |███████████| 10/10 [00:00<00:00,  9.87it/s]\n[!] Ошибка призыва: No matching keys for 'LABEL_0'/'LABEL_1' in dataset ['POSITIVE', 'NEGATIVE']\n--------------------------\n--- Отчет о Силе Духа ----\nТочность модели: 0.00%\nВерных предсказаний: 0 из 10"
+    },
+    {
+      "command": "python validate_model.py --model-name \"distilbert-base-uncased-finetuned-sst-2-english\"",
+      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py --model-name \"distilbert-base-uncased-finetuned-sst-2-english\"\n[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'... [+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПроведу испытание...\n                                 |███████████| 10/10 [00:00<00:00,  9.87it/s]\n[+] Испытание завершено!\n--- Отчет о Силе Духа ----\nТочность модели: 91.00%\nВерных предсказаний: 9 из 10\n--------------------------\n",
       "is_final": true
     }
   ]

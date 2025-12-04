@@ -1,19 +1,23 @@
 {
   "_meta": {
-    "input_hash": "d0cbb55293f15bfd3604f83cbebbce82"
+    "input_hash": "0c0a7e238dcf3da13ad11b4147facf51"
   },
   "scenario": [
     {
+      "command": "echo '# trigger' >> Part_4_Engineering/Scroll_26/Quest_1/spell_with_flaw.py",
+      "output": ""
+    },
+    {
       "command": "git add .",
-      "output": "user@citadel:~/gildia$ "
+      "output": "On branch feature/Scroll-26.1\nNo commits yet\n\nChanges to be committed:\n  new file:   Part_4_Engineering/Scroll_26/Quest_1/spell_with_flaw.py\n"
     },
     {
       "command": "git commit --no-verify -m \"feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\"",
-      "output": "[main a1b2c3d] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n\nuser@citadel:~/gildia$ "
+      "output": "[main 1a2b3c4] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n"
     },
     {
       "command": "git push",
-      "output": "Enumerating objects: 7, done.\nCounting objects: 100% (7/7), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (4/4), done.\nWriting objects: 100% (4/4), 523 bytes | 523.00 KiB/s, done.\nTotal 4 (delta 1), reused 3 (delta 1), pack-reused 0\nTo https://github.com/gildia/citadel.git\n   f0e1d2c3b..a1b2c3d  main -> main",
+      "output": "Counting objects: 3, done.\nCompressing objects: 100%\nTotal 3 (delta 0), reused 0 (previously uploaded)\nremote: \nremote:  \nremote:   Created pull request #26 by user: Poking the Guardian's Stone [2 commits, 1 file changed]\nremote:   New pipeline created at \nremote:  \nremote:  \nremote:   Your changes have been accepted. Thanks for your contribution!\nTo https://github.com/guild-of-mages/magic-cathedral.git\naf67b8d..bf9c4de main->main (forced update)",
       "is_final": true
     }
   ]

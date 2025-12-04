@@ -1,27 +1,31 @@
 {
   "_meta": {
-    "input_hash": "16046172f26bb1026534bba4ebdec743"
+    "input_hash": "250e8d5cdac3d9b3d9ecda8abcae50de"
   },
   "scenario": [
     {
       "command": "python quest_27_2.py",
-      "output": "Сотворяю 'фантом' модели размером 10 МБ в 'models/golem_mind.pth'...\n... 'Фантом' модели успешно сотворен."
+      "output": "(venv) user@host:~$ python quest_27_2.py\nСотворяю 'фантом' модели размером 10 МБ в 'models/golem_mind.pth'...\n... 'Фантом' модели успешно сотворен.\n(venv) user@host:~$ ",
+      "is_final": false
     },
     {
       "command": "dvc add models/golem_mind.pth",
-      "output": "To track 'models/golem_mind.pth' with DVC run:\n\n\tdvc add models/golem_mind.pth\n\nThe file is now cached and tracked.\n\n+ models/golem_mind.pth.dvc"
+      "output": "(venv) user@host:~$ dvc add models/golem_mind.pth\nmodels/golem_mind.pth -> /path/to/repo/git-lfs-verk.py\n(venv) user@host:~$ ",
+      "is_final": false
     },
     {
       "command": "git status",
-      "output": "On branch main\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tmodels/golem_mind.pth.dvc\n\nnothing added to commit but untracked files present (use \"git add\" to track)"
+      "output": "(venv) user@host:~$ git status\nOn branch main\nYour branch is up to date with 'origin/main'.\n\nChanges not staged for commit:\n  (use \"git add <file>\" to update what will be committed)\n        modified:   .gitignore\n\nUntracked files:\n  (use \"git add <file>\" to include in what will be committed)\n        models/golem_mind.pth.dvc\n(venv) user@host:~$ ",
+      "is_final": false
     },
     {
       "command": "git add .",
-      "output": ""
+      "output": "(venv) user@host:~$ git add .\n(venv) user@host:~$ ",
+      "is_final": false
     },
     {
       "command": "git commit -m \"feat(mlops): Track golem_mind.pth model with DVC\"",
-      "output": "[main abc1234] feat(mlops): Track golem_mind.pth model with DVC\n 1 file changed, 3 insertions(+)\n create mode 100644 models/golem_mind.pth.dvc",
+      "output": "(venv) user@host:~$ git commit -m \"feat(mlops): Track golem_mind.pth model with DVC\"\n[main 1234567] feat(mlops): Track golem_mind.pth model with DVC\n Date: Fri Apr 5 10:32:41 2023 +0300\nAuthor: User <user@example.com>\n\nfeat(mlops): Track golem_mind.pth model with DVC\n(venv) user@host:~$ ",
       "is_final": true
     }
   ]

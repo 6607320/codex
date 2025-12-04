@@ -1,27 +1,31 @@
 {
   "_meta": {
-    "input_hash": "4dd689d911fa77cb7e23f689ef4b63ae"
+    "input_hash": "d9a9c34bccc0d4563144fb93d5d78710"
   },
   "scenario": [
     {
+      "command": "conda activate ml_env",
+      "output": "(ml_env) user@host:~/codex$"
+    },
+    {
       "command": "pip install dvc",
-      "output": "Collecting dvc\n  Downloading dvc-3.52.0-py3-none-any.whl (823 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 823.4/823.4 kB 4.2 MB/s eta 0:00:00\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 823.4/823.4 kB 4.2 MB/s eta 0:00:00\nInstalling collected packages: dvc\nSuccessfully installed dvc-3.52.0\n(codex) user@ubuntu:~/codex$ "
+      "output": "Collecting dvc\n  Downloading dvc-2.13.16-py2.py3-none-any.whl (3.2 MB)\nInstalling collected packages: dvc\nSuccessfully installed dvc-2.13.16"
     },
     {
       "command": "dvc init",
-      "output": "Initialized DVC repository.\n\nYou can now run `dvc add <data>` to add your data into DVC.\n\nA `.dvc` folder was created to store DVC files.\n`.dvcignore` was created/updated to ignore cache directories.\n(codex) user@ubuntu:~/codex$ "
+      "output": "Initializing DVC repository in CWD\nCreating .dvc directory\nCreating empty file: .dvcignore"
     },
     {
       "command": "git status",
-      "output": "On branch main\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\t.dvc/\n\t.dvcignore\n\nnothing added to commit but untracked files present (use \"git add\" to track)\n(codex) user@ubuntu:~/codex$ "
+      "output": "On branch main\nYour branch is up to date with 'origin/main'.\nUntracked files:\n  .dvc/\n  .dvcignore\n"
     },
     {
       "command": "git add .dvc .dvcignore",
-      "output": "(codex) user@ubuntu:~/codex$ "
+      "output": "Adding .dvc\nAdding .dvcignore"
     },
     {
       "command": "git commit -m \"feat(mlops): ✨ Initialize DVC for artifact versioning\"",
-      "output": "[main a1b2c3d4e5f6] feat(mlops): ✨ Initialize DVC for artifact versioning\n 2 files changed, 15 insertions(+)\n create mode 100644 .dvc/config\n create mode 100644 .dvcignore\n(codex) user@ubuntu:~/codex$ ",
+      "output": "[main abcdef0] feat(mlops): Initialize DVC for artifact versioning\n 2 files changed, 0 insertions(+), 0 deletions(-)\ncreate mode 100855 .dvc\ncreate mode 100644 .dvcignore",
       "is_final": true
     }
   ]

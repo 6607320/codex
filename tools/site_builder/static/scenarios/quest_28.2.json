@@ -1,39 +1,46 @@
 {
   "_meta": {
-    "input_hash": "0aa678bf4f57d09669273a7916b8bb10"
+    "input_hash": "d58ac83546458906b55c48ddea5c8431"
   },
   "scenario": [
     {
       "command": "gcloud services enable artifactregistry.googleapis.com run.googleapis.com",
-      "output": "Operation \"operations/acf.p2-1234567890-abc123\" finished successfully.\nEnabled APIs:\n  - artifactregistry.googleapis.com\n  - run.googleapis.com\n"
+      "output": "Enabled [artifactregistry.googleapis.com, run.googleapis.com].",
+      "is_final": false
     },
     {
-      "command": "gcloud artifacts repositories create amulet-repo --repository-format=docker --location=us-central1",
-      "output": "Using repository format: docker.\nCreated repository [amulet-repo].\n"
+      "command": "gcloud artifacts repositories create mystic-repo --repository-format=docker --location=europe-west1",
+      "output": "Successfully created repository [mystic-repo] at [europe-west1-docker.pkg.dev/my-project-id/mystic-repo].",
+      "is_final": false
     },
     {
-      "command": "gcloud auth configure-docker us-central1-docker.pkg.dev",
-      "output": "The following configuration will be written to ~/.docker/config.json\n\nConfigure a credential helper for us-central1-docker.pkg.dev\n\nWrote the following contents to ~/.docker/config.json\n\n{\n \"credHelpers\": {\n  \"us-central1-docker.pkg.dev\": \"gcloud\"\n }\n}\n"
+      "command": "gcloud auth configure-docker europe-west1-docker.pkg.dev",
+      "output": "Successfully configured Docker client to use container registry europe-west1-docker.pkg.dev/my-project-id/mystic-repo.",
+      "is_final": false
     },
     {
       "command": "cd Part_4_Engineering/Scroll_28/Quest_2",
-      "output": ""
+      "output": "Now in directory: /home/user/Part_4_Engineering/Scroll_28/Quest_2",
+      "is_final": false
     },
     {
       "command": "PROJECT_ID=$(gcloud config get-value project)",
-      "output": "ai-quest-384716\n"
+      "output": "Set PROJECT_ID=123456789",
+      "is_final": false
     },
     {
-      "command": "docker build -t us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1 .",
-      "output": "[+] Building 12.3s (15/15) FINISHED\n => [internal] load build definition from Dockerfile                   0.0s\n => => transferring dockerfile: 32B                                      0.0s\n => [internal] load .dockerignore                                        0.0s\n => => transferring context: 2B                                          0.0s\n => [internal] load metadata for docker.io/library/python:3.10           1.2s\n => [1/10] FROM docker.io/library/python:3.10@sha256:abc123...          0.0s\n => [internal] load build context                                        0.1s\n => => transferring context: 15.23kB                                     0.0s\n => CACHED [2/10] WORKDIR /app                                          0.0s\n => [3/10] COPY requirements.txt .                                      0.0s\n => [4/10] RUN pip install --no-cache-dir -r requirements.txt           45.2s\n => [5/10] COPY download_model.py .                                     0.0s\n => [6/10] RUN python download_model.py                                12.5s\nНачинаю ритуал 'Предварительного Призыва Знаний'...\nNo model was supplied, choosing distilbert-base-uncased-finetuned-sst-2-english as default\nDownloading (…)lve/main/config.json: 100%|██████████| 629/629 [00:01<00:00, 629B/s]\nDownloading pytorch_model.bin: 100%|██████████| 268M/268M [00:08<00:00, 33.5MB/s]\nDownloading (…)okenizer_config.json: 100%|██████████| 48.0/48.0 [00:00<00:00, 48.0B/s]\nDownloading (…)solve/main/vocab.txt: 100%|██████████| 232k/232k [00:00<00:00, 1.23MB/s]\nDownloading (…)/main/tokenizer.json: 100%|██████████| 466k/466k [00:00<00:00, 2.34MB/s]\nЗнания успешно призваны и запечатаны.\n => [7/10] COPY main.py .                                              0.0s\n => [8/10] COPY start.sh .                                              0.0s\n => [9/10] RUN chmod +x ./start.sh                                     0.1s\n => exporting to image                                                   2.1s\n => => exporting layers                                                  2.0s\n => => writing image sha256:def456...                                    0.0s\n => => naming to docker.io/library/amulet:v1                            0.0s\nSuccessfully tagged us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1\n"
+      "command": "docker build -t europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1 .",
+      "output": "Successfully built image: europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1",
+      "is_final": false
     },
     {
-      "command": "docker push us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1",
-      "output": "The push refers to repository [us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet]\nv1: digest: sha256:789ghi... size: 456MB\nTotal pushed: 456MB\n"
+      "command": "docker push europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1",
+      "output": "The upload has completed successfully",
+      "is_final": false
     },
     {
-      "command": "gcloud run deploy speaking-amulet --image=us-central1-docker.pkg.dev/ai-quest-384716/amulet-repo/amulet:v1 --memory=2Gi --region=us-central1 --allow-unauthenticated",
-      "output": "✔ Deploying... 100% complete\n✔ Deployment finished. Now viewing logs...\n\nService [speaking-amulet] revision [speaking-amulet-00001-yyy] has been deployed and is serving 100 percent of traffic.\nService URL: https://speaking-amulet-abcd1234-uc.a.run.app\n\nTo visit your service, open: https://speaking-amulet-abcd1234-uc.a.run.app\nTo view logs: gcloud run services logs read speaking-amulet --region=us-central1\n✔ [2024-... ] Призываю 'Дух Эмоций' для нашего амулета...\n✔ [2024-... ] 'Дух Эмоций' готов к работе.\nApplication startup complete.\n\n",
+      "command": "gcloud run deploy speaking-amulet --image=europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1 --memory=2Gi --region=europe-west1 --allow-unauthenticated",
+      "output": "Waiting for build to complete... service/(...snip...) created (service=speaking-amulet-\nxyzxyz/run.googleapis.com/apps/speaking-amulet-xyzxyz-in-europe-west1-0001)..\nhttps://speaking-amulet-xyzxyz.run.app/docs",
       "is_final": true
     }
   ]

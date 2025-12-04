@@ -1,87 +1,101 @@
 {
   "_meta": {
-    "input_hash": "f7e63443d214589809593a06f829f629"
+    "input_hash": "db2c479f8a3ce27f8dd3a7aaa59fab09"
   },
   "scenario": [
     {
       "command": "gcloud config get-value project",
-      "output": "codex-project-42"
+      "output": "your-project-id-12345",
+      "is_final": false
     },
     {
       "command": "gcloud projects describe $(gcloud config get-value project) --format=\"value(projectNumber)\"",
-      "output": "123456789012"
+      "output": "123456789012",
+      "is_final": false
     },
     {
-      "command": "gcloud services enable artifactregistry.googleapis.com --project=\"codex-project-42\"",
-      "output": "Operation \"operations/acf.p2-123456789012-...\" done.\nEnabled API [artifactregistry.googleapis.com] in project [codex-project-42]."
+      "command": "gcloud services enable artifactregistry.googleapis.com --project=\"your-project-id-12345\"",
+      "output": "Enabling service: [artifactregistry.googleapis.com]",
+      "is_final": false
     },
     {
-      "command": "gcloud services enable run.googleapis.com --project=\"codex-project-42\"",
-      "output": "Operation \"operations/acf.p2-123456789012-...\" done.\nEnabled API [run.googleapis.com] in project [codex-project-42]."
+      "command": "gcloud services enable run.googleapis.com --project=\"your-project-id-12345\"",
+      "output": "Enabling service: [run.googleapis.com]",
+      "is_final": false
     },
     {
-      "command": "gcloud services enable iamcredentials.googleapis.com --project=\"codex-project-42\"",
-      "output": "Operation \"operations/acf.p2-123456789012-...\" done.\nEnabled API [iamcredentials.googleapis.com] in project [codex-project-42]."
+      "command": "gcloud services enable iamcredentials.googleapis.com --project=\"your-project-id-12345\"",
+      "output": "Enabling service: [iamcredentials.googleapis.com]",
+      "is_final": false
     },
     {
-      "command": "gcloud artifacts repositories create codex-golems --repository-format=docker --location=europe-west3 --description=\"Codex CI/CD Artifact Repository\" --project=\"codex-project-42\"",
-      "output": "Using repository format: Docker\nCreated repository [codex-golems]."
+      "command": "gcloud artifacts repositories create codex-golems --repository-format=docker --location=europe-west3 --description=\"Codex CI/CD Artifact Repository\" --project=\"your-project-id-12345\"",
+      "output": "Created repository [codex-golems]",
+      "is_final": false
     },
     {
-      "command": "gcloud iam service-accounts create github-actions-sa --display-name=\"Service Account for GitHub Actions\" --project=\"codex-project-42\"",
-      "output": "Created service account [github-actions-sa@codex-project-42.iam.gserviceaccount.com]."
+      "command": "gcloud iam service-accounts create github-actions-sa --display-name=\"Service Account for GitHub Actions\" --project=\"your-project-id-12345\"",
+      "output": "Created service account [github-actions-sa@your-project-id-12345.iam.gserviceaccount.com]",
+      "is_final": false
     },
     {
-      "command": "gcloud artifacts repositories add-iam-policy-binding codex-golems --project=\"codex-project-42\" --location=\"europe-west3\" --member=\"serviceAccount:github-actions-sa@codex-project-42.iam.gserviceaccount.com\" --role=\"roles/artifactregistry.writer\"",
-      "output": "Updated IAM policy for Artifact Registry repository [projects/codex-project-42/locations/europe-west3/repositories/codex-golems].\nBinding updated. REASON: New role binding added."
+      "command": "gcloud artifacts repositories add-iam-policy-binding codex-golems --project=\"your-project-id-12345\" --location=\"europe-west3\" --member=\"serviceAccount:github-actions-sa@your-project-id-12345.iam.gserviceaccount.com\" --role=\"roles/artifactregistry.writer\"",
+      "output": "Binding complete.",
+      "is_final": false
     },
     {
-      "command": "gcloud projects add-iam-policy-binding codex-project-42 --member=\"serviceAccount:github-actions-sa@codex-project-42.iam.gserviceaccount.com\" --role=\"roles/run.admin\"",
-      "output": "Updated IAM policy for project [codex-project-42].\nrole: roles/run.admin\nmember: serviceAccount:github-actions-sa@codex-project-42.iam.gserviceaccount.com\n"
+      "command": "gcloud projects add-iam-policy-binding your-project-id-12345 --member=\"serviceAccount:github-actions-sa@your-project-id-12345.iam.gserviceaccount.com\" --role=\"roles/run.admin\"",
+      "output": "Binding complete.",
+      "is_final": false
     },
     {
-      "command": "gcloud iam service-accounts add-iam-policy-binding \"github-actions-sa@codex-project-42.iam.gserviceaccount.com\" --member=\"serviceAccount:github-actions-sa@codex-project-42.iam.gserviceaccount.com\" --role=\"roles/iam.serviceAccountUser\"",
-      "output": "Updated IAM policy for service account [github-actions-sa@codex-project-42.iam.gserviceaccount.com].\nrole: roles/iam.serviceAccountUser\nmember: serviceAccount:github-actions-sa@codex-project-42.iam.gserviceaccount.com"
+      "command": "gcloud iam service-accounts add-iam-policy-binding \"github-actions-sa@your-project-id-12345.iam.gserviceaccount.com\" --member=\"serviceAccount:github-actions-sa@your-project-id-12345.iam.gserviceaccount.com\" --role=\"roles/iam.serviceAccountUser\" --project=\"your-project-id-12345\"",
+      "output": "Binding complete.",
+      "is_final": false
     },
     {
-      "command": "gcloud iam workload-identity-pools create \"github-pool\" --project=\"codex-project-42\" --location=\"global\" --display-name=\"GitHub Actions Pool\"",
-      "output": "Created Workload Identity Pool [github-pool]."
+      "command": "gcloud iam workload-identity-pools create \"github-pool\" --project=\"your-project-id-12345\" --location=\"global\" --display-name=\"GitHub Actions Pool\"",
+      "output": "Created workload identity pool [github-pool]",
+      "is_final": false
     },
     {
-      "command": "gcloud iam workload-identity-pools providers create-oidc \"github-provider\" --project=\"codex-project-42\" --location=\"global\" --workload-identity-pool=\"github-pool\" --display-name=\"GitHub Actions Provider\" --attribute-mapping=\"google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner\" --issuer-uri=\"https://token.actions.githubusercontent.com\" --attribute-condition=\"attribute.repository == 'student42/codex'\"",
-      "output": "Created Workload Identity Pool provider [github-provider]."
+      "command": "gcloud iam workload-identity-pools providers create-oidc \"github-provider\" --project=\"your-project-id-12345\" --location=\"global\" --workload-identity-pool=\"github-pool\" --display-name=\"GitHub Actions Provider\" --attribute-mapping=\"google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner\" --issuer-uri=\"https://token.actions.githubusercontent.com\" --attribute-condition=\"attribute.repository == 'YOUR_GITHUB_USERNAME/codex'\"",
+      "output": "Created OIDC provider [github-provider]",
+      "is_final": false
     },
     {
-      "command": "gcloud iam service-accounts add-iam-policy-binding \"github-actions-sa@codex-project-42.iam.gserviceaccount.com\" --project=\"codex-project-42\" --role=\"roles/iam.workloadIdentityUser\" --member=\"principalSet://iam.googleapis.com/projects/123456789012/locations/global/workloadIdentityPools/github-pool/attribute.repository/student42/codex\"",
-      "output": "Updated IAM policy for service account [github-actions-sa@codex-project-42.iam.gserviceaccount.com].\nrole: roles/iam.workloadIdentityUser\nmember: principalSet://iam.googleapis.com/projects/123456789012/locations/global/workloadIdentityPools/github-pool/attribute.repository/student42/codex"
+      "command": "gcloud iam service-accounts add-iam-policy-binding \"github-actions-sa@your-project-id-12345.iam.gserviceaccount.com\" --project=\"your-project-id-12345\" --role=\"roles/iam.workloadIdentityUser\" --member=\"principalSet://iam.googleapis.com/projects/123456789012/locations/global/workloadIdentityPools/github-pool/attribute.repository/YOUR_GITHUB_USERNAME/codex\"",
+      "output": "Binding complete.",
+      "is_final": false
     },
     {
-      "command": "gcloud iam workload-identity-pools providers describe \"github-provider\" --project=\"codex-project-42\" --location=\"global\" --workload-identity-pool=\"github-pool\" --format=\"value(name)\"",
-      "output": "projects/codex-project-42/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+      "command": "gcloud iam workload-identity-pools providers describe \"github-provider\" --project=\"your-project-id-12345\" --location=\"global\" --workload-identity-pool=\"github-pool\" --format=\"value(name)\"",
+      "output": "projects/123456789012/locations/global/workloadIdentityPools/github-pool/providers/github-provider",
+      "is_final": false
     },
     {
-      "command": "gh secret delete GCP_SA_KEY --repo student42/codex",
-      "output": "✓ Deleted secret GCP_SA_KEY"
+      "command": "gh secret set GCP_WORKLOAD_IDENTITY_PROVIDER --repo YOUR_GITHUB_USERNAME/codex --body \"projects/123456789012/locations/global/workloadIdentityPools/github-pool/providers/github-provider\"",
+      "output": "Secret set successfully.",
+      "is_final": false
     },
     {
-      "command": "gh secret set GCP_WORKLOAD_IDENTITY_PROVIDER --repo student42/codex --body \"projects/codex-project-42/locations/global/workloadIdentityPools/github-pool/providers/github-provider\"",
-      "output": "✓ Added GCP_WORKLOAD_IDENTITY_PROVIDER to student42/codex"
-    },
-    {
-      "command": "gh secret set GCP_SERVICE_ACCOUNT --repo student42/codex --body \"github-actions-sa@codex-project-42.iam.gserviceaccount.com\"",
-      "output": "✓ Added GCP_SERVICE_ACCOUNT to student42/codex"
+      "command": "gh secret set GCP_SERVICE_ACCOUNT --repo YOUR_GITHUB_USERNAME/codex --body \"github-actions-sa@your-project-id-12345.iam.gserviceaccount.com\"",
+      "output": "Secret set successfully.",
+      "is_final": false
     },
     {
       "command": "git add .",
-      "output": ""
+      "output": "Adding modified files...",
+      "is_final": false
     },
     {
       "command": "git commit -m \"feat(ci): Пробуждение автоматизированной кузницы\"",
-      "output": "[main abc1234d] feat(ci): Пробуждение автоматизированной кузницы\n 1 file changed, 1 insertion(+)"
+      "output": "Committed as 'feat(ci): Пробуждение автоматизированной кузницы'",
+      "is_final": false
     },
     {
       "command": "git push origin main",
-      "output": "Enumerating objects: 6, done.\nCounting objects: 100% (6/6), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (4/4), done.\nWriting objects: 100% (4/4), 1.02 KiB | 1.02 MiB/s, done.\nTotal 4 (delta 1), reused 0 (delta 0), pack-reused 0\nTo https://github.com/student42/codex.git\n   def5678..abc1234d  main -> main\n\n🚀 Pipeline triggered! Check GitHub Actions tab for 'Build and Push to GAR' workflow.\n\n✅ Success: Artifact pushed to Google Artifact Registry (europe-west3-docker.pkg.dev/codex-project-42/codex-golems/app:abc1234d).",
+      "output": "Pushing to https://github.com/YOUR_GITHUB_USERNAME/codex.git\nTotal 10 (delta 10), reuse 0\nremote: Called webhook 'https://webhook-url.com/trigger' (200)\nremote: Pushed to branch 'main' (sha: abcdef123456)\nremote: Triggered Cloud Build pipeline 'Build and Push to GAR'",
       "is_final": true
     }
   ]

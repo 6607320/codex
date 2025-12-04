@@ -1,31 +1,37 @@
 {
   "_meta": {
-    "input_hash": "1f060fdcf69d46d3456cf688c593fd3a"
+    "input_hash": "13836fe932116bacced21eb305ed25d4"
   },
   "scenario": [
     {
-      "command": "pip install --upgrade setuptools wheel",
-      "output": "Requirement already satisfied: setuptools in /home/user/miniconda3/envs/arcane/lib/python3.10/site-packages (68.2.2)\nCollecting setuptools\n  Downloading setuptools-69.5.1-py3-none-any.whl.metadata (i 8.9 kB)\nRequirement already satisfied: wheel in ... (0.41.2)\nDownloading wheel-0.43.0-py3-none-any.whl.metadata (2.2 kB)\nDownloading setuptools-69.5.1-py3-none-any.whl (1.0 MB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 10.0 MB/s eta 0:00:00\nDownloading wheel-0.43.0-py3-none-any.whl (65 kB)\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.5/65.5 kB 5.0 MB/s eta 0:00:00\nInstalling collected packages: wheel, setuptools\n  Attempting uninstall: setuptools\n    Found existing installation: setuptools 68.2.2\n    Uninstalling setuptools-68.2.2:\n      Successfully uninstalled setuptools-68.2.2\nSuccessfully installed setuptools-69.5.1 wheel-0.43.0"
+      "command": "pip install --upgrade pip setuptools wheel",
+      "output": "(env) user@host:~/project$ pip install --upgrade pip setuptools wheel\nCollecting pip\nCollecting setuptools\nCollecting wheel\nInstalling collected packages...\nSuccessfully installed pip-23.2.1 setuptools-65.3.0 wheel-0.36.2",
+      "is_final": false
     },
     {
       "command": "python setup.py bdist_wheel",
-      "output": "running bdist_wheel\nrunning build\nrunning build_py\ncreating build/lib/arcane_wizardry\ncopying arcane_wizardry/__init__.py -> build/lib/arcane_wizardry\ncopying arcane_wizardry/vision_spell.py -> build/lib/arcane_wizardry\nrunning egg_info\nwriting arcane_wizardry.egg-info/PKG-INFO\nwriting dependency_links to arcane_wizardry.egg-info/dependency_links.txt\nwriting requirements to arcane_wizardry.egg-info/requires.txt\nwriting top-level names to arcane_wizardry.egg-info/top_level.txt\nreading manifest file 'arcane_wizardry.egg-info/SOURCES.txt'\nwriting manifest file 'arcane_wizardry.egg-info/SOURCES.txt'\ncreating build/bdist.linux-x86_64\ncreating build/bdist.linux-x86_64/wheel\ninstalling library code to build/bdist.linux-x86_64/wheel/...\nrunning install_data\nrunning install_egg_info\nrunning install_scripts\ncreating dist\nadding 'arcane_wizardry-0.1.0-py3-none-any.whl' to dist/"
+      "output": "(env) user@host:~/project$ python setup.py bdist_wheel\ncreating wheel metadata\nrunning bdist_wheel\nrunning build_py\nrunning build_ext\ncreating wheel...\nSuccessfully created 'dist/arcane_wizardry-0.1.0-py3-none-any.whl'"
     },
     {
       "command": "ls dist/",
-      "output": "arcane_wizardry-0.1.0-py3-none-any.whl"
+      "output": "(env) user@host:~/project$ ls dist/\narcane_wizardry-0.1.0-py3-none-any.whl"
     },
     {
       "command": "conda create -n test_chamber python=3.10 -y",
-      "output": "Channels:\n  - conda-forge\n  - defaults\nPlatform: linux-64\nCollecting package metadata (current_repodata.json): done\nSolving environment: done\n\n## Package Plan ##\n\n  environment location: /home/user/miniconda3/envs/test_chamber\n  added / updated specs:\n    - python=3.10\n\nThe following NEW packages will be INSTALLED:\n\n  _libgcc_mutex              conda-forge/linux-64:: _libgcc_mutex-0.1-conda_forge\n  _openmp_mutex              conda-forge/linux-64:: _openmp_mutex-4.5-2_gnu\n  ca-certificates            conda-forge/noarch     :: ca-certificates-2024.3.11-hb805176_0\n  ld_impl_linux-64           conda-forge/linux-64   :: ld_impl_linux-64-2.40-h41732ed_1\n  libstdcxx-ng               conda-forge/linux-64   :: libstdcxx-ng-13.2.0-hfe6a221_1\n  libuuid                    conda-forge/linux-64   :: libuuid-2.32.1-h5fd99c8_1000\n  ncurses                    conda-forge/linux-64   :: ncurses-6.4-h6a678d5_0\n  openssl                    conda-forge/linux-64   :: openssl-3.3.1-hd306946_1\n  pip                        pypi/default           :: pip-24.0-py3-none-any.whl\n  python                     pypi/default           :: python-3.10.14-h955ad1f_0_cpython\n  readline                   conda-forge/linux-64   :: readline-8.2-h5eee18b_0\n  setuptools                 pypi/default           :: setuptools-69.5.1-py3-none-any.whl\n  sqlite                     conda-forge/linux-64   :: sqlite-3.45.3-h5f21205_0\n  tk                         conda-forge/linux-64   :: tk-8.6.14-h39e8969_0\n  tzdata                     conda-forge/noarch     :: tzdata-2024a-h04d1a6a_0\n  wheel                      pypi/default           :: wheel-0.43.0-py3-none-any.whl\n  xz                         conda-forge/linux-64   :: xz-5.4.6-h5eee18b_0\n  zlib                       conda-forge/linux-64   :: zlib-1.2.13-h5eee18b_1\n\n\nDownloading and Extracting Packages:\n\nPreparing transaction: done\nVerifying transaction: done\nExecuting transaction: done\n"
+      "output": "(env) user@host:~/project$ conda create -n test_chamber python=3.10 -y\nCollecting package metadata: done\nSolving environment: done\nAttempting to gather conditional dependencies: done\nProceed ([y]/n)? y\nPackages to be installed: python-3.10.12\ncython-3.0.9 -> setuptools-65.3.0... CPU(x86_64)-linux-64::python-3.10.12-hfffd2fb_6_cpython_py310_mingw during_run_test - nest-3.0.4-cp310-none-win32_x86-64::...",
+      "is_final": false
     },
     {
       "command": "conda activate test_chamber",
-      "output": "(test_chamber) user@host:~/project$ "
+      "output": "(env) user@host:~/project$ conda activate test_chamber\n(base) -> (test_chamber) user@host:~/project$"
     },
     {
       "command": "pip install dist/arcane_wizardry-0.1.0-py3-none-any.whl",
-      "output": "Processing ./dist/arcane_wizardry-0.1.0-py3-none-any.whl\nCollecting torch\nfrom arcane_wizardry:torch\n  Downloading torch-2.1.2-cp310-cp310-linux_x86_64.whl (194.3 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 194.3/194.3 MB 20.0 MB/s eta 0:00:00\nCollecting torchvision\nfrom arcane_wizardry:torchvision\n  Downloading torchvision-0.16.2-cp310-cp310-linux_x86_64.whl (6.1 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.1/6.1 MB 15.0 MB/s eta 0:00:00\nCollecting transformers\nfrom arcane_wizardry:transformers\n  Downloading transformers-4.36.2-py3-none-any.whl (8.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.9/8.9 MB 25.0 MB/s eta 0:00:00\nCollecting Pillow\nfrom arcane_wizardry:Pillow\n  Downloading Pillow-10.1.0-cp310-cp310-linux_x86_64.whl (3.4 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 18.0 MB/s eta 0:00:00\nInstalling collected packages: torch, Pillow, torchvision, transformers, arcane_wizardry\nSuccessfully installed Pillow-10.1.0 arcane_wizardry-0.1.0 torch-2.1.2 torchvision-0.16.2 transformers-4.36.2",
+      "output": "(test_chamber) user@host:~/project$ pip install dist/arcane_wizardry-0.1.0-py3-none-any.whl\nCollecting arcane_wizardry-0.1.0-py3-none-any.whl\nInstalling collected packages: arcane-wizardry\nInstalling dependencies: torch-2.0.0+cpu torchvision-0.14.0+0 torchvision-0.14.0+0..."
+    },
+    {
+      "command": "pip list",
+      "output": "(test_chamber) user@host:~/project$ pip list\nPackage           Version\n----------------- ---------\naragne_wizardry   0.1.0\nPillow            9.5.0\ntorch             2.0.0+cpu\ntorchvision       0.14.0+0\ntransformers      4.28.0",
       "is_final": true
     }
   ]
