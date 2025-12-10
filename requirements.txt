@@ -84,7 +84,7 @@ flask-cors==6.0.1
 Flask-Login==0.6.3
 flatbuffers==25.9.23
 flatten-dict==0.4.2
-flufl.lock==8.2.0
+flufl.lock==9.0.0
 fonttools==4.61.0
 fpdf2==2.8.5
 frozenlist==1.7.0
@@ -235,7 +235,7 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 python-engineio==4.12.3
 python-multipart==0.0.20
-python-socketio==5.14.3
+python-socketio==5.15.0
 pytz==2025.2
 PyYAML==6.0.3
 pyzmq==27.1.0
@@ -258,7 +258,7 @@ safetensors==0.5.3
 sahi==0.11.32
 scikit-learn==1.7.0
 scipy==1.15.3
-scmrepo==3.5.2
+scmrepo==3.5.9
 seaborn==0.13.2
 semantic-version==2.10.0
 semver==3.0.4
@@ -294,7 +294,7 @@ torch==2.9.0
 torchaudio==2.7.1+cu118
 torchvision==0.22.1+cu118
 tqdm==4.67.1
-transformers==4.57.1
+transformers==4.57.3
 triton==3.3.1
 typer==0.20.0
 typing-inspection==0.4.1
@@ -302,7 +302,7 @@ typing_extensions==4.15.0
 tzdata==2025.2
 ujson==5.10.0
 ultralytics==8.3.233
-ultralytics-thop==2.0.15
+ultralytics-thop==2.0.18
 uritemplate==4.2.0
 urllib3==2.6.0
 uvicorn==0.38.0
