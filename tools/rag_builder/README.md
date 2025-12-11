@@ -74,4 +74,3 @@ python rag_builder.py
 
 - **`notebooklm_sources/`**: Папка с PDF-томами (`part_1.pdf`, `living_chronicle.pdf`).
 - **`manifest.json`**: Файл-душа, описывающий состояние томов.
-- **`DejaVuSans.ttf`**: Рунический шрифт, необходимый для ритуала.
