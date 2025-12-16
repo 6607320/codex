@@ -276,7 +276,7 @@ sounddevice==0.5.3
 soundfile==0.13.1
 soxr==1.0.0
 SQLAlchemy==2.0.44
-sqlparse==0.5.3
+sqlparse==0.5.4
 sqltrie==0.11.2
 starlette==0.50.0
 sympy==1.14.0
