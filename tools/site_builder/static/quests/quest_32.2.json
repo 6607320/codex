@@ -6,32 +6,16 @@
   "status": "active",
   "scenario": [
     {
-      "command": "echo '# Trigger Telemetry Pipeline' >> main.py",
-      "output": "main.py edited..."
-    },
-    {
       "command": "git add .",
-      "output": "All changes have been staged"
+      "output": "user@host:~/Part_4_Engineering/Scroll_32/Quest_2$ git add .\n"
     },
     {
-      "command": "git commit -m 'feat(ci): Enable and run telemetry pipeline'",
-      "output": "Commit created: 'feat(ci): Enable and run telemetry pipeline'"
+      "command": "git commit -m \"feat(ci): Включить и запустить телеметрический конвейер\"",
+      "output": "user@host:~/Part_4_Engineering/Scroll_32/Quest_2$ git commit -m \"feat(ci): Включить и запустить телеметрический конвейер\"\n[main 4d2e2f5] feat(ci): Включить и запустить телеметрический конвейер\n 1 file changed, 1 insertion(+)\n"
     },
     {
       "command": "git push origin main",
-      "output": "total 2 (delta 0)\nremote: Enumerating objects: 2\nremote: Counting objects: 2\nremote: Compressing objects... ok\nremote: Writing objects: 100% (2/2) Done\nTo https://github.com/your-repo/your-fork.git\n   1a2b3c4567890abcdef1234567890abcdef123456ab..cdef1234567890abcdef1234567890abcdef123456ab\n"
-    },
-    {
-      "command": "pip install -r requirements.txt",
-      "output": "Collecting fastapi\n  Downloading fastapi-0.93.0-py3-none-any.whl (16 kB)\nCollecting uvicorn\n  Downloading uvicorn-0.21.1-py3-none-any.whl (380 kB)\n... (truncated for brevity)"
-    },
-    {
-      "command": "pytest --cov=build/coverage.xml",
-      "output": "======= coverage: ==========\n         total =  723 (723 source files)\n          miss =     0\n          cover = 100%"
-    },
-    {
-      "command": "actions/upload-artifact upload build/coverage.xml",
-      "output": "Uploading coverage-report-32-2.zip to GitHub Actions artifacts...",
+      "output": "user@host:~/Part_4_Engineering/Scroll_32/Quest_2$ git push origin main\nEnumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 321 bytes | 321.00 KiB/s, done.\nTotal 3 (delta 2), reused 0 (delta 0), pack-reused 0\nremote: Resolving deltas: 100% (2/2), completed with 2 local objects.\nTo github.com:user/repo.git\n   4d2e2f5..3e2d1c4  main -> main\n",
       "is_final": true
     }
   ]

@@ -7,42 +7,35 @@
   "scenario": [
     {
       "command": "gcloud services enable artifactregistry.googleapis.com run.googleapis.com",
-      "output": "Enabled [artifactregistry.googleapis.com, run.googleapis.com].",
-      "is_final": false
+      "output": "Operation \"enable\" finished successfully."
     },
     {
-      "command": "gcloud artifacts repositories create mystic-repo --repository-format=docker --location=europe-west1",
-      "output": "Successfully created repository [mystic-repo] at [europe-west1-docker.pkg.dev/my-project-id/mystic-repo].",
-      "is_final": false
+      "command": "gcloud artifacts repositories create REPO_NAME --repository-format=docker --location=REGION",
+      "output": "Repository \"REPO_NAME\" in location \"REGION\" for project \"PROJECT_ID\" already exists."
     },
     {
-      "command": "gcloud auth configure-docker europe-west1-docker.pkg.dev",
-      "output": "Successfully configured Docker client to use container registry europe-west1-docker.pkg.dev/my-project-id/mystic-repo.",
-      "is_final": false
+      "command": "gcloud auth configure-docker REGION-docker.pkg.dev",
+      "output": "Adding credential helper for: REGION-docker.pkg.dev\nUpdating credential helper for: REGION-docker.pkg.dev\nCredential helper configured."
     },
     {
       "command": "cd Part_4_Engineering/Scroll_28/Quest_2",
-      "output": "Now in directory: /home/user/Part_4_Engineering/Scroll_28/Quest_2",
-      "is_final": false
+      "output": ""
     },
     {
       "command": "PROJECT_ID=$(gcloud config get-value project)",
-      "output": "Set PROJECT_ID=123456789",
-      "is_final": false
+      "output": ""
     },
     {
-      "command": "docker build -t europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1 .",
-      "output": "Successfully built image: europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1",
-      "is_final": false
+      "command": "docker build -t REGION-docker.pkg.dev/${PROJECT_ID}/REPO_NAME/amulet:v1 .",
+      "output": "Sending build context to Docker daemon  8.704kB\n\nStep 1/9 : FROM python:3.10\n ---> 2b97d10d6e8e\nStep 2/9 : WORKDIR /app\n ---> Running in 3e5f5c5d5f5c\nRemoving intermediate container 3e5f5c5d5f5c\n ---> 3e5f5c5d5f5c\nStep 3/9 : COPY requirements.txt.\n ---> 3e5f5c5d5f5c\nStep 4/9 : RUN pip install --no-cache-dir -r requirements.txt\n ---> Running in 3e5f5c5d5f5c\n... (pip install logs)...\nRemoving intermediate container 3e5f5c5d5f5c\n ---> 3e5f5c5d5f5c\nStep 5/9 : COPY download_model.py.\n ---> 3e5f5c5d5f5c\nStep 6/9 : RUN python download_model.py\n ---> Running in 3e5f5c5d5f5c\nНачинаю ритуал 'Предварительного Призыва Знаний'...\nЗнания успешно призваны и запечатаны.\nRemoving intermediate container 3e5f5c5d5f5c\n ---> 3e5f5c5d5f5c\nStep 7/9 : COPY main.py.\n ---> 3e5f5c5d5f5c\nStep 8/9 : COPY start.sh.\n ---> 3e5f5c5d5f5c\nStep 9/9 : RUN chmod +x ./start.sh\n ---> Running in 3e5f5c5d5f5c\nRemoving intermediate container 3e5f5c5d5f5c\n ---> 3e5f5c5d5f5c\nSuccessfully built 3e5f5c5d5f5c\nSuccessfully tagged REGION-docker.pkg.dev/PROJECT_ID/REPO_NAME/amulet:v1"
     },
     {
-      "command": "docker push europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1",
-      "output": "The upload has completed successfully",
-      "is_final": false
+      "command": "docker push REGION-docker.pkg.dev/${PROJECT_ID}/REPO_NAME/amulet:v1",
+      "output": "The push refers to repository [REGION-docker.pkg.dev/PROJECT_ID/REPO_NAME/amulet]\n1b5d5e5f5g5h: Pushed\nv1: digest: sha256:1a2b3c4d5e6f7g8h9i0j size: 1234"
     },
     {
-      "command": "gcloud run deploy speaking-amulet --image=europe-west1-docker.pkg.dev/123456789/mystic-repo/amulet:v1 --memory=2Gi --region=europe-west1 --allow-unauthenticated",
-      "output": "Waiting for build to complete... service/(...snip...) created (service=speaking-amulet-\nxyzxyz/run.googleapis.com/apps/speaking-amulet-xyzxyz-in-europe-west1-0001)..\nhttps://speaking-amulet-xyzxyz.run.app/docs",
+      "command": "gcloud run deploy speaking-amulet --image=REGION-docker.pkg.dev/${PROJECT_ID}/REPO_NAME/amulet:v1 --memory=2Gi --region=REGION --allow-unauthenticated",
+      "output": "Deploying container to Cloud Run service [speaking-amulet] in project [PROJECT_ID] region [REGION]\n\n✓ Deploying new service... Done.\n  ✓ Creating Revision...\n  ✓ Routing traffic...\n  ✓ Setting IAM Policy...\n\nDone.\nService [speaking-amulet] revision [speaking-amulet-00001] has been deployed and is serving 100 percent of traffic.\nService URL: https://speaking-amulet-....run.app",
       "is_final": true
     }
   ]

@@ -1,27 +1,23 @@
 {
   "_meta": {
-    "input_hash": "85c8f137e72226304ef59ccd8acaf4a7"
+    "input_hash": "3a9e18dc0d17fa97bd6e7007bbb8cba6"
   },
   "scenario": [
     {
       "command": "pip install -r requirements.txt",
-      "output": "(venv) user@host:~/quest_31_1$ pip install -r requirements.txt\nCollecting transformers\n  Downloading transformers-4.26.1-cp38-none-linux_x86_64.whl (5.8 MB)\n  Installing collected packages: transformers\nSuccessfully installed transformers-4.26.1 torch-1.13.1 click-8.1.7"
+      "output": "Collecting transformers\r\n  Downloading transformers-4.5.1-py3-none-any.whl (1.3 MB)\r\n     |████████████████████████████████| 1.3 MB 2.1 MB/s \r\nCollecting torch\r\n  Downloading torch-1.9.0-cp38-cp38-manylinux1_x86_64.whl (735.3 MB)\r\n     |████████████████████████████████| 735.3 MB 1.3 MB/s \r\nCollecting click\r\n  Downloading click-8.0.1-py3-none-any.whl (97 kB)\r\n     |████████████████████████████████| 97 kB 2.7 MB/s \r\nInstalling collected packages: torch, transformers, click\r\nSuccessfully installed click-8.0.1 torch-1.9.0 transformers-4.5.1"
     },
     {
       "command": "python validate_model.py --help",
-      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py --help\nUsage: validate_model.py [OPTIONS]\n  Validate sentiment analysis models with configurable metrics.\n\nOptions:\n  --model-name MODEL_NAME\n     Hugging Face model identifier. Default: distilbert-base-uncased-finetuned-sst-2-english\n\nExample:\n  python validate_model.py --model-name distilbert-base-uncased-finetuned-sst-2-english"
+      "output": "Usage: validate_model.py [OPTIONS]\r\n\r\n  Загружает указанную модель, проводит валидацию и выводит результат в консоль.\r\n\r\nOptions:\r\n  --model-name TEXT  Имя модели из Hugging Face Hub для проведения валидации.\r\n  --help            Show this message and exit."
     },
     {
       "command": "python validate_model.py",
-      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py\n[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'... [+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПроведу испытание...\n                                 |███████████| 10/10 [00:00<00:00,  9.87it/s]\n[+] Испытание завершено!\n--- Отчет о Силе Духа ---\nТочность модели: 91.00%\nВерных предсказаний: 9 из 10\n--------------------------"
+      "output": "[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'...\r\n[+] Дух готов к испытанию.\r\n[*] Начинаю испытание на 10 примерах...\r\nПровожу испытание...  [####################################]  100%\r\n[+] Испытание завершено!\r\n\r\n--- Отчет о Силе Духа ---\r\nТочность модели: 90.00%\r\nВерных предсказаний: 9 из 10\r\n--------------------------"
     },
     {
       "command": "python validate_model.py --model-name \"cardiffnlp/twitter-roberta-base-sentiment-latest\"",
-      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py --model-name \"cardiffnlp/twitter-roberta-base-sentiment-latest\"\n[*] Призываю духа модели: 'cardiffnlp/twitter-roberta-base-sentiment-latest'... [+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПроведу испытание...\n                                 |███████████| 10/10 [00:00<00:00,  9.87it/s]\n[!] Ошибка призыва: No matching keys for 'LABEL_0'/'LABEL_1' in dataset ['POSITIVE', 'NEGATIVE']\n--------------------------\n--- Отчет о Силе Духа ----\nТочность модели: 0.00%\nВерных предсказаний: 0 из 10"
-    },
-    {
-      "command": "python validate_model.py --model-name \"distilbert-base-uncased-finetuned-sst-2-english\"",
-      "output": "(venv) user@host:~/quest_31_1$ python validate_model.py --model-name \"distilbert-base-uncased-finetuned-sst-2-english\"\n[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'... [+] Дух готов к испытанию.\n[*] Начинаю испытание на 10 примерах...\nПроведу испытание...\n                                 |███████████| 10/10 [00:00<00:00,  9.87it/s]\n[+] Испытание завершено!\n--- Отчет о Силе Духа ----\nТочность модели: 91.00%\nВерных предсказаний: 9 из 10\n--------------------------\n",
+      "output": "[*] Призываю духа модели: 'cardiffnlp/twitter-roberta-base-sentiment-latest'...\r\n[+] Дух готов к испытанию.\r\n[*] Начинаю испытание на 10 примерах...\r\nПровожу испытание...  [####################################]  100%\r\n[+] Испытание завершено!\r\n\r\n--- Отчет о Силе Духа ---\r\nТочность модели: 0.00%\r\nВерных предсказаний: 0 из 10\r\n--------------------------",
       "is_final": true
     }
   ]

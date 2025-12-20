@@ -1,31 +1,19 @@
 {
   "_meta": {
-    "input_hash": "33c5c34fc59b67dc259571431624f0c8"
+    "input_hash": "e6154667b6336d354c20eb6126855e5b"
   },
   "scenario": [
     {
       "command": "docker-compose up -d --build",
-      "output": "Creating network 'monitoring-net'... Building app... Starting containers... Prometheus and Grafana started successfully.",
-      "is_final": false
+      "output": "Creating network \"monitoring-net\" with driver \"bridge\"\nBuilding app\nStep 1/6 : FROM python:3.10\n3.10: Pulling from library/python\nDigest: sha256:4f5a44e8f001f04f7c0d8e1a59e5d7a5e7e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8\nStatus: Downloaded newer image for python:3.10\n---> 1f5a5f1f5a5f\nStep 2/6 : WORKDIR /app\n---> Running in 1a2b3c4d5e6f\nRemoving intermediate container 1a2b3c4d5e6f\n---> 7a8b9c0d1e2f\nStep 3/6 : COPY requirements.txt .\n---> 1a2b3c4d5e6f\nStep 4/6 : RUN pip install --no-cache-dir -r requirements.txt\n---> Running in 1a2b3c4d5e6f\n... (pip install logs)...\nRemoving intermediate container 1a2b3c4d5e6f\n---> 7a8b9c0d1e2f\nStep 5/6 : COPY . .\n---> 1a2b3c4d5e6f\nStep 6/6 : CMD [\"./start.sh\"]\n---> Running in 1a2b3c4d5e6f\nRemoving intermediate container 1a2b3c4d5e6f\n---> 7a8b9c0d1e2f\nSuccessfully built 7a8b9c0d1e2f\nSuccessfully tagged codex/app-29-2-telemetry:latest\nCreating prometheus_guardian... done\nCreating grafana_seer        ... done\nCreating quest_2_app_1       ... done\n"
     },
     {
       "command": "curl -X POST http://localhost:8000/validate",
-      "output": "HTTP/1.1 200 OK\n\n{ \"accuracy\": 0.9, \"correct_predictions\": 7, \"total_samples\": 10 }",
-      "is_final": false
-    },
-    {
-      "command": "curl http://localhost:9090/metrics | grep model_accuracy",
-      "output": "model_accuracy 0.9 1625050560.0",
-      "is_final": false
+      "output": "{\"accuracy\":0.9,\"correct_predictions\":9,\"total_samples\":10}\n"
     },
     {
       "command": "open http://localhost:9090",
-      "output": "Prometheus UI loaded. Enter 'model_accuracy' in query box and execute.",
-      "is_final": false
-    },
-    {
-      "command": "open http://localhost:3000",
-      "output": "Grafana login screen. Log in with admin/admin and create dashboard with Prometheus datasource.",
+      "output": "",
       "is_final": true
     }
   ]

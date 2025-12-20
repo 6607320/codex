@@ -1,23 +1,19 @@
 {
   "_meta": {
-    "input_hash": "0c0a7e238dcf3da13ad11b4147facf51"
+    "input_hash": "116a8f6cf6c6f202d1c99219786b7c3c"
   },
   "scenario": [
     {
-      "command": "echo '# trigger' >> Part_4_Engineering/Scroll_26/Quest_1/spell_with_flaw.py",
-      "output": ""
-    },
-    {
       "command": "git add .",
-      "output": "On branch feature/Scroll-26.1\nNo commits yet\n\nChanges to be committed:\n  new file:   Part_4_Engineering/Scroll_26/Quest_1/spell_with_flaw.py\n"
+      "output": "user@host:~/Part_4_Engineering/Scroll_26/Quest_1$ git add.\n"
     },
     {
       "command": "git commit --no-verify -m \"feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\"",
-      "output": "[main 1a2b3c4] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n"
+      "output": "user@host:~/Part_4_Engineering/Scroll_26/Quest_1$ git commit --no-verify -m \"feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\"\n[main 1234567] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n"
     },
     {
       "command": "git push",
-      "output": "Counting objects: 3, done.\nCompressing objects: 100%\nTotal 3 (delta 0), reused 0 (previously uploaded)\nremote: \nremote:  \nremote:   Created pull request #26 by user: Poking the Guardian's Stone [2 commits, 1 file changed]\nremote:   New pipeline created at \nremote:  \nremote:  \nremote:   Your changes have been accepted. Thanks for your contribution!\nTo https://github.com/guild-of-mages/magic-cathedral.git\naf67b8d..bf9c4de main->main (forced update)",
+      "output": "user@host:~/Part_4_Engineering/Scroll_26/Quest_1$ git push\nEnumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 1.23 KiB | 1.23 MiB/s, done.\nTotal 3 (delta 2), reused 0 (delta 0), pack-reused 0\nremote: Resolving deltas: 100% (2/2), completed with 2 local objects.\nTo github.com:user/repo.git\n   1234567..abcdefg  main -> main\n",
       "is_final": true
     }
   ]

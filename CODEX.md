@@ -2395,19 +2395,23 @@ _Техническая цель: Освоить фундаментальные 
         ```bash
         gcloud projects describe $(gcloud config get-value project) --format="value(projectNumber)"
         ```
-    3.  **Активация Хранилища Артефактов:** Включи API для Artifact Registry.
+    3.  **Получение ID Репозитория (Вечная Печать):** Узнай неизменный ID своего GitHub-репозитория, чтобы федерация не ломалась при смене имени.
+        ```bash
+        curl -s https://api.github.com/repos/YOUR_GITHUB_USERNAME/codex | grep '"id":' | head -n 1 | tr -cd '0-9'
+        ```
+    4.  **Активация Хранилища Артефактов:** Включи API для Artifact Registry.
         ```bash
         gcloud services enable artifactregistry.googleapis.com --project="YOUR_PROJECT_ID"
         ```
-    4.  **Активация Cloud Run:** Включи API для запуска контейнеров.
+    5.  **Активация Cloud Run:** Включи API для запуска контейнеров.
         ```bash
         gcloud services enable run.googleapis.com --project="YOUR_PROJECT_ID"
         ```
-    5.  **Активация Управления Доступом:** Включи API для работы с учетными данными сервисных аккаунтов.
+    6.  **Активация Управления Доступом:** Включи API для работы с учетными данными сервисных аккаунтов.
         ```bash
         gcloud services enable iamcredentials.googleapis.com --project="YOUR_PROJECT_ID"
         ```
-    6.  **Создание Хранилища Артефактов:** Создай репозиторий для Docker-образов.
+    7.  **Создание Хранилища Артефактов:** Создай репозиторий для Docker-образов.
         ```bash
         gcloud artifacts repositories create codex-golems \
         --repository-format=docker \
@@ -2415,65 +2419,72 @@ _Техническая цель: Освоить фундаментальные 
         --description="Codex CI/CD Artifact Repository" \
         --project="YOUR_PROJECT_ID"
         ```
-    7.  **Создание Служебного Аккаунта:** Создай специального "пользователя" для GitHub Actions.
+    8.  **Создание Служебного Аккаунта:** Создай специального "пользователя" для GitHub Actions.
         ```bash
         gcloud iam service-accounts create github-actions-sa \
         --display-name="Service Account for GitHub Actions" \
         --project="YOUR_PROJECT_ID"
         ```
-    8.  **Право Писать в Хранилище:** Дай аккаунту право загружать образы в Artifact Registry.
+    9.  **Право Писать в Хранилище:** Дай аккаунту право загружать образы в Artifact Registry.
         ```bash
         gcloud artifacts repositories add-iam-policy-binding codex-golems --project="YOUR_PROJECT_ID" --location="europe-west3" --member="serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/artifactregistry.writer"
         ```
-    9.  **Право Управлять Cloud Run:** Дай аккаунту право разворачивать сервисы.
+    10.  **Право Управлять Cloud Run:** Дай аккаунту право разворачивать сервисы.
         ```bash
         gcloud projects add-iam-policy-binding YOUR_PROJECT_ID --member="serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/run.admin"
         ```
-    10. **Право Действовать от Имени Аккаунта:** Разреши использование этого аккаунта.
+    11. **Право Действовать от Имени Аккаунта:** Разреши использование этого аккаунта.
         ```bash
         gcloud iam service-accounts add-iam-policy-binding "github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --member="serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
         ```
-    11. **Создание Пула Идентичности:** Создай пул для внешних пользователей (GitHub).
+    12. **Создание Пула Идентичности:** Создай пул для внешних пользователей (GitHub).
         ```bash
         gcloud iam workload-identity-pools create "github-pool" --project="YOUR_PROJECT_ID" --location="global" --display-name="GitHub Actions Pool"
         ```
-    12. **Создание Провайдера OIDC:** Настрой связь между пулом и GitHub, разрешив доступ только твоему репозиторию.
+    12. **Создание Провайдера OIDC:** Настрой связь между пулом и GitHub, используя неизменный ID репозитория.
         ```bash
-        gcloud iam workload-identity-pools providers create-oidc "github-provider" --project="YOUR_PROJECT_ID" --location="global" --workload-identity-pool="github-pool" --display-name="GitHub Actions Provider" --attribute-mapping="google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner" --issuer-uri="https://token.actions.githubusercontent.com" --attribute-condition="attribute.repository == 'YOUR_GITHUB_USERNAME/codex'"
+        gcloud iam workload-identity-pools providers create-oidc "github-provider" \
+        --project="YOUR_PROJECT_ID" \
+        --location="global" \
+        --workload-identity-pool="github-pool" \
+        --display-name="GitHub Actions Provider" \
+        --attribute-mapping="google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository,attribute.repository_id=assertion.repository_id" \
+        --issuer-uri="https://token.actions.githubusercontent.com" \
+        --attribute-condition="assertion.repository_id == 'YOUR_REPO_ID'"
         ```
-    13.  **Связывание Service Account и WIF:**
+    14.  **Связывание Service Account и WIF:**
         - Выполните команду, подставив свой `PROJECT_ID`, `PROJECT_NUMBER` и `GITHUB_USERNAME`.
         ```bash
         gcloud iam service-accounts add-iam-policy-binding "github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com" --project="YOUR_PROJECT_ID" --role="roles/iam.workloadIdentityUser" --member="principalSet://iam.googleapis.com/projects/YOUR_PROJECT_NUMBER/locations/global/workloadIdentityPools/github-pool/attribute.repository/YOUR_GITHUB_USERNAME/codex"
         ```
   
     **Часть II: Настройка GitHub**
-    14.  **Получение имени провайдера:**
+    15.  **Получение имени провайдера:**
         - Выполните команду и скопируйте результат.
         ```bash
         gcloud iam workload-identity-pools providers describe "github-provider" --project="YOUR_PROJECT_ID" --location="global" --workload-identity-pool="github-pool" --format="value(name)"
         ```
-    15. **Сохранение Имени Провайдера:** Запиши имя WIF провайдера в секреты GitHub.
+    16. **Сохранение Имени Провайдера:** Запиши имя WIF провайдера в секреты GitHub.
         ```bash
         gh secret set GCP_WORKLOAD_IDENTITY_PROVIDER --repo YOUR_GITHUB_USERNAME/codex --body "PASTE_PROVIDER_NAME_HERE"
         ```
-    16. **Сохранение Служебного Аккаунта:** Запиши email сервисного аккаунта в секреты.
+    17. **Сохранение Служебного Аккаунта:** Запиши email сервисного аккаунта в секреты.
         ```bash
         gh secret set GCP_SERVICE_ACCOUNT --repo YOUR_GITHUB_USERNAME/codex --body "github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com"
         ```
   
     **Часть III: Запуск пайплайна**
-    17.  **Активация триггера:**
+    18.  **Активация триггера:**
         - В локальном репозитории откройте файл `Part_4_Engineering/Scroll_32/Quest_1/main.py` и добавьте в конец файла любой комментарий, например `# Trigger pipeline`. Сохраните файл.
-    18. **Индексация Изменений:** Добавь измененный файл в индекс Git.
+    19. **Индексация Изменений:** Добавь измененный файл в индекс Git.
         ```bash
         git add .
         ```
-    19. **Запечатывание в Летописи:** Создай коммит, который пробудит пайплайн.
+    20. **Запечатывание в Летописи:** Создай коммит, который пробудит пайплайн.
         ```bash
         git commit -m "feat(ci): Пробуждение автоматизированной кузницы"
         ```
-    20. **Отправка в Форк:** Отправь изменения на GitHub, чтобы запустить Action.
+    21. **Отправка в Форк:** Отправь изменения на GitHub, чтобы запустить Action.
         ```bash
         git push origin main
         ```
