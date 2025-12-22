@@ -309,7 +309,7 @@ uvicorn==0.38.0
 uvloop==0.21.0
 vine==5.1.0
 virtualenv==20.35.3
-voluptuous==0.15.2
+voluptuous==0.16.0
 watchfiles==1.1.1
 wcwidth==0.2.14
 websocket-client==1.8.0
