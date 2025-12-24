@@ -170,14 +170,7 @@ function renderQuestView(quest) {
             <!-- Окно Прорицания, где будут являться видения. -->
             <div class="terminal-window" id="term-window">
                 <!-- Область для вывода летописи ритуала. -->
-                <div id="term-output">
-                    <!-- Начальное приветствие системы. -->
-                    <div class="sys-msg">Codex OS v2.0 Auto-Pilot loaded...</div>
-                    <!-- Указание цели ритуала — текущего квеста. -->
-                    <div class="sys-msg">Target: Quest ${quest.id}</div>
-                    <!-- Пустая строка для визуального отступа. -->
-                    <br>
-                </div>
+                <div id="term-output"></div>
                 <!-- Активная строка, где будет имитироваться ввод. -->
                 <div class="input-line" id="active-input-line">
                     <!-- Приглашающий сигил терминала. -->
@@ -216,113 +209,63 @@ function renderQuestView(quest) {
     }
   });
 
-  // Мы призываем главный ритуал автоматической симуляции.
-  runAutoScenario(quest);
+  // Мы призываем главный ритуал симуляции.
+  renderStaticTerminal(quest);
 }
 
-// Определение Ритуала Автоматического Исполнения Сценария.
-async function runAutoScenario(quest) {
-  // Мы находим область для вывода видений.
+// Определение Ритуала Статичного Отображения Летописи (без анимации).
+function renderStaticTerminal(quest) {
+  // Мы находим область для вывода видений (истории терминала).
   const output = document.getElementById("term-output");
-  // Мы находим дисплей, где будут печататься команды.
-  const inputDisplay = document.getElementById("term-input-display");
+  // Мы находим активную строку ввода, чтобы скрыть ее после завершения.
+  const activeLine = document.getElementById("active-input-line");
   // Мы находим само Окно Прорицания для управления прокруткой.
   const win = document.getElementById("term-window");
-  // Мы находим активную строку ввода, чтобы управлять ее видимостью.
-  const activeLine = document.getElementById("active-input-line");
 
   // "Страж-Проверка": если свиток сценария пуст, ритуал прерывается.
   if (!quest.scenario || quest.scenario.length === 0) {
-    // Мы сообщаем Магу о проблеме.
+    // Мы сообщаем Магу о проблеме красными рунами.
     output.innerHTML += `<div class="sys-msg" style="color:red">Сценарий не найден.</div>`;
-    // Мы прерываем ритуал.
+    // Скрываем строку ввода.
+    activeLine.style.display = "none";
+    // Прерываем выполнение.
     return;
   }
 
-  // Мы делаем драматическую паузу перед началом магии.
-  await new Promise((r) => setTimeout(r, 1000));
+  // Начинаем создавать единый блок HTML для всей летописи.
+  let terminalContent = "";
+  // Добавляем начальное приветствие системы (обновленная версия 3.0).
+  terminalContent += `<div class="sys-msg">Codex OS v3.0 Auto-Pilot loaded...</div>`;
+  // Указываем цель текущего ритуала.
+  terminalContent += `<div class="sys-msg">Target: Quest ${quest.id}</div><div style="margin-bottom: 15px;"></div>`;
 
-  // Мы начинаем магический круг, проходя по каждому шагу сценария.
+  // Проходим по каждому шагу сценария из JSON.
   for (const step of quest.scenario) {
-    // Мы извлекаем Слово Силы для текущего шага.
-    const command = step.command;
-    // Мы начинаем ритуал "Самопишущих Рун" для начертания команды.
-    for (let i = 0; i < command.length; i++) {
-      // Мы добавляем следующую руну (символ) на дисплей.
-      inputDisplay.textContent += command.charAt(i);
-      // Мы совершаем краткую, случайную паузу для имитации человеческого набора.
-      await new Promise((r) => setTimeout(r, 30 + Math.random() * 50));
-    }
+    // Добавляем строку с командой пользователя (с промптом).
+    terminalContent += `<div><span class="prompt">mage@codex:~$</span> ${step.command}</div>`;
 
-    // Мы делаем паузу, словно Маг задумался перед нажатием Enter.
-    await new Promise((r) => setTimeout(r, 600));
-
-    // Мы создаем контейнер для записи произнесенной команды в летопись.
-    const historyLine = document.createElement("div");
-    // Мы вписываем в него сигил-приглашение и саму команду.
-    historyLine.innerHTML = `<span class="prompt">mage@codex:~$</span> ${command}`;
-    // Мы добавляем эту запись в область видений.
-    output.appendChild(historyLine);
-
-    // Мы очищаем дисплей, готовя его для следующего заклинания.
-    inputDisplay.textContent = "";
-
-    // Мы временно делаем строку ввода невидимой, имитируя занятость терминала.
-    activeLine.style.visibility = "hidden";
-
-    // Мы делаем паузу, имитируя время выполнения команды.
-    await new Promise((r) => setTimeout(r, 500));
-
-    // "Страж-Проверка": если для этого шага есть ответ...
+    // Если есть вывод команды, добавляем его.
     if (step.output) {
-      // ...мы запускаем ритуал "Самопишущие Руны" для вывода ответа.
-      await typewriterEffect(output, step.output, win);
+      // Оборачиваем вывод в <pre><code> для сохранения форматирования и моноширинного шрифта.
+      terminalContent += `<div class="sys-msg"><pre><code>${step.output}</code></pre></div>`;
     }
 
-    // Мы добавляем пустую строку для визуального разделения.
-    output.innerHTML += `<br>`;
-    // Мы прокручиваем Окно Прорицания вниз.
-    win.scrollTop = win.scrollHeight;
-
-    // Мы снова делаем строку ввода видимой, показывая готовность к следующей команде.
-    activeLine.style.visibility = "visible";
-
-    // Мы делаем паузу, чтобы Маг мог осмыслить увиденное.
-    await new Promise((r) => setTimeout(r, 1000));
+    // Добавляем небольшой отступ после каждого блока команды для читаемости.
+    terminalContent += `<div style="margin-bottom: 10px;"></div>`;
   }
 
-  // После завершения всех шагов мы скрываем строку ввода навсегда.
+  // Вставляем всю сформированную летопись в терминал одним действием (быстро и надежно).
+  output.innerHTML = terminalContent;
+
+  // Скрываем строку ввода, так как ритуал завершен и ввод больше не требуется.
   activeLine.style.display = "none";
-  // Мы призываем заклинание "Открытие Пути" к следующему квесту.
+
+  // Призываем заклинание "Открытие Пути" к следующему квесту.
   showNextButton(quest, output);
-  // Мы финально прокручиваем Окно Прорицания вниз.
+
+  // Прокручиваем Окно Прорицания в самый низ, чтобы видеть результат.
   win.scrollTop = win.scrollHeight;
 }
-
-// Определение заклинания "Самопишущие Руны" для эффекта магического начертания.
-async function typewriterEffect(container, text, scrollContainer) {
-  // Мы разделяем все пророчество (текст) на отдельные строки, чтобы начертать их последовательно.
-  const lines = Array.isArray(text) ? text : text.split("\n");
-  // Мы начинаем ритуал перечисления для каждой строки пророчества.
-  for (const line of lines) {
-    // Мы создаем контейнер для каждой отдельной строки видения.
-    let lineDiv = document.createElement("div");
-    // Мы придаем ему облик системного сообщения из нашей книги стилей.
-    lineDiv.className = "sys-msg";
-    // Мы добавляем этот контейнер в Окно Прорицания.
-    container.appendChild(lineDiv);
-
-    // Мы начинаем начертание рун, по одной за раз, для текущей строки.
-    for (let i = 0; i < line.length; i++) {
-      // Мы добавляем следующую руну (символ) в контейнер строки.
-      lineDiv.innerHTML += line.charAt(i);
-      // Мы постоянно держим последнюю начертанную руну в поле зрения, прокручивая Окно.
-      scrollContainer.scrollTop = scrollContainer.scrollHeight;
-      // Мы совершаем краткую магическую паузу (5 миллисекунд) между начертанием рун.
-      await new Promise((resolve) => setTimeout(resolve, 5));
-    } // Завершаем начертание одной строки.
-  } // Завершаем начертание всех строк пророчества.
-} // Здесь завершается заклинание "Самопишущие Руны".
 
 // Определение заклинания "Открытие Пути", что создает портал к следующему испытанию.
 function showNextButton(quest, outputContainer) {
