@@ -255,7 +255,7 @@ ruff==0.14.2
 s3transfer==0.14.0
 safehttpx==0.1.6
 safetensors==0.7.0
-sahi==0.11.32
+sahi==0.11.36
 scikit-learn==1.7.0
 scipy==1.16.3
 scmrepo==3.5.9
