@@ -101,7 +101,7 @@ function renderCodexPage() {
               <!-- Также вплетаем в него руну телепортации 'onclick', если она существует. -->
               <div class="quest-card ${q.status}" ${clickAttr}>
                 <!-- Наносим гравировку с порядковым номером квеста. -->
-                <div class="q-id">#${q.id}</div>
+                <div class="q-id">Квест #${q.id}</div>
                 <!-- Начертываем главное имя квеста, делая его заметным. -->
                 <div class="q-title">${q.title}</div>
               </div>
@@ -174,7 +174,7 @@ function renderQuestView(quest) {
                 <!-- Активная строка, где будет имитироваться ввод. -->
                 <div class="input-line" id="active-input-line">
                     <!-- Приглашающий сигил терминала. -->
-                    <span class="prompt">mage@codex:~$</span>
+                    <span class="prompt">magus@codex:~$</span>
                     <!-- Дисплей, где будет печататься команда. -->
                     <span id="term-input-display"></span>
                     <!-- Пульсирующий кристалл-курсор, знак ожидания. -->
@@ -242,7 +242,7 @@ function renderStaticTerminal(quest) {
   // Проходим по каждому шагу сценария из JSON.
   for (const step of quest.scenario) {
     // Добавляем строку с командой пользователя (с промптом).
-    terminalContent += `<div><span class="prompt">mage@codex:~$</span> ${step.command}</div>`;
+    terminalContent += `<div><span class="prompt">magus@codex:~$</span> ${step.command}</div>`;
 
     // Если есть вывод команды, добавляем его.
     if (step.output) {
@@ -291,7 +291,7 @@ function showNextButton(quest, outputContainer) {
         <!-- Руна 'class' придает ему облик сияющего артефакта 'btn-magic'. -->
         <a href="quest.html?id=${nextQuest.id}" class="btn-magic">
           <!-- Начертываем на кнопке призыв к действию, указывая номер следующего испытания. -->
-          К следующему квесту: #${nextQuest.id} →
+          Квест: #${nextQuest.id} →
         </a>
       </div>`; // Здесь завершается сотворение портала.
     // Если же это был последний квест...

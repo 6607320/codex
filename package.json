@@ -2,7 +2,7 @@
   "name": "codex",
   "version": "1.0.0",
   "description": "Интерактивный гримуар, документирующий путь от Мага-Ремесленника до Архимага AI.",
-  "author": "Guild Master (Magus-Technomancer)",
+  "author": "Мастер Гильдии (Маг-Техномант)",
   "license": "Apache License, Version 2.0",
   "private": true,
   "scripts": {
