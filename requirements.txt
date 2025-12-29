@@ -37,7 +37,7 @@ click==8.1.8
 click-didyoumean==0.3.1
 click-plugins==1.1.1.2
 click-repl==0.3.0
-cloudpickle==3.1.1
+cloudpickle==3.1.2
 colorama==0.4.6
 coloredlogs==15.0.1
 ConfigArgParse==1.7.1
