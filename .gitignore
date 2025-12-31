@@ -1,11 +1,15 @@
 # --- Системные файлы и Кэш Python ---
 # Кэш скомпилированных файлов Python. Создается везде.
-__pycache__/
+__pycache__
 *.pyc
 
 # === Хранилище DVC ===
-.dvc/cache/
-.dvc/tmp/
+.dvc/cache
+.dvc/tmp
 
 # === Артефакты Node.js ===
-/node_modules/
+/node_modules
+
+# Исключаем всю Часть 5 ("Путь Архимага") из контроля версий,
+# чтобы вести разработку автономных агентов NINDUB в "Теневом Режиме" (Stealth Mode)
+/Part_5_Archmage

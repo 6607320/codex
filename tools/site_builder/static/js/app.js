@@ -101,7 +101,7 @@ function renderCodexPage() {
               <!-- Также вплетаем в него руну телепортации 'onclick', если она существует. -->
               <div class="quest-card ${q.status}" ${clickAttr}>
                 <!-- Наносим гравировку с порядковым номером квеста. -->
-                <div class="q-id">Квест #${q.id}</div>
+                <div class="q-id">Квест ${q.id}</div>
                 <!-- Начертываем главное имя квеста, делая его заметным. -->
                 <div class="q-title">${q.title}</div>
               </div>
@@ -291,7 +291,7 @@ function showNextButton(quest, outputContainer) {
         <!-- Руна 'class' придает ему облик сияющего артефакта 'btn-magic'. -->
         <a href="quest.html?id=${nextQuest.id}" class="btn-magic">
           <!-- Начертываем на кнопке призыв к действию, указывая номер следующего испытания. -->
-          Квест: #${nextQuest.id} →
+          Квест ${nextQuest.id} →
         </a>
       </div>`; // Здесь завершается сотворение портала.
     // Если же это был последний квест...

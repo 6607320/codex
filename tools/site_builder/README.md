@@ -13,7 +13,7 @@
 python -m http.server 8000 --directory tools/site_builder/static
 ```
 
-После этого открой в браузере `http://localhost:8000`.
+После этого открой в браузере `http://0.0.0.0:8000`.
 
 ---
 
