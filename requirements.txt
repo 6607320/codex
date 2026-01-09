@@ -193,7 +193,7 @@ peft==0.16.0
 pi_heif==1.1.1
 pillow==11.3.0
 pillow-avif-plugin==1.5.2
-platformdirs==4.3.8
+platformdirs==4.5.1
 pluggy==1.6.0
 pooch==1.8.2
 pre_commit==4.3.0
