@@ -209,7 +209,7 @@ pyarrow==22.0.0
 pyarrow-hotfix==0.7
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
-pybboxes==0.1.6
+pybboxes==0.2.0
 pycodestyle==2.14.0
 pycparser==2.22
 pycryptodomex==3.23.0
