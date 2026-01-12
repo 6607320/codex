@@ -257,7 +257,7 @@ def build():
         # Мы ищем папки, соответствующие формату квестов (Scroll_X/Quest_Y).
         match = re.search(r"Scroll_(\d+)[\\/]Quest_(\d+)", root)
         # Если нашли и в папке есть 'manifest.md'...
-        if match and "manifest.md" in os.listdir(root):
+        if match and "MANIFEST.md" in os.listdir(root):
             # ...мы создаем ID квеста (например, "1.2")...
             q_id = f"{int(match.group(1))}.{int(match.group(2))}"
             # ...и сохраняем его в карту вместе с путем к папке.
@@ -275,7 +275,7 @@ def build():
         # Если папка квеста найдена...
         if quest_folder:
             # ...мы формируем путь к его 'manifest.md'.
-            manifest_path = os.path.join(quest_folder, "manifest.md")
+            manifest_path = os.path.join(quest_folder, "MANIFEST.md")
             # Если манифест существует...
             if os.path.exists(manifest_path):
                 # ...мы открываем его для чтения...

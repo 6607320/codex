@@ -5,10 +5,10 @@ FROM python:3.10
 WORKDIR /app
 
 # Копируем свиток зависимостей
-COPY requirements.txt .
+COPY requirements.lock .
 
 # Устанавливаем зависимости НАПРЯМУЮ в финальный образ
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.lock
 
 # Копируем ВСЕ пергаменты из нашей мастерской
 COPY . .
