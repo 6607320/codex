@@ -229,7 +229,7 @@ pyinstaller-hooks-contrib==2025.10
 pyOpenSSL==24.2.1
 pyparsing==3.2.5
 PySocks==1.7.1
-pytest==8.4.1
+pytest==9.0.2
 python-bitcoinlib==0.12.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
