@@ -158,7 +158,7 @@ msgpack==1.1.1
 multidict==6.6.3
 multiprocess==0.70.15
 mypy_extensions==1.1.0
-networkx==3.5
+networkx==3.6.1
 nodeenv==1.9.1
 numba==0.62.1
 numpy==2.1.2
