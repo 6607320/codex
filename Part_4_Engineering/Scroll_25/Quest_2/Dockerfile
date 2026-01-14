@@ -7,11 +7,11 @@ FROM python:3.10 AS builder
 WORKDIR /app
 
 # Копируем наш "рецепт" с гримуарами.
-COPY requirements.lock .
+COPY requirements.txt .
 
 # Произносим главное заклинание ковки: "Призови все гримуары".
 # На этом этапе pip может скачивать и компилировать тяжелые пакеты, используя инструменты из "толстого" образа.
-RUN pip install --no-cache-dir -r requirements.lock
+RUN pip install --no-cache-dir -r requirements.txt
 
 
 # --- Этап 2: "Тронный Зал" (The Showroom / Final Stage) ---

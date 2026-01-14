@@ -10,14 +10,14 @@ FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
 # Шаг 2: Мы подготавливаем "мастерскую".
 # `WORKDIR /app` — это заклинание, которое создает внутри нашего Голема "мастерскую" по имени `/app` и "входит" в нее.
 WORKDIR /app
-# `COPY requirements.lock .` — мы копируем "свиток с перечнем гримуаров" (`requirements.lock`) из нашего мира в "мастерскую" Голема.
-COPY requirements.lock .
+# `COPY requirements.txt .` — мы копируем "свиток с перечнем гримуаров" (`requirements.txt`) из нашего мира в "мастерскую" Голема.
+COPY requirements.txt .
 
 # Шаг 3: Мы призываем Гримуары.
 # `RUN` — это заклинание, которое исполняет команду внутри Голема.
 # Мы больше не удаляем torch, а просто устанавливаем наших помощников.
-# `pip install --no-cache-dir -r requirements.lock` — мы приказываем духу `pip` установить все гримуары из нашего свитка, не сохраняя лишнего мусора.
-RUN pip install --no-cache-dir -r requirements.lock
+# `pip install --no-cache-dir -r requirements.txt` — мы приказываем духу `pip` установить все гримуары из нашего свитка, не сохраняя лишнего мусора.
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Шаг 4: Мы копируем наш "пергамент".
 # `COPY main.py .` — мы копируем "чертеж Амулета" (`main.py`) из нашего мира в "мастерскую" Голема.

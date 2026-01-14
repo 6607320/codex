@@ -7,10 +7,10 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Копируем "Свиток Зависимостей" для Locust.
-COPY requirements.lock .
+COPY requirements.txt .
 
 # Устанавливаем Locust.
-RUN pip install --no-cache-dir -r requirements.lock
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем наш "План Осады".
 COPY locustfile.py .
