@@ -6,10 +6,10 @@ FROM python:3.10
 WORKDIR /app
 
 # Копируем рецепт.
-COPY requirements.txt .
+COPY libraries.list .
 
 # Устанавливаем гримуары. Весь "мусор" от сборки останется в финальном образе.
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r libraries.list
 
 # Копируем наш код.
 COPY . .
