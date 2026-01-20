@@ -1,15 +1,23 @@
 {
   "_meta": {
-    "input_hash": "ed9965cec6175abada8a56ae72dce468"
+    "input_hash": "75bc656c576dae23324e6fb7ed71ac64"
   },
   "scenario": [
     {
+      "command": "conda create --name chimera_circle python=3.10 -y",
+      "output": "(base) user@host:~$ conda create --name chimera_circle python=3.10 -y\nSolving environment: done\nDownloading and extracting packages\nDownloading package 1/3\nDownloading package 2/3\nDownloading package 3/3\nPreparing transaction: done\nEnvironment chimera_circle created\nTo activate this environment, run 'conda activate chimera_circle'"
+    },
+    {
+      "command": "conda activate chimera_circle",
+      "output": "(chimera_circle) user@host:~$ conda activate chimera_circle\n"
+    },
+    {
       "command": "pip install yolov5",
-      "output": "Collecting yolov5\n  Downloading yolov5-0.1.0-py3-none-any.whl (2.3 MB)\nInstalling collected packages: yolov5\nSuccessfully installed yolov5-0.1.0"
+      "output": "Collecting yolov5\n  Downloading yolov5-1.0.0-py3-none-any.whl (2.4 MB)\nCollecting numpy>=1.18.5\n  Using cached numpy-1.23.5-cp39-cp39-linux_x86_64.whl\nInstalling collected packages: numpy, yolov5\nSuccessfully installed numpy-1.23.5 yolov5-1.0.0"
     },
     {
       "command": "python quest_18_1.py",
-      "output": "Пробуждаю 'Сторожевую Химеру' (YOLOv5)...\nХимера пробудилась и готова к охоте!\nПодключаюсь к 'Магической Кинопленке'...\nНачинаю 'Слепую Охоту'...\n Охота на кинопленке:  100%\nРитуал завершен. 10 помеченных кадров сохранено в папку 'hunt_results'.",
+      "output": "Пробуждаю 'Сторожевую Химеру' (YOLOv5)...\nХимера пробудилась и готова к охоте!\n\nПодключаюсь к 'Магической Кинопленке'...\nНачинаю 'Слепую Охоту'...\n\nОхота на кинопленке: 0%|          | 0/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 10%|#         | 1/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 20%|##        | 2/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 30%|###       | 3/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 40%|####      | 4/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 50%|#####     | 5/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 60%|######    | 6/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 70%|#######   | 7/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 80%|########  | 8/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 90%|######### | 9/10 [00:00<00:00, ?it/s]\nОхота на кинопленке: 100%|##########| 10/10 [00:00<00:00, ?it/s]\n\nРитуал завершен. 10 помеченных кадров сохранено в папку 'hunt_results'.",
       "is_final": true
     }
   ]

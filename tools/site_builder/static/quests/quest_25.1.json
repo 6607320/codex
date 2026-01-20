@@ -6,18 +6,32 @@
   "status": "active",
   "scenario": [
     {
+      "command": "pwd",
+      "output": "quest@host:~/quest25$ \n/home/quest/quest25\n"
+    },
+    {
+      "command": "ls -la",
+      "output": "quest@host:~/quest25$ ls -la\n total 32\n drwxr-xr-x 4 quest quest 4096 Jan  2 12:00 .\n drwxr-xr-x 4 quest quest 4096 Jan  2 12:00 ..\n -rw-r--r-- 1 quest quest  120 Jan  2 12:00 Dockerfile\n -rw-r--r-- 1 quest quest  980 Jan  2 12:00 docker-compose.yaml\n -rw-r--r-- 1 quest quest  540 Jan  2 12:00 main.py\n -rw-r--r-- 1 quest quest  420 Jan  2 12:00 libraries.list\n"
+    },
+    {
       "command": "docker compose up --build -d",
-      "output": "Checking for ring files... ok\nStarting service redis...\n=>(attaching to network quest_25_1_default)\nService redis (ID=1234ghjk) created with network alias 'redis'\nStarting service api...\n=>(attaching to network quest_25_1_default)\nOrg-based orchestration initiated.\nAttaching volumes: /app/redis/data\nContainer api (ID=abcd5678) created and started\nAll services created successfully.\nReady for communication.\nNetwork quest_25_1_default attached.\nRedis listening on internal IP 172.18.0.2... approach with caution.",
-      "is_final": false
+      "output": "quest@host:~/quest25$ docker compose up --build -d\nCreating network quest_25_1_default\nCreating quest_25_1_api_1 ... done\nCreating quest_25_1_redis_1 ... done\n"
     },
     {
-      "command": "docker-compose ps",
-      "output": "NAME                              COMMAND               DURATION   PORTS     NAMES\napi                          uvicorn main:app       2m         0.0.0.0:8000->8000/tcp   codex/orchestrator-25-1-app-1\nredis                        redis:alpine           Up 1m30s                         codex/orchestrator-25-1-redis-1\nnetworks                      N/A                    N/A        N/A                       quest_25_1_default\nservices                      N/A                    N/A        N/A                       quest_25_1_default\nvolumes                       N/A                    N/A        N/A                       codex/orchestrator-25-1-app-1-data\nredis_data                   N/A                    N/A        N/A                       codex/orchestrator-25-1-redis-1-data",
-      "is_final": false
+      "command": "docker compose ps",
+      "output": "quest@host:~/quest25$ docker compose ps\nNAME                              SERVICE  STATE  PORTS\nquest_25_1_api_1                  api      Up     0.0.0.0:8000->8000/tcp\nquest_25_1_redis_1                redis    Up\n"
     },
     {
-      "command": "docker-compose down",
-      "output": "Stopping services...\n=>(forcing container shutdown)\nStopping container api... removed\nStopping container redis... removed\nCleaning volumes... all volumes removed\nRemoving network quest_25_1_default... removed\nAll services terminated successfully. Quest completed.",
+      "command": "curl -sS -X POST 'http://127.0.0.1:8000/remember/favorite_color?value=blue'",
+      "output": "quest@host:~/quest25$ curl -sS -X POST 'http://127.0.0.1:8000/remember/favorite_color?value=blue'\n{\"status\":\"ok\",\"key\":\"favorite_color\",\"remembered_value\":\"blue\"}\n"
+    },
+    {
+      "command": "curl -sS 'http://127.0.0.1:8000/recall/favorite_color'",
+      "output": "quest@host:~/quest25$ curl -sS 'http://127.0.0.1:8000/recall/favorite_color'\n{\"status\":\"found\",\"key\":\"favorite_color\",\"recalled_value\":\"blue\"}\n"
+    },
+    {
+      "command": "docker compose down",
+      "output": "quest@host:~/quest25$ docker compose down\nStopping quest_25_1_api_1 ... done\nStopping quest_25_1_redis_1 ... done\nRemoving quest_25_1_api_1 ... done\nRemoving quest_25_1_redis_1 ... done\nRemoving network quest_25_1_default\n",
       "is_final": true
     }
   ]

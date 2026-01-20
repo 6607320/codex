@@ -6,16 +6,28 @@
   "status": "active",
   "scenario": [
     {
-      "command": "git add .",
-      "output": "user@host:~/Part_4_Engineering/Scroll_32/Quest_2$ git add .\n"
+      "command": "bash -lc 'mkdir -p Part_4_Engineering/Scroll_32/Quest_2 && echo \"# Trigger Telemetry Pipeline\" >> Part_4_Engineering/Scroll_32/Quest_2/main.py'",
+      "output": "",
+      "is_final": false
+    },
+    {
+      "command": "git add Part_4_Engineering/Scroll_32/Quest_2/main.py",
+      "output": "",
+      "is_final": false
     },
     {
       "command": "git commit -m \"feat(ci): Включить и запустить телеметрический конвейер\"",
-      "output": "user@host:~/Part_4_Engineering/Scroll_32/Quest_2$ git commit -m \"feat(ci): Включить и запустить телеметрический конвейер\"\n[main 4d2e2f5] feat(ci): Включить и запустить телеметрический конвейер\n 1 file changed, 1 insertion(+)\n"
+      "output": "[main 1a2b3c4] feat(ci): Включить и запустить телеметрический конвейер\n 1 file changed, 1 insertion(+)\n",
+      "is_final": false
     },
     {
       "command": "git push origin main",
-      "output": "user@host:~/Part_4_Engineering/Scroll_32/Quest_2$ git push origin main\nEnumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 321 bytes | 321.00 KiB/s, done.\nTotal 3 (delta 2), reused 0 (delta 0), pack-reused 0\nremote: Resolving deltas: 100% (2/2), completed with 2 local objects.\nTo github.com:user/repo.git\n   4d2e2f5..3e2d1c4  main -> main\n",
+      "output": "Enumerating objects: 3, done.\nCounting objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 320 bytes | 320.00 KiB/s, done.\nTotal 3 (delta 0), reused 0 (delta 0)\nTo github.com:yourorg/dragonforge.git\n   1a2b3c4..5d6e7f8  main -> main\n",
+      "is_final": false
+    },
+    {
+      "command": "pytest -q",
+      "output": "Призываю 'Духа Эмоций' А (DistilBERT)...\n'Дух А' готов к работе.\nПризываю 'Духа Эмоций' Б (RoBERTa)...\n'Дух Б' готов к работе.\n============================= test session starts ==============================\nplatform linux -- Python 3.11.2, pytest-9.0.1\nrootdir: /workspace\ncollected 2 items\n\ntest_main.py::test_validate_endpoint_returns_ok PASSED\ntest_main.py::test_analyze_endpoint_returns_ok PASSED\n\n2 passed in 2.45s\n",
       "is_final": true
     }
   ]

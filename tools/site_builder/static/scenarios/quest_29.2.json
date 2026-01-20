@@ -1,19 +1,35 @@
 {
   "_meta": {
-    "input_hash": "e6154667b6336d354c20eb6126855e5b"
+    "input_hash": "7312c4fc753bef166c6d00f8dbabf20c"
   },
   "scenario": [
     {
+      "command": "cd Part_4_Engineering/Scroll_29/Quest_2",
+      "output": "(user) host:~/Part_4_Engineering/Scroll_29/Quest_2$ "
+    },
+    {
       "command": "docker-compose up -d --build",
-      "output": "Creating network \"monitoring-net\" with driver \"bridge\"\nBuilding app\nStep 1/6 : FROM python:3.10\n3.10: Pulling from library/python\nDigest: sha256:4f5a44e8f001f04f7c0d8e1a59e5d7a5e7e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8\nStatus: Downloaded newer image for python:3.10\n---> 1f5a5f1f5a5f\nStep 2/6 : WORKDIR /app\n---> Running in 1a2b3c4d5e6f\nRemoving intermediate container 1a2b3c4d5e6f\n---> 7a8b9c0d1e2f\nStep 3/6 : COPY requirements.txt .\n---> 1a2b3c4d5e6f\nStep 4/6 : RUN pip install --no-cache-dir -r requirements.txt\n---> Running in 1a2b3c4d5e6f\n... (pip install logs)...\nRemoving intermediate container 1a2b3c4d5e6f\n---> 7a8b9c0d1e2f\nStep 5/6 : COPY . .\n---> 1a2b3c4d5e6f\nStep 6/6 : CMD [\"./start.sh\"]\n---> Running in 1a2b3c4d5e6f\nRemoving intermediate container 1a2b3c4d5e6f\n---> 7a8b9c0d1e2f\nSuccessfully built 7a8b9c0d1e2f\nSuccessfully tagged codex/app-29-2-telemetry:latest\nCreating prometheus_guardian... done\nCreating grafana_seer        ... done\nCreating quest_2_app_1       ... done\n"
+      "output": "Building app\nBuilding prometheus\nBuilding grafana\nCreating app_app_1 ... done\nCreating prometheus_guardian ... done\nCreating grafana_seer ... done\nAttaching to app_app_1, prometheus_guardian, grafana_seer\napp_app_1 is up\nprometheus_guardian is up\ngrafana_seer is up"
     },
     {
-      "command": "curl -X POST http://localhost:8000/validate",
-      "output": "{\"accuracy\":0.9,\"correct_predictions\":9,\"total_samples\":10}\n"
+      "command": "curl -s http://localhost:8000/metrics",
+      "output": "# HELP model_accuracy Current accuracy of the sentiment analysis model on a validation set\n# TYPE model_accuracy gauge\nmodel_accuracy 0"
     },
     {
-      "command": "open http://localhost:9090",
-      "output": "",
+      "command": "curl -s -X POST http://localhost:8000/validate",
+      "output": "{\"accuracy\":0.9,\"correct_predictions\":9,\"total_samples\":10}"
+    },
+    {
+      "command": "curl -s http://localhost:8000/metrics",
+      "output": "# HELP model_accuracy Current accuracy of the sentiment analysis model on a validation set\n# TYPE model_accuracy gauge\nmodel_accuracy 0.9"
+    },
+    {
+      "command": "curl -s http://localhost:9090/api/v1/query?query=model_accuracy",
+      "output": "{\"status\":\"success\",\"data\":{\"resultType\":\"vector\",\"result\":[{\"metric\":{\"__name__\":\"model_accuracy\",\"job\":\"fastapi-app\"},\"value\":[1699999999,\"0.9\"]}]}}"
+    },
+    {
+      "command": "echo 'Гильдия: Dashboard Тревожный Сигнал создан и сохранен'",
+      "output": "Гильдия: Dashboard Тревожный Сигнал создан и сохранен",
       "is_final": true
     }
   ]

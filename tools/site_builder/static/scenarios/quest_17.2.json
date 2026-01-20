@@ -1,15 +1,26 @@
 {
   "_meta": {
-    "input_hash": "c4c1840b152c17cff9d4f42eb302f6cc"
+    "input_hash": "27741d13fedabcb70c4fdca8c2b6d9c2"
   },
   "scenario": [
     {
       "command": "docker build -t codex/amulet-17-2-leviathan .",
-      "output": "Sending build context to Docker daemon  80.64kB\nStep 1/6 : FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime\n ---> abc123def4567\nStep 2/6 : WORKDIR /app\n ---> Using cache\n ---> 9876543210fedcba\nStep 3/6 : COPY requirements.txt .\n ---> Using cache\n ---> e0a4d1234567890\nStep 4/6 : RUN pip install --no-cache-dir -r requirements.txt\n ---> Running in 1a2b3c4d67890e\n  Using cached https://pypi.org/packages/ab/ab/fastapi-0.97.0-py3-none-any.whl\n  Using cached https://pypi.org/packages/3d/3d/uvicorn-0.23.2-py3-none-any.whl\n  Using cached https://pypi.org/packages/5c/5c/transformers-4.31.0-cp39-none-linux_x86_64.whl\n  Using cached https://pypi.org/packages/78/7d/soundfile-0.10.3.tar.gz\nRequirement already satisfied: packaging in ./.virtualenvs/env/lib/python3.9/site-packages (23.0.1)\nSuccessfully built \\\n  importlib_resources-5.12.4-py3-none-any.whl\n  tensorflow_core-2.12.0-cp39-cuda11.8.cu11.8.whl\n  torchaudio-2.1.0-cp39-cuda11.8.cu11.8-cudnn8-runtime-cuda11.8-linux.tar.gz\n  tensorflow-cpu-2.12.0-cp39-none-linux_x86_64.whl\n  scipy-1.10.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_12_x86_64.manylinux_2_12_x86_64.manylinux_2_12_x86_64.manylinux2014_x86_64.whl\n  torch-2.1.0-cp39-none-linux_x86_64.whl\n  virtualenv-20.23.2-py3-none-any.whl\n  torchspec-0.1.1-py3-none-any.whl\nCleaning up...\nRemoving intermediate container 1a2b3c4d67890e\n ---> 2a3b4c5d6e7f890\nStep 5/6 : COPY main.py .\n ---> Using cache\n ---> 76543210abcdef7\nStep 6/6 : CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n ---> Running in 3f1e5d7a8b92cdef\nRemoving intermediate container 3f1e5d7a8b92cdef\n ---> 9a1b2c3d4e5f678\nSuccessfully built 9a1b2c3d4e5f678\nSuccessfully tagged codex/amulet-17-2-leviathan:latest"
+      "output": "Sending build context to Docker daemon  12.56kB\nStep 1/7 : FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime\n ---> a1b2c3d4e5f6\nStep 2/7 : WORKDIR /app\n ---> b2c3d4e5f6a7\nStep 3/7 : COPY libraries.list .\n ---> c3d4e5f6a7b8\nStep 4/7 : RUN pip install --no-cache-dir -r libraries.list\n ---> d4e5f6a7b8c9\nStep 5/7 : COPY main.py .\n ---> e5f6a7b8c9d0\nStep 6/7 : EXPOSE 8000\n ---> f6a7b8c9d0e1\nStep 7/7 : CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n ---> 0a1b2c3d4e5f\nSuccessfully built 0a1b2c3d4e5f\nSuccessfully tagged codex/amulet-17-2-leviathan:latest",
+      "is_final": false
     },
     {
       "command": "docker run -p 8000:8000 --gpus all codex/amulet-17-2-leviathan",
-      "output": "INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\nINFO:     Started reloader (auto-reloads enabled)\nINFO:     Started server process [1]\nINFO:     Waiting for application startup\nINFO:     Application startup complete\nINFO:     127.0.0.1:12345 - \"GET /docs HTTP/1.1\" 200 OK",
+      "output": "GPU support flag --gpus is deprecated and will be removed in a future release.\nContainer amulet-leviathan started\nAttaching to amulet-leviathan\namulet-leviathan | Призываю 'Духа Эмоций' для нашего амулета...\namulet-leviathan | 'Дух Эмоций' готов к работе.\nINFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\n",
+      "is_final": false
+    },
+    {
+      "command": "curl -s http://127.0.0.1:8000/docs",
+      "output": "<html>Swagger UI placeholder for OpenAPI docs at /docs</html>",
+      "is_final": false
+    },
+    {
+      "command": "curl -s -X POST -H \\\"Content-Type: application/json\\\" -d '{\\\"text\\\":\\\"I am happy\\\"}' http://127.0.0.1:8000/analyze",
+      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.92}}",
       "is_final": true
     }
   ]

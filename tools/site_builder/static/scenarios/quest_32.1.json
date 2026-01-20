@@ -1,87 +1,46 @@
 {
   "_meta": {
-    "input_hash": "a0670da8b80f295b485497d839d2dbda"
+    "input_hash": "178948e79ecf2fdef7bc00c78ad303a4"
   },
   "scenario": [
     {
-      "command": "gcloud config get-value project",
-      "output": "YOUR_PROJECT_ID\n"
+      "command": "ls -la",
+      "output": "total 56\n-rw-r--r-- 1 user user  512 Jan 19 12:00 Dockerfile\n-rw-r--r-- 1 user user 1024 Jan 19 12:00 docker-compose.yml\n-rw-r--r-- 1 user user   240 Jan 19 12:00 libraries.list\n-rw-r--r-- 1 user user   520 Jan 19 12:00 main.py\n-rw-r--r-- 1 user user   420 Jan 19 12:00 validation_data.py\n-rw-r--r-- 1 user user   420 Jan 19 12:00 start.sh\n-rw-r--r-- 1 user user   190 Jan 19 12:00 prometheus.yml\n",
+      "is_final": false
     },
     {
-      "command": "gcloud projects describe $(gcloud config get-value project) --format=\"value(projectNumber)\"",
-      "output": "YOUR_PROJECT_NUMBER\n"
+      "command": "uvicorn main:app --host 0.0.0.0 --port 8000",
+      "output": "INFO:     Started server process [12345]\nINFO:     Waiting for application startup.\nINFO: Application startup complete.\nINFO: Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)",
+      "is_final": false
     },
     {
-      "command": "curl -s https://api.github.com/repos/YOUR_GITHUB_USERNAME/codex | grep '\"id\":' | head -n 1 | tr -cd '0-9'",
-      "output": "YOUR_REPO_ID\n"
+      "command": "curl -s -X POST http://127.0.0.1:8000/analyze -H 'Content-Type: application/json' -d '{\"text\":\"I love this product\"}'",
+      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.92}, \"model_version\": \"A\"}",
+      "is_final": false
     },
     {
-      "command": "gcloud services enable artifactregistry.googleapis.com --project=\"YOUR_PROJECT_ID\"",
-      "output": "Operation \"enable\" finished successfully.\n"
+      "command": "curl -s -X POST http://127.0.0.1:8000/validate",
+      "output": "{\"model_tested\":\"A\",\"accuracy\":0.70,\"correct_predictions\":7,\"total_samples\":10}",
+      "is_final": false
     },
     {
-      "command": "gcloud services enable run.googleapis.com --project=\"YOUR_PROJECT_ID\"",
-      "output": "Operation \"enable\" finished successfully.\n"
+      "command": "docker build -t codex-app .",
+      "output": "Sending build context to Docker daemon  4.096kB\nStep 1/6 : FROM python:3.10\n ---> 1234567890ab\nStep 2/6 : WORKDIR /app\n ---> Using cache\nStep 3/6 : COPY libraries.list .\n ---> Using cache\nStep 4/6 : RUN pip install --no-cache-dir -r libraries.list\n ---> Running in 9d0f3f8b...\nCollecting fastapi\nDownloading fastapi-0.95.0-py3-none-any.whl (58 kB)\nCollecting uvicorn\nDownloading uvicorn-0.28.0-py3-none-any.whl (50 kB)\nCollecting transformers\nDownloading transformers-4.35.1-py3-none-any.whl (1.2 MB)\nInstalling collected packages: uvicorn, fastapi, transformers\nSuccessfully built abcd1234\nSuccessfully tagged codex-app:latest",
+      "is_final": false
     },
     {
-      "command": "gcloud services enable iamcredentials.googleapis.com --project=\"YOUR_PROJECT_ID\"",
-      "output": "Operation \"enable\" finished successfully.\n"
+      "command": "docker run -p 8000:8000 codex-app",
+      "output": "INFO: Started server process [1]\nINFO: Waiting for application startup...\nINFO: Application startup complete.\nINFO: Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)",
+      "is_final": false
     },
     {
-      "command": "gcloud artifacts repositories create codex-golems --repository-format=docker --location=europe-west3 --description=\"Codex CI/CD Artifact Repository\" --project=\"YOUR_PROJECT_ID\"",
-      "output": "Repository \"codex-golems\" created.\n"
-    },
-    {
-      "command": "gcloud iam service-accounts create github-actions-sa --display-name=\"Service Account for GitHub Actions\" --project=\"YOUR_PROJECT_ID\"",
-      "output": "Created service account \"github-actions-sa\".\n"
-    },
-    {
-      "command": "gcloud artifacts repositories add-iam-policy-binding codex-golems --project=\"YOUR_PROJECT_ID\" --location=\"europe-west3\" --member=\"serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\" --role=\"roles/artifactregistry.writer\"",
-      "output": "Updated IAM policy for repository \"codex-golems\".\n"
-    },
-    {
-      "command": "gcloud projects add-iam-policy-binding YOUR_PROJECT_ID --member=\"serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\" --role=\"roles/run.admin\"",
-      "output": "Updated IAM policy for project \"YOUR_PROJECT_ID\".\n"
-    },
-    {
-      "command": "gcloud iam service-accounts add-iam-policy-binding \"github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\" --member=\"serviceAccount:github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\" --role=\"roles/iam.serviceAccountUser\"",
-      "output": "Updated IAM policy for service account \"github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\".\n"
-    },
-    {
-      "command": "gcloud iam workload-identity-pools create \"github-pool\" --project=\"YOUR_PROJECT_ID\" --location=\"global\" --display-name=\"GitHub Actions Pool\"",
-      "output": "Created workload identity pool \"github-pool\".\n"
-    },
-    {
-      "command": "gcloud iam workload-identity-pools providers create-oidc \"github-provider\" --project=\"YOUR_PROJECT_ID\" --location=\"global\" --workload-identity-pool=\"github-pool\" --display-name=\"GitHub Actions Provider\" --attribute-mapping=\"google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository,attribute.repository_id=assertion.repository_id\" --issuer-uri=\"https://token.actions.githubusercontent.com\" --attribute-condition=\"assertion.repository_id == 'YOUR_REPO_ID'\"",
-      "output": "Created OIDC provider \"github-provider\".\n"
-    },
-    {
-      "command": "gcloud iam service-accounts add-iam-policy-binding \"github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\" --project=\"YOUR_PROJECT_ID\" --role=\"roles/iam.workloadIdentityUser\" --member=\"principalSet://iam.googleapis.com/projects/YOUR_PROJECT_NUMBER/locations/global/workloadIdentityPools/github-pool/attribute.repository/YOUR_GITHUB_USERNAME/codex\"",
-      "output": "Updated IAM policy for service account \"github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\".\n"
-    },
-    {
-      "command": "gcloud iam workload-identity-pools providers describe \"github-provider\" --project=\"YOUR_PROJECT_ID\" --location=\"global\" --workload-identity-pool=\"github-pool\" --format=\"value(name)\"",
-      "output": "YOUR_PROVIDER_NAME\n"
-    },
-    {
-      "command": "gh secret set GCP_WORKLOAD_IDENTITY_PROVIDER --repo YOUR_GITHUB_USERNAME/codex --body \"YOUR_PROVIDER_NAME\"",
-      "output": "✓ Set secret GCP_WORKLOAD_IDENTITY_PROVIDER for YOUR_GITHUB_USERNAME/codex\n"
-    },
-    {
-      "command": "gh secret set GCP_SERVICE_ACCOUNT --repo YOUR_GITHUB_USERNAME/codex --body \"github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com\"",
-      "output": "✓ Set secret GCP_SERVICE_ACCOUNT for YOUR_GITHUB_USERNAME/codex\n"
-    },
-    {
-      "command": "git add .",
-      "output": ""
-    },
-    {
-      "command": "git commit -m \"feat(ci): Пробуждение автоматизированной кузницы\"",
-      "output": "[main 1234567] feat(ci): Пробуждение автоматизированной кузницы\n 1 file changed, 1 insertion(+)\n"
+      "command": "git status",
+      "output": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish the commit)",
+      "is_final": false
     },
     {
       "command": "git push origin main",
-      "output": "Enumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 321 bytes | 321.00 KiB/s, done.\nTotal 3 (delta 2), reused 0 (delta 0), pack-reused 0\nremote: Resolving deltas: 100% (2/2), completed with 2 local objects.\nTo https://github.com/YOUR_GITHUB_USERNAME/codex.git\n   abcdefg..1234567  main -> main\n",
+      "output": "Enumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nWriting objects: 100% (5/5), 1.23 KiB | 1.23 MiB/s, done.\nTotal 5 (delta 0), reused 0 (delta 0)\nTo https://github.com/yourusername/codex.git\n   abcdef1..1234567  main -> main",
       "is_final": true
     }
   ]

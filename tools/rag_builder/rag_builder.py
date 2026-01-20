@@ -41,11 +41,22 @@ ARTEFACTS_DIR = "."
 EXCLUDE_DIRS = {
     ".git",
     ".dvc",
-    "__pycache__",
-    ".pytest_cache",
+    "mlruns",
+    "reports",
+    "data",
     "build",
     "dist",
     "notebooklm_sources",
+    "hunt_results",
+    "counting_results",
+    "dialogue_audio",
+    "generated_palette",
+    "sampled_frames",
+    "dreams",
+    "chaos_sculptures",
+    "artist_seal",
+    "arcane_wizardry.egg-info",
+    "node_modules",
 }
 # Определяем Истинные Имена Расширений тех свитков, что достойны нашего
 # внимания.
@@ -186,6 +197,7 @@ def create_pdf_from_text(text_content: str, output_path: str):
         # Начертаем список рун, что искажают пергамент и не могут быть нарисованы.
         GLYPHS_TO_EXCLUDE = (
             "🔮📜💎🖥✨🏆💼❓✅❌🗺🏛📡🔎🎯💥🤔👉⏳⏩📂💻📦📯💰🛡🌐🔬🤗？官网人"
+            "🏰🪄🧭🧰🗡🗝旨🧪🧿工⦿⛔💀🏁📝💤"
         )
         # Создаем таблицу изгнания для этих рун.
         translation_table = str.maketrans("", "", GLYPHS_TO_EXCLUDE)

@@ -1,0 +1,5 @@
+# Библиотека для взаимодействия с API (OpenAI или OpenRouter)
+openai
+
+# Загрузка переменных окружения из файла .env
+python-dotenv

@@ -6,28 +6,40 @@
   "status": "active",
   "scenario": [
     {
+      "command": "cd Part_4_Engineering/Scroll_30/Quest_2",
+      "output": "user@host:~/Part_4_Engineering/Scroll_30/Quest_2$ "
+    },
+    {
       "command": "docker-compose up -d --build",
-      "output": "Creating network \"monitoring-net\" with driver \"bridge\"\nCreating app_1... done\nCreating prometheus_guardian... done\nCreating grafana_seer... done\n"
+      "output": "Building app\nStep 1/6 : FROM python:3.10\nStep 2/6 : WORKDIR /app\nStep 3/6 : COPY . .\nStep 4/6 : RUN pip install --no-cache-dir -r libraries.list\nStep 5/6 : CMD [\"./start.sh\"]\nSuccessfully built abc123\nSuccessfully tagged codex/amulet-30-2:latest\nCreating app ... done\nCreating prometheus_guardian ... done\nCreating grafana_seer ... done\n\nEndpoints:\n- App: http://localhost:8000\n- Prometheus: http://localhost:9090\n- Grafana: http://localhost:3000\n"
     },
     {
-      "command": "curl -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"I love this product\"}' http://localhost:8000/analyze",
-      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.95}, \"model_version\": \"A\"}\n"
+      "command": "docker ps",
+      "output": "CONTAINER ID   IMAGE                       COMMAND                  CREATED        STATUS        PORTS                    NAMES\n a1b2c3d4e5f6   codex/amulet-30-2           \"+/bin/python /app/start.sh\"   2 seconds ago Up 2 seconds 0.0.0.0:8000->8000/tcp app\n f7g8h9i0j1k2   prom/prometheus:latest      \"/bin/prometheus --config.file=prometheus.yml\"   2 seconds ago Up 2 seconds 0.0.0.0:9090->9090/tcp prometheus_guardian\n a9b0c1d2e3f4   grafana/grafana:latest       \"/run.sh\"                  2 seconds ago Up 2 seconds 0.0.0.0:3000->3000/tcp grafana_seer"
     },
     {
-      "command": "curl -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"This is the worst service\"}' http://localhost:8000/analyze",
-      "output": "{\"result\": {\"label\": \"NEGATIVE\", \"score\": 0.89}, \"model_version\": \"B\"}\n"
+      "command": "curl -s http://localhost:8000/docs | head -n 5",
+      "output": "{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Амулет с Развилкой\",\"version\":\"3.0\"},\"paths\":{}}"
     },
     {
-      "command": "curl -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"The movie was fantastic\"}' http://localhost:8000/analyze",
-      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.92}, \"model_version\": \"A\"}\n"
+      "command": "curl -s -X POST -H 'Content-Type: application/json' -d '{\"text\":\"I love this product, it is absolutely amazing!\"}' http://localhost:8000/analyze",
+      "output": "{\"result\":{\"label\":\"POSITIVE\",\"score\":0.98},\"model_version\":\"A\"}"
     },
     {
-      "command": "curl -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"I am so disappointed\"}' http://localhost:8000/analyze",
-      "output": "{\"result\": {\"label\": \"NEGATIVE\", \"score\": 0.87}, \"model_version\": \"B\"}\n"
+      "command": "curl -s -X POST -H 'Content-Type: application/json' -d '{\"text\":\"This is the worst service I have ever received in my life.\"}' http://localhost:8000/analyze",
+      "output": "{\"result\":{\"label\":\"NEGATIVE\",\"score\":0.92},\"model_version\":\"B\"}"
     },
     {
-      "command": "curl -X POST -H \"Content-Type: application/json\" -d '{\"text\": \"What a wonderful experience\"}' http://localhost:8000/analyze",
-      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.96}, \"model_version\": \"A\"}\n",
+      "command": "curl -s -X POST -H 'Content-Type: application/json' -d '{\"text\":\"The movie was fantastic, a true masterpiece.\"}' http://localhost:8000/analyze",
+      "output": "{\"result\":{\"label\":\"POSITIVE\",\"score\":0.95},\"model_version\":\"A\"}"
+    },
+    {
+      "command": "curl -s -X POST -H 'Content-Type: application/json' -d '{\"text\":\"I am so disappointed with the quality, it broke after one day.\"}' http://localhost:8000/analyze",
+      "output": "{\"result\":{\"label\":\"NEGATIVE\",\"score\":0.89},\"model_version\":\"B\"}"
+    },
+    {
+      "command": "curl -s -X POST -H 'Content-Type: application/json' -d '{\"text\":\"What a wonderful experience, I would recommend it to everyone.\"}' http://localhost:8000/analyze",
+      "output": "{\"result\":{\"label\":\"POSITIVE\",\"score\":0.97},\"model_version\":\"A\"}",
       "is_final": true
     }
   ]

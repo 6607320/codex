@@ -292,92 +292,97 @@ def build():
                 # Мы помечаем квест как 'активный'.
                 quest["status"] = "active"
 
-        # Мы формируем путь к файлу сценария для этого квеста.
-        scenario_file = os.path.join(SCENARIOS_DIR, f"quest_{q_id}.json")
-        # Если файл сценария существует...
-        if os.path.exists(scenario_file):
-            # ...мы начинаем "блок защиты" от ошибок чтения.
-            try:
-                # Мы открываем и читаем его.
-                with open(scenario_file, "r", encoding="utf-8") as f:
-                    # Мы превращаем содержимое из текста в объект Python.
-                    raw_scenario = json.load(f)
+            # Мы формируем путь к файлу сценария для этого квеста.
+            scenario_file = os.path.join(SCENARIOS_DIR, f"quest_{q_id}.json")
+            # Если файл сценария существует...
+            if os.path.exists(scenario_file):
+                # ...мы начинаем "блок защиты" от ошибок чтения.
+                try:
+                    # Мы открываем и читаем его.
+                    with open(scenario_file, "r", encoding="utf-8") as f:
+                        # Мы превращаем содержимое из текста в объект Python.
+                        raw_scenario = json.load(f)
 
-                    # Мы проверяем, соответствует ли он новому формату с метаданными.
-                    if isinstance(raw_scenario, dict) and "scenario" in raw_scenario:
-                        # Если да, извлекаем только массив сценария.
-                        scenario_data = raw_scenario["scenario"]
-                    # Если же это старый формат (просто список)...
-                    elif isinstance(raw_scenario, list):
-                        # ...мы берем его как есть.
-                        scenario_data = raw_scenario
-            # Если при чтении произошла ошибка (например, битый JSON)...
-            except Exception:
-                # ...мы сообщаем Магу об ошибке...
-                print(f"⚠️ Ошибка чтения сценария для {q_id}")
-                # ...и присваиваем пустой список, чтобы сборка не упала.
-                scenario_data = []
-        # =============================================================
+                        # Мы проверяем, соответствует ли он новому формату
+                        #  с метаданными.
+                        if (
+                            isinstance(raw_scenario, dict)
+                            and "scenario" in raw_scenario
+                        ):
+                            # Если да, извлекаем только массив сценария.
+                            scenario_data = raw_scenario["scenario"]
+                        # Если же это старый формат (просто список)...
+                        elif isinstance(raw_scenario, list):
+                            # ...мы берем его как есть.
+                            scenario_data = raw_scenario
+                # Если при чтении произошла ошибка (например, битый JSON)...
+                except Exception:
+                    # ...мы сообщаем Магу об ошибке...
+                    print(f"⚠️ Ошибка чтения сценария для {q_id}")
+                    # ...и присваиваем пустой список, чтобы сборка не упала.
+                    scenario_data = []
 
-        # Мы собираем все компоненты, влияющие на финальный вид страницы, в одну строку.
-        data_to_hash = (
-            # Название квеста.
-            quest["title"]
-            # Его легенда в формате Markdown.
-            + quest["legend_md"]
-            # Содержимое его манифеста.
-            + manifest_content
-            # И его сценарий в виде JSON-строки.
-            + json.dumps(scenario_data)
-        )
-        # Мы вычисляем "Хеш Сборки" для текущего квеста.
-        current_hash = calculate_hash(data_to_hash)
-        # Мы записываем этот хеш в новый кэш.
-        new_cache[q_id] = current_hash
-        # Мы определяем путь, куда будет сохранен финальный артефакт для сайта.
-        json_path = os.path.join(QUESTS_DIR, f"quest_{q_id}.json")
+            # Мы собираем все компоненты, влияющие на финальный вид страницы,
+            #  в одну строку.
+            data_to_hash = (
+                # Название квеста.
+                quest["title"]
+                # Его легенда в формате Markdown.
+                + quest["legend_md"]
+                # Содержимое его манифеста.
+                + manifest_content
+                # И его сценарий в виде JSON-строки.
+                + json.dumps(scenario_data)
+            )
+            # Мы вычисляем "Хеш Сборки" для текущего квеста.
+            current_hash = calculate_hash(data_to_hash)
+            # Мы записываем этот хеш в новый кэш.
+            new_cache[q_id] = current_hash
+            # Мы определяем путь, куда будет сохранен финальный артефакт для сайта.
+            json_path = os.path.join(QUESTS_DIR, f"quest_{q_id}.json")
 
-        # "Страж Инкрементальной Сборки": если хеш изменился или файла на диске нет...
-        if cache.get(q_id) != current_hash or not os.path.exists(json_path):
-            # ...мы собираем полный объект данных для этого квеста...
-            full_quest_data = {
-                # ID квеста.
-                "id": quest["id"],
-                # Его название.
-                "title": quest["title"],
-                # Легенда в формате HTML.
-                "legend": quest["legend_html"],
-                # Манифест в формате HTML.
-                "manifest": quest["manifest_html"],
-                # Статус (активен/заблокирован).
-                "status": quest["status"],
-                # Данные сценария терминала.
-                "scenario": scenario_data,
-            }
-            # ...и открываем файл для записи этого артефакта...
-            with open(json_path, "w", encoding="utf-8") as f:
-                # ...и сохраняем его на диск в красивом, читаемом формате.
-                json.dump(full_quest_data, f, ensure_ascii=False, indent=2)
-            # Мы увеличиваем счетчик обновленных квестов.
-            updated_count += 1
+            # "Страж Инкрементальной Сборки":
+            # если хеш изменился или файла на диске нет...
+            if cache.get(q_id) != current_hash or not os.path.exists(json_path):
+                # ...мы собираем полный объект данных для этого квеста...
+                full_quest_data = {
+                    # ID квеста.
+                    "id": quest["id"],
+                    # Его название.
+                    "title": quest["title"],
+                    # Легенда в формате HTML.
+                    "legend": quest["legend_html"],
+                    # Манифест в формате HTML.
+                    "manifest": quest["manifest_html"],
+                    # Статус (активен/заблокирован).
+                    "status": quest["status"],
+                    # Данные сценария терминала.
+                    "scenario": scenario_data,
+                }
+                # ...и открываем файл для записи этого артефакта...
+                with open(json_path, "w", encoding="utf-8") as f:
+                    # ...и сохраняем его на диск в красивом, читаемом формате.
+                    json.dump(full_quest_data, f, ensure_ascii=False, indent=2)
+                # Мы увеличиваем счетчик обновленных квестов.
+                updated_count += 1
 
-        # Мы добавляем краткую информацию о квесте в общий индекс сайта.
-        index_data.append(
-            {
-                # ID квеста.
-                "id": quest["id"],
-                # Его название.
-                "title": quest["title"],
-                # Номер Части.
-                "partNumber": quest["partNumber"],
-                # Название Части.
-                "partTitle": quest["partTitle"],
-                # Название Свитка.
-                "scrollTitle": quest["scrollTitle"],
-                # Статус.
-                "status": quest["status"],
-            }
-        )
+            # Мы добавляем краткую информацию о квесте в общий индекс сайта.
+            index_data.append(
+                {
+                    # ID квеста.
+                    "id": quest["id"],
+                    # Его название.
+                    "title": quest["title"],
+                    # Номер Части.
+                    "partNumber": quest["partNumber"],
+                    # Название Части.
+                    "partTitle": quest["partTitle"],
+                    # Название Свитка.
+                    "scrollTitle": quest["scrollTitle"],
+                    # Статус.
+                    "status": quest["status"],
+                }
+            )
 
     # Мы создаем финальный объект для файла-индекса.
     final_index = {"quests": index_data}

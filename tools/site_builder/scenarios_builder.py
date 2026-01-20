@@ -59,35 +59,28 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # Мы извлекаем "Магический Ключ" для Оракула из окружения,
 # куда его поместил 'load_dotenv'.
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+# Мы вопрошаем Тайные Свитки Окружения,
+# дабы узреть истинный путь к Порталу Великого Оракула (OpenRouter).
+OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
 # "Страж-Проверка": если Ключ не найден...
 if not OPENROUTER_API_KEY:
     # ...мы поднимаем тревогу, прерывая ритуал и сообщая Магу, что нужно сделать.
     raise ValueError(
         "❌ ОШИБКА: Не найден ключ. Создай .env в папке tools/site_builder/"
     )
+# Мы вопрошаем Эфир Окружения, дабы извлечь из него перечень имен Великих Моделей.
+models_raw = os.getenv("MODELS_LIST")
 
-# Список Оракулов в порядке предпочтения (Top-19 Safe Models).
-MODELS = [
-    "nousresearch/hermes-3-llama-3.1-405b:free",
-    "qwen/qwen3-coder:free",
-    "tngtech/deepseek-r1t-chimera:free",
-    "qwen/qwen3-235b-a22b:free",
-    "mistralai/mistral-small-3.1-24b-instruct:free",
-    "meta-llama/llama-3.3-70b-instruct:free",
-    "google/gemini-2.0-flash-exp:free",
-    "openai/gpt-oss-20b:free",
-    "nvidia/nemotron-nano-12b-v2-vl:free",
-    "tngtech/deepseek-r1t2-chimera:free",
-    "nvidia/nemotron-nano-9b-v2:free",
-    "alibaba/tongyi-deepresearch-30b-a3b:free",
-    "z-ai/glm-4.5-air:free",
-    "meituan/longcat-flash-chat:free",
-    "cognitivecomputations/dolphin-mistral-24b-venice-edition:free",
-    "google/gemma-3-27b-it:free",
-    "google/gemma-3-12b-it:free",
-    "allenai/olmo-3-32b-think:free",
-    "kwaipilot/kat-coder-pro:free",
-]
+# Коли знамения благоприятны и свиток с именами не оказался пуст...
+if models_raw:
+    # Разделяем строку по запятой и убираем лишние пробелы
+    MODELS = [m.strip() for m in models_raw.split(",")]
+# Но если мрак безмолвия поглотил наш запрос и ни одно имя не было явлено из Пустоты...
+else:
+    # Список Оракулов в порядке предпочтения (Top-19 Safe Models).
+    MODELS = [
+        "openai/gpt-5-nano",
+    ]
 
 # "Страж-Архитектор": если Хранилище Сценариев еще не существует...
 if not os.path.exists(SCENARIOS_DIR):
@@ -97,8 +90,9 @@ if not os.path.exists(SCENARIOS_DIR):
 # Мы сотворяем "Посредника" (клиента),
 # через которого будем отправлять наши послания Оракулу.
 client = OpenAI(
-    # Указываем точный адрес "Магического Портала" (API endpoint).
-    base_url="https://openrouter.ai/api/v1",
+    # Мы начертаем на алтаре путь к Вратам Оракула, дабы магический вестник знал,
+    #  в какой чертог направлять свои взоры.
+    base_url=OPENROUTER_BASE_URL,
     # Предъявляем наш "Магический Ключ" для аутентификации.
     api_key=OPENROUTER_API_KEY,
 )
@@ -329,7 +323,7 @@ EXAMPLE JSON:
             # Мы оглашаем об успехе и делаем паузу, чтобы не злить богов API.
             print("   ✅ Успех. Ждем 4 сек...")
             # Мы призываем духа Времени, чтобы он заморозил ритуал на 4 секунды.
-            time.sleep(4)
+            time.sleep(1)
             # Мы возвращаем чистое послание Оракула, завершая ритуал.
             return completion.choices[0].message.content
 

@@ -1,11 +1,36 @@
 {
   "_meta": {
-    "input_hash": "d64032d0579c8d4f4709e29820fda50b"
+    "input_hash": "667d83442834c33e6ebe0a5b19a4f7a5"
   },
   "scenario": [
     {
       "command": "docker-compose up --build -d",
-      "output": "\nCreating target-app ... done\nCreating locust-tester ... done\n\nAttaching to target-app, locust-tester...\n\nLocust 1.5.0\nStarting swarm...\n... waiting for target-app to be ready ...\nRunning stateful tests...\nLocust is running at 0.0.0.0:8089 (Press CTRL+C to stop)\n",
+      "output": "Building target-app\nBuilding locust-tester\nPulling dependencies... (simulated)\nStep 1/3 : FROM alpine:latest\n ---> 1a2b3c4d5e\nStep 2/3 : RUN echo Building target-app image\n ---> Using cache\nStep 3/3 : RUN echo Target-app ready\n ---> Using cache\nSuccessfully built abc123target\nSuccessfully tagged codex/app-29-2-telemetry:latest\nBuilding locust-tester\nStep 1/2 : FROM python:3.10-slim\n ---> 7f8e9d0a1b2c\nStep 2/2 : COPY locustfile.py /app/\n ---> Using cache\nSuccessfully built def456locust\nSuccessfully tagged codex/locust-30-1-tester:latest\nCreating network 'project_default'\nCreating project_default_target-app_1 ... done\nCreating project_default_locust-tester_1 ... done\n",
+      "is_final": false
+    },
+    {
+      "command": "docker-compose ps",
+      "output": "       Name                          Command                               State            Ports\n-----------------------------------------------------------------------------------------------\nproject_default_target-app_1   /bin/sh -c 'start-server'                 Up (healthy)    0.0.0.0:8000->8000/tcp\nproject_default_locust-tester_1  locust -f /app/locustfile.py --host http://target-app:8000   Up             8089/tcp",
+      "is_final": false
+    },
+    {
+      "command": "curl -sS http://localhost:8089/ | head -n 5",
+      "output": "<!DOCTYPE html><html><head><title>Locust</title></head><body>Locust Web Interface</body></html>",
+      "is_final": false
+    },
+    {
+      "command": "echo 'Open Locust UI at http://localhost:8089 and set Host to http://target-app:8000, then press Start swarming.'",
+      "output": "Open Locust UI at http://localhost:8089 and set Host to http://target-app:8000, then press Start swarming.",
+      "is_final": false
+    },
+    {
+      "command": "docker logs locust-tester_1 --tail 60",
+      "output": "[2026-01-20 12:34:56] INFO Locust v2.15.0 started\n[2026-01-20 12:34:56] INFO Spawning 200 users at 50.00/s (1.0s steps)\n[2026-01-20 12:34:57] INFO /analyze: 50 requests/sec\n[2026-01-20 12:34:58] INFO /validate: 5 requests/sec\n[2026-01-20 12:34:59] INFO Attack finished for 200 users\n",
+      "is_final": false
+    },
+    {
+      "command": "echo 'Scenario ready: Locust swarm is active. Monitor /analyze for the critical path and /validate for service checks.'",
+      "output": "Scenario ready: Locust swarm is active. Monitor /analyze for the critical path and /validate for service checks.",
       "is_final": true
     }
   ]

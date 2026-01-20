@@ -1,21 +1,21 @@
 {
   "_meta": {
-    "input_hash": "c92f37e528fbe4990e6da5e08fc88292"
+    "input_hash": "ff65917295152eb35faaa13c50e9c4dc"
   },
   "scenario": [
     {
       "command": "docker build . -f Dockerfile.mono -t codex/golem-25-2-monolith",
-      "output": "# Вывод при сборке монолитного образа:\nStep 1/7 : FROM python:3.10 AS builder\n ---> 3d72faa45550\nStep 2/7 : WORKDIR /app\n ---> Using cache\n ---> 1a9c28ae2a0a\n... (укоjeno для примера)\nSuccessfully built abc123456789",
+      "output": "Sending build context to Docker daemon  4.096kB\nStep 1/6 : FROM python:3.10 AS builder\n ---> sha256:3f3b...\nStep 2/6 : WORKDIR /app\n ---> Using cache\nStep 3/6 : COPY libraries.list .\n ---> sha256:1a2b3c4d5e6f\nStep 4/6 : RUN pip install --no-cache-dir -r libraries.list\n ---> Running in 7d8e9f0a1b2c\nCollecting fastapi\n  Downloading fastapi-0.101.0-py3-none-any.whl (48 kB)\nCollecting redis\n  Downloading redis-5.0.0-py3-none-any.whl (25 kB)\nCollecting uvicorn\n  Downloading uvicorn-0.13.0-py3-none-any.whl (45 kB)\nCollecting pydantic\n  Downloading pydantic-1.9.0-py3-none-any.whl (2.1 MB)\nInstalling collected packages: pydantic, fastapi, uvicorn, redis\nSuccessfully installed fastapi-0.101.0 uvicorn-0.13.0 redis-5.0.0 pydantic-1.9.0\nStep 5/6 : COPY . .\n ---> sha256:9f9a8b7c6d5e\nStep 6/6 : CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n ---> Running in 2a3b4c5d6e7f\nRemoving intermediate container 2a3b4c5d6e7f\nSuccessfully built codex/golem-25-2-monolith\nSuccessfully tagged codex/golem-25-2-monolith:latest\n",
       "is_final": false
     },
     {
       "command": "docker build . -t codex/golem-25-2-optimized",
-      "output": "# Вывод при сборке оптимизированного образа:\n ---> Running in 9a8c0b1d2e3f\n -> requirements.txt: downloading fastapi/hyla et al...\n ---> Installing uvicorn\nSuccessfully built deff01234567",
+      "output": "Sending build context to Docker daemon  4.096kB\nStep 1/5 : FROM python:3.10-slim\n ---> sha256:2d3f6a...\nStep 2/5 : WORKDIR /app\n ---> Using cache\nStep 3/5 : COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages\n ---> sha256:4e5f6a...\nStep 4/5 : COPY . .\n ---> sha256:1a2b3c...\nStep 5/5 : CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n ---> Running in 8c9d0e...\nRemoving intermediate container 8c9d0e...\nSuccessfully built codex/golem-25-2-optimized\nSuccessfully tagged codex/golem-25-2-optimized:latest\n",
       "is_final": false
     },
     {
       "command": "docker images | grep \"golem-25-2\"",
-      "output": "REPOSITORY                     TAG                 IMAGE ID       CREATED             SIZE\ncodex/golem-25-2-monolith     latest              abc123456789     3 minutes ago       1.12GB\ncodex/golem-25-2-optimized    latest              deff01234567     1 minute ago        298.4MB",
+      "output": "codex/golem-25-2-monolith   latest   d1f0a9b5   2 minutes ago   1.05GB\ncodex/golem-25-2-optimized  latest   a9f0a1d2   1 minute ago   260MB\n",
       "is_final": true
     }
   ]

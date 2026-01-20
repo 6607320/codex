@@ -1,31 +1,15 @@
 {
   "_meta": {
-    "input_hash": "d3ba8ae9cb899176d7097253da22d9e9"
+    "input_hash": "417ff97e62f74f569de0efcd1c97f095"
   },
   "scenario": [
     {
-      "command": "pip install torch torchvision torchaudio",
-      "output": "Processing dependencies...\nSuccessfully installed torch-2.0.1 torchvision-0.15.2 torchaudio-2.0.2",
-      "is_final": false
-    },
-    {
-      "command": "pip install opencv-python",
-      "output": "Processing dependencies...\nSuccessfully installed opencv-python-4.5.5.64",
-      "is_final": false
-    },
-    {
-      "command": "git clone https://github.com/ultralytics/ultralytics.git",
-      "output": "Cloning into 'ultralytics'... done\n",
-      "is_final": false
-    },
-    {
-      "command": "cd ultralytics && pip install -e .",
-      "output": "Installing to build/bdist.linux-x86_64-wheel\nSuccessfully installed ultralytics-0.8.0",
-      "is_final": false
+      "command": "conda activate chimera_circle",
+      "output": "(chimera_circle) user@host:~$ "
     },
     {
       "command": "python quest_18_2.py",
-      "output": "Пробуждаю 'Сторожевую Химеру' (YOLOv5)...\nХимера пробудилась и готова считать!\n\nПодключаюсь к 'Магической Кинопленке'...\nНачинаю 'Охоту и Учет'...\n██████████ 100%\n\nРитуал завершен. 10 кадров с подсчетом сохранено в папку 'counting_results'.",
+      "output": "Пробуждаю 'Сторожевую Химеру' (YOLOv5)...\nХимера пробудилась и готова считать!\n\nПодключаюсь к 'Магической Кинопленке'...\nНачинаю 'Охоту и Учет'...\nПодсчет на кинопленке: 100%|##########| 10/10 [00:01<00:00, 9.00it/s]\n\nРитуал завершен. 10 кадра с подсчетом сохранено в папку 'counting_results'.",
       "is_final": true
     }
   ]

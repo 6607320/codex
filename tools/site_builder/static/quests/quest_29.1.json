@@ -7,17 +7,37 @@
   "scenario": [
     {
       "command": "docker-compose up -d --build",
-      "output": "Creating network \"monitoring-net\" with driver \"bridge\"\nBuilding app\nStep 1/7 : FROM python:3.10\n3.10: Pulling from library/python\nDigest: sha256:4f3e8f2e6a2f79a8570c9e5ba4e3e67c8ac7a5d1d9b1b0b9e3e3d3d3d3d3d3d3d\nStatus: Downloaded newer image for python:3.10\n---> 1f3e3e3e3d3d\nStep 2/7 : WORKDIR /app\n---> Running in 1f3e3e3e3d3d\nRemoving intermediate container 1f3e3e3e3d3d\n---> 1f3e3e3e3d3d\nStep 3/7 : COPY requirements.txt .\n---> 1f3e3e3e3d3d\nStep 4/7 : RUN pip install --no-cache-dir -r requirements.txt\n---> Running in 1f3e3e3e3d3d\nCollecting fastapi\n  Downloading fastapi-0.95.1-py3-none-any.whl (57 kB)\nCollecting uvicorn\n  Downloading uvicorn-0.22.0-py3-none-any.whl (58 kB)\nCollecting transformers\n  Downloading transformers-4.28.1-py3-none-any.whl (3.8 MB)\nCollecting torch\n  Downloading torch-2.0.0-cp39-cp39-manylinux1_x86_64.whl (967.0 MB)\nCollecting prometheus-fastapi-instrumentator\n  Downloading prometheus_fastapi_instrumentator-1.6.1-py3-none-any.whl (13 kB)\nSuccessfully installed fastapi-0.95.1 prometheus-fastapi-instrumentator-1.6.1 torch-2.0.0 transformers-4.28.1 uvicorn-0.22.0\nRemoving intermediate container 1f3e3e3e3d3d\n---> 1f3e3e3e3d3d\nStep 5/7 : COPY main.py .\n---> 1f3e3e3e3d3d\nStep 6/7 : COPY start.sh .\n---> 1f3e3e3e3d3d\nStep 7/7 : CMD [\"./start.sh\"]\n---> Running in 1f3e3e3e3d3d\nRemoving intermediate container 1f3e3e3e3d3d\n---> 1f3e3e3e3d3d\nSuccessfully built 1f3e3e3e3d3d\nSuccessfully tagged codex/app-29-1-telemetry:latest\nCreating app... done\nCreating prometheus... done\nCreating grafana  ... done\n",
+      "output": "Building app\nStep 1/12 : FROM python:3.10\n ---> 123abc\nStep 2/12 : WORKDIR /app\n ---> 456def\nStep 3/12 : COPY libraries.list .\n ---> 789ghi\nStep 4/12 : RUN pip install --no-cache-dir -r libraries.list\n ---> Running in 1a2b3c\nCollecting fastapi==0.95.2\nCollecting prometheus-fastapi-instrumentator==0.9.0\nCollecting transformers==4.23.1\n...\nSuccessfully installed\nStep 12/12 : COPY main.py .\n ---> 0j9k8l\nSuccessfully built 123abc\nSuccessfully tagged codex/app-29-1-telemetry:latest\nCreating network 'monitoring-net'\nCreating app_1         ... done\nCreating prometheus_guardian  ... done\nCreating grafana_seer       ... done\n",
       "is_final": false
     },
     {
-      "command": "curl http://localhost:9090",
-      "output": "Found. Redirecting to /graph\n",
+      "command": "docker ps",
+      "output": "CONTAINER ID   IMAGE                           COMMAND                                          STATUS          PORTS                    NAMES\nabc123         codex/app-29-1-telemetry        \\\"/bin/uvicorn main:app --host 0.0.0.0 --port 8000\\\"    Up 5s         0.0.0.0:8000->8000/tcp     app\ndef456         prom/prometheus:latest          \\\"/bin/prometheus --config.file=/etc/prometheus/prometheus.yml\\\"   Up 5s         0.0.0.0:9090->9090/tcp     prometheus_guardian\nghi789         grafana/grafana:latest          \\\"/run.sh\\\"                                         Up 5s         0.0.0.0:3000->3000/tcp     grafana_seer\n",
       "is_final": false
     },
     {
-      "command": "curl http://localhost:3000",
-      "output": "Grafana v9.5.2 (commit: ...)\n<body class=\"theme-dark\">... Loading ...</body>\n",
+      "command": "docker logs -f app | sed -n '1,6p'",
+      "output": "Призываю 'Духа Эмоций' для нашего амулета...\n'Дух Эмоций' готов к работе.\n",
+      "is_final": false
+    },
+    {
+      "command": "curl -s -X POST http://localhost:8000/analyze -H 'Content-Type: application/json' -d '{\"text\":\"I love observability and dashboards.\"}'",
+      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.92}}",
+      "is_final": false
+    },
+    {
+      "command": "xdg-open http://localhost:9090",
+      "output": "Opening http://localhost:9090 in your default browser...",
+      "is_final": false
+    },
+    {
+      "command": "xdg-open http://localhost:3000",
+      "output": "Opening http://localhost:3000 in your default browser...",
+      "is_final": false
+    },
+    {
+      "command": "echo 'Готово: мониторинг настроен. Дашборд \"Сторожевая Башня\" готов к использованию.'",
+      "output": "Готово: мониторинг настроен. Дашборд \"Сторожевая Башня\" готов к использованию.\n",
       "is_final": true
     }
   ]

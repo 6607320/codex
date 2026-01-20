@@ -25,7 +25,7 @@ python -m http.server 8000 --directory tools/site_builder/static
 
 1.  **Подготовка (единоразово):**
     - Создай аккаунт на [OpenRouter.ai](https://openrouter.ai/) и получи API ключ.
-    - Создай файл `tools/site_builder/.env` и вставь в него свой ключ: `OPENROUTER_API_KEY="sk-or-..."`.
+    - Создай файл tools/site*builder/.env и пропиши настройки: OPENROUTER_BASE_URL="https://openrouter.ai/api/v1", MODELS_LIST="openai/gpt-5-nano", OPENROUTER_API_KEY="твой*ключ"
     - Установи гримуары:
       ```bash
       pip install openai python-dotenv
@@ -33,31 +33,20 @@ python -m http.server 8000 --directory tools/site_builder/static
 
 2.  **Запуск AI-генератора:**
     ```bash
-    python tools/site_builder/ai_openrouter.py
+    python tools/site_builder/scenarios_builder.py
     ```
-    **Примечание:** Скрипт использует **умную систему переключения (Fallback)**. Если одна бесплатная модель перегружена (ошибка 429), он автоматически попробует следующую из своего списка.
 
 #### Шаг 2.2: Запуск Генератора Сайта
 
 ```bash
-python tools/site_builder/generate.py
+python tools/site_builder/quests_builder.py
 ```
 
 После этого твой локальный сайт (`http://localhost:8000`) будет обновлен.
 
 ---
 
-## (Опционально) Ритуал 3: Разведка Новых Духов
-
-Если ты хочешь узнать актуальный список бесплатных моделей или обновить рейтинг в `ai_openrouter.py`, используй этот ритуал.
-
-```bash
-python tools/site_builder/check_models.py
-```
-
----
-
-## Ритуал 4: Публикация в Великую Летопись (GitHub Pages)
+## Ритуал 3: Публикация в Великую Летопись (GitHub Pages)
 
 Мы используем **GitHub Action**, который автоматически опубликует твой сайт.
 

@@ -1,23 +1,26 @@
 {
   "_meta": {
-    "input_hash": "3a9e18dc0d17fa97bd6e7007bbb8cba6"
+    "input_hash": "956b7337b0dcd50accb634f09a92e723"
   },
   "scenario": [
     {
       "command": "pip install -r requirements.txt",
-      "output": "Collecting transformers\r\n  Downloading transformers-4.5.1-py3-none-any.whl (1.3 MB)\r\n     |████████████████████████████████| 1.3 MB 2.1 MB/s \r\nCollecting torch\r\n  Downloading torch-1.9.0-cp38-cp38-manylinux1_x86_64.whl (735.3 MB)\r\n     |████████████████████████████████| 735.3 MB 1.3 MB/s \r\nCollecting click\r\n  Downloading click-8.0.1-py3-none-any.whl (97 kB)\r\n     |████████████████████████████████| 97 kB 2.7 MB/s \r\nInstalling collected packages: torch, transformers, click\r\nSuccessfully installed click-8.0.1 torch-1.9.0 transformers-4.5.1"
+      "output": "Collecting transformers\n  Downloading transformers-4.32.0-py3-none-any.whl (3.0 MB)\nCollecting torch\n  Downloading torch-2.0.1-cp38-cp38-manylinux1_x86_64.whl (200.5 MB)\nCollecting click\n  Downloading click-8.1.3-py3-none-any.whl (96 kB)\nInstalling collected packages: torch, transformers, click\nSuccessfully installed torch-2.0.1 transformers-4.32.0 click-8.1.3\n",
+      "is_final": false
     },
     {
       "command": "python validate_model.py --help",
-      "output": "Usage: validate_model.py [OPTIONS]\r\n\r\n  Загружает указанную модель, проводит валидацию и выводит результат в консоль.\r\n\r\nOptions:\r\n  --model-name TEXT  Имя модели из Hugging Face Hub для проведения валидации.\r\n  --help            Show this message and exit."
+      "output": "Usage: validate_model.py [OPTIONS]\\n\\nOptions:\\n  --model-name TEXT  Имя модели из Hugging Face Hub для проведения валидации.\\n  --help             Show this message and exit.\\n",
+      "is_final": false
     },
     {
       "command": "python validate_model.py",
-      "output": "[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'...\r\n[+] Дух готов к испытанию.\r\n[*] Начинаю испытание на 10 примерах...\r\nПровожу испытание...  [####################################]  100%\r\n[+] Испытание завершено!\r\n\r\n--- Отчет о Силе Духа ---\r\nТочность модели: 90.00%\r\nВерных предсказаний: 9 из 10\r\n--------------------------"
+      "output": "[*] Призываю духа модели: 'distilbert-base-uncased-finetuned-sst-2-english'...\\n[+] Дух готов к испытанию.\\n\\n[*] Начинаю испытание на 10 примерах...\\nПровожу испытание... [##########] 10/10\\n\\n[+] Испытание завершено!\\n\\n--- Отчет о Силе Духа ---\\nТочность модели: 90.00%\\nВерных предсказаний: 9 из 10\\n--------------------------\\n",
+      "is_final": false
     },
     {
-      "command": "python validate_model.py --model-name \"cardiffnlp/twitter-roberta-base-sentiment-latest\"",
-      "output": "[*] Призываю духа модели: 'cardiffnlp/twitter-roberta-base-sentiment-latest'...\r\n[+] Дух готов к испытанию.\r\n[*] Начинаю испытание на 10 примерах...\r\nПровожу испытание...  [####################################]  100%\r\n[+] Испытание завершено!\r\n\r\n--- Отчет о Силе Духа ---\r\nТочность модели: 0.00%\r\nВерных предсказаний: 0 из 10\r\n--------------------------",
+      "command": "python validate_model.py --model-name \\\"cardiffnlp/twitter-roberta-base-sentiment-latest\\\"",
+      "output": "[*] Призываю духа модели: 'cardiffnlp/twitter-roberta-base-sentiment-latest'...\\n[+] Дух готов к испытанию.\\n\\n[*] Начинаю испытание на 10 примерах...\\nПровожу испытание... [##########] 10/10\\n\\n[+] Испытание завершено!\\n\\n--- Отчет о Силе Духа ---\\nТочность модели: 0.00%\\nВерных предсказаний: 0 из 10\\n--------------------------\\n",
       "is_final": true
     }
   ]
