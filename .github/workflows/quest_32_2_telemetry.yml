@@ -69,9 +69,9 @@ jobs:
         # 'run' указывает, что мы будем выполнять команду в оболочке. Символ '|' позволяет выполнить несколько команд.
         run: |
           # Устанавливаем основные зависимости из файла, находящегося в папке этого Квеста.
-          pip install -r ./Part_4_Engineering/Scroll_32/Quest_2/requirements.txt
+          pip install -r ./Part_4_Engineering/Scroll_32/Quest_2/libraries.list
           # Устанавливаем зависимости для разработки из соответствующего файла.
-          pip install -r ./Part_4_Engineering/Scroll_32/Quest_2/requirements_dev.txt
+          pip install -r ./Part_4_Engineering/Scroll_32/Quest_2/libraries_dev.list
 
       # Имя третьего шага.
       - name: Run Tests and Generate Coverage Report

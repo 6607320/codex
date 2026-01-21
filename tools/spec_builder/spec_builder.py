@@ -28,8 +28,12 @@ from openai import OpenAI
 # Зачитываем заклинание, извлекающее скрытую мощь из свитка .env
 from dotenv import load_dotenv
 
-# Пробуждаем энергию переменных окружения, наполняя ими наш магический контур
-load_dotenv()
+# Определяем путь к свитку с секретами (поднимаемся из spec_builder в tools)
+DOTENV_PATH = Path(__file__).parent.parent / ".env"
+
+# Мы произносим заклинание, дабы пробудить скрытые в свитке руны
+# и наполнить ритуал силой тайных знаний.
+load_dotenv(DOTENV_PATH)
 
 # Определяем абсолютный путь к сердцу нашей цитадели (корню проекта)
 PROJECT_ROOT = Path(__file__).parent.parent.parent.resolve()
@@ -59,6 +63,7 @@ IGNORE_DIRS = {
     "artist_seal",
     "arcane_wizardry.egg-info",
     "node_modules",
+    "Part_5_Archmage",
 }
 
 # Определяем стихии (расширения), которые подлежат описанию в Кодексе

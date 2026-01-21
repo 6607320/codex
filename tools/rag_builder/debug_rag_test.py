@@ -22,14 +22,24 @@ import os
 PROJECT_DIR = "."
 # Определяем список директорий, которые нужно полностью игнорировать.
 EXCLUDE_DIRS = {
-    ".git",  # Системная папка Git.
-    ".dvc",  # Системная папка DVC.
-    "__pycache__",  # Кэш Python.
-    ".pytest_cache",  # Кэш тестов.
-    "build",  # Папки сборки.
-    "dist",  # Папки дистрибутивов.
-    "notebooklm_sources",  # Папка с боевыми PDF.
-    "debug_output",  # Наша тестовая папка.
+    ".git",
+    ".dvc",
+    "mlruns",
+    "reports",
+    "data",
+    "build",
+    "dist",
+    "notebooklm_sources",
+    "hunt_results",
+    "counting_results",
+    "dialogue_audio",
+    "generated_palette",
+    "sampled_frames",
+    "dreams",
+    "chaos_sculptures",
+    "artist_seal",
+    "arcane_wizardry.egg-info",
+    "node_modules",
 }
 # Определяем список разрешенных расширений файлов.
 TARGET_EXTENSIONS = (
@@ -45,6 +55,7 @@ TARGET_EXTENSIONS = (
     ".html",  # Файлы HTML.
     ".css",  # Файлы CSS.
     ".js",  # Файлы JavaScript.
+    ".list",  # Списки файлов.
 )
 # Определяем список конкретных имен файлов без расширений.
 TARGET_FILES = (

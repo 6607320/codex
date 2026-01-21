@@ -74,11 +74,22 @@ def audit():
     exclude = {
         ".git",
         ".dvc",
+        "mlruns",
+        "reports",
+        "data",
+        "build",
+        "dist",
         "notebooklm_sources",
-        "__pycache__",
-        "debug_output",
-        "env",
-        "venv",
+        "hunt_results",
+        "counting_results",
+        "dialogue_audio",
+        "generated_palette",
+        "sampled_frames",
+        "dreams",
+        "chaos_sculptures",
+        "artist_seal",
+        "arcane_wizardry.egg-info",
+        "node_modules",
     }
 
     # Получаем абсолютный путь к корню проекта для сканирования.

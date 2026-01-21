@@ -54,7 +54,10 @@ CODEX_FILE = os.path.join(PROJECT_ROOT, "CODEX.md")
 
 # Мы произносим заклинание, которое ищет '.env' файл в текущей папке
 # и загружает его секреты.
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+DOTENV_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", ".env"))
+# Мы произносим заклинание, дабы пробудить скрытые в свитке руны
+# и наполнить ритуал силой тайных знаний.
+load_dotenv(DOTENV_PATH)
 
 # Мы извлекаем "Магический Ключ" для Оракула из окружения,
 # куда его поместил 'load_dotenv'.
@@ -65,8 +68,9 @@ OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
 # "Страж-Проверка": если Ключ не найден...
 if not OPENROUTER_API_KEY:
     # ...мы поднимаем тревогу, прерывая ритуал и сообщая Магу, что нужно сделать.
+    env_dir = os.path.dirname(DOTENV_PATH)
     raise ValueError(
-        "❌ ОШИБКА: Не найден ключ. Создай .env в папке tools/site_builder/"
+        f"❌ ОШИБКА: Ключ не найден. " f"Проверьте файл .env в папке: {env_dir}"
     )
 # Мы вопрошаем Эфир Окружения, дабы извлечь из него перечень имен Великих Моделей.
 models_raw = os.getenv("MODELS_LIST")
@@ -196,7 +200,8 @@ def get_quest_code(q_id):
         "docker-compose.yaml",
         "prometheus.yml",
         "requirements.txt",
-        "requirements_dev.txt",
+        "libraries.list",
+        "libraries_dev.list",
     ]
     # Мы начинаем цикл по каждому типу пергаментов.
     for ext in extensions:
