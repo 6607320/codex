@@ -185,7 +185,7 @@ opentelemetry-sdk==1.36.0
 opentelemetry-semantic-conventions==0.59b0
 opentimestamps==0.4.5
 opentimestamps-client==0.7.2
-orjson==3.11.1
+orjson==3.11.5
 packaging==25.0
 pandas==2.3.3
 pathspec==0.12.1
