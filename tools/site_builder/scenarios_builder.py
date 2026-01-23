@@ -49,6 +49,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../../"))
 # Мы определяем путь к Хранилищу Сценариев, где будут лежать артефакты этого ритуала.
 SCENARIOS_DIR = os.path.join(BASE_DIR, "static", "scenarios")
+# Мы прокладываем путь к священному шаблону — внешнему свитку,
+# где начертаны слова воззвания к Оракулу.
+PROMPT_FILE = os.path.join(BASE_DIR, "prompt_template.txt")
 # Мы определяем путь к Великой Летописи, нашему главному источнику мудрости.
 CODEX_FILE = os.path.join(PROJECT_ROOT, "CODEX.md")
 
@@ -265,36 +268,32 @@ def generate_scenario(q_id, legend, code):
     # Мы оглашаем на кристалл (консоль) начало ритуала для конкретного квеста.
     print(f"☁️ [AI] Генерация для {q_id}...")
 
-    # Мы создаем "Великое Послание" (промпт), которое будет отправлено Оракулу.
-    prompt = f"""
-TASK: You are a Linux Terminal Simulator generator.
-Based on the INSTRUCTION (what the user should do) and the REAL CODE
-(what is actually in the files), generate a JSON scenario.
+    # Мы начинаем защитный обряд, дабы уберечь ритуал от внезапных проклятий сбоев.
+    try:
+        # Мы отворяем внешний свиток с начертанными инструкциями,
+        # используя верную кодировку.
+        with open(PROMPT_FILE, "r", encoding="utf-8") as f:
+            # Мы извлекаем тайный шаблон из свитка и
+            # сохраняем его в кристалл памяти 'template'.
+            template = f.read()
 
-INSTRUCTION:
-{legend}
+        # Мы совершаем таинство слияния,
+        # наполняя пустой шаблон силой текущей Легенды и Кода.
+        prompt = template.format(legend=legend, code=code)
 
-REAL CODE FILES:
-{code}
+    # Страж-Проверка: если свиток с промптом был похищен или не найден на своем месте...
+    except FileNotFoundError:
+        # ...мы громогласно оглашаем о великой потере в чертоги консоли...
+        print(f"❌ Критическая ошибка: Файл {PROMPT_FILE} не найден!")
+        # ...и прерываем ритуал, возвращая пустоту.
+        return None
 
-REQUIREMENTS:
-1. Output ONLY valid JSON. No markdown, no comments.
-2. Format: Array of objects.
-   - "command": The exact command user should type (e.g. "python quest.py"
-     or "pip install..."). Infer this from the instruction and file names.
-   - "output": Realistic terminal output.
-     * If the python code has print("Hello"), the output MUST contain "Hello".
-     * If it's a training script, generate fake but realistic logs (Epoch 1..).
-     * If it's pip install, generate pip logs.
-   - "is_final": boolean. Set to true ONLY for the very last command
-     in the sequence.
-
-EXAMPLE JSON:
-[
-  {{"command": "conda activate env", "output": "(env) user@host:~$ "}},
-  {{"command": "python main.py", "output": "Starting...\\nDone.", "is_final": true}}
-]
-"""
+    # Страж-Проверка: если на ритуал пало иное неведомое проклятие или ошибка...
+    except Exception as e:
+        # ...мы выявляем истинную суть этой скверны и сообщаем о ней...
+        print(f"❌ Ошибка при чтении промпта: {e}")
+        # ...и также отступаем в пустоту, дабы не навлечь беду.
+        return None
 
     # Мы объявляем, что будем изменять наш "Кристалл Памяти",
     # который находится за пределами этого ритуала.

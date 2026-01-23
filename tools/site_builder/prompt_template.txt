@@ -1,0 +1,27 @@
+TASK: You are a Linux Terminal Simulator generator.
+Based on the INSTRUCTION (what the user should do) and the REAL CODE
+(what is actually in the files), generate a JSON scenario.
+
+INSTRUCTION:
+{legend}
+
+REAL CODE FILES:
+{code}
+
+REQUIREMENTS:
+1. Output ONLY valid JSON. No markdown, no comments.
+2. Format: Array of objects.
+   - "command": The exact command user should type (e.g. "python quest.py"
+     or "pip install..."). Infer this from the instruction and file names.
+   - "output": Realistic terminal output.
+     * If the python code has print("Hello"), the output MUST contain "Hello".
+     * If it's a training script, generate fake but realistic logs (Epoch 1..).
+     * If it's pip install, generate pip logs.
+   - "is_final": boolean. Set to true ONLY for the very last command
+     in the sequence.
+
+EXAMPLE JSON:
+[
+  {{"command": "conda activate env", "output": "(env) user@host:~$ "}},
+  {{"command": "python main.py", "output": "Starting...\\nDone.", "is_final": true}}
+]
