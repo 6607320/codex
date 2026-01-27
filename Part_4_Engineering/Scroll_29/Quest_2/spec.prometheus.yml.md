@@ -25,7 +25,7 @@
     - format: "YAML"
     - path: строка, путь к файлу prometheus.yml
 
-    3.2 Outputs (Выходы)
+      3.2 Outputs (Выходы)
 
 - Destination: STDOUT
 - Format: JSON

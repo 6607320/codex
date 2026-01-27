@@ -1,11 +1,16 @@
 {
   "_meta": {
-    "input_hash": "d41e599c7d4d84ac0311392ed299b4b0"
+    "input_hash": "e117bb54625bf185781eb2ee49ae1107"
   },
   "scenario": [
     {
+      "command": "ls -la ../Quest_1/frames",
+      "output": "total 8\n-rw-r--r-- 1 user user 1234 Jan  1 12:00 frame_0.jpg\n-rw-r--r-- 1 user user 1234 Jan  1 12:00 frame_1.jpg\n-rw-r--r-- 1 user user 1234 Jan  1 12:00 frame_2.jpg\n-rw-r--r-- 1 user user 1234 Jan  1 12:00 frame_3.jpg\n-rw-r--r-- 1 user user 1234 Jan  1 12:00 frame_4.jpg",
+      "is_final": false
+    },
+    {
       "command": "python quest_4_3.py",
-      "output": "Готовлюсь собрать 'Живую Картину' из кадров в папке: ../Quest_1/frames\nСобрано 10 кадров для анимации.\n\nМагия свершилась! 'Живая Картина' сохранена в файл 'animated_cat.gif'",
+      "output": "Готовлюсь собрать 'Живую Картину' из кадров в папке: ../Quest_1/frames\nСобрано 5 кадров для анимации.\n\nМагия свершилась! 'Живая Картина' сохранена в файл 'animated_cat.gif'",
       "is_final": true
     }
   ]

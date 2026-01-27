@@ -1,11 +1,11 @@
 {
   "_meta": {
-    "input_hash": "8ba384536f46093b795694fe18eaac0b"
+    "input_hash": "7224567406f21122c9aab569bc230b47"
   },
   "scenario": [
     {
       "command": "python quest_1_6.py",
-      "output": "Снова призываю Духа-Сказителя...\nНачало истории (на языке Духа): In the arcane workshop, the technomancer leaned over the glowing terminal...\n\n...Дух-Сказитель, поняв нас, продолжает:\nIn the arcane workshop, the technomancer leaned over the glowing terminal, his fingers dancing across the keys. Ancient runes flickered to life on the screen, summoning spirits from the digital ether. The air hummed with magic as a portal to new worlds began to open.",
+      "output": "Снова призываю Духа-Сказителя...\nНачало истории (на языке Духа): In the arcane workshop, the technomancer leaned over the glowing terminal...\n\n...Дух-Сказитель, поняв нас, продолжает:\nIn the arcane workshop, the technomancer leaned over the glowing terminal... The glow pulsed in cadence with distant storms, and the machine whispered of a city built from wind and copper, where ideas walk and calendars rewrite themselves, and the tale unfolds with a brave, restless rhythm.",
       "is_final": true
     }
   ]

@@ -1,19 +1,26 @@
 {
   "_meta": {
-    "input_hash": "116a8f6cf6c6f202d1c99219786b7c3c"
+    "input_hash": "cdaafbf1a88eed9ed646b9a2e248783f"
   },
   "scenario": [
     {
+      "command": "bash -lc 'echo \"# trigger\" >> spell_with_flaw.py'",
+      "output": "",
+      "is_final": false
+    },
+    {
       "command": "git add .",
-      "output": "user@host:~/Part_4_Engineering/Scroll_26/Quest_1$ git add.\n"
+      "output": "",
+      "is_final": false
     },
     {
       "command": "git commit --no-verify -m \"feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\"",
-      "output": "user@host:~/Part_4_Engineering/Scroll_26/Quest_1$ git commit --no-verify -m \"feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\"\n[main 1234567] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n"
+      "output": "[main 3a5f6e7] feat(Scroll_26): Пробуждаю Стража для Квеста 26.1\n 1 file changed, 1 insertion(+)\n",
+      "is_final": false
     },
     {
       "command": "git push",
-      "output": "user@host:~/Part_4_Engineering/Scroll_26/Quest_1$ git push\nEnumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 1.23 KiB | 1.23 MiB/s, done.\nTotal 3 (delta 2), reused 0 (delta 0), pack-reused 0\nremote: Resolving deltas: 100% (2/2), completed with 2 local objects.\nTo github.com:user/repo.git\n   1234567..abcdefg  main -> main\n",
+      "output": "Enumerating objects: 5, done.\nCounting objects: 5, done.\nDelta compression using up to 8 threads\nCompressing objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 520 bytes | 1.25 MiB/s, done.\nTotal 3 (delta 1), reused 0 (delta 0)\nTo github.com:your-organization/quest-repo.git\n   3f4e2d1..9a7b6c2 main -> main\nCI status: ❌ Guardian's Oath (Flake8 Only) failed\n",
       "is_final": true
     }
   ]

@@ -1,15 +1,16 @@
 {
   "_meta": {
-    "input_hash": "1f6bc75ecc074daa97e8fb7e3f084f50"
+    "input_hash": "1e05e0bb65e58e160f37a51bcdcc892f"
   },
   "scenario": [
     {
       "command": "pip install onnx onnxruntime",
-      "output": "Collecting onnx\r\n  Downloading onnx-1.13.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)\r\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 2.1 MB/s eta 0:00:00\r\nCollecting onnxruntime\r\n  Downloading onnxruntime-1.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.9 MB)\r\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 3.3 MB/s eta 0:00:00\r\nInstalling collected packages: onnx, onnxruntime\r\nSuccessfully installed onnx-1.13.0 onnxruntime-1.13.1"
+      "output": "(venv) user@host:~$ pip install onnx onnxruntime\nCollecting onnx\n  Downloading onnx-1.13.0-py3-none-any.whl (5.6 MB)\nCollecting onnxruntime\n  Downloading onnxruntime-1.13.1-py3-none-manylinux1_x86_64.whl (20.0 MB)\nInstalling collected packages: numpy, onnx, onnxruntime\nSuccessfully installed numpy-2.1.2 onnx-1.13.0 onnxruntime-1.13.1\n",
+      "is_final": false
     },
     {
       "command": "python quest_14_2.py",
-      "output": "Начинаю ритуал 'Перевода на Латынь' (Экспорт в ONNX)...\nПеревод завершен! Универсальный 'Свиток' сохранен как 'mnist_cnn.onnx'\n\nПровожу экзамен с помощью 'Универсального Чтеца Свитков'...\nРитуал с 'Чтецом' прошел успешно!\n 'Чтец' увидел в случайном шуме цифру: 7\n\nМагия универсальности освоена!",
+      "output": "(venv) user@host:~$ python quest_14_2.py\nНачинаю ритуал 'Перевода на Латынь' (Экспорт в ONNX)...\nПеревод завершен! Универсальный 'Свиток' сохранен как 'mnist_cnn.onnx'\n\nПровожу экзамен с помощью 'Универсального Чтеца Свитков'...\nРитуал с 'Чтецом' прошел успешно!\n  'Чтец' увидел в случайном шуме цифру: 7\n\nМагия универсальности освоена!\n",
       "is_final": true
     }
   ]

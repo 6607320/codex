@@ -1,11 +1,12 @@
 {
   "_meta": {
-    "input_hash": "bb20a10a126063397f7d515a050f564b"
+    "input_hash": "b0479041cf7f7647a209b577e2343d9b"
   },
   "scenario": [
     {
       "command": "pip install datasets==2.16.1",
-      "output": "Collecting datasets==2.16.1\n  Downloading datasets-2.16.1-py3-none-any.whl (519 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 519.5/519.5 kB 2.1 MB/s eta 0:00:00\nRequirement already satisfied: ... (other deps)\nSuccessfully installed datasets-2.16.1\n"
+      "output": "user@host:~$ pip install datasets==2.16.1\nCollecting datasets==2.16.1\n  Using cached datasets-2.16.1-py2.py3-none-any.whl (1.9 MB)\nInstalling collected packages: datasets\nSuccessfully installed datasets-2.16.1\n",
+      "is_final": false
     },
     {
       "command": "python quest_6_1.py",

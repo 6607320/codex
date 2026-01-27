@@ -1,15 +1,16 @@
 {
   "_meta": {
-    "input_hash": "55330deff42f56ba783477acea39dc9a"
+    "input_hash": "98493d6210bf322aa79e6105c3715e23"
   },
   "scenario": [
     {
       "command": "pip install pandas matplotlib numpy",
-      "output": "Collecting pandas\n  Downloading pandas-2.1.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.7 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.7/12.7 MB 50.1 MB/s eta 0:00:00\nCollecting matplotlib\n  Downloading matplotlib-3.8.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.5 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.5/7.5 MB 102.3 MB/s eta 0:00:00\nCollecting numpy\n  Downloading numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.0 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.0/18.0 MB 85.2 MB/s eta 0:00:00\nInstalling collected packages: numpy, pandas, matplotlib\nSuccessfully installed matplotlib-3.8.3 numpy-1.26.4 pandas-2.1.4\n"
+      "output": "Collecting pandas==2.1.4\nCollecting numpy==1.26.4\nCollecting matplotlib==3.8.3\nDownloading... (simulated)\nInstalling collected packages: numpy, pandas, matplotlib\nSuccessfully installed matplotlib-3.8.3 numpy-1.26.4 pandas-2.1.4",
+      "is_final": false
     },
     {
       "command": "python quest_20_1.py",
-      "output": "Начинаем ритуал сотворения 'Летописи Времени'...\nЛетопись будет длиться 365 дней.\n-> Сотворен 'Великий Поток' (Тренд)...\n-> Сотворены 'Циклы Луны' (Сезонность)...\n-> Добавлены 'Капризы Судьбы' (Шум)...\n-> Все потоки сплетены в единую Летопись Времени.\n-> Летопись облечена в форму магической таблицы (DataFrame).\n-> Летопись сохранена в материальный артефакт: time_series_data.csv\n-> Визуальный отпечаток Летописи сохранен как: time_series_plot.png\n\nРитуал завершен. Два артефакта успешно созданы в вашей мастерской.\n",
+      "output": "Начинаем ритуал сотворения 'Летописи Времени'...\nЛетопись будет длиться 365 дней.\n-> Сотворен 'Великий Поток' (Тренд)...\n-> Сотворены 'Циклы Луны' (Сезонность)...\n-> Добавлены 'Капризы Судьбы' (Шум)...\n-> Все потоки сплетены в единую Летопись Времени.\n-> Летопись облечена в форму магической таблицы (DataFrame).\n-> Летопись сохранена в материальный артефакт: time_series_data.csv\n-> Визуальный отпечаток Летописи сохранен как: time_series_plot.png\n\nРитуал завершен. Два артефакта успешно созданы в вашей мастерской.",
       "is_final": true
     }
   ]

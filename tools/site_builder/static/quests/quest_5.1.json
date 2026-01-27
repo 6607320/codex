@@ -6,12 +6,13 @@
   "status": "active",
   "scenario": [
     {
-      "command": "pip install \"datasets<2.0.0\"",
-      "output": "Looking in indexes: https://pypi.org/simple\nCollecting datasets<2.0.0\n  Downloading datasets-1.18.4-py3-none-any.whl (126 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 126.8/126.8 kB 2.3 MB/s eta 0:00:00\nRequirement already satisfied: ... (other deps)\nInstalling collected packages: datasets\nSuccessfully installed datasets-1.18.4\n\nuser@host:~$ "
+      "command": "pip install \\\"datasets<2.0.0\\\"",
+      "output": "Collecting datasets<2.0.0\n  Downloading datasets-1.18.4-py3-none-any.whl (936 kB)\nInstalling collected packages: datasets\nSuccessfully installed datasets-1.18.4\n",
+      "is_final": false
     },
     {
       "command": "python quest_5_1.py",
-      "output": "Открываю портал к архиву 'databricks/databricks-dolly-15k'...\n\nИзвлекаю 100 страниц для нашего урока...\nУспешно извлечено 100 записей.\n\nСмотрим на первую страницу нашего учебного свитка:\n  Инструкция (вопрос):\n    Act as a travel agent and suggest 3 vacation spots that are great for a couple looking to relax and enjoy nature.\n\n  Контекст (доп. информация):\n    None\n\n  Ответ (чему мы будем учить Голема):\n    1. Santorini, Greece - Known for its stunning sunsets, beautiful beaches, and luxurious resorts. Perfect for couples seeking romance and relaxation.\n\n2. Bora Bora, French Polynesia - Famous for its crystal-clear waters, overwater bungalows, and vibrant marine life. Ideal for honeymooners and nature lovers.\n\n3. Amalfi Coast, Italy - Offers breathtaking coastal views, charming villages, and delicious cuisine. Great for couples who enjoy scenic drives and fine dining.\nuser@host:~$ ",
+      "output": "Открываю портал к архиву 'databricks/databricks-dolly-15k'...\n\nИзвлекаю 100 страниц для нашего урока...\nУспешно извлечено 100 записей.\n\nСмотрим на первую страницу нашего учебного свитка:\n  Инструкция (вопрос):\n    Создать краткое приветственное сообщение и объяснить цель квеста.\n\n  Контекст (доп. информация):\n    Контекст: демонстрация потоковой загрузки и взятие малого среза данных из большого датасета без загрузки всего архива.\n\n  Ответ (чему мы будем учить Голема):\n    Потоковая загрузка позволяет обрабатывать данные по одной записи за раз; используйте take() или break, чтобы ограничить количество примеров.\n",
       "is_final": true
     }
   ]

@@ -1,15 +1,15 @@
 {
   "_meta": {
-    "input_hash": "f202975830c67456b190d427b7e64be6"
+    "input_hash": "88b39acb362c510997747dc06febab90"
   },
   "scenario": [
     {
       "command": "pip install numpy opencv-python",
-      "output": "Collecting numpy\n  Downloading numpy-1.24.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.3/17.3 MB 2.1 MB/s eta 0:00:00\nCollecting opencv-python\n  Downloading opencv_python-4.7.0.72-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.1 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.1/38.1 MB 3.3 MB/s eta 0:00:00\nInstalling collected packages: numpy, opencv-python\nSuccessfully installed numpy-1.24.3 opencv-python-4.7.0.72\n"
+      "output": "Collecting numpy==1.24.3\n  Downloading numpy-1.24.3-cp39-cp39-manylinux1_x86_64.whl (12.1 MB)\n     |████████████████████████████████| 12.1 MB 3.1 MB/s \nCollecting opencv-python==4.8.1.78\n  Downloading opencv_python-4.8.1.78-cp39-cp39-manylinux2014_x86_64.whl (46.3 MB)\n     |████████████████████████████████| 46.3 MB 2.1 MB/s \nInstalling collected packages: numpy, opencv-python\nSuccessfully installed numpy-1.24.3 opencv-python-4.8.1.78\n"
     },
     {
       "command": "python quest_10_1.py",
-      "output": "Создаю тестовый образ с вертикальной линией...\n -> Оригинальный образ сохранен в 'original_line.png'\n\nВыковываю 'трафарет' для поиска вертикальных линий...\n -> Трафарет готов.\n\nНачинаю ритуал сканирования образа трафаретом...\nСканирование завершено.\n\nМагия свершилась! 'Карта Признаков' сохранена в 'feature_map.png'.\nОткрой ее и обрати внимание, как ярко подсвечена именно та область, где в оригинале была вертикальная линия.",
+      "output": "Создаю тестовый образ с вертикальной линией...\n  -> Оригинальный образ сохранен в 'original_line.png'\n\nВыковываю 'трафарет' для поиска вертикальных линий...\n  -> Трафарет готов.\n\nНачинаю ритуал сканирования образа трафаретом...\nСканирование завершено.\n\nМагия свершилась! 'Карта Признаков' сохранена в 'feature_map.png'.\nОткрой ее и обрати внимание, как ярко подсвечена именно та область, где в оригинале была вертикальная линия.\n",
       "is_final": true
     }
   ]

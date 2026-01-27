@@ -9,8 +9,11 @@
 ## Ритуал 1: Локальное Пробуждение (Запуск для Просмотра)
 
 ```bash
-# Эта команда сразу переходит в нужную папку и запускает сервер
-python -m http.server 8000 --directory tools/site_builder/static
+# 1. Войдите в мастерскую
+cd tools/site_builder
+
+# 2. Эта команда сразу переходит в нужную папку и запускает сервер
+python -m http.server 8000 --directory static
 ```
 
 После этого открой в браузере `http://0.0.0.0:8000`.
@@ -33,13 +36,13 @@ python -m http.server 8000 --directory tools/site_builder/static
 
 2.  **Запуск AI-генератора:**
     ```bash
-    python tools/site_builder/scenarios_builder.py
+    python scenarios_builder.py
     ```
 
 #### Шаг 2.2: Запуск Генератора Сайта
 
 ```bash
-python tools/site_builder/quests_builder.py
+python quests_builder.py
 ```
 
 После этого твой локальный сайт (`http://localhost:8000`) будет обновлен.

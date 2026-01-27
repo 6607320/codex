@@ -1,37 +1,31 @@
 {
   "_meta": {
-    "input_hash": "13836fe932116bacced21eb305ed25d4"
+    "input_hash": "2cda4b2af29183a0413dbf7597e74cb1"
   },
   "scenario": [
     {
-      "command": "pip install --upgrade pip setuptools wheel",
-      "output": "(env) user@host:~/project$ pip install --upgrade pip setuptools wheel\nCollecting pip\nCollecting setuptools\nCollecting wheel\nInstalling collected packages...\nSuccessfully installed pip-23.2.1 setuptools-65.3.0 wheel-0.36.2",
-      "is_final": false
+      "command": "pip install --upgrade setuptools wheel",
+      "output": "(base) user@host:~/project$ pip install --upgrade setuptools wheel\nCollecting setuptools\nCollecting wheel\nDownloading setuptools-70.3.0-py3-none-any.whl (1.3 MB)\nDownloading wheel-0.44.0-py3-none-any.whl (120 kB)\nInstalling collected packages: wheel, setuptools\nSuccessfully installed wheel-0.44.0 setuptools-70.3.0\n"
     },
     {
       "command": "python setup.py bdist_wheel",
-      "output": "(env) user@host:~/project$ python setup.py bdist_wheel\ncreating wheel metadata\nrunning bdist_wheel\nrunning build_py\nrunning build_ext\ncreating wheel...\nSuccessfully created 'dist/arcane_wizardry-0.1.0-py3-none-any.whl'"
+      "output": "(base) user@host:~/project$ python setup.py bdist_wheel\nrunning bdist_wheel\nrunning build\ncreating dist\ncreating dist/arcane_wizardry-0.1.0-py3-none-any.whl\n"
     },
     {
       "command": "ls dist/",
-      "output": "(env) user@host:~/project$ ls dist/\narcane_wizardry-0.1.0-py3-none-any.whl"
+      "output": "(base) user@host:~/project$ ls dist/\narcane_wizardry-0.1.0-py3-none-any.whl\n"
     },
     {
       "command": "conda create -n test_chamber python=3.10 -y",
-      "output": "(env) user@host:~/project$ conda create -n test_chamber python=3.10 -y\nCollecting package metadata: done\nSolving environment: done\nAttempting to gather conditional dependencies: done\nProceed ([y]/n)? y\nPackages to be installed: python-3.10.12\ncython-3.0.9 -> setuptools-65.3.0... CPU(x86_64)-linux-64::python-3.10.12-hfffd2fb_6_cpython_py310_mingw during_run_test - nest-3.0.4-cp310-none-win32_x86-64::...",
-      "is_final": false
+      "output": "(base) user@host:~/project$ conda create -n test_chamber python=3.10 -y\nCollecting package metadata (this may take a minute)\nSolving environment: done\nDownloading and extracting packages\nPreparing transaction: done\n"
     },
     {
       "command": "conda activate test_chamber",
-      "output": "(env) user@host:~/project$ conda activate test_chamber\n(base) -> (test_chamber) user@host:~/project$"
+      "output": "(test_chamber) user@host:~/project$ conda activate test_chamber\n"
     },
     {
       "command": "pip install dist/arcane_wizardry-0.1.0-py3-none-any.whl",
-      "output": "(test_chamber) user@host:~/project$ pip install dist/arcane_wizardry-0.1.0-py3-none-any.whl\nCollecting arcane_wizardry-0.1.0-py3-none-any.whl\nInstalling collected packages: arcane-wizardry\nInstalling dependencies: torch-2.0.0+cpu torchvision-0.14.0+0 torchvision-0.14.0+0..."
-    },
-    {
-      "command": "pip list",
-      "output": "(test_chamber) user@host:~/project$ pip list\nPackage           Version\n----------------- ---------\naragne_wizardry   0.1.0\nPillow            9.5.0\ntorch             2.0.0+cpu\ntorchvision       0.14.0+0\ntransformers      4.28.0",
+      "output": "(test_chamber) user@host:~/project$ pip install dist/arcane_wizardry-0.1.0-py3-none-any.whl\nProcessing ./dist/arcane_wizardry-0.1.0-py3-none-any.whl\nCollecting torch==2.1.0+cu118\nCollecting torchvision\nCollecting transformers==4.31.0\nCollecting Pillow==11.0.0\nInstalling collected packages: torch, torchvision, transformers, Pillow, arcane_wizardry\nSuccessfully installed arcane_wizardry-0.1.0 torch-2.1.0+cu118 torchvision-0.14.0+cu118 transformers-4.31.0 Pillow-11.0.0\n",
       "is_final": true
     }
   ]

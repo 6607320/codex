@@ -1,46 +1,46 @@
 {
   "_meta": {
-    "input_hash": "c6e8b41ffa618ed91ffb90fdc359735c"
+    "input_hash": "61295225f1da46458ae47d73f04a8a36"
   },
   "scenario": [
     {
       "command": "gcloud services enable artifactregistry.googleapis.com run.googleapis.com",
-      "output": "Enabled services: artifactregistry.googleapis.com, run.googleapis.com for project.\n",
+      "output": "Enabled services: artifactregistry.googleapis.com, run.googleapis.com",
       "is_final": false
     },
     {
-      "command": "gcloud artifacts repositories create amulet-repo --repository-format=docker --location=us-central1",
-      "output": "Created repository 'amulet-repo' at location us-central1 with format docker.\n",
+      "command": "gcloud artifacts repositories create my-repo --repository-format=docker --location=us-central1",
+      "output": "Created artifact repository 'my-repo' in location 'us-central1' with format 'docker'.",
       "is_final": false
     },
     {
       "command": "gcloud auth configure-docker us-central1-docker.pkg.dev",
-      "output": "Configured Docker credentials for us-central1-docker.pkg.dev.\n",
+      "output": "Docker config updated for us-central1-docker.pkg.dev",
       "is_final": false
     },
     {
       "command": "cd Part_4_Engineering/Scroll_28/Quest_2",
-      "output": "",
+      "output": "Changed directory to Part_4_Engineering/Scroll_28/Quest_2",
       "is_final": false
     },
     {
       "command": "PROJECT_ID=$(gcloud config get-value project)",
-      "output": "demo-project\n",
+      "output": "my-gcp-project",
       "is_final": false
     },
     {
-      "command": "docker build -t us-central1-docker.pkg.dev/${PROJECT_ID}/amulet-repo/amulet:v1 .",
-      "output": "Sending build context to Docker daemon 12.8kB\nStep 1/9 : FROM python:3.10\n ---> 123456abcdef\nStep 2/9 : WORKDIR /app\n ---> Using cache\nStep 3/9 : COPY libraries.list .\n ---> 987654fedcba\nStep 4/9 : RUN pip install --no-cache-dir -r libraries.list\n ---> Installing dependencies... (simulated)\nStep 5/9 : COPY download_model.py .\n ---> 1a2b3c4d5e6f\nStep 6/9 : RUN python download_model.py\n Начинаю ритуал 'Предварительного Призыва Знаний'...\n Знания успешно призваны и запечатаны.\nStep 7/9 : COPY main.py .\nStep 8/9 : COPY start.sh .\nStep 9/9 : CMD ./start.sh\n ---> Running in 9a8b7c6d5e4f\nSuccessfully built 3f9a1c7d6a2b\nSuccessfully tagged us-central1-docker.pkg.dev/demo-project/amulet-repo/amulet:v1\n",
+      "command": "docker build -t us-central1-docker.pkg.dev/${PROJECT_ID}/my-repo/amulet:v1 .",
+      "output": "Sending build context to Docker daemon  50.2MB\\nStep 1/9 : FROM python:3.10\\n ---> Using cache\\nStep 2/9 : WORKDIR /app\\n ---> Using cache\\nStep 3/9 : COPY libraries.list .\\n ---> Using cache\\nStep 4/9 : RUN pip install --no-cache-dir -r libraries.list\\n ---> Successfully installed fastapi==0.116.1 uvicorn==0.35.0 transformers==4.31.0 torch==2.1.0\\nStep 5/9 : COPY download_model.py .\\n ---> Using cache\\nStep 6/9 : RUN python download_model.py\\n Начинаю ритуал 'Предварительного Призыва Знаний'...\\n Знания успешно призваны и запечатаны.\\nStep 7/9 : COPY main.py .\\nStep 8/9 : COPY start.sh .\\nStep 9/9 : CMD [\"./start.sh\"]\\n ---> Done\\nSuccessfully built sha256:abcdef123456",
       "is_final": false
     },
     {
-      "command": "docker push us-central1-docker.pkg.dev/${PROJECT_ID}/amulet-repo/amulet:v1",
-      "output": "The push refers to repository us-central1-docker.pkg.dev/demo-project/amulet-repo/amulet\n5/5 blobs uploaded\nDigest: sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890\nStatus: Pushed\n",
+      "command": "docker push us-central1-docker.pkg.dev/${PROJECT_ID}/my-repo/amulet:v1",
+      "output": "The push refers to repository us-central1-docker.pkg.dev/my-gcp-project/my-repo/amulet:v1\\nPreparing\\nPushing layers: 3/3\\nPushed 3/3 layers\\nPush complete",
       "is_final": false
     },
     {
-      "command": "gcloud run deploy speaking-amulet --image=us-central1-docker.pkg.dev/${PROJECT_ID}/amulet-repo/amulet:v1 --memory=2Gi --region=us-central1 --allow-unauthenticated",
-      "output": "Deploying to Cloud Run region us-central1...\nService 'speaking-amulet' revision 'v1' deployed\nURL: https://speaking-amulet-abcdef-uc.a.run.app\n",
+      "command": "gcloud run deploy speaking-amulet --image=us-central1-docker.pkg.dev/${PROJECT_ID}/my-repo/amulet:v1 --memory=2Gi --region=us-central1 --allow-unauthenticated",
+      "output": "Deploying container to Cloud Run service 'speaking-amulet' in region 'us-central1'...\\nDeployment complete. Service URL: https://speaking-amulet-abcdef-uc.a.run.app",
       "is_final": true
     }
   ]

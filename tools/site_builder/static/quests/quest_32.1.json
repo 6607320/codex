@@ -6,43 +6,108 @@
   "status": "active",
   "scenario": [
     {
-      "command": "ls -la",
-      "output": "total 56\n-rw-r--r-- 1 user user  512 Jan 19 12:00 Dockerfile\n-rw-r--r-- 1 user user 1024 Jan 19 12:00 docker-compose.yml\n-rw-r--r-- 1 user user   240 Jan 19 12:00 libraries.list\n-rw-r--r-- 1 user user   520 Jan 19 12:00 main.py\n-rw-r--r-- 1 user user   420 Jan 19 12:00 validation_data.py\n-rw-r--r-- 1 user user   420 Jan 19 12:00 start.sh\n-rw-r--r-- 1 user user   190 Jan 19 12:00 prometheus.yml\n",
+      "command": "gcloud config get-value project",
+      "output": "demo-quest-project\n",
       "is_final": false
     },
     {
-      "command": "uvicorn main:app --host 0.0.0.0 --port 8000",
-      "output": "INFO:     Started server process [12345]\nINFO:     Waiting for application startup.\nINFO: Application startup complete.\nINFO: Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)",
+      "command": "gcloud projects describe $(gcloud config get-value project) --format='value(projectNumber)'",
+      "output": "123456789012\n",
       "is_final": false
     },
     {
-      "command": "curl -s -X POST http://127.0.0.1:8000/analyze -H 'Content-Type: application/json' -d '{\"text\":\"I love this product\"}'",
-      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.92}, \"model_version\": \"A\"}",
+      "command": "curl -s https://api.github.com/repos/alpha-dev/codex | head -n 1 | tr -cd '0-9'",
+      "output": "987654321\n",
       "is_final": false
     },
     {
-      "command": "curl -s -X POST http://127.0.0.1:8000/validate",
-      "output": "{\"model_tested\":\"A\",\"accuracy\":0.70,\"correct_predictions\":7,\"total_samples\":10}",
+      "command": "gcloud services enable artifactregistry.googleapis.com --project='demo-quest-project'",
+      "output": "Enabled artifactregistry.googleapis.com for project demo-quest-project\n",
       "is_final": false
     },
     {
-      "command": "docker build -t codex-app .",
-      "output": "Sending build context to Docker daemon  4.096kB\nStep 1/6 : FROM python:3.10\n ---> 1234567890ab\nStep 2/6 : WORKDIR /app\n ---> Using cache\nStep 3/6 : COPY libraries.list .\n ---> Using cache\nStep 4/6 : RUN pip install --no-cache-dir -r libraries.list\n ---> Running in 9d0f3f8b...\nCollecting fastapi\nDownloading fastapi-0.95.0-py3-none-any.whl (58 kB)\nCollecting uvicorn\nDownloading uvicorn-0.28.0-py3-none-any.whl (50 kB)\nCollecting transformers\nDownloading transformers-4.35.1-py3-none-any.whl (1.2 MB)\nInstalling collected packages: uvicorn, fastapi, transformers\nSuccessfully built abcd1234\nSuccessfully tagged codex-app:latest",
+      "command": "gcloud services enable run.googleapis.com --project='demo-quest-project'",
+      "output": "Enabled run.googleapis.com for project demo-quest-project\n",
       "is_final": false
     },
     {
-      "command": "docker run -p 8000:8000 codex-app",
-      "output": "INFO: Started server process [1]\nINFO: Waiting for application startup...\nINFO: Application startup complete.\nINFO: Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)",
+      "command": "gcloud services enable iamcredentials.googleapis.com --project='demo-quest-project'",
+      "output": "Enabled iamcredentials.googleapis.com for project demo-quest-project\n",
       "is_final": false
     },
     {
-      "command": "git status",
-      "output": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish the commit)",
+      "command": "gcloud artifacts repositories create codex-golems --repository-format=docker --location=europe-west3 --description='Codex CI/CD Artifact Repository' --project='demo-quest-project'",
+      "output": "Created artifact repository 'codex-golems' in europe-west3 for project demo-quest-project\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud iam service-accounts create github-actions-sa --display-name='Service Account for GitHub Actions' --project='demo-quest-project'",
+      "output": "Created service account github-actions-sa@demo-quest-project.iam.gserviceaccount.com.\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud artifacts repositories add-iam-policy-binding codex-golems --project='demo-quest-project' --location='europe-west3' --member='serviceAccount:github-actions-sa@demo-quest-project.iam.gserviceaccount.com' --role='roles/artifactregistry.writer'",
+      "output": "Updated IAM policy binding for repository 'codex-golems'.\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud projects add-iam-policy-binding demo-quest-project --member='serviceAccount:github-actions-sa@demo-quest-project.iam.gserviceaccount.com' --role='roles/run.admin'",
+      "output": "Permissions updated: added member 'serviceAccount:github-actions-sa@demo-quest-project.iam.gserviceaccount.com' with role 'roles/run.admin' for project 'demo-quest-project'.\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud iam service-accounts add-iam-policy-binding 'github-actions-sa@demo-quest-project.iam.gserviceaccount.com' --member='serviceAccount:github-actions-sa@demo-quest-project.iam.gserviceaccount.com' --role='roles/iam.serviceAccountUser'",
+      "output": "Updated IAM policy binding for service account user\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud iam workload-identity-pools create 'github-pool' --project='demo-quest-project' --location='global' --display-name='GitHub Actions Pool'",
+      "output": "Created workload identity pool 'github-pool' in project demo-quest-project\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud iam workload-identity-pools providers create-oidc 'github-provider' --project='demo-quest-project' --location='global' --workload-identity-pool='github-pool' --display-name='GitHub Actions Provider' --attribute-mapping='google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository,attribute.repository_id=assertion.repository_id' --issuer-uri='https://token.actions.githubusercontent.com' --attribute-condition='assertion.repository_id == 123456789012''",
+      "output": "Created provider 'github-provider' for pool 'github-pool'\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud iam service-accounts add-iam-policy-binding 'github-actions-sa@demo-quest-project.iam.gserviceaccount.com' --project='demo-quest-project' --role='roles/iam.workloadIdentityUser' --member='principalSet://iam.googleapis.com/projects/123456789012/locations/global/workloadIdentityPools/github-pool/attribute.repository/alpha-dev/codex'",
+      "output": "Bound provider to service account as workloadIdentityUser\n",
+      "is_final": false
+    },
+    {
+      "command": "gcloud iam workload-identity-pools providers describe 'github-provider' --project='demo-quest-project' --location='global' --workload-identity-pool='github-pool' --format='value(name)'",
+      "output": "projects/demo-quest-project/locations/global/workloadIdentityPools/github-pool/providers/github-provider\n",
+      "is_final": false
+    },
+    {
+      "command": "gh secret set GCP_WORKLOAD_IDENTITY_PROVIDER --repo alpha-dev/codex --body 'projects/demo-quest-project/locations/global/workloadIdentityPools/github-pool/providers/github-provider'",
+      "output": "Secret GCP_WORKLOAD_IDENTITY_PROVIDER saved for repo alpha-dev/codex.\n",
+      "is_final": false
+    },
+    {
+      "command": "gh secret set GCP_SERVICE_ACCOUNT --repo alpha-dev/codex --body 'github-actions-sa@demo-quest-project.iam.gserviceaccount.com'",
+      "output": "Secret GCP_SERVICE_ACCOUNT saved for repo alpha-dev/codex.\n",
+      "is_final": false
+    },
+    {
+      "command": "bash -lc 'echo \"# Trigger pipeline\" >> Part_4_Engineering/Scroll_32/Quest_1/main.py'",
+      "output": "Appended '# Trigger pipeline' to Part_4_Engineering/Scroll_32/Quest_1/main.py\n",
+      "is_final": false
+    },
+    {
+      "command": "git add .",
+      "output": "On branch main\nYour branch is up to date with 'origin/main'.\nChanges to be committed:\n\tmodified: Part_4_Engineering/Scroll_32/Quest_1/main.py\n",
+      "is_final": false
+    },
+    {
+      "command": "git commit -m \"feat(ci): Пробуждение автоматизированной кузницы\"",
+      "output": "[main 1a2b3c4] feat(ci): Пробуждение автоматизированной кузницы\n 1 file changed, 1 insertion(+)\n",
       "is_final": false
     },
     {
       "command": "git push origin main",
-      "output": "Enumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nWriting objects: 100% (5/5), 1.23 KiB | 1.23 MiB/s, done.\nTotal 5 (delta 0), reused 0 (delta 0)\nTo https://github.com/yourusername/codex.git\n   abcdef1..1234567  main -> main",
+      "output": "Enumerating objects: 6, done.\nCounting objects: 100% (6/6), done.\nDelta compressed 0/0\nPacking objects: 100% (6/6), done.\nTotal 6 (delta 0), reused 0 (delta 0)\nTo github.com:alpha-dev/codex.git\n   1a2b3c4..5f6e7d8  main -> main\n",
       "is_final": true
     }
   ]

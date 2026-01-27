@@ -7,37 +7,32 @@
   "scenario": [
     {
       "command": "docker-compose up -d --build",
-      "output": "Building app\nStep 1/12 : FROM python:3.10\n ---> 123abc\nStep 2/12 : WORKDIR /app\n ---> 456def\nStep 3/12 : COPY libraries.list .\n ---> 789ghi\nStep 4/12 : RUN pip install --no-cache-dir -r libraries.list\n ---> Running in 1a2b3c\nCollecting fastapi==0.95.2\nCollecting prometheus-fastapi-instrumentator==0.9.0\nCollecting transformers==4.23.1\n...\nSuccessfully installed\nStep 12/12 : COPY main.py .\n ---> 0j9k8l\nSuccessfully built 123abc\nSuccessfully tagged codex/app-29-1-telemetry:latest\nCreating network 'monitoring-net'\nCreating app_1         ... done\nCreating prometheus_guardian  ... done\nCreating grafana_seer       ... done\n",
+      "output": "$ docker-compose up -d --build\nBuilding app\nSending build context to Docker daemon  12.3kB\nStep 1/7 : FROM python:3.10\n ---> 123abc\nStep 2/7 : WORKDIR /app\n ---> Using cache\nStep 3/7 : COPY libraries.list .\n ---> 45def\nStep 4/7 : RUN pip install --no-cache-dir -r libraries.list\n ---> Running in 9a8b7c\nCollecting fastapi[all]==0.116.1\nInstalling collected packages: uvicorn, transformers, torch, fastapi, prometheus-fastapi-instrumentator\nSuccessfully installed uvicorn-0.35.0 transformers-4.53.2 torch-2.7.1+cu118 fastapi-0.111.0 prometheus-fastapi-instrumentator-7.1.0\nRemoving intermediate container 9a8b7c\n ---> 0b3c\nStep 5/7 : COPY main.py .\n ---> 1a2b\nStep 6/7 : COPY start.sh .\n ---> 3c4d\nStep 7/7 : CMD [\"./start.sh\"]\n ---> Running in 7e6f\nSuccessfully built 0b3c\nSuccessfully tagged codex/app-29-1-telemetry:latest\nCreating network \"monitoring-net\" with the default driver\nCreating app_1 ... done\nCreating prometheus_guardian ... done\nCreating grafana_seer ... done\n",
       "is_final": false
     },
     {
-      "command": "docker ps",
-      "output": "CONTAINER ID   IMAGE                           COMMAND                                          STATUS          PORTS                    NAMES\nabc123         codex/app-29-1-telemetry        \\\"/bin/uvicorn main:app --host 0.0.0.0 --port 8000\\\"    Up 5s         0.0.0.0:8000->8000/tcp     app\ndef456         prom/prometheus:latest          \\\"/bin/prometheus --config.file=/etc/prometheus/prometheus.yml\\\"   Up 5s         0.0.0.0:9090->9090/tcp     prometheus_guardian\nghi789         grafana/grafana:latest          \\\"/run.sh\\\"                                         Up 5s         0.0.0.0:3000->3000/tcp     grafana_seer\n",
+      "command": "sleep 5",
+      "output": "",
       "is_final": false
     },
     {
-      "command": "docker logs -f app | sed -n '1,6p'",
-      "output": "Призываю 'Духа Эмоций' для нашего амулета...\n'Дух Эмоций' готов к работе.\n",
-      "is_final": false
-    },
-    {
-      "command": "curl -s -X POST http://localhost:8000/analyze -H 'Content-Type: application/json' -d '{\"text\":\"I love observability and dashboards.\"}'",
-      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.92}}",
-      "is_final": false
-    },
-    {
-      "command": "xdg-open http://localhost:9090",
-      "output": "Opening http://localhost:9090 in your default browser...",
+      "command": "curl -s http://localhost:9090/api/v1/targets",
+      "output": "{\\n  \\\"status\\\": \\\"success\\\",\\n  \\\"data\\\": {\\n    \\\"activeTargets\\\": [\\n      {\\n        \\\"discoveredLabels\\\": {\\\"__address__\\\":\\\"app:8000\\\",\\\"job\\\":\\\"fastapi-app\\\"},\\n        \\\"health\\\": \\\"up\\\",\\n        \\\"lastError\\\": null,\\n        \\\"lastScrape\\\": \\\"2026-01-27T12:34:56Z\\\",\\n        \\\"labels\\\": {\\\"job\\\":\\\"fastapi-app\\\"}\\n      }\\n    ]\\n  }\\n}",
       "is_final": false
     },
     {
       "command": "xdg-open http://localhost:3000",
-      "output": "Opening http://localhost:3000 in your default browser...",
+      "output": "",
       "is_final": false
     },
     {
-      "command": "echo 'Готово: мониторинг настроен. Дашборд \"Сторожевая Башня\" готов к использованию.'",
-      "output": "Готово: мониторинг настроен. Дашборд \"Сторожевая Башня\" готов к использованию.\n",
+      "command": "curl -s http://localhost:8000/metrics",
+      "output": "# HELP http_requests_total Total number of HTTP requests\\n# TYPE http_requests_total counter\\nhttp_requests_total{endpoint=\\\"/analyze\\\",method=\\\"POST\\\"} 0\\nhttp_requests_total{endpoint=\\\"/metrics\\\",method=\\\"GET\\\"} 1\\n# HELP sentiment_analysis_execution_seconds sentiment_analysis_execution_seconds\\n# TYPE summary sentiment_analysis_execution_seconds\\nsentiment_analysis_execution_seconds_sum 0\\nsentiment_analysis_execution_seconds_count 0\\n",
+      "is_final": false
+    },
+    {
+      "command": "curl -s http://localhost:8000/openapi.json",
+      "output": "{\\n  \\\"openapi\\\": \\\"3.0.2\\\",\\n  \\\"info\\\": {\\n    \\\"title\\\": \\\"Говорящий Амулет Техноманта\\\",\\n    \\\"version\\\": \\\"1.0\\\"\\n  },\\n  \\\"paths\\\": {\\n    \\\"/analyze\\\": {\\n      \\\"post\\\": {\\n        \\\"operationId\\\": \\\"analyze_sentiment\\\",\\n        \\\"responses\\\": {\\n          \\\"200\\\": {\\n            \\\"description\\\": \\\"Successful Response\\\"\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"components\\\": {\\n    \\\"schemas\\\": {\\n      \\\"TextInput\\\": {\\n        \\\"title\\\": \\\"TextInput\\\",\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"properties\\\": {\\n          \\\"text\\\": {\\n            \\\"type\\\": \\\"string\\\"\\n          }\\n        }\\n      }\\n    }\\n  }\\n}",
       "is_final": true
     }
   ]

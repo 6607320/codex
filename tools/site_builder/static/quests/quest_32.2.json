@@ -6,28 +6,24 @@
   "status": "active",
   "scenario": [
     {
-      "command": "bash -lc 'mkdir -p Part_4_Engineering/Scroll_32/Quest_2 && echo \"# Trigger Telemetry Pipeline\" >> Part_4_Engineering/Scroll_32/Quest_2/main.py'",
-      "output": "",
-      "is_final": false
+      "command": "git status",
+      "output": "On branch main\nYour branch is up to date with 'origin/main'.\nnothing to commit, working tree clean\n"
     },
     {
-      "command": "git add Part_4_Engineering/Scroll_32/Quest_2/main.py",
-      "output": "",
-      "is_final": false
+      "command": "bash -lc 'echo \"# Trigger Telemetry Pipeline\" >> main.py && echo Appended Trigger Telemetry Pipeline to main.py'",
+      "output": "Appended Trigger Telemetry Pipeline to main.py\n"
+    },
+    {
+      "command": "git add .",
+      "output": ""
     },
     {
       "command": "git commit -m \"feat(ci): Включить и запустить телеметрический конвейер\"",
-      "output": "[main 1a2b3c4] feat(ci): Включить и запустить телеметрический конвейер\n 1 file changed, 1 insertion(+)\n",
-      "is_final": false
+      "output": "[main 1a2b3c4] feat(ci): Включить и запустить телеметрический конвейер\n 1 file changed, 1 insertion(+)\n"
     },
     {
       "command": "git push origin main",
-      "output": "Enumerating objects: 3, done.\nCounting objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 320 bytes | 320.00 KiB/s, done.\nTotal 3 (delta 0), reused 0 (delta 0)\nTo github.com:yourorg/dragonforge.git\n   1a2b3c4..5d6e7f8  main -> main\n",
-      "is_final": false
-    },
-    {
-      "command": "pytest -q",
-      "output": "Призываю 'Духа Эмоций' А (DistilBERT)...\n'Дух А' готов к работе.\nПризываю 'Духа Эмоций' Б (RoBERTa)...\n'Дух Б' готов к работе.\n============================= test session starts ==============================\nplatform linux -- Python 3.11.2, pytest-9.0.1\nrootdir: /workspace\ncollected 2 items\n\ntest_main.py::test_validate_endpoint_returns_ok PASSED\ntest_main.py::test_analyze_endpoint_returns_ok PASSED\n\n2 passed in 2.45s\n",
+      "output": "Enumerating objects: 3, done.\nCounting objects: 100% (3/3), done.\nWriting objects: 100% (3/3), done.\nTotal 3 (delta 0), reused 0 (delta 0)\nTo github.com:username/repo.git main -> main (fast-forward)\n   01a2b3c..1a2b3c4  main -> main\n",
       "is_final": true
     }
   ]

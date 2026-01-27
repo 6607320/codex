@@ -1,15 +1,21 @@
 {
   "_meta": {
-    "input_hash": "7690614fceab3fee9dff80b1f6027ee4"
+    "input_hash": "779d93b7a62cb42589eb46e8268c2ed8"
   },
   "scenario": [
     {
-      "command": "pip install gradio",
-      "output": "Collecting gradio\n  Downloading gradio-4.44.0-py3-none-any.whl (16.2 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.2/16.2 MB 8.5 MB/s eta 0:00:00\nCollecting aiofiles<24.0,>=23.1.0 (from gradio)\n  Using cached aiofiles-23.2.1-py3-none-any.whl (15 kB)\nCollecting aiohttp>=3.9.0 (from gradio)\n  Using cached aiohttp-3.10.5-cp310-cp310-linux_x86_64.whl (265 kB)\n... (additional dependencies omitted for brevity)\nInstalling collected packages: gradio, uvicorn, fastapi, ...\nSuccessfully installed gradio-4.44.0 aiohttp-3.10.5 fastapi-0.115.0 uvicorn-0.30.6 ... (20+ packages)"
+      "command": "pip install gradio transformers torch",
+      "output": "Collecting gradio==4.44.0\nCollecting transformers==4.31.0\nCollecting torch==2.1.0+cu118\nInstalling collected packages: gradio, transformers, torch\nSuccessfully installed gradio-4.44.0 transformers-4.31.0 torch-2.1.0+cu118\n",
+      "is_final": false
     },
     {
-      "command": "python quest_23_1.py",
-      "output": "Подготовка к ритуалу на устройстве: cuda\nЗагрузка 'разума' голема из: ./results/checkpoint-250\n...Голем-Сказитель пробужден и готов творить.\n\nСотворяем 'Магическое Зеркало' с помощью Gradio...\nRunning on local URL:  http://127.0.0.1:7860\n\nTo create a public link, set `share=True` in `launch()`.",
+      "command": "ls -la results",
+      "output": "total 0\n drwxr-xr-x 2 user user 4096 Jan 01 00:00 checkpoint-250/\n",
+      "is_final": false
+    },
+    {
+      "command": "python3 quest_23_1.py",
+      "output": "\nПодготовка к ритуалу на устройстве: cpu\nЗагрузка 'разума' голема из: ./results/checkpoint-250\n...Голем-Сказитель пробужден и готов творить.\n\nСотворяем 'Магическое Зеркало' с помощью Gradio...\nRunning on local URL: http://127.0.0.1:7860/\n",
       "is_final": true
     }
   ]

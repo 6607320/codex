@@ -6,28 +6,33 @@
   "status": "active",
   "scenario": [
     {
-      "command": "conda activate myenv",
-      "output": "(myenv) user@host:~/codex$ "
+      "command": "conda activate codex-env",
+      "output": "",
+      "is_final": false
     },
     {
       "command": "pip install dvc",
-      "output": "Collecting dvc\n  Downloading dvc-2.10.2-py3-none-any.whl (267 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 267.2/267.2 kB 2.1 MB/s eta 0:00:00\nCollecting configobj>=5.0.5\n  Downloading ConfigObj-5.0.8.tar.gz (34 kB)\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nCollecting ruamel.yaml>=0.15.34\n  Downloading ruamel.yaml-0.17.21-py3-none-any.whl (109 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 109.0/109.0 kB 6.4 MB/s eta 0:00:00\nCollecting colorama\n  Downloading colorama-0.4.6-py3-none-any.whl (25 kB)\nCollecting tqdm>=4.51.0\n  Downloading tqdm-4.65.0-py3-none-any.whl (77 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.5/77.5 kB 4.6 MB/s eta 0:00:00\nCollecting typing-extensions>=3.6.4\n  Downloading typing_extensions-4.5.0-py3-none-any.whl (27 kB)\nCollecting appdirs>=1.4.3\n  Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)\nCollecting distro>=1.5.0\n  Downloading distro-1.8.0-py3-none-any.whl (20 kB)\nCollecting networkx>=2.5\n  Downloading networkx-3.0-py3-none-any.whl (2.0 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 11.8 MB/s eta 0:00:00\nCollecting psutil>=5.8.0\n  Downloading psutil-5.9.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (283 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 283.7/283.7 kB 16.6 MB/s eta 0:00:00\nCollecting pydot>=1.4.1\n  Downloading pydot-1.4.2-py2.py3-none-any.whl (21 kB)\nCollecting shortuuid>=0.5.3\n  Downloading shortuuid-1.0.11-py3-none-any.whl (10 kB)\nCollecting toml>=0.10.2\n  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)\nCollecting dill>=0.3.4\n  Downloading dill-0.3.6-py3-none-any.whl (54 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.7/54.7 kB 3.2 MB/s eta 0:00:00\nCollecting ruamel.yaml.clib>=0.2.6\n  Downloading ruamel.yaml.clib-0.2.7-py3-none-any.whl (33 kB)\nCollecting pyparsing>=2.1.4\n  Downloading pyparsing-3.0.9-py3-none-any.whl (98 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.0/98.0 kB 5.8 MB/s eta 0:00:00\nBuilding wheels for collected packages: ConfigObj\n  Building wheel for ConfigObj (pyproject.toml): started\n  Building wheel for ConfigObj (pyproject.toml): finished with status 'done'\n  Created wheel for ConfigObj: filename=ConfigObj-5.0.8-py3-none-any.whl size=18784 sha256=3f5e8e8d8a8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d8e8d\n  Stored in directory: /home/user/.cache/pip/wheels/39/40/42/1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e\nSuccessfully built ConfigObj\nInstalling collected packages: ruamel.yaml.clib, pyparsing, pydot, psutil, networkx, dill, toml, shortuuid, distro, colorama, appdirs, typing-extensions, tqdm, ruamel.yaml, configobj, dvc\nSuccessfully installed appdirs-1.4.4 colorama-0.4.6 configobj-5.0.8 dill-0.3.6 distro-1.8.0 dvc-2.10.2 networkx-3.0 psutil-5.9.5 pydot-1.4.2 pyparsing-3.0.9 ruamel.yaml-0.17.21 ruamel.yaml.clib-0.2.7 shortuuid-1.0.11 toml-0.10.2 tqdm-4.65.0 typing-extensions-4.5.0\n"
+      "output": "Collecting dvc\n  Downloading dvc-3.62.0-py3-none-any.whl (1.3 MB)\nInstalling collected packages: dvc\nSuccessfully installed dvc-3.62.0",
+      "is_final": false
     },
     {
       "command": "dvc init",
-      "output": "Initialized DVC repository.\n"
+      "output": "Initializing DVC project in /workspace/codex\nCreated .dvc/config\nCreated .dvcignore\nDVC repository initialized.",
+      "is_final": false
     },
     {
       "command": "git status",
-      "output": "On branch main\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\t.dvc/\n\t.dvcignore\nnothing added to commit but untracked files present (use \"git add\" to track)\n"
+      "output": "On branch main\nUntracked files:\n  .dvc/\n  .dvcignore\n\nnothing to commit, working tree clean",
+      "is_final": false
     },
     {
       "command": "git add .dvc .dvcignore",
-      "output": ""
+      "output": "",
+      "is_final": false
     },
     {
       "command": "git commit -m \"feat(mlops): ✨ Initialize DVC for artifact versioning\"",
-      "output": "[main 1234567] feat(mlops): ✨ Initialize DVC for artifact versioning\n 2 files changed, 0 insertions(+), 0 deletions(-)\n create mode 100644.dvc/config\n create mode 100644.dvcignore\n",
+      "output": "[main 0a1b2c3] feat(mlops): ✨ Initialize DVC for artifact versioning\n 2 files changed, 6 insertions(+)\n create mode 100644 .dvcignore\n create mode 040000 .dvc",
       "is_final": true
     }
   ]

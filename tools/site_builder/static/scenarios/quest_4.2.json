@@ -1,11 +1,21 @@
 {
   "_meta": {
-    "input_hash": "24576adc61898ab162aee3e41ca35acc"
+    "input_hash": "995d604e044b526e93216ce98e171e0a"
   },
   "scenario": [
     {
+      "command": "ls -la ../Quest_1/frames",
+      "output": "total 8\n-rw-r--r-- 1 user user 1024 Jan 26 12:00 frame_1.jpg\n-rw-r--r-- 1 user user 1024 Jan 26 12:00 frame_2.jpg\n",
+      "is_final": false
+    },
+    {
       "command": "python quest_4_2.py",
       "output": "Загружаю две карты из колоды: кадр 1 и кадр 2...\nНачинаю ритуал 'Вычитания образов' для поиска различий...\nКарта движения создана.\n\nМагия свершилась! 'Карта движения' сохранена в файл 'motion_detected.png'\n(Примечание: так как наши кадры были одинаковы, карта движения будет черной. Это УСПЕХ!)\n",
+      "is_final": false
+    },
+    {
+      "command": "ls -l motion_detected.png",
+      "output": "-rw-r--r-- 1 user user 12345 Jan 26 12:01 motion_detected.png\n",
       "is_final": true
     }
   ]

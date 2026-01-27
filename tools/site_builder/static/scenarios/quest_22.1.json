@@ -1,15 +1,16 @@
 {
   "_meta": {
-    "input_hash": "80612cafe861b5007c3cf02e7a73ad0d"
+    "input_hash": "8b6afabcd6c1edeb5facde8de05a72e5"
   },
   "scenario": [
     {
-      "command": "pip install pillow datasets",
-      "output": "Collecting pillow\n  Downloading Pillow-10.3.0-cp310-cp310-manylinux_2_28_x86_64.whl (3.4 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 20.1 MB/s eta 0:00:00\nCollecting datasets\n  Downloading datasets-2.21.0-py3-none-any.whl (442 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 442.9/442.9 kB 25.7 MB/s eta 0:00:00\nCollecting numpy>=1.17\n  Downloading numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.3 MB)\n... (additional dependencies)\nInstalling collected packages: pillow, numpy, pyarrow, datasets\nSuccessfully installed Pillow-10.3.0 datasets-2.21.0 numpy-1.26.4 pyarrow-15.0.2"
+      "command": "pip install Pillow==11.0.0 datasets==2.16.1 transformers==4.31.0 torch==2.1.0+cu118 requests==2.32.4",
+      "output": "Collecting Pillow==11.0.0\nDownloading Pillow-11.0.0-py3-none-any.whl (2.3 MB)\nInstalling collected packages: Pillow\nSuccessfully installed Pillow-11.0.0\nCollecting datasets==2.16.1\nDownloading datasets-2.16.1-py3-none-any.whl (4.5 MB)\nInstalling collected packages: datasets\nSuccessfully installed datasets-2.16.1\nCollecting transformers==4.31.0\nDownloading transformers-4.31.0-py3-none-any.whl (2.9 MB)\nInstalling collected packages: transformers\nSuccessfully installed transformers-4.31.0\nCollecting torch==2.1.0+cu118\nDownloading torch-2.1.0+cu118-cp38-cp38-linux_x86_64.whl (xxx MB)\nInstalling collected packages: torch\nSuccessfully installed torch-2.1.0+cu118\nCollecting requests==2.32.4\nDownloading requests-2.32.4-py3-none-any.whl (63 kB)\nInstalling collected packages: requests\nSuccessfully installed requests-2.32.4",
+      "is_final": false
     },
     {
       "command": "python quest_22_1.py",
-      "output": "Магия будет вершиться на устройстве: cuda\nПризываем могущественного голема 'openai/clip-vit-base-patch32'...\nDownloading config.json: 100%|██████████| 614/614 [00:00<00:00, 2.87MB/s]\nDownloading pytorch_model.bin: 100%|██████████| 439M/439M [00:21<00:00, 20.3MB/s]\nDownloading (2/2): 100%|██████████| 269k/269k [00:00<00:00, 1.23MB/s]\nDownloading preprocessor_config.json: 100%|██████████| 316/316 [00:00<00:00, 1.45MB/s]\nDownloading tokenizer.json: 100%|██████████| 777k/777k [00:00<00:00, 2.34MB/s]\nDownloading merges.txt: 100%|██████████| 456k/456k [00:00<00:00, 1.89MB/s]\nDownloading tokenizer_config.json: 100%|██████████| 581/581 [00:00<00:00, 2.71MB/s]\n...Голем и его Толмач откликнулись на зов.\n\nЗагружаем эталонное изображение из хранилища Hugging Face...\nDownloading https://huggingface.co/datasets/cifar100/resolve/main/cifar100.py: 10kB [00:00, 1.2MB/s]\nFound dataset config cifar100\nDownloading shard 00000 of 500: 100%|██████████| 200kB/200kB [00:00<00:00, 500kB/s]\nПодготовлены артефакты для испытания:\n- Текстовые гипотезы: ['фотография кота', 'рисунок собаки', 'пейзаж с горами']\n\n--- Вердикт Магического Компаса ---\n- Схожесть с 'фотография кота': 8.50%\n- Схожесть с 'рисунок собаки': 46.20%\n- Схожесть с 'пейзаж с горами': 45.30%\n\nРитуал завершен. Компас указал на истинный смысл.",
+      "output": "Магия будет вершиться на устройстве: cuda\nПризываем могущественного голема 'openai/clip-vit-base-patch32'...\n...Голем и его Толмач откликнулись на зов.\n\nЗагружаем эталонное изображение из хранилища Hugging Face...\nПодготовлены артефакты для испытания:\n- Текстовые гипотезы: ['фотография кота', 'рисунок собаки', 'пейзаж с горами']\n\n--- Вердикт Магического Компаса ---\n- Схожесть с 'фотография кота': 4.00%\n- Схожесть с 'рисунок собаки': 80.00%\n- Схожесть с 'пейзаж с горами': 16.00%\n\nРитуал завершен. Компас указал на истинный смысл.",
       "is_final": true
     }
   ]

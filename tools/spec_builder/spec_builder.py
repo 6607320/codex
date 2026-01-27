@@ -29,7 +29,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 # Определяем путь к свитку с секретами (поднимаемся из spec_builder в tools)
-DOTENV_PATH = Path(__file__).parent.parent / ".env"
+DOTENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 
 # Мы произносим заклинание, дабы пробудить скрытые в свитке руны
 # и наполнить ритуал силой тайных знаний.
@@ -44,7 +44,7 @@ TEMPLATE_FILE = Path(__file__).parent / "spec.TEMPLATE.md"
 # Указываем путь к свитку с инструкциями для Оракула (User Prompt)
 USER_PROMPT_FILE = Path(__file__).parent / "spec.USER.md"
 # Находим путь к священному писанию, определяющему суть и законы Оракула (System Prompt)
-SYSTEM_PROMPT_FILE = Path(__file__).parent / "spec.SYSTEM.md"
+SYSTEM_PROMPT_FILE = Path(__file__).parent / "spec.PROMPT.md"
 
 # Начинаем формирование перечня запретных чертогов,
 # куда взор Оракула не должен проникать
@@ -99,14 +99,14 @@ class GrandScribe:
         # Извлекаем ключ доступа к порталу OpenRouter из чертогов памяти
         api_key = os.getenv("OPENROUTER_API_KEY")
         # Определяем адрес источника мудрости LLM (базовый URL)
-        base_url = os.getenv("LLM_BASE_URL")
+        base_url = os.getenv("OPENROUTER_BASE_URL")
         # Выбираем конкретный лик Оракула (модель) для текущего ритуала
-        self.model_name = os.getenv("LLM_MODEL")
+        self.model_name = os.getenv("MODELS_LIST")
 
         # Проверяем, достаточно ли маны (ключей) для совершения ритуала
         if not api_key or not self.model_name:
             # Если ключи отсутствуют, сообщаем о провале инициализации
-            print("❌ Ошибка: Проверь OPENROUTER_API_KEY и LLM_MODEL в .env")
+            print("❌ Ошибка: Проверь OPENROUTER_API_KEY и MODELS_LIST в .env")
             # Немедленно прекращаем выполнение программы
             exit(1)
 

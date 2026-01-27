@@ -61,7 +61,7 @@ Inventory of assets and exact data for 1-to-1 recreation:
 
 - 🏰 Архитектура ручной башни: MyManualCNN (состоит из conv1 и fc1)
 - 🏰 Рунные камни свертки: MyConv(in_channels=1, out_channels=16, kernel_size=3)
-- 🏰 Рунные камни линейного слоя: MyLinear(in_features=16 _ 14 _ 14, out_features=10)
+- 🏰 Рунные камни линейного слоя: MyLinear(in*features=16 * 14 \_ 14, out_features=10)
 - 🏰 Главная оболочка процесса: forward-поток башни (conv1 -> ReLU -> MaxPool2d -> view -> fc1)
 - 🏰 Датасет MNIST: root "./data", train=True/False, transform ToTensor, download=True
 - 🏰 Дух-переносчик данных: DataLoader(train_dataset, batch_size=64, shuffle=True)

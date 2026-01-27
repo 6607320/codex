@@ -7,11 +7,13 @@
   "scenario": [
     {
       "command": "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118",
-      "output": "Looking in indexes: https://download.pytorch.org/whl/cu118\nCollecting torch\n  Downloading https://download.pytorch.org/whl/cu118/torch-2.1.0%2Bcu118-cp310-cp310-linux_x86_64.whl (1.8 GB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 GB 15.2 MB/s eta 0:00:00\nCollecting torchvision\n  Downloading https://download.pytorch.org/whl/cu118/torchvision-0.16.0%2Bcu118-cp310-cp310-linux_x86_64.whl (6.1 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.1/6.1 MB 50.1 MB/s eta 0:00:00\nCollecting torchaudio\n  Downloading https://download.pytorch.org/whl/cu118/torchaudio-2.1.0%2Bcu118-cp310-cp310-linux_x86_64.whl (1.6 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 60.3 MB/s eta 0:00:00\nInstalling collected packages: torch, torchaudio, torchvision\nSuccessfully installed torch-2.1.0+cu118 torchaudio-2.1.0+cu118 torchvision-0.16.0+cu118\nuser@host:~$ "
+      "output": "Collecting torch==2.1.0+cu118\nDownloading https://download.pytorch.org/whl/cu118/torch-2.1.0+cu118-cp310-cp310-linux_x86_64.whl (123.4 MB)\nCollecting torchvision==0.16.0+cu118\nDownloading https://download.pytorch.org/whl/cu118/torchvision-0.16.0+cu118-cp310-cp310-linux_x86_64.whl (32.5 MB)\nCollecting torchaudio==2.1.0+cu118\nDownloading https://download.pytorch.org/whl/cu118/torchaudio-2.1.0+cu118-cp310-cp310-linux_x86_64.whl (48.7 MB)\nInstalling collected packages: torch, torchvision, torchaudio\nSuccessfully installed torch-2.1.0+cu118 torchvision-0.16.0+cu118 torchaudio-2.1.0+cu118",
+      "is_final": false
     },
     {
       "command": "pip install transformers datasets",
-      "output": "Collecting transformers\n  Downloading transformers-4.36.2-py3-none-any.whl (8.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.9/8.9 MB 25.4 MB/s eta 0:00:00\nCollecting datasets\n  Downloading datasets-2.15.1-py3-none-any.whl (526 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 526.0/526.0 kB 35.7 MB/s eta 0:00:00\nInstalling collected packages: transformers, datasets\nSuccessfully installed datasets-2.15.1 transformers-4.36.2\nuser@host:~$ "
+      "output": "Collecting transformers==4.31.0\nDownloading https://files.pythonhosted.org/packages/.../transformers-4.31.0-py3-none-any.whl (XX MB)\nCollecting datasets==2.16.1\nDownloading https://files.pythonhosted.org/packages/.../datasets-2.16.1-py3-none-any.whl (XX MB)\nInstalling collected packages: transformers, datasets\nSuccessfully installed transformers-4.31.0 datasets-2.16.1",
+      "is_final": false
     },
     {
       "command": "python -c \"import torch; print(torch.cuda.is_available())\"",

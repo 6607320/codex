@@ -1,36 +1,31 @@
 {
   "_meta": {
-    "input_hash": "667d83442834c33e6ebe0a5b19a4f7a5"
+    "input_hash": "2f1a3b343fd16c8320f93ee68a07011f"
   },
   "scenario": [
     {
       "command": "docker-compose up --build -d",
-      "output": "Building target-app\nBuilding locust-tester\nPulling dependencies... (simulated)\nStep 1/3 : FROM alpine:latest\n ---> 1a2b3c4d5e\nStep 2/3 : RUN echo Building target-app image\n ---> Using cache\nStep 3/3 : RUN echo Target-app ready\n ---> Using cache\nSuccessfully built abc123target\nSuccessfully tagged codex/app-29-2-telemetry:latest\nBuilding locust-tester\nStep 1/2 : FROM python:3.10-slim\n ---> 7f8e9d0a1b2c\nStep 2/2 : COPY locustfile.py /app/\n ---> Using cache\nSuccessfully built def456locust\nSuccessfully tagged codex/locust-30-1-tester:latest\nCreating network 'project_default'\nCreating project_default_target-app_1 ... done\nCreating project_default_locust-tester_1 ... done\n",
+      "output": "Creating network \\\"quest30_default\\\" with the default driver\\nBuilding target-app\\nStep 1/3 : FROM python:3.10-slim\\n... (build steps) \\nSuccessfully built abcdef123\\nSuccessfully tagged codex/app-29-2-telemetry:latest\\nBuilding locust-tester\\nStep 1/3 : FROM python:3.10-slim\\n... (build steps)\\nSuccessfully built 987xyz\\nSuccessfully tagged codex/locust-30-1-tester:latest\\nCreating quest30_target-app_1 ... done\\nCreating quest30_locust-tester_1 ... done\\nAttaching to quest30_target-app_1, quest30_locust-tester_1\\ntarget-app_1 | ready on http://0.0.0.0:8000\\nlocust-tester_1 | [2026-01-27 12:00:00] Locust v2.40.4 started\\nlocust-tester_1 | Web UI started at http://0.0.0.0:8089\\n",
       "is_final": false
     },
     {
-      "command": "docker-compose ps",
-      "output": "       Name                          Command                               State            Ports\n-----------------------------------------------------------------------------------------------\nproject_default_target-app_1   /bin/sh -c 'start-server'                 Up (healthy)    0.0.0.0:8000->8000/tcp\nproject_default_locust-tester_1  locust -f /app/locustfile.py --host http://target-app:8000   Up             8089/tcp",
+      "command": "docker ps",
+      "output": "CONTAINER ID   IMAGE                          COMMAND                CREATED        STATUS        PORTS                    NAMES\\na1b2c3d4e5f6   codex/app-29-2-telemetry        \\\"gunicorn app:app\\\"       2 minutes ago Up 2 minutes   0.0.0.0:8000->8000/tcp   quest30_target-app_1\\nf6e5d4c3b2a1   codex/locust-30-1-tester       \\\"Locust -f /app/locustfile.py\\\" 2 minutes ago Up 2 minutes   0.0.0.0:8089->8089/tcp   quest30_locust-tester_1",
       "is_final": false
     },
     {
-      "command": "curl -sS http://localhost:8089/ | head -n 5",
-      "output": "<!DOCTYPE html><html><head><title>Locust</title></head><body>Locust Web Interface</body></html>",
+      "command": "curl -s -X POST -H \\\"Content-Type: application/json\\\" -d '{\"text\":\"This is a test sentence for the load test.\"}' http://localhost:8000/analyze",
+      "output": "{\"text\":\"This is a test sentence for the load test.\",\"sentiment\":\"neutral\",\"score\":0.68}",
       "is_final": false
     },
     {
-      "command": "echo 'Open Locust UI at http://localhost:8089 and set Host to http://target-app:8000, then press Start swarming.'",
-      "output": "Open Locust UI at http://localhost:8089 and set Host to http://target-app:8000, then press Start swarming.",
+      "command": "curl -s http://localhost:8000/validate",
+      "output": "{\"valid\":true,\"issues\":0}",
       "is_final": false
     },
     {
-      "command": "docker logs locust-tester_1 --tail 60",
-      "output": "[2026-01-20 12:34:56] INFO Locust v2.15.0 started\n[2026-01-20 12:34:56] INFO Spawning 200 users at 50.00/s (1.0s steps)\n[2026-01-20 12:34:57] INFO /analyze: 50 requests/sec\n[2026-01-20 12:34:58] INFO /validate: 5 requests/sec\n[2026-01-20 12:34:59] INFO Attack finished for 200 users\n",
-      "is_final": false
-    },
-    {
-      "command": "echo 'Scenario ready: Locust swarm is active. Monitor /analyze for the critical path and /validate for service checks.'",
-      "output": "Scenario ready: Locust swarm is active. Monitor /analyze for the critical path and /validate for service checks.",
+      "command": "docker-compose logs -n 200 locust-tester",
+      "output": "Attaching to quest30_locust-tester_1\\nquest30_locust-tester_1 | 2026-01-27 12:00:02 INFO Locust v2.40.4 started\\nquest30_locust-tester_1 | 2026-01-27 12:00:04 INFO Spawning 100 users at t=0s (0 per second)\\nquest30_locust-tester_1 | 2026-01-27 12:00:12 INFO Request: /analyze [POST], avg_latency=180ms, req_per_sec=520\\nquest30_locust-tester_1 | 2026-01-27 12:00:12 INFO Request: /validate [POST], avg_latency=240ms, req_per_sec=510\\nquest30_locust-tester_1 | 2026-01-27 12:00:20 INFO 1000 users running, 0 min to go\\n",
       "is_final": true
     }
   ]

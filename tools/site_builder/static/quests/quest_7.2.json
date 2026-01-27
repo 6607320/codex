@@ -6,16 +6,33 @@
   "status": "active",
   "scenario": [
     {
-      "command": "pip install accelerate",
-      "output": "Collecting accelerate\n  Downloading accelerate-0.45.1-py3-none-any.whl (294 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 294.4/294.4 kB 1.8 MB/s eta 0:00:00\nCollecting numpy>=1.17 (from accelerate)\n  Downloading numpy-1.26.4-cp310-cp310-linux_x86_64.whl (15.8 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.8/15.8 MB 12.3 MB/s eta 0:00:00\nCollecting packaging>=20.0 (from accelerate)\n  Downloading packaging-24.1-py3-none-any.whl (53 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.8/53.8 kB 3.2 MB/s eta 0:00:00\nCollecting psutil (from accelerate)\n  Downloading psutil-6.0.0-cp36-abi3-linux_x86_64.glibc2.38.so (341 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 341.9/341.9 kB 8.5 MB/s eta 0:00:00\nCollecting pyyaml (from accelerate)\n  Downloading PyYAML-6.0.2-cp310-cp310-linux_x86_64.whl (170 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 170.7/170.7 kB 10.2 MB/s eta 0:00:00\nInstalling collected packages: pyyaml, psutil, packaging, numpy, accelerate\nSuccessfully installed accelerate-0.45.1 numpy-1.26.4 packaging-24.1 psutil-6.0.0 pyyaml-6.0.2\n"
+      "command": "ls -la ../Quest_1/generated_palette",
+      "output": "ls: cannot access '../Quest_1/generated_palette': No such file or directory\n",
+      "is_final": false
+    },
+    {
+      "command": "mkdir -p ../Quest_1/generated_palette",
+      "output": "",
+      "is_final": false
+    },
+    {
+      "command": "ls -la ../Quest_1/generated_palette",
+      "output": "total 0\n",
+      "is_final": false
+    },
+    {
+      "command": "pip install accelerate==1.9.0",
+      "output": "Collecting accelerate==1.9.0\n  Downloading accelerate-1.9.0-py3-none-any.whl (xxx kB)\nInstalling collected packages: accelerate\nSuccessfully installed accelerate-1.9.0\n",
+      "is_final": false
     },
     {
       "command": "accelerate config",
-      "output": "In which compute environment are you running? This machine\n[0]: This machine\n[1]: AWS (Amazon SageMaker)\n\n> 0\n\nWhich type of machine are you using?\n[0]: no distributed training\n[1]: multi-CPU\n[2]: multi-GPU on one node\n[3]: multi-GPU across nodes\n[4]: TPU\n[5]: HPU\n\n> 0\n\nDo you wish to use FP16 or BF16 (mixed precision)?\n[0]: no\n[1]: fp16\n[2]: bf16\n\n> 0\n\nHow many GPU(s) should be used for distributed training? [1]: \n\n> 1\n\nDo you wish to use DeepSpeed?\n[yes/no] [y/N]:\n\n> n\n\nDo you want to enable `deepspeed.zero.Init` when using ZeRO Stage-2/3? [yes/no] [y/N]:\n\n> n\n\nDo you want to enable `deepspeed.zero.Init` when using ZeRO Stage-3 with InferOps? [yes/no] [y/N]:\n\n> n\n\nConfiguration saved to ~/.cache/huggingface/accelerate/default_config.yaml\n"
+      "output": "Would you like to use this machine for training? [y/N]: \n\nUsing default settings.\nConfiguration saved to '/home/user/.cache/huggingface/accelerate/default_config.yaml'\n",
+      "is_final": false
     },
     {
       "command": "accelerate launch quest_7_2.py",
-      "output": "Launch script with:\naccelerate launch --num_processes=1 --gpu_ids=0 quest_7_2.py\n\nUsing config file: /root/.cache/huggingface/accelerate/default_config.yaml\n\n***** Running training *****\n\nАкт 1: Настройка Ритуала...\nАкт 2: Подготовка Учебника...\nАкт 3: Призыв компонентов...\nАкт 4: Начинаю Великий Ритуал Наставления...\nЭпоха 1/100: 100%|██████████| 16/16 [00:45<00:00,  2.81s/it]\n  Эпоха 1 завершена. Ошибка (Loss): 0.1247\nЭпоха 2/100: 100%|██████████| 16/16 [00:42<00:00,  2.63s/it]\n  Эпоха 2 завершена. Ошибка (Loss): 0.0982\nЭпоха 3/100: 100%|██████████| 16/16 [00:41<00:00,  2.56s/it]\n  Эпоха 3 завершена. Ошибка (Loss): 0.0765\nЭпоха 4/100: 100%|██████████| 16/16 [00:40<00:00,  2.50s/it]\n  Эпоха 4 завершена. Ошибка (Loss): 0.0593\nЭпоха 5/100: 100%|██████████| 16/16 [00:39<00:00,  2.44s/it]\n  Эпоха 5 завершена. Ошибка (Loss): 0.0451\n... [Эпохи 6-100 завершены, Loss снизилась до 0.0087]\n\nРитуал завершен! Сохраняю 'Стилевую Печать'...\n\nТвоя 'Стилевая Печать' сохранена в папке 'artist_seal'.\n\n***** Done training *****",
+      "output": "Акт 1: Настройка Ритуала...\nАкт 2: Подготовка Учебника...\nАкт 3: Призыв компонентов...\nАкт 4: Начинаю Великий Ритуал Наставления...\n  Эпоха 1 завершена. Ошибка (Loss): 0.5123\n  Эпоха 2 завершена. Ошибка (Loss): 0.2718\n  Эпоха 3 завершена. Ошибка (Loss): 0.1604\n  Эпоха 4 завершена. Ошибка (Loss): 0.1042\n  Эпоха 5 завершена. Ошибка (Loss): 0.0689\n  Эпоха 6 завершена. Ошибка (Loss): 0.0437\n\nРитуал завершен! Сохраняю 'Стилевую Печать'...\nТвоя 'Стилевая Печать' сохранена в папке 'artist_seal'.\n",
       "is_final": true
     }
   ]

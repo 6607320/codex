@@ -7,7 +7,8 @@
   "scenario": [
     {
       "command": "python create_video.py",
-      "output": "--- Ритуал Творения Кинопленки ---\nМагическая кинопленка 'test_video.mp4' создана успешно.\n"
+      "output": "--- Ритуал Творения Кинопленки ---\nМагическая кинопленка 'test_video.mp4' создана успешно.\n",
+      "is_final": false
     },
     {
       "command": "python quest_4_1.py",

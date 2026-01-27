@@ -1,26 +1,19 @@
 {
   "_meta": {
-    "input_hash": "27741d13fedabcb70c4fdca8c2b6d9c2"
+    "input_hash": "702efc40a69c3faa9eb9f9ca0ffed58f"
   },
   "scenario": [
     {
       "command": "docker build -t codex/amulet-17-2-leviathan .",
-      "output": "Sending build context to Docker daemon  12.56kB\nStep 1/7 : FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime\n ---> a1b2c3d4e5f6\nStep 2/7 : WORKDIR /app\n ---> b2c3d4e5f6a7\nStep 3/7 : COPY libraries.list .\n ---> c3d4e5f6a7b8\nStep 4/7 : RUN pip install --no-cache-dir -r libraries.list\n ---> d4e5f6a7b8c9\nStep 5/7 : COPY main.py .\n ---> e5f6a7b8c9d0\nStep 6/7 : EXPOSE 8000\n ---> f6a7b8c9d0e1\nStep 7/7 : CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n ---> 0a1b2c3d4e5f\nSuccessfully built 0a1b2c3d4e5f\nSuccessfully tagged codex/amulet-17-2-leviathan:latest",
-      "is_final": false
+      "output": "Sending build context to Docker daemon  3.072kB\nStep 1/6 : FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime\n ---> a1b2c3d4e5f6\nStep 2/6 : WORKDIR /app\n ---> Using cache\nStep 3/6 : COPY libraries.list .\n ---> 1 file changed: libraries.list\nStep 4/6 : RUN pip install --no-cache-dir -r libraries.list\nCollecting fastapi[all]==0.97.0\n  Downloading fastapi-0.97.0-py3-none-any.whl (xxx kB)\nCollecting transformers==4.31.0\n  Downloading transformers-4.31.0-py3-none-any.whl (xxx kB)\nCollecting torch==2.1.0+cu118\n  Downloading torch-2.1.0+cu118-cp38-cp38-linux_x86_64.whl (xxx MB)\nCollecting soundfile==0.10.3\n  Downloading SoundFile-0.10.3-cp38-cp38-linux_x86_64.whl (xxx kB)\nInstalling collected packages: fastapi, transformers, torch, soundfile\nSuccessfully installed fastapi-0.97.0[all], transformers-4.31.0, torch-2.1.0+cu118, soundfile-0.10.3\nStep 5/6 : COPY main.py .\n ---> 1234567890ab\nStep 6/6 : EXPOSE 8000\n ---> Running in 1a2b3c4d5e6f\nRemoving intermediate container 1a2b3c4d5e6f\n ---> 0abcdef123456\nSuccessfully built 0abcdef123456\n"
     },
     {
       "command": "docker run -p 8000:8000 --gpus all codex/amulet-17-2-leviathan",
-      "output": "GPU support flag --gpus is deprecated and will be removed in a future release.\nContainer amulet-leviathan started\nAttaching to amulet-leviathan\namulet-leviathan | Призываю 'Духа Эмоций' для нашего амулета...\namulet-leviathan | 'Дух Эмоций' готов к работе.\nINFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\n",
-      "is_final": false
+      "output": "WARN: NVIDIA driver is not loaded in the container (GPU access may be unavailable)\nПризываю 'Духа Эмоций' для нашего амулета...\n'Dух Эмоций' готов к работе.\nINFO:     Started server process [1]\nINFO:     Waiting for application startup.\nINFO:     Application startup complete.\nINFO: Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)\n"
     },
     {
       "command": "curl -s http://127.0.0.1:8000/docs",
-      "output": "<html>Swagger UI placeholder for OpenAPI docs at /docs</html>",
-      "is_final": false
-    },
-    {
-      "command": "curl -s -X POST -H \\\"Content-Type: application/json\\\" -d '{\\\"text\\\":\\\"I am happy\\\"}' http://127.0.0.1:8000/analyze",
-      "output": "{\"result\": {\"label\": \"POSITIVE\", \"score\": 0.92}}",
+      "output": "<!doctype html>\n<html lang=\\\"en\\\">\n  <head>\n    <meta charset=\\\"utf-8\\\" />\n    <title>Swagger UI</title>\n    <link href=\\\"https://unpkg.com/swagger-ui-dist/swagger-ui.css\\\" rel=\\\"stylesheet\\\" />\n  </head>\n  <body>\n    <div id=\\\"swagger-ui\\\"></div>\n    <script src=\\\"https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js\\\"></script>\n    <script>\n      const ui = SwaggerUIBundle({url: '/openapi.json', dom_id: '#swagger-ui'});\n    </script>\n  </body>\n</html>\n",
       "is_final": true
     }
   ]

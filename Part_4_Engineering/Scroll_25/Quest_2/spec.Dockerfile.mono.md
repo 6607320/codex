@@ -3,112 +3,97 @@
 ## 1. Meta Information
 
 - Domain: Infrastructure
-- Complexity: Medium
+- Complexity: Low
 - Language: Bash
 - Frameworks: Docker
 - Context: Independent Artifact
 
 ## 2. Goal & Purpose (Цель и Назначение)
 
-Context for Creator: Опишите бизнес-задачу кратко. Что делает этот модуль?
-
-- Это одностадийный ритуал сборки образа Docker для Python-сервиса. Он берет базовый образ python:3.10, подготавливает рабочее пространство /app, копирует файл libraries.list, устанавливает зависимости из него, копирует исходный код и задаёт точку входа через uvicorn для запуска на порту 8000. Ритуал призван сделать воспроизводимый и повторяемый образ, готовый к развёртыванию в окружении, где нужен Web-сервис на uvicorn.
-
-Instruction for AI: This section provides high-level intent. Use it to understand the "WHY" of the code.
-
-- Легенда и намерение: создать минимальный, воспроизводимый окружной контейнер для запуска сервиса на uvicorn, используя предписанный список зависимостей и исходники, и обеспечить запуск через стандартную команду uvicorn.
+Легенда: Один Ритуал в одну ступь — собрать тяжелое облако инструментов в единый сосуд и запустить FastAPI-приложение через uvicorn. Этот файл (Ритуал) призван создать воспроизводимый контейнер на базе толстого образа Python 3.10, который устанавливает зависимости из libraries.list, копирует всё необходимое и настраивает точку входа на запуск сервера. Зачем нужен этот файл: позволить разворачивать приложение в контейнеризованной среде без лишних секретов и зависимостей на стороне хоста, но с целостной, единообразной средой исполнения.
 
 ## 3. Interface Contract (Интерфейсный Контракт)
 
 ### 3.1. Inputs (Входы)
 
-- Source: CLI Args
-- Format: Text
-- Schema:
-  - baseImage: string // например, "python:3.10"
-  - workDir: string // например, "/app"
-  - librariesListPath: string // например, "libraries.list"
-  - codeContextPath: string // например, "."
-  - cmd: string[] // например, ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+- Source: File | CLI | API
+- Format: Text | JSON | Binary
+- Schema: Взаимоотношение формы входа описывается как интерфейс с полями:
+  - source: выбор между File, CLI или API
+  - path: путь к файлу (при Source = File)
+  - content: содержимое входного файла (опционально)
+  - format: формат содержимого (Text, JSON или Binary)
+
+Иными словами: входной Эфир может быть представлен как структура, указывающая источник, путь к рецепту (libraries.list), формат и сам текст рецепта, если он передается напрямую.
 
 ### 3.2. Outputs (Выходы)
 
 - Destination: API Response
 - Format: JSON
 - Success Criteria: Exit Code 0
-- Schema:
-  - imageName: string
-  - imageTag: string
-  - status: "success" | "failure"
-  - durationMs?: number
-  - log: string[]
-  - error?: string
+- Schema: объект с полями:
+  - imageTag: строка с тегом созданного образа (если применимо)
+  - status: "success" или "failure"
+  - details: дополнительная информация об успехе или ошибке (опционально)
 
-## 4. Implementation Details (The Source DNA / Исходный Код)
+## 4. Implementation Details (The Source DNA / Исходный ДНК)
 
 ### 4.1. Algorithmic Logic (Для исполняемого кода)
 
-- Ритуал начинается с призыва базового образа: берётся образ python:3.10 как основа.
-- Затем устанавливается рабочий лDesk — рабочая директория в образе становится /app.
-- Затем копируется файл libraries.list в корневое место внутри образа, чтобы он стал артефактом установки зависимостей.
-- Далее выполняется заклинание установки зависимостей: pip install --no-cache-dir -r libraries.list. Это превращает эфир зависимостей в устойчивый набор пакетов внутри образа.
-- После этого копируются остальные артефакты кода: копирование текущего контекста проекта внутрь образа (обычно . на стороне сборки → /app внутри образа).
-- Наконец активируется команда запуска сервиса: CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"].
-- Весь этот ритуал сопровождается выводом логов в процессе сборки. В случае ошибок на любом этапе сборки формируется хаос и возвращается детальное сообщение об ошибке.
+1. Пролог: зафиксируем базовый образ как основную мантру — Python 3.10, который станет полем боя для всех заклинаний.
+2. Установим рабочую директорию в /app — место, где распускаются эфиры и витают файлы приложения.
+3. Выймем и примирим рецепт зависимостей — копируем libraries.list из репозитория и поместим его в рабочий сосуд.
+4. Прозвеним заклинанием установки зависимостей: запустим пакетный менеджер в режиме без кэша и прочитаем библиотеки.list, чтобы внедрить все нужные артефакты в образ.
+5. Перемещаем оставшееся содержимое проекта в образ — копируем код и ресурсы в /app, чтобы они могли служить фронтом и сердцем сервера.
+6. Зададим точку входа: запуск uvicorn с main:app на протяжении сети, слушая 0.0.0.0:8000, чтобы приложение было доступно извне.
+7. Это одностадийный ритуал: в образе нет дополнительных стадий сборки, и финал оставляет в себе инструментальные слои вместе с кодом и зависимостями.
+8. По завершении сборки возвращаем признак завершения и готовности image к Deployment или запуску контейнера.
 
 ### 4.2. Declarative Content (Для конфигураций и данных)
 
-- Ритуал опирается на «толстый» образ и превращает мусор от сборки в финальный образ, а не в временный артефакт. Путь /app становится центром силы. Файл libraries.list — артефакт скрижалей, откуда читаются зависимости. Команда запуска подготавливает врата приложения, чтобы uvicorn слушал на 0.0.0.0:8000.
+- Конфигурация описывает однотонную схему: толстый базовый образ, рабочая директория, копирование рецептов зависимостей, установка зависимостей, копирование кода и команда запуска.
+- Данные рецепта libraries.list служат источником эфира зависимостей и должны быть доступны в момент ритуала.
 
 ## 5. Structural Decomposition (Декомпозиция структуры)
 
-- Блок BaseImage
-- Блок WorkingDirectory
-- Блок CopyLibraries
-- Блок DependencyInstall
-- Блок CopyCode
-- Блок Entrypoint/Command
+- База ритуала: FROM python:3.10 — создает основу мира и его магии.
+- Командир пространства: WORKDIR /app — задает арену для всего действия.
+- Рецепт зависимостей: COPY libraries.list — чертит свиток с зависимостями.
+- Заклинание установки: RUN pip install --no-cache-dir -r libraries.list — призывает и закрепляет артефакты в сосуде.
+- Хранитель кода: COPY . . — переносит всё сокровище проекта в образ.
+- Точка входа: CMD uvicorn main:app --host 0.0.0.0 --port 8000 — призыв к запуску сервера и приём посетителей через порт 8000.
+
+(Это набор магических блоков, каждый из которых выполняет свою роль в едином заклятии.)
 
 ## 6. System Context & Constraints (Системный контекст и Ограничения)
 
 ### 6.1. Technical Constraints
 
-- Performance: Standard CPU
-- Concurrency: Async (uvicorn в основе, поддерживает асинхронную обработку)
-- Dependencies: Python 3.10 образ, pip, uvicorn, зависимости из libraries.list
+- Performance: стандартный CPU; образ рассчитан на типичный рабочий поток Python-приложения.
+- Concurrency: асинхронная модель исполнения типична для FastAPI/uvicorn; конкретные параметры воркеров не указаны в этом ритуале.
+- Dependencies: явные зависимости — Python 3.10, uvicorn и списк dependencies из libraries.list.
 
 ### 6.2. Prohibited Actions (Negative Constraints)
 
-- DO NOT store secrets in plain text (use .env)
-- DO NOT print raw data to console in production
-- DO NOT use synchronous network calls in the main loop
-- DO NOT wrap configuration files (.yaml, .json) into scripts
-- DO NOT change versions or paths during reconstruction
+- НЕ хранить секреты в открытом виде внутри образа; используйте переменные окружения или секреты окружения.
+- НЕ пытаться превращать этот ритуал в минимальный образ путём удаления инструментов — этот файл называется Грязная Кузница и намеренно сохраняет полный набор инструментов.
+- НЕ копировать внутрь образ конфигурации в форме скриптов без необходимости; конфигурации должны быть в явном виде и соблюдаться в рамках рецептов.
+- НЕ менять версии базового образа или путей в ходе реконструкции без обоснования.
+- НЕ вставлять копируемый код в описания или логику; действуй через естественные шаги и технические формулировки.
 
 ## 7. Verification & Testing (Верификация)
 
-```
-Feature: Dockerfile.mono functionality
-  Scenario: Successful execution
-    Given имаются корректные рабочие файлы и libraries.list
-    When сборка и запуск через ритуал проходят без ошибок
-    Then статус = "success", imageName и imageTag заполняются, log содержит вывод сборки
+### Гgherkin сценарии
 
-  Scenario: Missing libraries.list
-    Given libraries.list отсутствует
-    When сборка запускается
-    Then статус = "failure", log содержит сообщение об отсутствии libraries.list, error описан и возвращается соответствующий хаос
-```
+Feature: Dockerfile.mono Build and Run
+Scenario: Successful build and run
+Given libraries.list contains a valid set of dependencies
+When the image is built from Dockerfile.mono and a container is started
+Then the application should be reachable on http://localhost:8000 and respond with a successful status
 
-ИССЛЕДУЕМЫЙ АРТЕФАКТ: Dockerfile.mono
+Scenario: Build fails due to missing libraries.list
+Given libraries.list is missing or unreadable
+When the image is built
+Then the build should fail with a non-zero exit code and no image should be produced
 
-ИСХОДНЫЙ КОД:
-
-- Одностадийный билд на основе python:3.10
-- WORKDIR /app
-- COPY libraries.list .
-- RUN pip install --no-cache-dir -r libraries.list
-- COPY . .
-- CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-Примечание по стилю: скрипт называется ритуалом; конфигурация — Скрижаль; данные — Эфир; ошибки — Хаос. Вся логика описана словами, без копирования кода. Входные и выходные интерфейсы заданы как TS-представления, чтобы интегрировать этот артефакт в систему автоматизированной сборки и тестирования.
+Индикатор независимого артефакта: Independent Artifact

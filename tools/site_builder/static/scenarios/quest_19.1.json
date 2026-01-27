@@ -1,16 +1,16 @@
 {
   "_meta": {
-    "input_hash": "af7dfd2ce09f305865ebf6a58aece544"
+    "input_hash": "0383612a7b4494638f62e516de0502fb"
   },
   "scenario": [
     {
       "command": "pip install torch transformers datasets soundfile scipy librosa numpy",
-      "output": "(base) user@host:~$ pip install torch transformers datasets soundfile scipy librosa numpy\nCollecting torch\n  Downloading torch-2.0.1-cp39-none-linux_x86_64.whl (9.7 MB)\nInstalling collected packages: torch, transformers, datasets, soundfile, scipy, librosa, numpy\nSuccessfully installed torch-2.0.1 numpy-1.23.5 scipy-1.9.1 librosa-0.10.2 soundfile-0.10.5 datasets-2.0.4 transformers-4.30.2\n(base) user@host:~$",
+      "output": "Collecting torch==2.1.0+cu118\n  Downloading https://download.pytorch.org/whl/cu118/torch-2.1.0+cu118-cp310-linux_x86_64.whl (xxx MB)\n     |████████████████████████████████| xxx MB  xxx KB/s \nCollecting transformers==4.31.0\n  Downloading transformers-4.31.0-py3-none-any.whl (xxx kB)\nCollecting datasets==2.16.1\n  Downloading datasets-2.16.1-py3-none-any.whl (xxx kB)\nCollecting soundfile==0.10.3\n  Downloading soundfile-0.10.3-py3-none-any.whl (xxx kB)\nCollecting scipy==1.15.3\n  Downloading scipy-1.15.3-cp310-cp310-linux_x86_64.whl (xxx MB)\nCollecting librosa==0.11.0\n  Downloading librosa-0.11.0-py3-none-any.whl (xxx kB)\nCollecting numpy==2.1.2\n  Downloading numpy-2.1.2-cp310-cp310-linux_x86_64.whl (xxx kB)\nInstalling collected packages: numpy, scipy, librosa, soundfile, datasets, transformers, torch\nSuccessfully installed numpy-2.1.2 scipy-1.15.3 librosa-0.11.0 soundfile-0.10.3 datasets-2.16.1 transformers-4.31.0 torch-2.1.0+cu118\n",
       "is_final": false
     },
     {
       "command": "python quest_19_1.py",
-      "output": "(env) user@host:~$ python magic_chain.py\n=== Квест 19.1: Сборка цепи ===\nВыбор устройства: cuda\n[Этап 1] Обращение к Великой Библиотеке Hugging Face...\nТелепортируем амулет 'superb/ks' (3.2 ГБ)...\nИзвлечение свитка #10: 'Звуковой кристалл Бегемота...'\n[Этап 2] Призыв Голема-Писца (Whisper)...\nНаносим амулет: 'openai/whisper-tiny'\nПреобразуем барабан: 1.2 Гц → 16000 Гц\nШепот распознан: ' Mead .'\n[Этап 3] Призыв Голема-Толкователя (Zero-Shot)..\nАнализируем намерения:\n- 'узнать погоду' (вероятность: 82%)\n- 'работать над блогом' (вероятность: 15%)\nВыбрано: узнать погоду\n[Этап 4] Призыв Голема-Оракула (GPT-2)...\nВажный магический ритуал: 'Ответ на вопрос о погоде: ...'\nЖаргон заклинания...\nИтог: 'Завтра в Меде будет 10°C с легким солнечным покрытием...'\n=== Финальная заклинание ===\nГолемы отпущены!\nКристалл маны восстановлен.\n[ИТОГ] Переменная магия: 'Weather prediction successful'",
+      "output": "Магия будет вершиться на устройстве: cuda\n\n[Этап 1] Обращение к Великой Библиотеке Hugging Face...\nАрхив со свитками успешно загружен.\nЭталонный аудио-свиток сохранен как: command_from_hub.wav\n\n[Этап 2] Призыв Голема-Писца (Whisper)...\nГолем-Писец услышал: ' Mead.'\nГолем-Писец изгнан. Кристалл Маны (GPU VRAM) очищен.\n\n[Этап 3] Призыв Голема-Толкователя (Zero-Shot Classifier)...\nГолем-Толкователь определил намерение: 'узнать погоду'\nГолем-Толкователь изгнан. Кристалл Маны (GPU VRAM) снова очищен.\n\n[Этап 4] Призыв Голема-Оракула (GPT-2)...\nЗатравка для Оракула: 'Ответ на вопрос о погоде: '\nГолем-Оракул ответил.\nГолем-Оракул изгнан. Все големы покинули Кристалл Маны.\n\nИТОГОВЫЙ ОТВЕТ АССИСТЕНТА:\n\n==================================================\nИТОГОВЫЙ ОТВЕТ АССИСТЕНТА:\nПогода сегодня ясная. Температура около 22°C. Ветер западный 5-10 км/ч. Без осадков. Отличный день для прогулки и исследований магической сферы.\n==================================================",
       "is_final": true
     }
   ]

@@ -1,11 +1,16 @@
 {
   "_meta": {
-    "input_hash": "24dfddac5285be92732e0300c26d44cf"
+    "input_hash": "94c973478aaadfced4f2c8a196b479ff"
   },
   "scenario": [
     {
+      "command": "ls -l test_video.mp4",
+      "output": "-rw-r--r-- 1 user user 10485760 Mar 1 12:00 test_video.mp4\n",
+      "is_final": false
+    },
+    {
       "command": "python quest_8_1.py",
-      "output": "Открываю кинопленку 'test_video.mp4' для прореживания...\n\nРитуал завершен.\n  Всего прочитано кадров: 10\n  Сохранено (каждый 3-й): 3 кадров в папку 'sampled_frames'.",
+      "output": "Открываю кинопленку 'test_video.mp4' для прореживания...\n\nРитуал завершен.\n  Всего прочитано кадров: 10\n  Сохранено (каждый 3-й): 3 кадров в папку 'sampled_frames'.\n",
       "is_final": true
     }
   ]

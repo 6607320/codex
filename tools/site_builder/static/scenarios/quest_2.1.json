@@ -1,15 +1,16 @@
 {
   "_meta": {
-    "input_hash": "c837ec411dd44abe72c5f48dd07446f1"
+    "input_hash": "a12ef77882fdab61b312e90130d7d200"
   },
   "scenario": [
     {
       "command": "pip install soundfile accelerate datasets==2.16.1",
-      "output": "Looking in indexes: https://pypi.org/simple\nCollecting soundfile\n  Downloading soundfile-0.12.1.tar.gz (45 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.4/45.4 kB 3.2 MB/s eta 0:00:00\nCollecting accelerate\n  Downloading accelerate-0.44.0-py3-none-any.whl (291 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 291.2/291.2 kB 12.5 MB/s eta 0:00:00\nCollecting datasets==2.16.1\n  Downloading datasets-2.16.1-py3-none-any.whl (541 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 541.9/541.9 kB 15.1 MB/s eta 0:00:00\n... (installing dependencies: numpy, torch, transformers, etc.)\nSuccessfully installed accelerate-0.44.0 datasets-2.16.1 soundfile-0.12.1 ... (and dependencies)"
+      "output": "Collecting soundfile\n  Downloading soundfile-0.13.1-cp38-cp38-linux_x86_64.whl (1.2 MB)\nCollecting accelerate\n  Downloading accelerate-1.9.0-py3-none-any.whl (120 kB)\nCollecting datasets==2.16.1\n  Downloading datasets-2.16.1-py3-none-any.whl (2.0 MB)\nInstalling collected packages: soundfile, accelerate, datasets\nSuccessfully installed accelerate-1.9.0 datasets-2.16.1 soundfile-0.13.1\n",
+      "is_final": false
     },
     {
       "command": "python quest_2_1.py",
-      "output": "Призываю 'Ухо Всеслышания' (Whisper-tiny)...\nDownloading (…)okenizer_config.json: 100%|██████████| 162/162 [00:00<00:00, 50.4kB/s]\nDownloading config.json: 100%|██████████| 511/511 [00:00<00:00, 145kB/s]\nDownloading (…)d_architecture.json: 100%|██████████| 466/466 [00:00<00:00, 140kB/s]\nDownloading model.safetensors: 100%|██████████| 29.4M/29.4M [00:02<00:00, 14.7MB/s]\nDownloading preprocessor_config.json: 100%|██████████| 156/156 [00:00<00:00, 48.1kB/s]\nDownloading vocab.json: 100%|██████████| 129k/129k [00:00<00:00, 1.32MB/s]\nDownloading added_tokens.json: 100%|██████████| 42.0/42.0 [00:00<00:00, 12.9kB/s]\n\nДаю духу послушать тишину...\nРезультат расшифровки тишины:\n{'text': ' you'}",
+      "output": "Призываю 'Ухо Всеслышания' (Whisper-tiny)...\n\nДаю духу послушать тишину...\nРезультат расшифровки тишины:\n{'text': ' you'}\n",
       "is_final": true
     }
   ]

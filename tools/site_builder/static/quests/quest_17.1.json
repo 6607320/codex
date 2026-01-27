@@ -7,12 +7,22 @@
   "scenario": [
     {
       "command": "pip install \"fastapi[all]\"",
-      "output": "Installing collected packages: fastapi, pydantic, uvicorn, ...\nSuccessfully installed fastapi-0.68.0 pydantic-1.7.6 uvicorn-0.14.0 ...",
+      "output": "Collecting fastapi[all]\n  Downloading fastapi-0.97.0-py3-none-any.whl (60 kB)\nCollecting uvicorn[standard]\n  Downloading uvicorn-0.23.2-py3-none-any.whl (58 kB)\nCollecting pydantic>=1.10.2\n  Downloading pydantic-1.10.2-py3-none-any.whl (7.4 MB)\nCollecting starlette>=0.27.0\n  Downloading starlette-0.34.0-py3-none-any.whl (12 kB)\nCollecting typing-extensions>=3.7.4.3\n  Downloading typing_extensions-4.5.0-py3-none-any.whl (23 kB)\nCollecting transformers>=4.0.0\n  Downloading transformers-4.31.0-py3-none-any.whl (3.4 MB)\nCollecting torch<=2.1.0,>=1.12.0\n  Downloading torch-2.1.0+cu118-cp38-cp38-linux_x86_64.whl (170.0 MB)\nCollecting soundfile>=0.10.3\n  Downloading SoundFile-0.10.3-cp38-cp38-linux_x86_64.whl (2.3 MB)\nInstalling collected packages: pydantic, typing_extensions, starlette, transformers, soundfile, torch, fastapi, uvicorn\nSuccessfully installed fastapi-0.97.0 uvicorn-0.23.2 transformers-4.31.0 torch-2.1.0+cu118 pydantic-1.10.2 starlette-0.34.0 typing_extensions-4.5.0 SoundFile-0.10.3\n",
       "is_final": false
     },
     {
       "command": "uvicorn quest_17_1:app --reload",
-      "output": "127.0.0.1:8000\nINFO:     Will watch for changes in these directories: ...\nINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)\nПризываю 'Духа Эмоций' для нашего амулета...\n'Дух Эмоций' готов к работе.",
+      "output": "Призываю 'Духа Эмоций' для нашего амулета...\nДух Эмоций готов к работе.\nINFO:     Started reloader process [1]\nINFO:     Started server process [12345]\nINFO:     Waiting for application startup...\nINFO:     Application startup complete.\nINFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)\n",
+      "is_final": false
+    },
+    {
+      "command": "curl -s http://127.0.0.1:8000/openapi.json | head -n 20",
+      "output": "{\"openapi\":\"3.0.2\",\"info\":{\"title\":\"Говорящий Амулет Техноманта\",\"version\":\"1.0\"},\"paths\":{\"/analyze\":{\"post\":{\"summary\":\"Analyze sentiment\"}}},\"components\":{\"schemas\":{\"TextInput\":{\"type\":\"object\",\"properties\":{\"text\":{\"type\":\"string\"}}}}}}",
+      "is_final": false
+    },
+    {
+      "command": "curl -s -X POST http://127.0.0.1:8000/analyze -H \"Content-Type: application/json\" -d '{\"text\":\"I am thrilled with this quest!\"}'",
+      "output": "{\"result\":{\"label\":\"POSITIVE\",\"score\":0.92}}",
       "is_final": true
     }
   ]

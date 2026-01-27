@@ -20,13 +20,13 @@
 - Format: JSON
 - Schema:
   interface InputData {
-  videoRootPath: string; // корень видеодатасета, например video*palette
+  videoRootPath: string; // корень видеодатасета, например video\*palette
   frameSkip?: number; // шаг прореживания кадров, например 5
   labelMap?: { [key: string]: number }; // отображение имен классов на номера, по умолчанию {"action_A":0,"action_B":1}
   device?: string; // вычислительное устройство, например "cuda" или "cpu"
   processorModel?: string; // модель процессора изображений, например "google/mobilenet_v2_1.0_224"
   extractorModel?: string; // модель-извлекатель признаков, например "google/mobilenet_v2_1.0_224"
-  videoPattern?: string; // паттерн поиска видео, например "video_palette/\**/\_.mp4"
+  videoPattern?: string; // паттерн поиска видео, например "video_palette/\*\*/\_.mp4"
   }
 
 ### 3.2. Outputs (Выходы)

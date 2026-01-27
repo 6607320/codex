@@ -1,35 +1,41 @@
 {
   "_meta": {
-    "input_hash": "016f343af5aca505b561a1e2659aa681"
+    "input_hash": "dcb471b6a9472900496c1a6d85a24018"
   },
   "scenario": [
     {
-      "command": "pwd",
-      "output": "quest@host:~/quest25$ \n/home/quest/quest25\n"
-    },
-    {
       "command": "ls -la",
-      "output": "quest@host:~/quest25$ ls -la\n total 32\n drwxr-xr-x 4 quest quest 4096 Jan  2 12:00 .\n drwxr-xr-x 4 quest quest 4096 Jan  2 12:00 ..\n -rw-r--r-- 1 quest quest  120 Jan  2 12:00 Dockerfile\n -rw-r--r-- 1 quest quest  980 Jan  2 12:00 docker-compose.yaml\n -rw-r--r-- 1 quest quest  540 Jan  2 12:00 main.py\n -rw-r--r-- 1 quest quest  420 Jan  2 12:00 libraries.list\n"
+      "output": "total 28\n-rw-r--r-- 1 user user 125 Jan 27 12:00 Dockerfile\n-rw-r--r-- 1 user user  89 Jan 27 12:00 libraries.list\n-rw-r--r-- 1 user user 902 Jan 27 12:00 main.py\n-rw-r--r-- 1 user user 140 Jan 27 12:00 docker-compose.yaml\n",
+      "is_final": false
     },
     {
       "command": "docker compose up --build -d",
-      "output": "quest@host:~/quest25$ docker compose up --build -d\nCreating network quest_25_1_default\nCreating quest_25_1_api_1 ... done\nCreating quest_25_1_redis_1 ... done\n"
+      "output": "Creating network 'quest_25_1_default'   ... done\nBuilding api\nStep 1/4 : FROM python:3.10\n ---> a1b2c3d4e5f6\nStep 2/4 : WORKDIR /app\n ---> 1a2b3c4d5e6f\nStep 3/4 : COPY libraries.list .\n ---> 2b3c4d5e6f7a\nStep 4/4 : RUN pip install --no-cache-dir -r libraries.list\n ---> Running in 7a8b9c0d1e2f\nSuccessfully installed fastapi==0.116.1 uvicorn==0.35.0 redis==5.0.8\nRemoving intermediate container 7a8b9c0d1e2f\nSuccessfully built codex/orchestrator-25-1-app\nSuccessfully tagged codex/orchestrator-25-1-app:latest\nCreating quest_25_1_redis_1 ... done\nCreating quest_25_1_api_1   ... done\n",
+      "is_final": false
     },
     {
       "command": "docker compose ps",
-      "output": "quest@host:~/quest25$ docker compose ps\nNAME                              SERVICE  STATE  PORTS\nquest_25_1_api_1                  api      Up     0.0.0.0:8000->8000/tcp\nquest_25_1_redis_1                redis    Up\n"
+      "output": "Name                       Command                 State               Ports\nquest_25_1_api_1           \\\"uvicorn main:app --host 0.0.0.0 --port 8000\\\"   Up                 0.0.0.0:8000->8000/tcp\nquest_25_1_redis_1         docker-entrypoint.sh redis ...                 Up                  6379/tcp\n",
+      "is_final": false
     },
     {
-      "command": "curl -sS -X POST 'http://127.0.0.1:8000/remember/favorite_color?value=blue'",
-      "output": "quest@host:~/quest25$ curl -sS -X POST 'http://127.0.0.1:8000/remember/favorite_color?value=blue'\n{\"status\":\"ok\",\"key\":\"favorite_color\",\"remembered_value\":\"blue\"}\n"
+      "command": "curl -s http://127.0.0.1:8000/docs",
+      "output": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><title>FastAPI - Swagger UI</title></head><body>Swagger UI</body></html>",
+      "is_final": false
     },
     {
-      "command": "curl -sS 'http://127.0.0.1:8000/recall/favorite_color'",
-      "output": "quest@host:~/quest25$ curl -sS 'http://127.0.0.1:8000/recall/favorite_color'\n{\"status\":\"found\",\"key\":\"favorite_color\",\"recalled_value\":\"blue\"}\n"
+      "command": "curl -s -X POST \"http://127.0.0.1:8000/remember/secret?value=hello\"",
+      "output": "{\"status\":\"ok\",\"key\":\"secret\",\"remembered_value\":\"hello\"}",
+      "is_final": false
     },
     {
-      "command": "docker compose down",
-      "output": "quest@host:~/quest25$ docker compose down\nStopping quest_25_1_api_1 ... done\nStopping quest_25_1_redis_1 ... done\nRemoving quest_25_1_api_1 ... done\nRemoving quest_25_1_redis_1 ... done\nRemoving network quest_25_1_default\n",
+      "command": "curl -s \"http://127.0.0.1:8000/recall/secret\"",
+      "output": "{\"status\":\"found\",\"key\":\"secret\",\"recalled_value\":\"hello\"}",
+      "is_final": false
+    },
+    {
+      "command": "docker-compose down",
+      "output": "Stopping quest_25_1_api_1 ... done\nStopping quest_25_1_redis_1 ... done\nRemoving quest_25_1_api_1 ... done\nRemoving quest_25_1_redis_1 ... done\nRemoving network quest_25_1_default\nDone\n",
       "is_final": true
     }
   ]
