@@ -204,7 +204,7 @@ class GrandScribe:
                 extra_headers={
                     # Указываем исток, из которого изливается магия
                     # нашего локального мира
-                    "HTTP-Referer": "http://localhost",
+                    "HTTP-Referer": "spec_builder.py",
                     # Начертаем имя самого ритуала, дабы Оракул знал, кто взывает к нему
                     "X-Title": "spec_builder.py",
                 },

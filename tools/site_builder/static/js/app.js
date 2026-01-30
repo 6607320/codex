@@ -278,9 +278,9 @@ function renderQuestView(quest) {
   // Соединяем воедино капитель и свиток, завершая возведение третьей колонны — столпа Манифеста.
   colManifest.append(headerManifest, scrollManifest);
   // Мы объединяем три столпа мудрости — Легенду, Терминал и Манифест — в единое живое тело макета.
-  layout.append(colLegend, colTerminal, colManifest);
+  layout.append(colManifest, colLegend, colTerminal);
   // Накладываем на макет печать начального взора, дабы Легенда первой явилась взору Техноманта.
-  layout.classList.add("view-legend");
+  layout.classList.add("view-manifest");
   // Отводим место в эфире для Великого Заклинания Переключения, что меняет фокус между мирами.
   const switchView = (targetClass) => {
     // Оставляем в астральных логах (консоли) след о том, в какую сферу совершается переход.

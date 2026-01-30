@@ -22,8 +22,8 @@
   "Part_4_Engineering/Scroll_25/Quest_2/Dockerfile.mono": "cd8cf8f9213491a12fd8790f0d05c7b4",
   "Part_5_Archmage/Saga_NINDUB/Hackathon/Quest_4/src/manifestor.ts": "c4025abe1da7389a401e3c3c24a12922",
   "tools/site_builder/static/quest.html": "d55422ba9b9d888ada1c2076ee430504",
-  "tools/site_builder/static/css/style.css": "e12c5d58b984845e12ca07b37a380ae1",
-  "tools/site_builder/static/js/app.js": "6c5052e2b01d9b83ec190319f20ffc19",
+  "tools/site_builder/static/css/style.css": "1f593d6dd77ba009cbdfecb137beb654",
+  "tools/site_builder/static/js/app.js": "2cedd8ef00e1263dce79d680a7f91fb1",
   "Part_2_Architecture/Scroll_10/Quest_3/quest_10_3.py": "0a4dd1e80f79cfb7363fbcff7b7f172e",
   "Part_2_Architecture/Scroll_10/Quest_2/quest_10_2_manual.py": "50ceeb1733cb5b53ca806f1281276a8a",
   "Part_3_Mastery/Scroll_21/Quest_1/quest_21_1.py": "60e1bf5602b6ef4185bd90839437955f",
@@ -140,5 +140,5 @@
   ".github/workflows/quest_32_1_build_push.yml": "042201f0dcc20f65b4efd7933323f49d",
   ".github/workflows/quest_32_2_telemetry.yml": "b81e40411c430bb52d4bda00992fc408",
   "tools/site_builder/quests_builder.py": "ccd38aa07510c5c23a928d30feeb38aa",
-  "tools/site_builder/scenarios_builder.py": "991ab44f9b3c7a503a9e775597ff0a7e"
+  "tools/site_builder/scenarios_builder.py": "4bf592416b453ce2f034c8ce4d39c6bf"
 }
