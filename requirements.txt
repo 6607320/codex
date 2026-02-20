@@ -110,7 +110,7 @@ gradio==5.49.1
 gradio_client==1.13.3
 grandalf==0.8
 graphene==3.4.3
-graphql-core==3.2.6
+graphql-core==3.2.7
 graphql-relay==3.2.0
 greenlet==3.2.4
 groovy==0.1.2
