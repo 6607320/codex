@@ -214,7 +214,7 @@ pycodestyle==2.14.0
 pycparser==2.22
 pycryptodomex==3.23.0
 pydantic==2.12.3
-pydantic-extra-types==2.10.6
+pydantic-extra-types==2.11.0
 pydantic-settings==2.11.0
 pydantic_core==2.41.4
 pydot==4.0.1
