@@ -191,7 +191,7 @@ pandas==2.3.3
 pathspec==0.12.1
 peft==0.16.0
 pi_heif==1.1.1
-pillow==12.1.1
+pillow==12.2.0
 pillow-avif-plugin==1.5.2
 platformdirs==4.5.1
 pluggy==1.6.0
@@ -229,12 +229,12 @@ pyinstaller-hooks-contrib==2025.10
 pyOpenSSL==26.0.0
 pyparsing==3.2.5
 PySocks==1.7.1
-pytest==9.0.2
+pytest==9.0.3
 python-bitcoinlib==0.12.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 python-engineio==4.12.3
-python-multipart==0.0.22
+python-multipart==0.0.26
 python-socketio==5.15.0
 pytz==2025.2
 PyYAML==6.0.3
