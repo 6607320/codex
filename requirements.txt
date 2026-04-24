@@ -188,7 +188,7 @@ opentimestamps-client==0.7.2
 orjson==3.11.6
 packaging==25.0
 pandas==2.3.3
-pathspec==0.12.1
+pathspec==1.1.0
 peft==0.16.0
 pi_heif==1.1.1
 pillow==12.2.0
