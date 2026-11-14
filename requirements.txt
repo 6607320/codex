@@ -55,7 +55,7 @@ dill==0.4.0
 diskcache==5.6.3
 distlib==0.4.0
 distro==1.9.0
-dnspython==2.9.0
+dnspython==2.9.2
 docker==7.1.0
 dpath==2.2.0
 dulwich==1.2.9
@@ -180,7 +180,7 @@ onnx==1.22.0
 onnxruntime==1.23.2
 opencv-python==4.12.0.88
 opencv-python-headless==4.12.0.88
-opentelemetry-api==1.45.1
+opentelemetry-api==1.45.2
 opentelemetry-sdk==1.36.0
 opentelemetry-semantic-conventions==0.59b0
 opentimestamps==0.4.5
